@@ -1,4 +1,4 @@
-# TCC - Projetc Web
+# TCC - Project Web
 version 10.1.4
 
 # Getting started
