@@ -1,6 +1,4 @@
-# s
-
-This project was generated with [ngX-Rocket](https://github.com/ngx-rocket/generator-ngx-rocket/)
+# TCC - Project Web
 version 10.1.4
 
 # Getting started
