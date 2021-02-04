@@ -6,3 +6,47 @@
 .message {
   margin-left: 0.5em;
 }
+
+.loading {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(231, 231, 231, 0.8);
+  top: 0;
+  z-index: 999999;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+
+  svg {
+    width: 140px;
+    height: 62px;
+
+    #obj {
+      stroke: #388AF7 !important;
+      stroke-width: 1;
+      fill: transparent;
+      stroke-dasharray: 700;
+      stroke-dashoffset: 700;
+      animation: dash 2s linear forwards infinite;
+    }
+  }
+
+
+  p {
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  @keyframes dash {
+    to {
+      stroke-dashoffset: 0;
+      fill: #7BDEFB;
+    }
+  }
+}

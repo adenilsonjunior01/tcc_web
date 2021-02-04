@@ -1,0 +1,10 @@
+@import './general';
+
+.btn-primary-login {
+  background-color: var(--tcc-primary) !important;
+  color: #FFF !important;
+  font-size: var(--f_16) !important;
+  font-weight: 600 !important;
+  width: 90%;
+  border-radius: 90px !important;
+}

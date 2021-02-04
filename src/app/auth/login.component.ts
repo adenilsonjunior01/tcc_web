@@ -19,12 +19,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   error: string | undefined;
   loginForm!: FormGroup;
   isLoading = false;
+  hide = true;
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private formBuilder: FormBuilder,
-    private authenticationService: AuthenticationService
+    private readonly _router: Router,
+    private readonly _route: ActivatedRoute,
+    private readonly _formBuilder: FormBuilder,
+    private readonly _authenticationService: AuthenticationService
   ) {
     this.createForm();
   }
@@ -35,7 +36,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   login() {
     this.isLoading = true;
-    const login$ = this.authenticationService.login(this.loginForm.value);
+    const login$ = this._authenticationService.login(this.loginForm.value);
     login$
       .pipe(
         finalize(() => {
@@ -47,7 +48,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe(
         (credentials) => {
           log.debug(`${credentials.username} successfully logged in`);
-          this.router.navigate([this.route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
+          this._router.navigate([this._route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
         },
         (error) => {
           log.debug(`Login error: ${error}`);
@@ -57,8 +58,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   private createForm() {
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
+    this.loginForm = this._formBuilder.group({
+      username: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       remember: true,
     });
