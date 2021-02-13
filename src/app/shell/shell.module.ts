@@ -8,9 +8,11 @@ import { I18nModule } from '@app/i18n';
 import { MaterialModule } from '@app/material.module';
 import { AuthModule } from '@app/auth';
 import { ShellComponent } from './shell.component';
+import { NavigationItem } from '../config/menu-navigation';
 
 @NgModule({
-  imports: [CommonModule, TranslateModule, FlexLayoutModule, MaterialModule, AuthModule, I18nModule, RouterModule],
+  imports: [CommonModule, TranslateModule, FlexLayoutModule, MaterialModule, AuthModule, I18nModule, RouterModule, ],
   declarations: [ShellComponent],
+  providers: [NavigationItem]
 })
 export class ShellModule {}

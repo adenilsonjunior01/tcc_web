@@ -1,32 +1,4 @@
-:root {
-  --tcc-blue: #0d6efd;
-  --tcc-indigo: #6610f2;
-  --tcc-purple: #6f42c1;
-  --tcc-pink: #d63384;
-  --tcc-red: #dc3545;
-  --tcc-orange: #fd7e14;
-  --tcc-yellow: #ffc107;
-  --tcc-green: #198754;
-  --tcc-teal: #20c997;
-  --tcc-cyan: #0dcaf0;
-  --tcc-white: #fff;
-  --tcc-gray: #6c757d;
-  --tcc-gray-dark: #343a40;
-  --tcc-primary: #3699FF;
-  --tcc-secondary: #6c757d;
-  --tcc-success: #198754;
-  --tcc-info: #0dcaf0;
-  --tcc-warning: #ffc107;
-  --tcc-danger: #dc3545;
-  --tcc-light: #f8f9fa;
-  --tcc-dark: #212529;
-  --tcc-font-sans-serif: 'Roboto', sans-serif;
-  --tcc-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --tcc-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
-  --f_12: 12px;
-  --f_14: 14px;
-  --f_16: 16px;
-}
+
 
 *,
 *::before,
@@ -2203,4 +2175,25 @@ button:not(:disabled),
 .btn:disabled, .btn.disabled, fieldset:disabled .btn {
   pointer-events: none;
   opacity: 0.65;
+}
+
+.position-static {
+  position: static !important;
+}
+
+.position-relative {
+  position: relative !important;
+}
+
+.position-absolute {
+  position: absolute !important;
+}
+
+.position-fixed {
+  position: fixed !important;
+}
+
+.position-sticky {
+  position: -webkit-sticky !important;
+  position: sticky !important;
 }

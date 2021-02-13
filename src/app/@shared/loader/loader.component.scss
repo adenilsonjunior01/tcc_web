@@ -25,12 +25,20 @@
     height: 62px;
 
     #obj {
-      stroke: #388AF7 !important;
+      stroke: #7BDEFB !important;
       stroke-width: 1;
       fill: transparent;
       stroke-dasharray: 700;
       stroke-dashoffset: 700;
       animation: dash 2s linear forwards infinite;
+    }
+    #obj2 {
+      stroke: #388AF7 !important;
+      stroke-width: 1;
+      fill: transparent;
+      stroke-dasharray: 700;
+      stroke-dashoffset: 700;
+      animation: dash2 2s linear forwards infinite;
     }
   }
 
@@ -49,4 +57,14 @@
       fill: #7BDEFB;
     }
   }
+  @keyframes dash2 {
+    to {
+      stroke-dashoffset: 0;
+      fill: #388AF7;
+    }
+  }
+}
+
+p {
+  color: #3B4349;
 }

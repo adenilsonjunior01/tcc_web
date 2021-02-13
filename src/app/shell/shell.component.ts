@@ -1,9 +1,12 @@
 import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MediaObserver } from '@angular/flex-layout';
 
 import { AuthenticationService, CredentialsService } from '@app/auth';
+import { FlatTreeControl } from '@angular/cdk/tree';
+import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
+import { IMenuNavigation, IFlatNode, NavigationItem } from '../config/menu-navigation';
 
 @Component({
   selector: 'app-shell',
@@ -12,14 +15,22 @@ import { AuthenticationService, CredentialsService } from '@app/auth';
 })
 export class ShellComponent implements OnInit {
   constructor(
-    private router: Router,
-    private titleService: Title,
-    private authenticationService: AuthenticationService,
-    private credentialsService: CredentialsService,
-    private media: MediaObserver
-  ) {}
+    private readonly router: Router,
+    private readonly titleService: Title,
+    private readonly authenticationService: AuthenticationService,
+    private readonly credentialsService: CredentialsService,
+    private readonly media: MediaObserver,
+    private readonly _activetedRouter: ActivatedRoute,
+    private readonly _nav: NavigationItem
+  ) {
+    this.dataSource.data = this._nav.get();
+  }
 
-  ngOnInit() {}
+  subtitle: string;
+
+  ngOnInit() {
+    this.getSubtitle();
+  }
 
   logout() {
     this.authenticationService.logout().subscribe(() => this.router.navigate(['/login'], { replaceUrl: true }));
@@ -37,4 +48,30 @@ export class ShellComponent implements OnInit {
   get title(): string {
     return this.titleService.getTitle();
   }
+
+  public getSubtitle() {
+    this.subtitle = this._activetedRouter.snapshot.children[0].data.subtitle;
+    console.log(this._activetedRouter.snapshot.children[0].data);
+  }
+
+  private _transformer = (node: IMenuNavigation, level: number) => {
+    return {
+      expandable: !!node.children && node.children.length > 0,
+      name: node.name,
+      level: level,
+    }
+  }
+
+  treeControl = new FlatTreeControl<IFlatNode>(
+    node => node.level, node => node.expandable);
+
+    treeFlattener = new MatTreeFlattener(
+      this._transformer, node => node.level, node => node.expandable, node => node.children);
+
+  dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+
+  hasChild = (_: number, node: IFlatNode) => node.expandable;
 }
+
+
+

@@ -11,10 +11,12 @@ import { environment } from '@env/environment';
 import { CoreModule } from '@core';
 import { SharedModule } from '@shared';
 import { AuthModule } from '@app/auth';
-import { HomeModule } from './pages/home/home.module';
+import { HomeModule } from './@pages/home/home.module';
 import { ShellModule } from './shell/shell.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { PacienteModule } from './@pages/paciente/paciente.module';
+import { CadastroModule } from './@pages/cadastro/cadastro.module';
 
 @NgModule({
   imports: [
@@ -31,7 +33,9 @@ import { AppRoutingModule } from './app-routing.module';
     ShellModule,
     HomeModule,
     AuthModule,
-    AppRoutingModule, // must be imported as the last module as it contains the fallback route
+    AppRoutingModule,
+    PacienteModule,
+    CadastroModule, // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],
   providers: [],
