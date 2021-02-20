@@ -10,11 +10,11 @@ const routes: Routes = [
       path: 'about', loadChildren: () => import('./about/about.module').then((m) => m.AboutModule)
     },
     {
-      path: 'pacientes', loadChildren: () => import('./@pages/paciente/paciente.module').then((m) => m.PacienteModule),
+      path: 'pacientes', loadChildren: () => import('./@modules/paciente/paciente.module').then((m) => m.PacienteModule),
       data: { title: marker('Pacientes'), subtitle: marker('Lista de pacientes')}
     },
     {
-      path: 'cadastro', loadChildren: () => import('./@pages/cadastro/cadastro.module').then((m) => m.CadastroModule),
+      path: 'cadastro', loadChildren: () => import('./@modules/cadastro/cadastro.module').then((m) => m.CadastroModule),
       data: { title: marker('Cadastro'), subtitle: marker('Cadastro de Usuários')}
     },
 

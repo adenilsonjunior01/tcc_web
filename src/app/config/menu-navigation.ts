@@ -5,15 +5,15 @@ const TREE_DATA: IMenuNavigation[] = [
     name: 'Cadastro',
     children: [
       {
-        name: 'Médico',
-        route: '/pacientes'
+        name: 'Funcionário',
+        route: '/cadastro/funcionario'
       },
       {
-        name: 'Funcionário',
-        route: '/pacientes'
+        name: 'Médico',
+        route: '/cadastro/medico'
       }
     ],
-  },
+  }
 ];
 
 export interface IFlatNode {

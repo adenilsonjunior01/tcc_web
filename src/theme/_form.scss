@@ -1,0 +1,26 @@
+::ng-deep {
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    // background-color: transparent;
+    background-color: #fafafa;
+    border-radius: 6px;
+    color: var(--tcc-text-color-cinza);
+    cursor: pointer;
+  }
+
+  .mat-icon {
+    color: var(--tcc-light);
+  }
+
+  .mat-raised-button  {
+    border-radius:20px !important;
+    padding: 10px 20px;
+  }
+
+  .mat-form-field-wrapper {
+    padding-bottom: 0;
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-wrapper {
+    margin: .6em 0 !important;
+  }
+}

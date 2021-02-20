@@ -1,9 +1,8 @@
 import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { MediaObserver } from '@angular/flex-layout';
 
-import { AuthenticationService, CredentialsService } from '@app/auth';
+import { CredentialsService } from '@app/auth';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { IMenuNavigation, IFlatNode, NavigationItem } from '../config/menu-navigation';
@@ -15,12 +14,9 @@ import { IMenuNavigation, IFlatNode, NavigationItem } from '../config/menu-navig
 })
 export class ShellComponent implements OnInit {
   constructor(
-    private readonly router: Router,
     private readonly titleService: Title,
-    private readonly authenticationService: AuthenticationService,
     private readonly credentialsService: CredentialsService,
     private readonly media: MediaObserver,
-    private readonly _activetedRouter: ActivatedRoute,
     private readonly _nav: NavigationItem
   ) {
     this.dataSource.data = this._nav.get();
@@ -29,11 +25,6 @@ export class ShellComponent implements OnInit {
   subtitle: string;
 
   ngOnInit() {
-    this.getSubtitle();
-  }
-
-  logout() {
-    this.authenticationService.logout().subscribe(() => this.router.navigate(['/login'], { replaceUrl: true }));
   }
 
   get username(): string | null {
@@ -49,15 +40,11 @@ export class ShellComponent implements OnInit {
     return this.titleService.getTitle();
   }
 
-  public getSubtitle() {
-    this.subtitle = this._activetedRouter.snapshot.children[0].data.subtitle;
-    console.log(this._activetedRouter.snapshot.children[0].data);
-  }
-
   private _transformer = (node: IMenuNavigation, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
       name: node.name,
+      route: node.route,
       level: level,
     }
   }

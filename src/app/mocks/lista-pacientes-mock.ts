@@ -1,5 +1,4 @@
 export class ListaPacientesMock {
-
   constructor() {}
 
   public listaPacientes(): Array<object> {
@@ -14,6 +13,13 @@ export class ListaPacientesMock {
         telefone: '0 0000 0000',
         ddd: '00',
         status: 'A',
+        dadosMedicos: {
+          id: 1,
+          tipoSanguineo: 'B+',
+          idade: 45,
+          altura: 1.70,
+          peso: 80
+        },
       },
       {
         id: 2,
@@ -25,6 +31,13 @@ export class ListaPacientesMock {
         telefone: '0 0000 0000',
         ddd: '00',
         status: 'I',
+        dadosMedicos: {
+          id: 1,
+          tipoSanguineo: 'B+',
+          idade: 45,
+          altura: 1.70,
+          peso: 80
+        },
       },
       {
         id: 3,
@@ -36,6 +49,13 @@ export class ListaPacientesMock {
         telefone: '0 0000 0000',
         ddd: '00',
         status: 'A',
+        dadosMedicos: {
+          id: 1,
+          tipoSanguineo: 'B+',
+          idade: 45,
+          altura: 1.70,
+          peso: 80
+        },
       },
       {
         id: 4,
@@ -47,6 +67,15 @@ export class ListaPacientesMock {
         telefone: '0 0000 0000',
         ddd: '00',
         status: 'I',
+        dadosMedicos: [
+          {
+            id: 1,
+            tipoSanguineo: 'B+',
+            idade: 45,
+            altura: 1.70,
+            peso: 80
+          },
+        ],
       },
       {
         id: 5,
@@ -58,8 +87,15 @@ export class ListaPacientesMock {
         telefone: '0 0000 0000',
         ddd: '00',
         status: 'A',
+        dadosMedicos: {
+          id: 1,
+          tipoSanguineo: 'B+',
+          idade: 45,
+          altura: 1.70,
+          peso: 80
+        },
       },
-    ]
+    ];
   }
 
   public listaPacientesMedico(): Array<object> {
@@ -70,7 +106,7 @@ export class ListaPacientesMock {
         perfil: 'Paciente',
         tipoSanguineo: 'B+',
         sexo: 'M',
-        idade: 45
+        idade: 45,
       },
       {
         id: 2,
@@ -78,7 +114,7 @@ export class ListaPacientesMock {
         perfil: 'Paciente',
         tipoSanguineo: 'A+',
         sexo: 'M',
-        idade: 52
+        idade: 52,
       },
       {
         id: 3,
@@ -103,7 +139,7 @@ export class ListaPacientesMock {
         tipoSanguineo: 'A-',
         sexo: 'F',
         idade: 33,
-      }
-    ]
+      },
+    ];
   }
 }

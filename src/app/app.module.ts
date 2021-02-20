@@ -11,12 +11,12 @@ import { environment } from '@env/environment';
 import { CoreModule } from '@core';
 import { SharedModule } from '@shared';
 import { AuthModule } from '@app/auth';
-import { HomeModule } from './@pages/home/home.module';
+import { HomeModule } from './@modules/home/home.module';
 import { ShellModule } from './shell/shell.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { PacienteModule } from './@pages/paciente/paciente.module';
-import { CadastroModule } from './@pages/cadastro/cadastro.module';
+import { PacienteModule } from './@modules/paciente/paciente.module';
+import { CadastroModule } from './@modules/cadastro/cadastro.module';
 
 @NgModule({
   imports: [

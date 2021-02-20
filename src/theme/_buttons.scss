@@ -1,12 +1,31 @@
 @import './general';
 
-.btn-primary-login {
+.btn-primary-tcc {
   background-color: var(--tcc-primary) !important;
   color: #FFF !important;
   font-size: var(--f_16) !important;
   font-weight: 600 !important;
   width: 90%;
   border-radius: 90px !important;
+
+  &:hover {
+    opacity: .8;
+    transition: 300ms;
+  }
+}
+
+.btn-secondary-tcc {
+  background-color: var(--tcc-secondary) !important;
+  color: #FFF !important;
+  font-size: var(--f_16) !important;
+  font-weight: 600 !important;
+  width: 90%;
+  border-radius: 90px !important;
+
+  &:hover {
+    opacity: .8;
+    transition: 300ms;
+  }
 }
 
 .btn-iniciar-consulta {

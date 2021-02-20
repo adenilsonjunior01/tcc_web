@@ -28,8 +28,7 @@
       <nav>
         <mat-list>
           <a mat-list-item routerLink="/home" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-            <div class="icon-visao icon-wh"></div>
-            <span>Visão geral</span>
+             <span>Visão geral</span>
           </a>
           <a mat-list-item routerLink="/pacientes" routerLinkActive="active" (click)="isMobile && sidenav.close()">
             <span>Pacientes</span>
@@ -37,9 +36,15 @@
           <a mat-list-item routerLink="/about" routerLinkActive="active" (click)="isMobile && sidenav.close()">
             <span>Temp</span>
           </a>
+          <!-- <a mat-list-item routerLink="/cadastro/funcionario" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+            <span>Funcionário</span>
+          </a> -->
           <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-            <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-              {{node.name}}
+            <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding routerLinkActive="active">
+              <!-- {{node | json}} -->
+              <a mat-list-item [routerLink]="node.route" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+                <span>{{node.name}}</span>
+              </a>
             </mat-tree-node>
             <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding class="d-flex justify-content-between ps-3">
               {{node.name}}
@@ -54,13 +59,20 @@
         </mat-list>
       </nav>
     </mat-sidenav>
-    <mat-sidenav-content style="margin-left: 312px;">
+    <mat-sidenav-content style="margin-left: 290px;">
       <mat-toolbar  class="bg-header">
         <button class="menu-button" mat-icon-button (click)="sidenav.toggle()" fxHide.gt-sm>
           <mat-icon>menu</mat-icon>
         </button>
-        <h1 class="title-page">{{ title }}</h1>
-        <!-- <span class="subtitle">{{ subtitle }}</span> -->
+        <div class="row">
+          <div class="col-6">
+            <h1 class="title-page">{{ title }}</h1>
+            <!-- <span class="subtitle">{{ subtitle }}</span> -->
+          </div>
+          <div class="col-6 d-flex justify-content-end">
+            <app-nav-rigth></app-nav-rigth>
+          </div>
+        </div>
       </mat-toolbar>
       <router-outlet></router-outlet>
     </mat-sidenav-content>

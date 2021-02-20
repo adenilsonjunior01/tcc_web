@@ -1,5 +1,3 @@
-
-
 *,
 *::before,
 *::after {
@@ -45,10 +43,17 @@ button {
   border-radius: 0;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  color: var(--font-title-color);
+}
 // button:focus {
 //   outline: dotted 1px;
 //   outline: -webkit-focus-ring-color auto 5px;
 // }
+
+mat-error {
+  padding-top: 20px !important;
+}
 
 button,
 [type=button],
