@@ -28,26 +28,28 @@
       <nav>
         <mat-list>
           <a mat-list-item routerLink="/home" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-             <span>Visão geral</span>
+            <i class="feather icon-home pe-3"></i>
+            <span>Visão geral</span>
           </a>
           <a mat-list-item routerLink="/pacientes" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+            <i class="feather icon-users pe-3"></i>
             <span>Pacientes</span>
           </a>
           <a mat-list-item routerLink="/about" routerLinkActive="active" (click)="isMobile && sidenav.close()">
             <span>Temp</span>
           </a>
-          <!-- <a mat-list-item routerLink="/cadastro/funcionario" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-            <span>Funcionário</span>
-          </a> -->
           <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
             <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding routerLinkActive="active">
-              <!-- {{node | json}} -->
               <a mat-list-item [routerLink]="node.route" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+
                 <span>{{node.name}}</span>
               </a>
             </mat-tree-node>
             <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding class="d-flex justify-content-between ps-3">
-              {{node.name}}
+              <div>
+                <i class="feather icon-file-plus pe-2"></i>
+                {{node.name}}
+              </div>
               <button mat-icon-button matTreeNodeToggle
                       [attr.aria-label]="'Toggle ' + node.name">
                 <mat-icon class="mat-icon-rtl-mirror">

@@ -3,6 +3,13 @@
  * Framework overrides and customization goes here.
  */
 
+@import "./root";
+@import "./general";
+@import "./responsive";
+@import "./buttons";
+@import "./table";
+@import "./form";
+
 // stylelint-disable-next-line selector-max-universal
 * {
   box-sizing: border-box;

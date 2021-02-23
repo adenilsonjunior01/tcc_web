@@ -1,0 +1,38 @@
+$font-color-first: #197BBD;
+$font-color-second: #439A86;
+$font-color-third: #BB4430;
+$f_40: 40px;
+$f_25: 25px;
+
+span {
+  color: var(--tcc-text-color-cinza);
+  font-size: var(--f_14);
+  display: block;
+  text-align: end;
+}
+
+h4 {
+  text-align: end;
+  font-weight: bold;
+}
+
+.first-data {
+  h4 {
+    font-size: $f_40;
+    color: $font-color-first;
+  }
+}
+
+.second-data {
+  h4 {
+    color: $font-color-second;
+    font-size: $f_25;
+  }
+}
+
+.third-data {
+  h4 {
+    color: $font-color-third;
+    font-size: var(--f_16);
+  }
+}

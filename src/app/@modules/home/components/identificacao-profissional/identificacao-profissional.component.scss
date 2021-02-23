@@ -1,0 +1,26 @@
+.bg-box-info {
+  max-height: 206px;
+  max-width: 320px;
+  // background-color: rgb(25, 123, 189);
+  background: linear-gradient(#197BBD, #3391D0);
+  border-radius: 26px;
+}
+
+.name-medico {
+  h3 {
+    color: var(--tcc-white);
+    font-weight: 500;
+    font-size: var(--f_16);
+  }
+
+  span {
+    color: var(--tcc-light);
+    font-size: var(--f_12);
+  }
+}
+
+.crm {
+  h2 {
+    color: var(--tcc-white);
+  }
+}
