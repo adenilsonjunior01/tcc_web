@@ -8,9 +8,10 @@ import { MaterialModule } from '@app/material.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { TablePacientesHomeComponent } from './components/table-pacientes-home/table-pacientes-home.component';
+import { EstatisticasGeraisComponent } from './components/estatisticas-gerais/estatisticas-gerais.component';
 
 @NgModule({
   imports: [CommonModule, TranslateModule, SharedModule, FlexLayoutModule, MaterialModule, HomeRoutingModule],
-  declarations: [HomeComponent, TablePacientesHomeComponent],
+  declarations: [HomeComponent, TablePacientesHomeComponent, EstatisticasGeraisComponent],
 })
 export class HomeModule {}
