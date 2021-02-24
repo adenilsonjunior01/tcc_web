@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -17,6 +17,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PacienteModule } from './@modules/paciente/paciente.module';
 import { CadastroModule } from './@modules/cadastro/cadastro.module';
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localePt);
 
 @NgModule({
   imports: [
@@ -38,7 +42,9 @@ import { CadastroModule } from './@modules/cadastro/cadastro.module';
     CadastroModule, // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: "pt-BR" },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

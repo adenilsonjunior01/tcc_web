@@ -1,8 +1,13 @@
+
 $font-color-first: #197BBD;
 $font-color-second: #439A86;
 $font-color-third: #BB4430;
 $f_40: 40px;
 $f_25: 25px;
+
+section {
+  font-family: var(--tcc-font-lato);
+}
 
 span {
   color: var(--tcc-text-color-cinza);

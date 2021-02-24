@@ -1,0 +1,25 @@
+
+tr {
+  border: 1px solid #ECECEC;
+  th {
+    color: #AEAEAE;
+    font-weight: 400;
+    text-align: start;
+    padding: .3rem .15rem !important;
+  }
+
+  td {
+    padding: .3rem .15rem !important;
+    font-size: var(--f_14);
+    font-weight: 300;
+
+    span {
+      color: #C7C7C7;
+    }
+
+    span.bold {
+      color: var(--tcc-dark);
+      font-weight: bold;
+    }
+  }
+}

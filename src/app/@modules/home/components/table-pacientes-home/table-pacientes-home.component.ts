@@ -9,7 +9,10 @@ export class TablePacientesHomeComponent implements OnInit {
 
   constructor() { }
 
+  date: any;
+
   ngOnInit(): void {
+    this.date = new Date().toString()
   }
 
 }
