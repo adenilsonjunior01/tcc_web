@@ -10,16 +10,22 @@ import { TableMedicoComponent } from './components/table-medico/table-medico.com
 import { ConsultaMedicaComponent } from './components/consulta-medica/consulta-medica.component';
 import { DetalhesPacienteComponent } from './components/detalhes-paciente/detalhes-paciente.component';
 import { TablePacientesComponent } from './components/table-pacientes/table-pacientes.component';
-
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
-  declarations: [PacienteComponent, TablePacientesComponent, TableMedicoComponent, ConsultaMedicaComponent, DetalhesPacienteComponent],
+  declarations: [
+    PacienteComponent,
+    TablePacientesComponent,
+    TableMedicoComponent,
+    ConsultaMedicaComponent,
+    DetalhesPacienteComponent],
   imports: [
     CommonModule,
     PacienteRoutingModule,
     SharedModule,
     FlexLayoutModule,
-    MaterialModule
+    MaterialModule,
+    NgSelectModule
   ]
 })
 export class PacienteModule { }

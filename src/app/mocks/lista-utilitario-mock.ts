@@ -309,4 +309,44 @@ export class ListaUtilitarioMock {
       },
     ];
   }
+
+  public getMedicos(): Array<object> {
+    return [
+      {
+        id: 1,
+        nomeCompleto: 'Marcelo Santos',
+        crm: '4152658',
+        especialidade: 'Teste',
+        area: 'Teste'
+      },
+      {
+        id: 2,
+        nomeCompleto: 'Augusto Pereira',
+        crm: '4152658',
+        especialidade: 'Teste',
+        area: 'Teste'
+      },
+      {
+        id: 3,
+        nomeCompleto: 'Joana Souza',
+        crm: '4152658',
+        especialidade: 'Teste',
+        area: 'Teste'
+      },
+      {
+        id: 4,
+        nomeCompleto: 'Ana Maria Silva',
+        crm: '4152658',
+        especialidade: 'Teste',
+        area: 'Teste'
+      },
+      {
+        id: 5,
+        nomeCompleto: 'Cleiton Soares',
+        crm: '4152658',
+        especialidade: 'Teste',
+        area: 'Teste'
+      },
+    ]
+  }
 }
