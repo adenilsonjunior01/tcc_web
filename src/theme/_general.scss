@@ -803,6 +803,10 @@ button:not(:disabled),
   white-space: normal !important;
 }
 
+.text-white {
+  color: var(--tcc-white) !important;
+}
+
 .text-nowrap {
   white-space: nowrap !important;
 }

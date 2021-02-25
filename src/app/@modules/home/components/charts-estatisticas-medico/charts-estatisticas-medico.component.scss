@@ -1,0 +1,39 @@
+
+.bg-card-primary ::ng-deep .mat-card {
+  padding: 0 !important;
+}
+
+.card-body {
+  padding: 1rem 1rem;
+  max-height: 130px;
+}
+
+.title {
+  font-size: 34px;
+  color: var(--font-title-color);
+}
+
+.subtitle {
+  font-size: var(--f_14);
+  color: #70A6E8;
+}
+
+.subtitle2 {
+  font-size: var(--f_14);
+  color: #209D43;
+}
+
+.desc {
+  font-weight: 300;
+  font-size: var(--f_16);
+}
+
+.app-card-footer {
+  h4 {
+    font-size: 22px;
+  }
+
+  span {
+    font-size: 14px;
+  }
+}

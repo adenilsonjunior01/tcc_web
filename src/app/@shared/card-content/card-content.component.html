@@ -1,7 +1,10 @@
 <mat-card [ngClass]="cardClass">
   <mat-card-content>
-    <div class="card-content" >
+    <div class="card-content">
       <ng-content></ng-content>
     </div>
   </mat-card-content>
+  <div *ngIf="isCardFooter" [ngClass]="footerClass">
+    <ng-content select=".app-card-footer"></ng-content>
+  </div>
 </mat-card>

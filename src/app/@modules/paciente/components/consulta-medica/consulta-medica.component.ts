@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgSelectConfig } from '@ng-select/ng-select';
 import { ListaUtilitarioMock } from '../../../../mocks/lista-utilitario-mock';
 import { SweetalertService } from '../../../../@shared/sweetalert/sweetalert.service';
-import { QuoteService } from '../../../home/quote.service';
 
 @Component({
   selector: 'app-consulta-medica',
@@ -19,8 +18,7 @@ export class ConsultaMedicaComponent implements OnInit {
 
   constructor(
     private readonly _configNgSelect: NgSelectConfig,
-    private readonly _toasty: SweetalertService,
-    private readonly _quote: QuoteService
+    private readonly _toasty: SweetalertService
     ) {
     this._configNgSelect.notFoundText = 'Nenhum registro encontrado';
   }
@@ -33,13 +31,5 @@ export class ConsultaMedicaComponent implements OnInit {
   public onSelectMedico(value: any): void {
     this.medicoSelecionado = value;
     console.log(value);
-  }
-
-  public abrir() {
-    this._toasty.openToasty('Consulta agendada com sucesso!', 'success');
-  }
-
-  public testeRequestIntercptor() {
-    this._quote.getRandomQuote({category: 'dev'}).subscribe(response => console.log(response));
   }
 }
