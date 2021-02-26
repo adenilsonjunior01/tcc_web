@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ChartConfig1 } from '../../config/chart-config-1';
-import { ChartConfig2 } from '../../config/chart-config-2';
+import { ChartConfig1 } from '../../../config/chart-medico/chart-config-1';
+import { ChartConfig2 } from '../../../config/chart-medico/chart-config-2';
 import {
   ChartComponent,
   ApexAxisChartSeries,
@@ -18,11 +18,11 @@ export type ChartOptions = {
 };
 
 @Component({
-  selector: 'app-charts-estatisticas-medico',
-  templateUrl: './charts-estatisticas-medico.component.html',
-  styleUrls: ['./charts-estatisticas-medico.component.scss']
+  selector: 'app-estatisticas-medico',
+  templateUrl: './estatisticas-medico.component.html',
+  styleUrls: ['./estatisticas-medico.component.scss']
 })
-export class ChartsEstatisticasMedicoComponent implements OnInit {
+export class EstatisticasMedicoComponent implements OnInit {
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
   public chart1: any;

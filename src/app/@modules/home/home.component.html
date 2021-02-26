@@ -1,34 +1,60 @@
 <div class="bg">
   <div class="container-fluid">
-    <div class="row">
-      <!--Cards left-->
-      <div class="col-md-5 col-sm-12">
-        <div class="row">
-          <div class="col-12">
-            <app-card-content>
-              <div class="row">
-                <div class="col-12">
-                  <h3 class="m-0 mb-3">Dados gerais</h3>
+    <!-- Visão médicos -->
+    <ng-container *ngIf="false">
+      <div class="row">
+        <!--Cards left-->
+        <div class="col-md-5 col-sm-12">
+          <div class="row">
+            <div class="col-12">
+              <app-card-content>
+                <div class="row">
+                  <div class="col-12">
+                    <h3 class="m-0 mb-3">Dados gerais</h3>
+                  </div>
+                  <div class="col-7">
+                    <app-identificacao-profissional></app-identificacao-profissional>
+                  </div>
+                  <div class="col-5">
+                   <app-dados-gerais-medico></app-dados-gerais-medico>
+                  </div>
                 </div>
-                <div class="col-7">
-                  <app-identificacao-profissional></app-identificacao-profissional>
-                </div>
-                <!-- <div class="col-auto p-0 line"></div> -->
-                <div class="col-5">
-                 <app-dados-gerais-medico></app-dados-gerais-medico>
-                </div>
-              </div>
-            </app-card-content>
-          </div>
-          <div class="col-12 mt-3">
-            <app-table-pacientes-home></app-table-pacientes-home>
+              </app-card-content>
+            </div>
+            <div class="col-12 mt-3">
+              <app-table-consultas-home></app-table-consultas-home>
+            </div>
           </div>
         </div>
+        <!-- Cards rigth-->
+        <div class="col-md-7 col-sm-12">
+          <app-estatisticas-medico></app-estatisticas-medico>
+        </div>
       </div>
-      <!-- Cards rigth-->
-      <div class="col-md-7 col-sm-12">
-        <app-charts-estatisticas-medico></app-charts-estatisticas-medico>
+    </ng-container>
+    <!-- Visão Clínica -->
+    <ng-container *ngIf="true">
+      <div class="row">
+        <div class="col-md-7 col-sm-12">
+          <app-dados-gerais-clinica></app-dados-gerais-clinica>
+        </div>
+        <div class="col-md-5 col-sm-12 pe-0">
+          <app-quantitativo-dados-clinica></app-quantitativo-dados-clinica>
+        </div>
       </div>
-    </div>
+      <div class="row mt-4">
+        <div class="col-md-8 col-sm-12">
+          <app-estatisticas-gerais></app-estatisticas-gerais>
+        </div>
+        <div class="col-md-4 col-sm-12 d-flex justify-content-center align-items-center">
+          <app-card-nova-consulta></app-card-nova-consulta>
+        </div>
+      </div>
+      <div class="row pb-3">
+        <div class="col-12 mt-3">
+          <app-table-consultas-home></app-table-consultas-home>
+        </div>
+      </div>
+    </ng-container>
   </div>
 </div>

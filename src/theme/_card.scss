@@ -1,6 +1,9 @@
 
 .mat-card {
-  // border-radius: 28px !important;
+  &:hover {
+    transition: 300ms;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
 }
 
 .mat-card-content {
@@ -8,18 +11,34 @@
 }
 
 .bg-card-primary {
-  background-color: var(--tcc-bg-info-progress);
-  // border-bottom-left-radius: 28px;
-  // border-bottom-right-radius: 28px;
+  background: linear-gradient(45deg,#4099ff,#73b4ff);
   padding: 0 .5rem;
 }
 
 .bg-card-secondary {
-  background-color: var(--tcc-bg-success-progress);
+  background: linear-gradient(45deg,#2ed8b6,#59e0c5);
   padding: 0 .5rem;
-  // border-bottom-left-radius: 28px;
-  // border-bottom-right-radius: 28px;
 }
+
+.bg-card-thirt {
+  background: linear-gradient(45deg,#ffb64d,#ffcb80);
+  padding: 0 .5rem;
+}
+
+.bg-card-four {
+  background: linear-gradient(45deg,#ff5370,#ff869a);
+  padding: 0 .5rem;
+}
+
 .mat-card.padd-footer {
   padding: 0!important;
 }
+
+::ng-deep {
+  .mat-raised-button  {
+    // border-radius:20px !important;
+    // padding: 10px 20px;
+    line-height: 32px !important;
+  }
+}
+

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChartsEstatisticasMedicoComponent } from './charts-estatisticas-medico.component';
+import { ChartsEstatisticasMedicoComponent } from './estatisticas-medico.component';
 
 describe('ChartsEstatisticasMedicoComponent', () => {
   let component: ChartsEstatisticasMedicoComponent;

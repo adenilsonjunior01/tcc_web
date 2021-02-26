@@ -26,6 +26,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
     FlexLayoutModule,
     MaterialModule,
     NgSelectModule
+  ],
+  exports: [
+    ConsultaMedicaComponent
   ]
 })
 export class PacienteModule { }

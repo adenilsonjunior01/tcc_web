@@ -1,4 +1,4 @@
-export class ChartConfig2 {
+export class ChartConfigClinica2 {
   public static configChartData = {
     chart: {
       type: 'area',
@@ -7,7 +7,7 @@ export class ChartConfig2 {
         enabled: true
       }
     },
-    colors: ['#209D43'],
+    colors: ['#2ed8b6'],
     stroke: {
       curve: 'smooth',
       width: 2,

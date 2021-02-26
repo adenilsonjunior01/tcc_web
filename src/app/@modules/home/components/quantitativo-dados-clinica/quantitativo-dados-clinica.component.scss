@@ -1,0 +1,34 @@
+@import '../../../../../theme/card';
+
+.card-body {
+  padding: .8rem .5rem !important;
+
+  .title1 {
+    color: var(--tcc-bg-warning-progress);
+  }
+  .title2 {
+    color: var(--tcc-bg-success-progress);
+  }
+  .title3 {
+    color: var(--tcc-bg-warning-danger);
+  }
+  .title4 {
+    color: var(--tcc-bg-info-progress);
+  }
+
+  .subtitle {
+    font-size: var(--f_14);
+    font-weight: bold;
+    color: var(--tcc-text-color-cinza);
+  }
+
+  i {
+    font-size: 25px;
+  }
+}
+
+.app-card-footer {
+  span {
+    font-size: var(--f_14);
+  }
+}
