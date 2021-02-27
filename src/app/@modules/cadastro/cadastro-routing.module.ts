@@ -9,17 +9,17 @@ const routes: Routes = [
   {
     path: '',
     component: CadastroComponent,
-    data: { title: marker('Pacientes'), subtitle: marker('Cadastro de usuários')}
+    data: { title: marker('Colaborador'), subtitle: marker('Cadastro de usuários')}
   },
   {
     path: 'funcionario',
     component: FuncionarioComponent,
-    data: { title: marker('Funcionário'), subtitle: marker('Cadastro de funcionários')}
+    data: { title: marker('Colaborador'), subtitle: marker('Cadastro de colaborador')}
   },
   {
     path: 'medico',
     component: MedicoComponent,
-    data: { title: marker('Médico'), subtitle: marker('Cadastro de usuários')}
+    data: { title: marker('Médico'), subtitle: marker('Cadastro de médico')}
   }
 ];
 

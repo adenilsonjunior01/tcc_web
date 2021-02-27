@@ -15,12 +15,17 @@ export class ConsultaMedicaComponent implements OnInit {
   listaMedicos: any[];
   panelOpenState = false;
   medicoSelecionado: any;
+  minDate: Date;
+  maxDate: Date;
 
   constructor(
     private readonly _configNgSelect: NgSelectConfig,
     private readonly _toasty: SweetalertService
     ) {
     this._configNgSelect.notFoundText = 'Nenhum registro encontrado';
+    const currentYear = new Date().getFullYear();
+    this.minDate = new Date(currentYear - 20, 0, 1);
+    this.maxDate = new Date(currentYear + 1, 11, 31);
   }
 
   ngOnInit(): void {

@@ -10,13 +10,15 @@ import { MaterialModule } from '../../material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormCadastroFuncionarioComponent } from './components/form-cadastro-funcionario/form-cadastro-funcionario.component';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormCadastroMedicoComponent } from './components/form-cadastro-medico/form-cadastro-medico.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
 };
 
 @NgModule({
-  declarations: [CadastroComponent, FuncionarioComponent, MedicoComponent, FormCadastroFuncionarioComponent],
+  declarations: [CadastroComponent, FuncionarioComponent, MedicoComponent, FormCadastroFuncionarioComponent, FormCadastroMedicoComponent],
   imports: [
     CommonModule,
     CadastroRoutingModule,

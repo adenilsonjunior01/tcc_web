@@ -1,1 +1,26 @@
-<p>cadastro works!</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 pb-3">
+      <app-card-content>
+        <form action="">
+          <mat-radio-group aria-label="Select an option" [formControl]="radioForm" (change)="selectForm()">
+            <mat-radio-button value="1" >Assistente</mat-radio-button>
+            <mat-radio-button value="2" >Médico</mat-radio-button>
+          </mat-radio-group>
+        </form>
+      </app-card-content>
+    </div>
+    <div class="col-12">
+      <ng-container *ngIf="radioForm.value === '1'">
+        <app-card-content>
+          <app-form-cadastro-funcionario></app-form-cadastro-funcionario>
+        </app-card-content>
+      </ng-container>
+      <ng-container *ngIf="radioForm.value === '2'">
+        <app-card-content>
+          <app-form-cadastro-medico></app-form-cadastro-medico>
+        </app-card-content>
+      </ng-container>
+    </div>
+  </div>
+</div>

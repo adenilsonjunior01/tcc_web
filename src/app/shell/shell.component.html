@@ -38,7 +38,11 @@
           <a mat-list-item routerLink="/about" routerLinkActive="active" (click)="isMobile && sidenav.close()">
             <span>Temp</span>
           </a>
-          <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+          <a mat-list-item routerLink="/cadastro" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+            <i class="feather icon-file-plus pe-2"></i>
+            <span>Cadastro</span>
+          </a>
+          <!-- <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
             <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding routerLinkActive="active">
               <a mat-list-item [routerLink]="node.route" routerLinkActive="active" (click)="isMobile && sidenav.close()">
 
@@ -57,7 +61,7 @@
                 </mat-icon>
               </button>
             </mat-tree-node>
-          </mat-tree>
+          </mat-tree> -->
         </mat-list>
       </nav>
     </mat-sidenav>

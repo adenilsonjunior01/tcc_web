@@ -107,6 +107,30 @@
             </mat-error> -->
         </mat-form-field>
       </div>
+      <div class="col-3">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Datas disponíveis</mat-label>
+          <mat-select>
+            <!-- formControlName="username"-->
+            <mat-option [value]="sexo.id" *ngFor="let sexo of listaSexo">{{ sexo.name }}</mat-option>
+          </mat-select>
+          <!-- <mat-error>
+              <app-error-control-message [control]="loginForm.controls.username" label="E-mail"></app-error-control-message>
+            </mat-error> -->
+        </mat-form-field>
+      </div>
+      <div class="col-3">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Horários disponíveis</mat-label>
+          <mat-select>
+            <!-- formControlName="username"-->
+            <mat-option [value]="sexo.id" *ngFor="let sexo of listaSexo">{{ sexo.name }}</mat-option>
+          </mat-select>
+          <!-- <mat-error>
+              <app-error-control-message [control]="loginForm.controls.username" label="E-mail"></app-error-control-message>
+            </mat-error> -->
+        </mat-form-field>
+      </div>
       <div class="col-10">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>Sintomas</mat-label>
