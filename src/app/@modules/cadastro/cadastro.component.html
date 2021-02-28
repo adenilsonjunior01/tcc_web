@@ -1,26 +1,57 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-12 pb-3">
-      <app-card-content>
-        <form action="">
-          <mat-radio-group aria-label="Select an option" [formControl]="radioForm" (change)="selectForm()">
-            <mat-radio-button value="1" >Assistente</mat-radio-button>
-            <mat-radio-button value="2" >Médico</mat-radio-button>
-          </mat-radio-group>
-        </form>
-      </app-card-content>
+    <div class="col-12 mb-3">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-between pe-0">
+          <h2 class="m-0">Filtro de Busca</h2>
+          <button type="button" class="btn btn-primary" (click)="openDialog()">Novo colaborador</button>
+        </div>
+        <div class="col-md-5">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Pesquise pelo nome ou CPF</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="Digite aqui"
+              autocomplete="off"
+             ><!-- formControlName="username"-->
+              <!-- <mat-error>
+                <app-error-control-message [control]="loginForm.controls.username" label="E-mail"></app-error-control-message>
+              </mat-error> -->
+          </mat-form-field>
+        </div><!--/col-md-4-->
+        <div class="col-md-2">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Tipo</mat-label>
+            <mat-select> <!-- formControlName="username"-->
+              <mat-option [value]="sexo.id" *ngFor="let sexo of listaSexo">{{ sexo.name }}</mat-option>
+            </mat-select>
+            <!-- <mat-error>
+                <app-error-control-message [control]="loginForm.controls.username" label="E-mail"></app-error-control-message>
+              </mat-error> -->
+          </mat-form-field>
+        </div><!--/col-md-2-->
+        <div class="col-md-2">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Status</mat-label>
+            <mat-select> <!-- formControlName="username"-->
+              <mat-option [value]="sexo.id" *ngFor="let sexo of listaStatus">{{ sexo.status }}</mat-option>
+            </mat-select>
+            <!-- <mat-error>
+                <app-error-control-message [control]="loginForm.controls.username" label="E-mail"></app-error-control-message>
+              </mat-error> -->
+          </mat-form-field>
+        </div><!--/col-md-2-->
+        <div class="col-3 p-0 align-button">
+          <button class="btn btn-buscar p-2">Buscar</button>
+          <button class="btn btn-limpar p-2">Limpar</button>
+        </div>
+      </div>
+      <!-- <app-card-content>
+      </app-card-content> -->
     </div>
     <div class="col-12">
-      <ng-container *ngIf="radioForm.value === '1'">
-        <app-card-content>
-          <app-form-cadastro-funcionario></app-form-cadastro-funcionario>
-        </app-card-content>
-      </ng-container>
-      <ng-container *ngIf="radioForm.value === '2'">
-        <app-card-content>
-          <app-form-cadastro-medico></app-form-cadastro-medico>
-        </app-card-content>
-      </ng-container>
+      <app-table-colaboradores></app-table-colaboradores>
     </div>
   </div>
 </div>

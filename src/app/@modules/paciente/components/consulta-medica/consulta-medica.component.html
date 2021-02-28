@@ -7,12 +7,12 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <h3 class="my-1">Selecione o médico</h3>
+        <h3 class="my-1">Selecione o especialista</h3>
         <hr class="my-2">
       </div>
       <div class="col-4">
         <ng-select [items]="listaMedicos" bindLabel="nomeCompleto" bindValue="id" appearance="outline"
-          (change)="onSelectMedico($event)">
+          (change)="onSelectMedico($event)" placeholder="Selecione">
           <!--formControlName="idMedico"-->
         </ng-select>
       </div>

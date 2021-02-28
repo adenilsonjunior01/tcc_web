@@ -18,6 +18,19 @@ export class ListaUtilitarioMock {
     ];
   }
 
+  public getListaStatus(): Array<object> {
+    return [
+      {
+        id: 1,
+        status: 'Ativo'
+      },
+      {
+        id: 2,
+        status: 'Inativo'
+      },
+    ];
+  }
+
   public getListaSexos(): Array<object> {
     return [
       {

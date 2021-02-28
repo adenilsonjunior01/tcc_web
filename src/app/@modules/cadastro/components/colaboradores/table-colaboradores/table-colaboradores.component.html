@@ -1,0 +1,32 @@
+<app-card-content>
+  <div class="row pt-2 m-0">
+    <div class="col-12">
+      <table class="table-sm w-100">
+        <thead class="table-light text-uppercase">
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Idade</th>
+            <th scope="col">Tipo Sanguíneo</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let colaborador of colaboradores">
+            <td class="d-flex align-items-center">
+              <img [src]="verificaSexoUsuario(colaborador?.sexo)" alt="Icon" class="bg-profile d-inline-block">
+              <div class="d-inline-block name-profile">
+                <span class="d-block name">{{ colaborador?.name }}</span>
+                <span class="profile">{{ colaborador.perfil }}</span>
+              </div>
+            </td>
+            <td class="td-format">{{ colaborador?.idade }}</td>
+            <td class="td-format">{{ colaborador?.tipoSanguineo }}</td>
+            <td class="text-center">
+              <button mat-raised-button color="primary" type="button" class="btn-iniciar-consulta">Ver detalhes</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</app-card-content>

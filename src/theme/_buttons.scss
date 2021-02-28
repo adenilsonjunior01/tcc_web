@@ -1,12 +1,13 @@
 @import './general';
+$f_weigth: 600;
 
 .btn-primary-tcc {
   background-color: var(--tcc-primary) !important;
   color: #FFF !important;
   font-size: var(--f_16) !important;
-  font-weight: 600 !important;
+  font-weight: $f_weigth !important;
   width: 90%;
-  border-radius: 90px !important;
+  // border-radius: 90px !important;
 
   &:hover {
     opacity: .8;
@@ -18,9 +19,9 @@
   background-color: var(--tcc-secondary) !important;
   color: #FFF !important;
   font-size: var(--f_16) !important;
-  font-weight: 600 !important;
+  font-weight: $f_weigth !important;
   width: 90%;
-  border-radius: 90px !important;
+  // border-radius: 90px !important;
 
   &:hover {
     opacity: .8;
@@ -28,8 +29,31 @@
   }
 }
 
+.btn-primary {
+  background-color: var(--tcc-primary) !important;
+  color: var(--tcc-white) !important;
+  font-weight: $f_weigth;
+  font-size: var(--f_16);
+}
+
 .btn-iniciar-consulta {
   background-color: var(--tcc-bg-success-progress) !important;
   color: var(--tcc-white) !important;
   font-weight: 400 !important;
+}
+
+.btn-buscar {
+  background-color: var(--tcc-orange);
+  color: var(--tcc-white) !important;
+  font-weight: $f_weigth;
+  font-size: var(--f_16);
+  width: 48%;
+}
+
+.btn-limpar {
+  background-color: var(--tcc-secondary) !important;
+  color: var(--tcc-white) !important;
+  font-weight: $f_weigth;
+  font-size: var(--f_16);
+  width: 48%;
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { ListaUtilitarioMock } from '../../mocks/lista-utilitario-mock';
+import { MatDialog } from '@angular/material/dialog';
+import { CadastroColaboradorComponent } from './components/colaboradores/cadastro-colaborador/cadastro-colaborador.component';
 
 @Component({
   selector: 'app-cadastro',
@@ -7,17 +9,32 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./cadastro.component.scss']
 })
 export class CadastroComponent implements OnInit {
+  utilitariosMock = new ListaUtilitarioMock();
+  listaSexo: any[];
+  listaStatus: any[];
 
-  radioForm = new FormControl();
+  dialog = new DialogContent(this._dialog);
 
-  constructor() { }
+  constructor(private readonly _dialog?: MatDialog) { }
 
   ngOnInit(): void {
-    this.radioForm.setValue('1');
+    this.listaSexo = this.utilitariosMock.getListaSexos();
+    this.listaStatus = this.utilitariosMock.getListaStatus()
   }
 
-  public selectForm() {
-
+  openDialog() {
+    this.dialog.openDialog();
   }
+}
 
+export class DialogContent {
+  constructor(public dialog?: MatDialog) {}
+
+  openDialog() {
+    const dialogRef = this.dialog.open(CadastroColaboradorComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }

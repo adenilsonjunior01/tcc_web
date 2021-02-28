@@ -2,24 +2,18 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CadastroComponent } from './cadastro.component';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
-import { FuncionarioComponent } from './pages/funcionario/funcionario.component';
-import { MedicoComponent } from './pages/medico/medico.component';
+import { EspecialidadesComponent } from './pages/especialidades/especialidades.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'colaboradores',
     component: CadastroComponent,
     data: { title: marker('Colaborador'), subtitle: marker('Cadastro de usuários')}
   },
   {
-    path: 'funcionario',
-    component: FuncionarioComponent,
-    data: { title: marker('Colaborador'), subtitle: marker('Cadastro de colaborador')}
-  },
-  {
-    path: 'medico',
-    component: MedicoComponent,
-    data: { title: marker('Médico'), subtitle: marker('Cadastro de médico')}
+    path: 'especialidades',
+    component: EspecialidadesComponent,
+    data: { title: marker('Cadastro Especialidades'), subtitle: marker('Cadastro')}
   }
 ];
 

@@ -1,2 +1,27 @@
 @import '../../../theme/form';
 @import '../../../theme/animations';
+
+
+::ng-deep {
+  .mat-radio-group {
+    .mat-radio-label .mat-radio-label-content {
+        color: var(--dark);
+        font-size: var(--f_14);
+    }
+
+    .mat-radio-container {
+      .mat-radio-outer-circle {
+        border-color: var(--tcc-blue) !important;
+      }
+      .mat-radio-inner-circle {
+        background-color: var(--tcc-blue)
+      }
+    }
+  }
+}
+
+.align-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
