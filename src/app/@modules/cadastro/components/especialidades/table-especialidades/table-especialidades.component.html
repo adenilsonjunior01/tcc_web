@@ -1,0 +1,31 @@
+<app-card-content>
+  <div class="row pt-2 m-0">
+    <div class="col-12">
+      <table class="table-sm w-100">
+        <thead class="table-light text-uppercase">
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Status</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let especialidade of especialidades">
+            <td class="td-format">{{ especialidade?.name }}</td>
+            <td class="td-format">{{ especialidade?.perfil }}</td>
+            <td class="td-format">{{ especialidade?.tipoSanguineo }}</td>
+            <td class="text-center">
+              <button mat-raised-button color="primary" type="button" class="btn-iniciar-consulta me-2" (click)="openDialog(especialidade)">
+                <i class="feather icon-edit-2 pe-2"></i> Editar
+              </button>
+              <button mat-raised-button color="primary" type="button" class="btn-remove" (click)="confirmModal()">
+                <i class="feather icon-x pe-2"></i>Remover
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</app-card-content>
