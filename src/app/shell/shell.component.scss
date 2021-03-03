@@ -1,7 +1,7 @@
 :host {
   display: flex;
   flex: 1;
-  --font-title-color: #404040;
+  --font-title-color: #535763;
   --font-subtitle-color: #B5B5C3;
   --font-size-title: 43px;
 }
@@ -94,7 +94,8 @@ a.active {
 }
 
 .bg-header {
-  background: var(--tcc-bg-body);
+  background: var(--tcc-bg-container);
+
 }
 
 .title-page {

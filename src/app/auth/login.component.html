@@ -34,7 +34,7 @@
               />
               <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
+              </button>
                 <mat-error>
                   <app-error-control-message [control]="loginForm.controls.password" label="Senha"></app-error-control-message>
                 </mat-error>

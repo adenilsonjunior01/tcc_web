@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-cadastro-colaborador',
@@ -8,16 +8,47 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./cadastro-colaborador.component.scss']
 })
 export class CadastroColaboradorComponent implements OnInit {
-  radioForm = new FormControl();
-  dialog = new DialogContent(this._dialog);
+  public radioForm = new FormControl();
+  public dialog = new DialogContent(this._dialog);
+  public dadosColaborador: any;
 
-  constructor(private readonly _dialog?: MatDialog) { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public dataDialog: any,
+    private readonly _dialog?: MatDialog) { }
 
   ngOnInit(): void {
+    this.isUpdate();
+    this.verifyProfile();
     this.radioForm.setValue('1');
   }
 
-  closeDialog() {
+  private isUpdate() {
+    if (this.dataDialog?.update) {
+      this.dadosColaborador = this.dataDialog;
+    }
+  }
+
+  private verifyProfile() {
+    if (this.dataDialog?.perfil.toLowerCase() === 'assistente')
+      this.radioForm.setValue('2');
+    this.radioForm.setValue('1');
+  }
+
+  public verifyAction(): void {
+    if (!this.dataDialog?.update)
+      this.save();
+    this.update();
+  }
+
+  public save(): void {
+    console.log('SAVE');
+  }
+
+  public update(): void {
+    console.log('UPDATE');
+  }
+
+  public closeDialog(): void {
     this.dialog.closeDialog();
   }
 

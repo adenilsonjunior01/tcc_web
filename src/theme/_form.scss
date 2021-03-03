@@ -3,7 +3,7 @@
     // background-color: transparent;
     // background-color: #fafafa;
     border-radius: 6px;
-    color: var(--tcc-text-color-cinza);
+    color: #AAA;
     cursor: pointer;
   }
 
@@ -25,6 +25,14 @@
 
   .mat-form-field-infix {
     border-top: 0.5em solid transparent;
+  }
+
+  .mat-form-field-label {
+    color: #AFB5BD;
+  }
+
+  .mat-form-field-appearance-legacy .mat-form-field-underline {
+    background-color: #CED4DA;
   }
 
   .ng-select .ng-select-container.ng-appearance-outline {

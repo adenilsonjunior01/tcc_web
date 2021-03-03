@@ -27,6 +27,7 @@ export class EstatisticasMedicoComponent implements OnInit {
   public chartOptions: Partial<ChartOptions>;
   public chart1: any;
   public chart2: any;
+  public loading = true;
 
   constructor() {
     this.chart1 = ChartConfig1.configChartData;
@@ -34,6 +35,7 @@ export class EstatisticasMedicoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    setTimeout(() => this.loading = false, 3000);
   }
 
 }

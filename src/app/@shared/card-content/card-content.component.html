@@ -1,4 +1,5 @@
 <mat-card [ngClass]="cardClass">
+  <mat-progress-bar mode="indeterminate" *ngIf="loadingLine" [ngClass]="progressClass"></mat-progress-bar>
   <mat-card-content>
     <div class="card-content">
       <ng-content></ng-content>

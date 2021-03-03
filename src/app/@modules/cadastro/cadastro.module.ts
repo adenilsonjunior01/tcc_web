@@ -13,6 +13,7 @@ import { TableColaboradoresComponent } from './components/colaboradores/table-co
 import { EspecialidadesComponent } from './pages/especialidades/especialidades.component';
 import { TableEspecialidadesComponent } from './components/especialidades/table-especialidades/table-especialidades.component';
 import { FormCadastroEspecialidadeComponent } from './components/especialidades/form-cadastro-especialidade/form-cadastro-especialidade.component';
+import { DetalheColaboradorComponent } from './pages/detalhe-colaborador/detalhe-colaborador.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -26,7 +27,8 @@ const maskConfig: Partial<IConfig> = {
     FormCadastroColaboradorComponent,
     EspecialidadesComponent,
     TableEspecialidadesComponent,
-    FormCadastroEspecialidadeComponent
+    FormCadastroEspecialidadeComponent,
+    DetalheColaboradorComponent
   ],
   imports: [
     CommonModule,

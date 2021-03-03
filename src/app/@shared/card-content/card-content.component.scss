@@ -1,1 +1,39 @@
 @import '../../../theme/card';
+
+::ng-deep {
+  .progress-azul {
+    .mat-progress-bar-buffer {
+      background-color: var(--tcc-bg-info-progress);
+    }
+    .mat-progress-bar-fill::after {
+      background-color: #E4F0FF;
+    }
+  }
+
+  .progress-verde {
+    .mat-progress-bar-buffer {
+      background-color: var(--tcc-bg-success-progress);
+    }
+    .mat-progress-bar-fill::after {
+      background-color: #DDF9E4;
+    }
+  }
+
+  .progress-laranja {
+    .mat-progress-bar-buffer {
+      background-color: var(--tcc-bg-warning-progress);
+    }
+    .mat-progress-bar-fill::after {
+      background-color: #FFEADA;
+    }
+  }
+
+  .progress-vermelho {
+    .mat-progress-bar-buffer {
+      background-color: var(--tcc-danger);
+    }
+    .mat-progress-bar-fill::after {
+      background-color: #ff869a;
+    }
+  }
+}

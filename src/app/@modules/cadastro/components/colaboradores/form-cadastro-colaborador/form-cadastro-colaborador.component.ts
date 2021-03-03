@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { ListaUtilitarioMock } from '../../../../../mocks/lista-utilitario-mock';
 
 @Component({
@@ -6,7 +6,7 @@ import { ListaUtilitarioMock } from '../../../../../mocks/lista-utilitario-mock'
   templateUrl: './form-cadastro-colaborador.component.html',
   styleUrls: ['./form-cadastro-colaborador.component.scss']
 })
-export class FormCadastroColaboradorComponent implements OnInit {
+export class FormCadastroColaboradorComponent implements OnInit, OnChanges {
   @Input() type: any;
 
   private readonly utilitariosMock = new ListaUtilitarioMock();
@@ -15,6 +15,14 @@ export class FormCadastroColaboradorComponent implements OnInit {
   listaEstados: any[];
 
   constructor() { }
+
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!changes.type.firstChange) {
+      this.type = changes?.type.currentValue;
+      console.log(this.type);
+    }
+  }
 
   ngOnInit(): void {
     this.listaSexo = this.utilitariosMock.getListaSexos();

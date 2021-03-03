@@ -21,7 +21,7 @@
           <td class="td-format">{{ paciente?.idade }}</td>
           <td class="td-format">{{ paciente?.tipoSanguineo }}</td>
           <td class="text-center">
-            <button mat-raised-button color="primary" type="button" class="btn-iniciar-consulta">Iniciar Consulta</button>
+            <button mat-raised-button color="primary" type="button" class="btn-success" (click)="confirmModal()">Iniciar Consulta</button>
           </td>
         </tr>
       </tbody>

@@ -24,7 +24,7 @@ export class DetalhesPacienteComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    // this.removeDadosPacienteLocalStorage();
+    this.removeDadosPacienteLocalStorage();
   }
 
   public backPage() {

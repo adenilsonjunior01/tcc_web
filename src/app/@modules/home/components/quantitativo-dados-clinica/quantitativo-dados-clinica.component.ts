@@ -6,9 +6,12 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./quantitativo-dados-clinica.component.scss']
 })
 export class QuantitativoDadosClinicaComponent implements OnInit {
+  public loading = true;
+
   constructor() { }
 
   ngOnInit(): void {
+    setTimeout(() => this.loading = false, 3000);
   }
 
 }

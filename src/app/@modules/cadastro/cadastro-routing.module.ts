@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CadastroComponent } from './cadastro.component';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 import { EspecialidadesComponent } from './pages/especialidades/especialidades.component';
+import { DetalheColaboradorComponent } from './pages/detalhe-colaborador/detalhe-colaborador.component';
 
 const routes: Routes = [
   {
@@ -14,7 +15,13 @@ const routes: Routes = [
     path: 'especialidades',
     component: EspecialidadesComponent,
     data: { title: marker('Cadastro Especialidades'), subtitle: marker('Cadastro')}
-  }
+  },
+  {
+    path: 'colaborador/detalhes',
+    component: DetalheColaboradorComponent,
+    data: { title: marker('Detalhes Colaborador'), subtitle: marker('Detalhes Colaborador')}
+  },
+
 ];
 
 @NgModule({

@@ -244,3 +244,58 @@ table > thead > tr > th {
   font-size: var(--f_14);
   text-align: center;
 }
+
+//=== NEW CSS TABLE ===
+
+table {
+  border-spacing: 0 10px;
+  width: calc(100% -10px);
+  margin: 0 5px;
+  color: var(--dark);
+
+  tbody {
+    tr {
+      position: relative;
+
+      .width-td {
+        width: 230px;
+      }
+
+      td {
+        position: relative;
+        height: 65px;
+      }
+
+      cursor: pointer;
+      background-color: #FFF;
+
+      &:hover {
+        box-shadow: 0 0 6px 0 #4099ff;
+        background-color: #4099ff;
+        transition: 300ms;
+        opacity: 1;
+
+        .td-format, .profile, .name {
+          color: #fff;
+        }
+        .overlay-button {
+          opacity: 1;
+        }
+        .overlay-text {
+          display: none;
+        }
+      }
+      .overlay-button {
+        opacity: 0;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+      }
+    }
+  }
+}

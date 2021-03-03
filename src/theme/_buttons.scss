@@ -36,8 +36,27 @@ $f_weigth: 400;
   font-size: var(--f_16);
 }
 
-.btn-iniciar-consulta {
+.btn-success {
   background-color: var(--tcc-bg-success-progress) !important;
+  color: var(--tcc-white) !important;
+  font-weight: 400 !important;
+  font-size: var(--f_16);
+}
+
+.btn-danger {
+  background-color: var(--danger) !important;
+  color: var(--tcc-white) !important;
+  font-weight: 400 !important;
+}
+
+.btn-secondary {
+  background-color: var(--tcc-secondary) !important;
+  color: var(--tcc-white) !important;
+  font-weight: 400 !important;
+}
+
+.btn-warning {
+  background-color: var(--tcc-orange) !important;
   color: var(--tcc-white) !important;
   font-weight: 400 !important;
 }
