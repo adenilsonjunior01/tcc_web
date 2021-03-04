@@ -1,14 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChartConfigClinica1 } from '../../../config/chart-clinica/chart-config-clinica-1';
 import { ChartConfigClinica2 } from '../../../config/chart-clinica/chart-config-clinica-2';
-import {
-  ChartComponent,
-  ApexAxisChartSeries,
-  ApexChart,
-  ApexXAxis,
-  ApexTitleSubtitle
-} from "ng-apexcharts";
-
+import { ChartComponent, ApexAxisChartSeries, ApexChart, ApexXAxis, ApexTitleSubtitle } from 'ng-apexcharts';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -20,10 +13,10 @@ export type ChartOptions = {
 @Component({
   selector: 'app-dados-gerais-clinica',
   templateUrl: './dados-gerais-clinica.component.html',
-  styleUrls: ['./dados-gerais-clinica.component.scss']
+  styleUrls: ['./dados-gerais-clinica.component.scss'],
 })
 export class DadosGeraisClinicaComponent implements OnInit {
-  @ViewChild("chart") chart: ChartComponent;
+  @ViewChild('chart') chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
   public chart1: any;
   public chart2: any;
@@ -35,7 +28,6 @@ export class DadosGeraisClinicaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    setTimeout(() => this.loading = false,3000);
+    setTimeout(() => (this.loading = false), 3000);
   }
-
 }

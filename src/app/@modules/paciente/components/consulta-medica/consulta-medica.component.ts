@@ -6,9 +6,8 @@ import { SweetalertService } from '../../../../@shared/sweetalert/sweetalert.ser
 @Component({
   selector: 'app-consulta-medica',
   templateUrl: './consulta-medica.component.html',
-  styleUrls: ['./consulta-medica.component.scss']
+  styleUrls: ['./consulta-medica.component.scss'],
 })
-
 export class ConsultaMedicaComponent implements OnInit {
   utilitariosMock = new ListaUtilitarioMock();
   listaSexo: any[];
@@ -18,10 +17,7 @@ export class ConsultaMedicaComponent implements OnInit {
   minDate: Date;
   maxDate: Date;
 
-  constructor(
-    private readonly _configNgSelect: NgSelectConfig,
-    private readonly _toasty: SweetalertService
-    ) {
+  constructor(private readonly _configNgSelect: NgSelectConfig, private readonly _toasty: SweetalertService) {
     this._configNgSelect.notFoundText = 'Nenhum registro encontrado';
     const currentYear = new Date().getFullYear();
     this.minDate = new Date(currentYear - 20, 0, 1);

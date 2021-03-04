@@ -8,9 +8,8 @@ describe('ErrorControlMessageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ErrorControlMessageComponent ]
-    })
-    .compileComponents();
+      declarations: [ErrorControlMessageComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -4,14 +4,11 @@ export class FormConsulta {
   form: FormGroup;
   private readonly _fb = new FormBuilder();
 
-  constructor(){}
+  constructor() {}
 
   public initFormConsulta(): FormGroup {
-    return this._fb.group({
-
-    });
+    return this._fb.group({});
   }
 
   public parserDatas(): any {}
-
 }

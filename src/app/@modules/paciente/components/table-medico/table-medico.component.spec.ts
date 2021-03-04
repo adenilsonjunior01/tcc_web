@@ -8,9 +8,8 @@ describe('TableMedicoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TableMedicoComponent ]
-    })
-    .compileComponents();
+      declarations: [TableMedicoComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

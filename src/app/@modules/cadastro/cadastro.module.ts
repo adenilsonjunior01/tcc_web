@@ -6,7 +6,7 @@ import { CadastroComponent } from './cadastro.component';
 import { SharedModule } from '@app/@shared';
 import { MaterialModule } from '../../material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { CadastroColaboradorComponent } from './components/colaboradores/cadastro-colaborador/cadastro-colaborador.component';
 import { FormCadastroColaboradorComponent } from './components/colaboradores/form-cadastro-colaborador/form-cadastro-colaborador.component';
 import { TableColaboradoresComponent } from './components/colaboradores/table-colaboradores/table-colaboradores.component';
@@ -28,7 +28,7 @@ const maskConfig: Partial<IConfig> = {
     EspecialidadesComponent,
     TableEspecialidadesComponent,
     FormCadastroEspecialidadeComponent,
-    DetalheColaboradorComponent
+    DetalheColaboradorComponent,
   ],
   imports: [
     CommonModule,
@@ -37,6 +37,6 @@ const maskConfig: Partial<IConfig> = {
     MaterialModule,
     FlexLayoutModule,
     NgxMaskModule.forRoot(),
-  ]
+  ],
 })
-export class CadastroModule { }
+export class CadastroModule {}

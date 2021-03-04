@@ -1,6 +1,6 @@
 :root {
   --tcc-bg-container: #f1f3f6;
-  --tcc-bg-menu: #FFF;
+  --tcc-bg-menu: #fff;
   --tcc-bg-body: #fafafa;
   --tcc-blue: #4099ff;
   --tcc-indigo: #6610f2;
@@ -23,25 +23,26 @@
   --danger: #ff5370;
   --light: #f8f9fa;
   --dark: #343a40;
-  --tcc-active: #1BC5BD;
-  --tcc-active-menu: #197BBD;
-  --tcc-inactive: #F64E60;
+  --tcc-active: #1bc5bd;
+  --tcc-active-menu: #197bbd;
+  --tcc-inactive: #f64e60;
   --tcc-info: #0dcaf0;
   --tcc-warning: #ffc107;
-  --tcc-danger: #F64E60;
+  --tcc-danger: #f64e60;
   --tcc-light: #bcbcbc;
   // --tcc-dark: #212529;
   --tcc-dark: #343a40;
-  --tcc-bg-th: #F3F6F9;
-  --tcc-text-color-cinza: #B5B5C3;
-  --tcc-text-color-title: #464E5F;
+  --tcc-bg-th: #f3f6f9;
+  --tcc-text-color-cinza: #b5b5c3;
+  --tcc-text-color-title: #464e5f;
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --tcc-font-sans-serif: 'Roboto', sans-serif;
-  --tcc-font-lato: 'Lato', sans-serif;
+  --tcc-font-sans-serif: "Roboto", sans-serif;
+  --tcc-font-lato: "Lato", sans-serif;
+  --tcc-font-poppins: "Poppins", sans-serif;
   --tcc-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --tcc-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
   --f_12: 12px;
@@ -49,7 +50,7 @@
   --f_16: 16px;
   --f_25: 25px;
   --tcc-bg-success-progress: #2ed8b6;
-  --tcc-bg-info-progress: #70A6E8;
+  --tcc-bg-info-progress: #70a6e8;
   --tcc-bg-warning-progress: rgb(252, 174, 115);
   --tcc-bg-warning-danger: rgb(255, 82, 82);
 }

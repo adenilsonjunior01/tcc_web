@@ -19,11 +19,19 @@
               {{ especialidade?.status === 'A' ? 'Ativo' : 'Inativo' }}
             </div>
             <div class="overlay-button">
-              <button mat-raised-button color="primary" type="button" class="btn-secondary me-2" (click)="openDialog(especialidade)">
-                <i class="feather icon-edit-2"></i> <!-- edit -->
+              <button
+                mat-raised-button
+                color="primary"
+                type="button"
+                class="btn-secondary me-2"
+                (click)="openDialog(especialidade)"
+              >
+                <i class="feather icon-edit-2"></i>
+                <!-- edit -->
               </button>
-              <button mat-raised-button color="primary" type="button" class="btn-danger me-2"(click)="confirmModal()">
-                <i class="feather icon-trash-2"></i> <!-- inactive user -->
+              <button mat-raised-button color="primary" type="button" class="btn-danger me-2" (click)="confirmModal()">
+                <i class="feather icon-trash-2"></i>
+                <!-- inactive user -->
               </button>
             </div>
           </td>

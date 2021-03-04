@@ -12,7 +12,7 @@
       <tbody>
         <tr *ngFor="let paciente of pacientes">
           <td class="d-flex align-items-center">
-            <img [src]="verificaSexoUsuario(paciente?.sexo)" alt="Icon" class="bg-profile d-inline-block">
+            <img [src]="verificaSexoUsuario(paciente?.sexo)" alt="Icon" class="bg-profile d-inline-block" />
             <div class="d-inline-block name-profile">
               <span class="d-block name">{{ paciente?.name }}</span>
               <span class="profile">{{ paciente.perfil }}</span>
@@ -21,7 +21,15 @@
           <td class="td-format">{{ paciente?.idade }}</td>
           <td class="td-format">{{ paciente?.tipoSanguineo }}</td>
           <td class="text-center">
-            <button mat-raised-button color="primary" type="button" class="btn-success" (click)="confirmModal()">Iniciar Consulta</button>
+            <button
+              mat-raised-button
+              color="primary"
+              type="button"
+              class="btn-success"
+              (click)="confirmModal(paciente)"
+            >
+              Iniciar Consulta
+            </button>
           </td>
         </tr>
       </tbody>

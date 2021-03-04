@@ -65,84 +65,84 @@
 .table-primary {
   --tcc-table-bg: #cfe2ff;
   --tcc-table-striped-bg: #c5d7f2;
-  --tcc-table-striped-color: #464E5F;
+  --tcc-table-striped-color: #464e5f;
   --tcc-table-active-bg: #bacbe6;
-  --tcc-table-active-color: #464E5F;
+  --tcc-table-active-color: #464e5f;
   --tcc-table-hover-bg: #bfd1ec;
-  --tcc-table-hover-color: #464E5F;
-  color: #464E5F;
+  --tcc-table-hover-color: #464e5f;
+  color: #464e5f;
   border-color: #bacbe6;
 }
 
 .table-secondary {
   --tcc-table-bg: #e2e3e5;
   --tcc-table-striped-bg: #d7d8da;
-  --tcc-table-striped-color: #464E5F;
+  --tcc-table-striped-color: #464e5f;
   --tcc-table-active-bg: #cbccce;
-  --tcc-table-active-color: #464E5F;
+  --tcc-table-active-color: #464e5f;
   --tcc-table-hover-bg: #d1d2d4;
-  --tcc-table-hover-color: #464E5F;
-  color: #464E5F;
+  --tcc-table-hover-color: #464e5f;
+  color: #464e5f;
   border-color: #cbccce;
 }
 
 .table-success {
   --tcc-table-bg: #d1e7dd;
   --tcc-table-striped-bg: #c7dbd2;
-  --tcc-table-striped-color: #464E5F;
+  --tcc-table-striped-color: #464e5f;
   --tcc-table-active-bg: #bcd0c7;
-  --tcc-table-active-color: #464E5F;
+  --tcc-table-active-color: #464e5f;
   --tcc-table-hover-bg: #c1d6cc;
-  --tcc-table-hover-color: #464E5F;
-  color: #464E5F;
+  --tcc-table-hover-color: #464e5f;
+  color: #464e5f;
   border-color: #bcd0c7;
 }
 
 .table-info {
   --tcc-table-bg: #cff4fc;
   --tcc-table-striped-bg: #c5e8ef;
-  --tcc-table-striped-color: #464E5F;
+  --tcc-table-striped-color: #464e5f;
   --tcc-table-active-bg: #badce3;
-  --tcc-table-active-color: #464E5F;
+  --tcc-table-active-color: #464e5f;
   --tcc-table-hover-bg: #bfe2e9;
-  --tcc-table-hover-color: #464E5F;
-  color: #464E5F;
+  --tcc-table-hover-color: #464e5f;
+  color: #464e5f;
   border-color: #badce3;
 }
 
 .table-warning {
   --tcc-table-bg: #fff3cd;
   --tcc-table-striped-bg: #f2e7c3;
-  --tcc-table-striped-color: #464E5F;
+  --tcc-table-striped-color: #464e5f;
   --tcc-table-active-bg: #e6dbb9;
-  --tcc-table-active-color: #464E5F;
+  --tcc-table-active-color: #464e5f;
   --tcc-table-hover-bg: #ece1be;
-  --tcc-table-hover-color: #464E5F;
-  color: #464E5F;
+  --tcc-table-hover-color: #464e5f;
+  color: #464e5f;
   border-color: #e6dbb9;
 }
 
 .table-danger {
   --tcc-table-bg: #f8d7da;
   --tcc-table-striped-bg: #eccccf;
-  --tcc-table-striped-color: #464E5F;
+  --tcc-table-striped-color: #464e5f;
   --tcc-table-active-bg: #dfc2c4;
-  --tcc-table-active-color: #464E5F;
+  --tcc-table-active-color: #464e5f;
   --tcc-table-hover-bg: #e5c7ca;
-  --tcc-table-hover-color: #464E5F;
-  color: #464E5F;
+  --tcc-table-hover-color: #464e5f;
+  color: #464e5f;
   border-color: #dfc2c4;
 }
 
 .table-light {
   --tcc-table-bg: #f8f9fa;
   --tcc-table-striped-bg: #ecedee;
-  --tcc-table-striped-color: #464E5F;
+  --tcc-table-striped-color: #464e5f;
   --tcc-table-active-bg: #dfe0e1;
-  --tcc-table-active-color: #464E5F;
+  --tcc-table-active-color: #464e5f;
   --tcc-table-hover-bg: #e5e6e7;
-  --tcc-table-hover-color: #464E5F;
-  color: #464E5F;
+  --tcc-table-hover-color: #464e5f;
+  color: #464e5f;
   border-color: #dfe0e1;
 }
 
@@ -199,17 +199,18 @@ table > thead > tr > th {
   border-radius: 6px;
 }
 
-.f-color-inactive, .f-color-active {
+.f-color-inactive,
+.f-color-active {
   font-size: var(--f_14);
   font-weight: bold;
 }
 
 .f-color-active {
-  color : var(--tcc-active);
+  color: var(--tcc-active);
 }
 
 .f-color-inactive {
-  color : var(--tcc-inactive);
+  color: var(--tcc-inactive);
 }
 
 .table-light {
@@ -267,7 +268,7 @@ table {
       }
 
       cursor: pointer;
-      background-color: #FFF;
+      background-color: #fff;
 
       &:hover {
         box-shadow: 0 0 6px 0 #4099ff;
@@ -275,7 +276,9 @@ table {
         transition: 300ms;
         opacity: 1;
 
-        .td-format, .profile, .name {
+        .td-format,
+        .profile,
+        .name {
           color: #fff;
         }
         .overlay-button {

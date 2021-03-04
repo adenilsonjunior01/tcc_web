@@ -26,7 +26,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
    * @param response = apresenta Toasty padrão pra determinados errors
    */
   private errorHandler(response: HttpResponse<any>): Observable<HttpEvent<any>> {
-    if (!environment.production ) {
+    if (!environment.production) {
       this.responseErrorDev(response);
       log.error('Request error', response);
     } else {
@@ -36,7 +36,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
   }
 
   private responseErrorDev(response: HttpResponse<any>) {
-    switch(response.status) {
+    switch (response.status) {
       case 400:
         return toasty.openToasty('Formulário inválido - 400', 'error');
       case 404:
@@ -44,12 +44,12 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
       case 500:
         return toasty.openToasty('Deu ruim no servidor - 500', 'error');
       default:
-        return toasty.openToasty('Erro desconhecido', 'error')
+        return toasty.openToasty('Erro desconhecido', 'error');
     }
   }
 
   private responseErrorProd(response: HttpResponse<any>): void {
-    switch(response.status) {
+    switch (response.status) {
       case 400:
         return toasty.openToasty('Erro ao processar dados.', 'error');
       case 404:
@@ -57,7 +57,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
       case 500:
         return toasty.openToasty('Desculpe, ocorreu um erro interno, conte o suporte.', 'error');
       default:
-        return toasty.openToasty('Erro desconhecido, contate o suporte', 'error')
+        return toasty.openToasty('Erro desconhecido, contate o suporte', 'error');
     }
   }
 }

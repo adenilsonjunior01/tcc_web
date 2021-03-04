@@ -7,7 +7,7 @@ import { CadastroColaboradorComponent } from '../cadastro-colaborador/cadastro-c
 @Component({
   selector: 'app-table-colaboradores',
   templateUrl: './table-colaboradores.component.html',
-  styleUrls: ['./table-colaboradores.component.scss']
+  styleUrls: ['./table-colaboradores.component.scss'],
 })
 export class TableColaboradoresComponent implements OnInit {
   private readonly listaPacientesMock = new ListaPacientesMock();
@@ -15,9 +15,7 @@ export class TableColaboradoresComponent implements OnInit {
 
   public dialog = new DialogContent(this._dialog);
 
-  constructor(private readonly _router: Router, private readonly _dialog?: MatDialog) {
-
-   }
+  constructor(private readonly _router: Router, private readonly _dialog?: MatDialog) {}
 
   ngOnInit(): void {
     this.getListaColaboradores();
@@ -28,13 +26,12 @@ export class TableColaboradoresComponent implements OnInit {
   }
 
   public verificaSexoUsuario(sexo: string): string {
-    if (sexo == 'M')
-      return './assets/profile/boy-1.svg'
-    return './assets/profile/girl-1.svg'
+    if (sexo == 'M') return './assets/profile/boy-1.svg';
+    return './assets/profile/girl-1.svg';
   }
 
   public redirectPageDatail(colaborador: any): void {
-    this._router.navigate(['/cadastro/colaborador/detalhes'], {state: colaborador });
+    this._router.navigate(['/cadastro/colaborador/detalhes'], { state: colaborador });
   }
 
   /**
@@ -47,7 +44,6 @@ export class TableColaboradoresComponent implements OnInit {
     console.log(valuesSubmit);
     this.dialog.openDialog(valuesSubmit);
   }
-
 }
 
 export class DialogContent {
@@ -55,10 +51,10 @@ export class DialogContent {
 
   openDialog(obj: any) {
     const dialogRef = this.dialog.open(CadastroColaboradorComponent, {
-      data: obj
+      data: obj,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
   }

@@ -1,4 +1,3 @@
-
 .mat-card {
   &:hover {
     transition: 300ms;
@@ -11,34 +10,33 @@
 }
 
 .bg-card-primary {
-  background: linear-gradient(45deg,#4099ff,#73b4ff);
-  padding: 0 .5rem;
+  background: linear-gradient(45deg, #4099ff, #73b4ff);
+  padding: 0 0.5rem;
 }
 
 .bg-card-secondary {
-  background: linear-gradient(45deg,#2ed8b6,#59e0c5);
-  padding: 0 .5rem;
+  background: linear-gradient(45deg, #2ed8b6, #59e0c5);
+  padding: 0 0.5rem;
 }
 
 .bg-card-thirt {
-  background: linear-gradient(45deg,#ffb64d,#ffcb80);
-  padding: 0 .5rem;
+  background: linear-gradient(45deg, #ffb64d, #ffcb80);
+  padding: 0 0.5rem;
 }
 
 .bg-card-four {
-  background: linear-gradient(45deg,#ff5370,#ff869a);
-  padding: 0 .5rem;
+  background: linear-gradient(45deg, #ff5370, #ff869a);
+  padding: 0 0.5rem;
 }
 
 .mat-card.padd-footer {
-  padding: 0!important;
+  padding: 0 !important;
 }
 
 ::ng-deep {
-  .mat-raised-button  {
+  .mat-raised-button {
     // border-radius:20px !important;
     // padding: 10px 20px;
     line-height: 32px !important;
   }
 }
-

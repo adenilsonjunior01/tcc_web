@@ -7,17 +7,19 @@ import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 const routes: Routes = [
   Shell.childRoutes([
     {
-      path: 'about', loadChildren: () => import('./about/about.module').then((m) => m.AboutModule)
+      path: 'about',
+      loadChildren: () => import('./about/about.module').then((m) => m.AboutModule),
     },
     {
-      path: 'pacientes', loadChildren: () => import('./@modules/paciente/paciente.module').then((m) => m.PacienteModule),
-      data: { title: marker('Pacientes'), subtitle: marker('Lista de pacientes')}
+      path: 'pacientes',
+      loadChildren: () => import('./@modules/paciente/paciente.module').then((m) => m.PacienteModule),
+      data: { title: marker('Pacientes'), subtitle: marker('Lista de pacientes') },
     },
     {
-      path: 'cadastro', loadChildren: () => import('./@modules/cadastro/cadastro.module').then((m) => m.CadastroModule),
-      data: { title: marker('Cadastro'), subtitle: marker('Cadastro de Usuários')}
+      path: 'cadastro',
+      loadChildren: () => import('./@modules/cadastro/cadastro.module').then((m) => m.CadastroModule),
+      data: { title: marker('Cadastro'), subtitle: marker('Cadastro de Usuários') },
     },
-
   ]),
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

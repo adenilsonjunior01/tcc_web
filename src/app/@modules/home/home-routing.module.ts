@@ -9,7 +9,7 @@ import { ConsultaMedicaComponent } from '../paciente/components/consulta-medica/
 const routes: Routes = [
   Shell.childRoutes([
     { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: 'home', component: HomeComponent, data: { title: marker('Visão Geral') } }
+    { path: 'home', component: HomeComponent, data: { title: marker('Visão Geral') } },
   ]),
 ];
 

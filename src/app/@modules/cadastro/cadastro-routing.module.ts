@@ -9,23 +9,22 @@ const routes: Routes = [
   {
     path: 'colaboradores',
     component: CadastroComponent,
-    data: { title: marker('Colaborador'), subtitle: marker('Cadastro de usuários')}
+    data: { title: marker('Colaborador'), subtitle: marker('Cadastro de usuários') },
   },
   {
     path: 'especialidades',
     component: EspecialidadesComponent,
-    data: { title: marker('Cadastro Especialidades'), subtitle: marker('Cadastro')}
+    data: { title: marker('Cadastro Especialidades'), subtitle: marker('Cadastro') },
   },
   {
     path: 'colaborador/detalhes',
     component: DetalheColaboradorComponent,
-    data: { title: marker('Detalhes Colaborador'), subtitle: marker('Detalhes Colaborador')}
+    data: { title: marker('Detalhes Colaborador'), subtitle: marker('Detalhes Colaborador') },
   },
-
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class CadastroRoutingModule { }
+export class CadastroRoutingModule {}

@@ -5,20 +5,18 @@ import { FormCadastroEspecialidadeComponent } from '../../components/especialida
 @Component({
   selector: 'app-especialidades',
   templateUrl: './especialidades.component.html',
-  styleUrls: ['./especialidades.component.scss']
+  styleUrls: ['./especialidades.component.scss'],
 })
 export class EspecialidadesComponent implements OnInit {
   dialog = new DialogContent(this._dialog);
 
-  constructor(private readonly _dialog?: MatDialog) { }
+  constructor(private readonly _dialog?: MatDialog) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   openDialog() {
     this.dialog.openDialog();
   }
-
 }
 
 export class DialogContent {
@@ -27,7 +25,7 @@ export class DialogContent {
   openDialog() {
     const dialogRef = this.dialog.open(FormCadastroEspecialidadeComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
   }

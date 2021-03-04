@@ -4,7 +4,7 @@ import { ListaUtilitarioMock } from '../../../../../mocks/lista-utilitario-mock'
 @Component({
   selector: 'app-form-cadastro-colaborador',
   templateUrl: './form-cadastro-colaborador.component.html',
-  styleUrls: ['./form-cadastro-colaborador.component.scss']
+  styleUrls: ['./form-cadastro-colaborador.component.scss'],
 })
 export class FormCadastroColaboradorComponent implements OnInit, OnChanges {
   @Input() type: any;
@@ -14,8 +14,7 @@ export class FormCadastroColaboradorComponent implements OnInit, OnChanges {
   listaPerfil: any[];
   listaEstados: any[];
 
-  constructor() { }
-
+  constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes.type.firstChange) {
@@ -29,5 +28,4 @@ export class FormCadastroColaboradorComponent implements OnInit, OnChanges {
     this.listaPerfil = this.utilitariosMock.getListaPerfil();
     this.listaEstados = this.utilitariosMock.getEstados();
   }
-
 }

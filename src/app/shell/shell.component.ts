@@ -24,8 +24,7 @@ export class ShellComponent implements OnInit {
 
   subtitle: string;
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   get username(): string | null {
     const credentials = this.credentialsService.credentials;
@@ -46,19 +45,22 @@ export class ShellComponent implements OnInit {
       name: node.name,
       route: node.route,
       level: level,
-    }
-  }
+    };
+  };
 
   treeControl = new FlatTreeControl<IFlatNode>(
-    node => node.level, node => node.expandable);
+    (node) => node.level,
+    (node) => node.expandable
+  );
 
-    treeFlattener = new MatTreeFlattener(
-      this._transformer, node => node.level, node => node.expandable, node => node.children);
+  treeFlattener = new MatTreeFlattener(
+    this._transformer,
+    (node) => node.level,
+    (node) => node.expandable,
+    (node) => node.children
+  );
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
   hasChild = (_: number, node: IFlatNode) => node.expandable;
 }
-
-
-

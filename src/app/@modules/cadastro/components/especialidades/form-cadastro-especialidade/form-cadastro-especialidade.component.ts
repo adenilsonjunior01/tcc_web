@@ -5,26 +5,19 @@ import { FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-form-cadastro-especialidade',
   templateUrl: './form-cadastro-especialidade.component.html',
-  styleUrls: ['./form-cadastro-especialidade.component.scss']
+  styleUrls: ['./form-cadastro-especialidade.component.scss'],
 })
 export class FormCadastroEspecialidadeComponent implements OnInit {
-
-  public form: FormGroup
-  ;
+  public form: FormGroup;
   dialog = new DialogContent(this._dialog);
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public dataDialog: any,
-    private readonly _dialog?: MatDialog
-    ) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public dataDialog: any, private readonly _dialog?: MatDialog) {}
 
   ngOnInit(): void {
     console.log('DADOS DIALOG>> ', this.dataDialog);
   }
 
-  public initForm() {
-
-  }
+  public initForm() {}
 
   public closeDialog() {
     this.dialog.closeDialog();
@@ -35,19 +28,13 @@ export class FormCadastroEspecialidadeComponent implements OnInit {
    * form é válido
    */
   public verifyFormSubmit() {
-    if (this.form.get('id').value === null && this.form.valid)
-      this.save()
+    if (this.form.get('id').value === null && this.form.valid) this.save();
     this.update();
   }
 
-  private save() {
+  private save() {}
 
-  }
-
-  private update() {
-
-  }
-
+  private update() {}
 }
 
 export class DialogContent {

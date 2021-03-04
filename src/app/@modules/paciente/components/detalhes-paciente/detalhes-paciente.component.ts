@@ -1,46 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DadosPaciente } from '../../class/dados-paciente';
 
 @Component({
   selector: 'app-detalhes-paciente',
   templateUrl: './detalhes-paciente.component.html',
-  styleUrls: ['./detalhes-paciente.component.scss']
+  styleUrls: ['./detalhes-paciente.component.scss'],
 })
 export class DetalhesPacienteComponent implements OnInit {
+  private readonly _dadosPaciente: any;
 
   public dadosPaciente: any;
 
   constructor(private readonly _router: Router) {
+    this._dadosPaciente = new DadosPaciente();
     const state = this._router.getCurrentNavigation();
-    if (state.extras.state) {
-      this.setDadosPacienteLocalStorage(state.extras.state);
+    if (state?.extras?.state) {
+      this._dadosPaciente.setDadosPacienteLocalStorage(state.extras.state);
       this.dadosPaciente = state.extras.state;
     } else {
-      this.dadosPaciente = this.getDadosPacienteLocalStorage();
+      this.dadosPaciente = this._dadosPaciente.getDadosPacienteLocalStorage();
     }
   }
 
   ngOnInit(): void {
+    console.log(this.dadosPaciente);
   }
 
   ngOnDestroy(): void {
-    this.removeDadosPacienteLocalStorage();
+    this._dadosPaciente.removeDadosPacienteLocalStorage();
   }
 
   public backPage() {
     this._router.navigateByUrl('pacientes');
   }
-
-  public setDadosPacienteLocalStorage(dados: any): void {
-    localStorage.setItem('dadosPaciente', JSON.stringify(dados));
-  }
-
-  public getDadosPacienteLocalStorage(): any {
-    return JSON.parse(localStorage.getItem('dadosPaciente'));
-  }
-
-  public removeDadosPacienteLocalStorage(): void {
-    localStorage.removeItem('dadosPaciente');
-  }
-
 }

@@ -6,14 +6,14 @@ const TREE_DATA: IMenuNavigation[] = [
     children: [
       {
         name: 'Funcionário',
-        route: '/cadastro/funcionario'
+        route: '/cadastro/funcionario',
       },
       {
         name: 'Médico',
-        route: '/cadastro/medico'
-      }
+        route: '/cadastro/medico',
+      },
     ],
-  }
+  },
 ];
 
 export interface IFlatNode {

@@ -1,6 +1,7 @@
 <div fxFlex>
   <mat-sidenav-container fxFill>
-    <mat-sidenav class="shadow-sm"
+    <mat-sidenav
+      class="shadow-sm"
       #sidenav
       [mode]="isMobile ? 'over' : 'side'"
       [opened]="!isMobile"
@@ -8,7 +9,7 @@
       ngClass.gt-sm="has-border"
     >
       <mat-toolbar>
-        <img src="../../assets/logo-svg.svg" alt="Logo Menu">
+        <img src="../../assets/logo-svg.svg" alt="Logo Menu" />
         <span class="name-app">IHealth</span>
         <!-- <div>
           <button mat-icon-button [matMenuTriggerFor]="userMenu">
@@ -38,11 +39,21 @@
           <a mat-list-item routerLink="/about" routerLinkActive="active" (click)="isMobile && sidenav.close()">
             <span>Temp</span>
           </a>
-          <a mat-list-item routerLink="/cadastro/colaboradores" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+          <a
+            mat-list-item
+            routerLink="/cadastro/colaboradores"
+            routerLinkActive="active"
+            (click)="isMobile && sidenav.close()"
+          >
             <i class="feather icon-users pe-2"></i>
             <span>Colaboradores</span>
           </a>
-          <a mat-list-item routerLink="/cadastro/especialidades" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+          <a
+            mat-list-item
+            routerLink="/cadastro/especialidades"
+            routerLinkActive="active"
+            (click)="isMobile && sidenav.close()"
+          >
             <i class="feather icon-bookmark pe-2"></i>
             <span>Especialidades</span>
           </a>
@@ -69,8 +80,8 @@
         </mat-list>
       </nav>
     </mat-sidenav>
-    <mat-sidenav-content style="margin-left: 290px;">
-      <mat-toolbar  class="bg-header">
+    <mat-sidenav-content style="margin-left: 290px">
+      <mat-toolbar class="bg-header">
         <button class="menu-button" mat-icon-button (click)="sidenav.toggle()" fxHide.gt-sm>
           <mat-icon>menu</mat-icon>
         </button>

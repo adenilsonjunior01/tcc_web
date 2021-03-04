@@ -8,9 +8,8 @@ describe('ChartsEstatisticasMedicoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ChartsEstatisticasMedicoComponent ]
-    })
-    .compileComponents();
+      declarations: [ChartsEstatisticasMedicoComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

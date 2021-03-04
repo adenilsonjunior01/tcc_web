@@ -42,9 +42,7 @@ registerLocaleData(localePt);
     CadastroModule, // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],
-  providers: [
-    { provide: LOCALE_ID, useValue: "pt-BR" },
-  ],
+  providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

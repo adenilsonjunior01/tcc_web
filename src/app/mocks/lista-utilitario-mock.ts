@@ -22,11 +22,11 @@ export class ListaUtilitarioMock {
     return [
       {
         id: 1,
-        status: 'Ativo'
+        status: 'Ativo',
       },
       {
         id: 2,
-        status: 'Inativo'
+        status: 'Inativo',
       },
     ];
   }
@@ -330,36 +330,36 @@ export class ListaUtilitarioMock {
         nomeCompleto: 'Marcelo Santos',
         crm: '4152658',
         especialidade: 'Teste',
-        area: 'Teste'
+        area: 'Teste',
       },
       {
         id: 2,
         nomeCompleto: 'Augusto Pereira',
         crm: '4152658',
         especialidade: 'Teste',
-        area: 'Teste'
+        area: 'Teste',
       },
       {
         id: 3,
         nomeCompleto: 'Joana Souza',
         crm: '4152658',
         especialidade: 'Teste',
-        area: 'Teste'
+        area: 'Teste',
       },
       {
         id: 4,
         nomeCompleto: 'Ana Maria Silva',
         crm: '4152658',
         especialidade: 'Teste',
-        area: 'Teste'
+        area: 'Teste',
       },
       {
         id: 5,
         nomeCompleto: 'Cleiton Soares',
         crm: '4152658',
         especialidade: 'Teste',
-        area: 'Teste'
+        area: 'Teste',
       },
-    ]
+    ];
   }
 }

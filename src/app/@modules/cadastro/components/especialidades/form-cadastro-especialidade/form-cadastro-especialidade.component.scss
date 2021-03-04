@@ -1,11 +1,11 @@
-@import '../../../../../../theme/form';
+@import "../../../../../../theme/form";
 
 i {
   cursor: pointer;
   font-size: var(--f_25);
 
   &:hover {
-    opacity: .6;
+    opacity: 0.6;
     transition: 300ms;
   }
 }

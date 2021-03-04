@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-detalhe-colaborador',
   templateUrl: './detalhe-colaborador.component.html',
-  styleUrls: ['./detalhe-colaborador.component.scss']
+  styleUrls: ['./detalhe-colaborador.component.scss'],
 })
 export class DetalheColaboradorComponent implements OnInit {
   public dadosColaborador: any;
@@ -17,10 +17,9 @@ export class DetalheColaboradorComponent implements OnInit {
     } else {
       this.dadosColaborador = this.getDadosColaboradorLocalStorage();
     }
-   }
-
-  ngOnInit(): void {
   }
+
+  ngOnInit(): void {}
 
   public setDadosColaboradorLocalStorage(dados: any): void {
     localStorage.setItem('dadosColaborador', JSON.stringify(dados));
@@ -37,5 +36,4 @@ export class DetalheColaboradorComponent implements OnInit {
   public backPage() {
     this._router.navigateByUrl('/cadastro/colaboradores');
   }
-
 }

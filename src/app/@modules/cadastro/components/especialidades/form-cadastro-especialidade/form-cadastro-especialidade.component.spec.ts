@@ -8,9 +8,8 @@ describe('FormCadastroEspecialidadeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FormCadastroEspecialidadeComponent ]
-    })
-    .compileComponents();
+      declarations: [FormCadastroEspecialidadeComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

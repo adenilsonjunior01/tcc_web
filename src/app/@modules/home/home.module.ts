@@ -27,7 +27,7 @@ import { PacienteModule } from '../paciente/paciente.module';
     MaterialModule,
     HomeRoutingModule,
     NgApexchartsModule,
-    PacienteModule
+    PacienteModule,
   ],
   declarations: [
     HomeComponent,
@@ -38,7 +38,7 @@ import { PacienteModule } from '../paciente/paciente.module';
     EstatisticasMedicoComponent,
     DadosGeraisClinicaComponent,
     QuantitativoDadosClinicaComponent,
-    CardNovaConsultaComponent
+    CardNovaConsultaComponent,
   ],
 })
 export class HomeModule {}

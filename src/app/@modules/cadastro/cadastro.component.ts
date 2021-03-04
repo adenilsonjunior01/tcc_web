@@ -6,7 +6,7 @@ import { CadastroColaboradorComponent } from './components/colaboradores/cadastr
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
-  styleUrls: ['./cadastro.component.scss']
+  styleUrls: ['./cadastro.component.scss'],
 })
 export class CadastroComponent implements OnInit {
   utilitariosMock = new ListaUtilitarioMock();
@@ -15,11 +15,11 @@ export class CadastroComponent implements OnInit {
 
   dialog = new DialogContent(this._dialog);
 
-  constructor(private readonly _dialog?: MatDialog) { }
+  constructor(private readonly _dialog?: MatDialog) {}
 
   ngOnInit(): void {
     this.listaSexo = this.utilitariosMock.getListaSexos();
-    this.listaStatus = this.utilitariosMock.getListaStatus()
+    this.listaStatus = this.utilitariosMock.getListaStatus();
   }
 
   openDialog() {
@@ -33,7 +33,7 @@ export class DialogContent {
   openDialog() {
     const dialogRef = this.dialog.open(CadastroColaboradorComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
   }

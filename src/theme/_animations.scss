@@ -1,4 +1,3 @@
-
 /* Fading entrances  */
 @-webkit-keyframes fadeIn {
   from {
@@ -21,9 +20,8 @@
 .animate__fadeIn {
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
-  animation-duration: 1s
+  animation-duration: 1s;
 }
-
 
 // FADE IN UP
 @-webkit-keyframes fadeInUp {

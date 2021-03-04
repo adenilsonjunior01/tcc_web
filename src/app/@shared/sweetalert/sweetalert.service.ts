@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import Swal from 'sweetalert2';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SweetalertService {
-
-  constructor() { }
+  constructor() {}
 
   /**
    *
@@ -21,14 +20,14 @@ export class SweetalertService {
       timer: 3000,
       timerProgressBar: true,
       didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
+        toast.addEventListener('mouseenter', Swal.stopTimer);
+        toast.addEventListener('mouseleave', Swal.resumeTimer);
+      },
+    });
 
     Toast.fire({
       icon: type,
-      title: message
-    })
+      title: message,
+    });
   }
 }

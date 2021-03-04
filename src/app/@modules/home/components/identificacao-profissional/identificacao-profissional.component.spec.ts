@@ -8,9 +8,8 @@ describe('IdentificacaoProfissionalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ IdentificacaoProfissionalComponent ]
-    })
-    .compileComponents();
+      declarations: [IdentificacaoProfissionalComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

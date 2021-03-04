@@ -1,0 +1,37 @@
+:host {
+  font-family: var(--tcc-font-poppins) !important;
+}
+
+::ng-deep .bg-prontuario .mat-card {
+  font-family: var(--tcc-font-poppins) !important;
+}
+
+h1, h2 {
+  font-weight: 500;
+}
+
+img {
+  height: 50px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.dados-medicos {
+  li {
+    padding: 2px 0;
+    span {
+      color: var(--black);
+    }
+
+    .id-atendimento {
+      color: var(--tcc-primary);
+    }
+  }
+}
+
+.email {
+  color: var(--tcc-light);
+}

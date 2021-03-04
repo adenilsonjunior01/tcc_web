@@ -12,8 +12,8 @@ import { NavigationItem } from '../config/menu-navigation';
 import { NavRigthComponent } from './nav-rigth/nav-rigth.component';
 
 @NgModule({
-  imports: [CommonModule, TranslateModule, FlexLayoutModule, MaterialModule, AuthModule, I18nModule, RouterModule, ],
+  imports: [CommonModule, TranslateModule, FlexLayoutModule, MaterialModule, AuthModule, I18nModule, RouterModule],
   declarations: [ShellComponent, NavRigthComponent],
-  providers: [NavigationItem]
+  providers: [NavigationItem],
 })
 export class ShellModule {}

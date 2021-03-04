@@ -8,9 +8,8 @@ describe('FormCadastroColaboradorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FormCadastroColaboradorComponent ]
-    })
-    .compileComponents();
+      declarations: [FormCadastroColaboradorComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -5,17 +5,16 @@ import { ConsultaMedicaComponent } from './components/consulta-medica/consulta-m
 @Component({
   selector: 'app-paciente',
   templateUrl: './paciente.component.html',
-  styleUrls: ['./paciente.component.scss']
+  styleUrls: ['./paciente.component.scss'],
 })
 export class PacienteComponent implements OnInit {
   pacientes: any[] = [];
 
   dialog = new DialogContent(this._dialog);
 
-  constructor(private readonly _dialog?: MatDialog) { }
+  constructor(private readonly _dialog?: MatDialog) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   openDialog() {
     this.dialog.openDialog();
@@ -28,7 +27,7 @@ export class DialogContent {
   openDialog() {
     const dialogRef = this.dialog.open(ConsultaMedicaComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
   }

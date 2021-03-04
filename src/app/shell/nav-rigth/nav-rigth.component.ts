@@ -7,10 +7,9 @@ import { AuthenticationService } from '../../auth/authentication.service';
 @Component({
   selector: 'app-nav-rigth',
   templateUrl: './nav-rigth.component.html',
-  styleUrls: ['./nav-rigth.component.scss']
+  styleUrls: ['./nav-rigth.component.scss'],
 })
 export class NavRigthComponent implements OnInit {
-
   subtitle: string;
 
   constructor(
@@ -19,7 +18,7 @@ export class NavRigthComponent implements OnInit {
     private readonly _credentialsService: CredentialsService,
     private readonly _authenticationService: AuthenticationService,
     private readonly _router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.getSubtitle();
@@ -42,5 +41,4 @@ export class NavRigthComponent implements OnInit {
   public logout() {
     this._authenticationService.logout().subscribe(() => this._router.navigate(['/login'], { replaceUrl: true }));
   }
-
 }
