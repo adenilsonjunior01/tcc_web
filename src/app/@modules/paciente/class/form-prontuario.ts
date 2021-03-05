@@ -8,15 +8,18 @@ export class FormProntuario {
 
   public initFormProntuario(): FormGroup {
     return this._fb.group({
-      alergias: this._fb.array([this.newAlergia()])
+      alergias: this._fb.array([]),
+      medicamentos: this._fb.array([]),
+      doencaCronica: this._fb.array([]),
     });
   }
 
-  public newAlergia(): FormGroup {
+  public newObjectControl(): FormGroup {
     return this._fb.group({
       descricao: [null]
     });
   }
+
 
   public validateControlAlergias(values: FormGroup): any {
     Object.keys(values.controls).forEach(campo => {

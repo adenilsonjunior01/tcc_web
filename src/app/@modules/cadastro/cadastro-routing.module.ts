@@ -14,7 +14,7 @@ const routes: Routes = [
   {
     path: 'especialidades',
     component: EspecialidadesComponent,
-    data: { title: marker('Cadastro Especialidades'), subtitle: marker('Cadastro') },
+    data: { title: marker('Especialidades'), subtitle: marker('Especialidades') },
   },
   {
     path: 'colaborador/detalhes',

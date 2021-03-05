@@ -19,6 +19,8 @@ export class ProntuarioMedicoComponent implements OnInit, OnDestroy {
   public optionsRadio: IOptionsRadioButton[];
   public configForm = new FormProntuario();
   public controlAlergia = new FormControl();
+  public controlMedicamento = new FormControl();
+  public controlDoencaCronica = new FormControl();
 
   constructor(private readonly _router: Router) {
     this._dadosProntuarioPaciente = new DadosPaciente();
@@ -39,34 +41,63 @@ export class ProntuarioMedicoComponent implements OnInit, OnDestroy {
     this.optionsRadio = OptionsRadioButton.optionsRadio;
     this.formProntuario = this.configForm.initFormProntuario();
     this.controlAlergia.setValue(false);
+    this.controlMedicamento.setValue(false);
+    this.controlDoencaCronica.setValue(false);
   }
 
-  public get formDataAlergia() {
-    if (this.formProntuario) {
-      return this.formProntuario.get('alergias') as FormArray;
-    }
+  public get formArrayAlergia() {
+    return this.formProntuario.get('alergias') as FormArray;
   }
 
-  public addNewAlergia(control: string) {
-    if (this.formProntuario.valid) {
-      (this.formProntuario.get(control) as FormArray).push(this.configForm.newAlergia());
-      this.validatorsDynamic(this.controlAlergia.value);
+  public get formArrayMedicamento() {
+    return this.formProntuario.get('medicamentos') as FormArray;
+  }
+
+  public get formArrayDoencaCronica() {
+    return this.formProntuario.get('doencaCronica') as FormArray;
+  }
+
+  /**
+   * @description: Adiciona novo objeto de Alergia
+   */
+  public addNewObjectControl(value: any, control: string) {
+    if (this.formProntuario.controls[control].valid) {
+      (this.formProntuario.get(control) as FormArray).push(this.configForm.newObjectControl());
+      this.validatorsDynamic(value, control);
     } else {
-      const control = this.formProntuario.controls['alergias'] as FormGroup;
-      this.configForm.validateControlAlergias(control);
+      const controle = this.formProntuario.controls[control] as FormGroup;
+      this.configForm.validateControlAlergias(controle);
     }
   }
 
-  public removeAlergia(index: number): void {
-    (this.formProntuario.get('alergias') as FormArray).removeAt(index);
+  /**
+   * @description: remove objeto do FormProntuario de acordo com o Control
+   */
+  public removeObject(index: number, control: string): void {
+    (this.formProntuario.get(control) as FormArray).removeAt(index);
   }
 
-  public validatorsDynamic(value: any): void {
-    let form;
-    (this.formProntuario.get('alergias') as FormArray).controls.forEach((_, index) => {
-      form = this.configForm.addValidatorDynamic(this.formProntuario, index, 'alergias', value);
-    });
-    this.formProntuario = form;
+  public validatorsDynamic(value: boolean, control?: string): void {
+    if ((this.formProntuario.controls[control] as FormArray).length === 0 && value) {
+      this.addNewObjectControl(value, control);
+    } else if (!value) {
+      this.remove(control);
+    } else {
+      let form;
+      (this.formProntuario.get(control) as FormArray).controls.forEach((_, index) => {
+        form = this.configForm.addValidatorDynamic(this.formProntuario, index, control, value);
+      });
+      this.formProntuario = form;
+    }
+  }
+
+  private remove(control: string) {
+    let form = this.formProntuario.controls[control] as FormArray;
+    const count = form.controls.length;
+    for (let i = 0; i <= count; i++) {
+      this.removeObject(0, control);
+    }
+
   }
 
   public setStep(index: number) {
