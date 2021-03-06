@@ -24,16 +24,14 @@
         </app-card-content>
       </div>
       <div class="col-12">
-        <app-card-content>
-          <!-- VISÃO FUNCIONÁRIO -->
-          <ng-container *ngIf="false">
-            <app-table-pacientes></app-table-pacientes>
-          </ng-container>
-          <!-- VISÃO MÉDICO -->
-          <ng-container *ngIf="true">
-            <app-table-medico></app-table-medico>
-          </ng-container>
-        </app-card-content>
+        <!-- VISÃO FUNCIONÁRIO -->
+        <ng-container *ngIf="false">
+          <app-table-pacientes></app-table-pacientes>
+        </ng-container>
+        <!-- VISÃO MÉDICO -->
+        <ng-container *ngIf="true">
+          <app-table-medico></app-table-medico>
+        </ng-container>
       </div>
     </div>
   </div>

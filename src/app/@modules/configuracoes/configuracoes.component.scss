@@ -1,0 +1,40 @@
+.bg-configuracoes {
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(45deg, #4099ff, #73b4ff);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.detalhes {
+  li {
+    padding: 2px 0;
+    font-size: var(--f_16);
+
+    span {
+      color: var(--black);
+    }
+
+    &:hover {
+      span {
+        color: var(--tcc-primary);
+      }
+    }
+  }
+}
+
+.email {
+  color: var(--tcc-light);
+}
+
+i {
+  color: var(--tcc-secondary);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--tcc-primary);
+  }
+}

@@ -19,6 +19,7 @@ import { PacienteModule } from './@modules/paciente/paciente.module';
 import { CadastroModule } from './@modules/cadastro/cadastro.module';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { ConfiguracoesModule } from './@modules/configuracoes/configuracoes.module';
 
 registerLocaleData(localePt);
 
@@ -39,7 +40,8 @@ registerLocaleData(localePt);
     AuthModule,
     AppRoutingModule,
     PacienteModule,
-    CadastroModule, // must be imported as the last module as it contains the fallback route
+    CadastroModule,
+    ConfiguracoesModule, // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],

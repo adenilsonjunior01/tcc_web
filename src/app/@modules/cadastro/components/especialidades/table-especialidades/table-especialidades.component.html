@@ -16,22 +16,23 @@
           <td class="td-format">{{ especialidade?.tipoSanguineo }}</td>
           <td class="td-format width-td">
             <div class="overlay-text">
-              {{ especialidade?.status === 'A' ? 'Ativo' : 'Inativo' }}
+              <span class="badge bg-primary"
+                [ngClass]="{'bg-success': especialidade?.status === 'A', 'bg-danger': especialidade?.status === 'I'}">
+                {{ especialidade?.status === 'A' ? 'Ativo' : 'Inativo' }}
+              </span>
             </div>
             <div class="overlay-button">
-              <button
-                mat-raised-button
-                color="primary"
-                type="button"
-                class="btn-secondary me-2"
-                (click)="openDialog(especialidade)"
-              >
+              <button mat-raised-button color="primary" type="button" class="btn-secondary me-2"
+                (click)="openDialog(especialidade)">
                 <i class="feather icon-edit-2"></i>
-                <!-- edit -->
               </button>
-              <button mat-raised-button color="primary" type="button" class="btn-danger me-2" (click)="confirmModal()">
-                <i class="feather icon-trash-2"></i>
-                <!-- inactive user -->
+              <button mat-raised-button color="primary" type="button" class="btn-success me-2"
+                *ngIf="especialidade?.status === 'I'">
+                <i class="feather icon-check-circle"></i>
+              </button>
+              <button mat-raised-button color="primary" type="button" class="btn-danger me-2"
+                *ngIf="especialidade?.status === 'A'">
+                <i class="feather icon-x"></i>
               </button>
             </div>
           </td>

@@ -11,6 +11,7 @@ export class CardContentComponent implements OnInit {
   @Input() footerClass: string;
   @Input() loadingLine: boolean;
   @Input() progressClass: string;
+  @Input() isHeader: boolean;
 
   constructor() {}
 

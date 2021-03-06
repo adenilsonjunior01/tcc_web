@@ -1,4 +1,6 @@
 .mat-card {
+  height: 100%;
+
   &:hover {
     transition: 300ms;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
@@ -38,5 +40,11 @@
     // border-radius:20px !important;
     // padding: 10px 20px;
     line-height: 32px !important;
+  }
+}
+
+.configuracoes {
+  .mat-card {
+    height: 100% !important;
   }
 }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { Shell } from '@app/shell/shell.service';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
+import { ConfiguracoesModule } from './@modules/configuracoes/configuracoes.module';
 
 //  router-outlet principal,
 const routes: Routes = [
@@ -19,6 +20,11 @@ const routes: Routes = [
       path: 'cadastro',
       loadChildren: () => import('./@modules/cadastro/cadastro.module').then((m) => m.CadastroModule),
       data: { title: marker('Cadastro'), subtitle: marker('Cadastro de Usuários') },
+    },
+    {
+      path: 'configuracoes',
+      loadChildren: () => import('./@modules/configuracoes/configuracoes.module').then((m) => m.ConfiguracoesModule),
+      data: { title: marker('Configurações'), subtitle: marker('Configurações') },
     },
   ]),
   { path: '**', redirectTo: '', pathMatch: 'full' },

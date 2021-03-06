@@ -57,6 +57,15 @@
             <i class="feather icon-bookmark pe-2"></i>
             <span>Especialidades</span>
           </a>
+          <a
+            mat-list-item
+            routerLink="/configuracoes"
+            routerLinkActive="active"
+            (click)="isMobile && sidenav.close()"
+          >
+            <i class="feather icon-settings pe-2"></i>
+            <span>Configurações</span>
+          </a>
           <!-- <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
             <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding routerLinkActive="active">
               <a mat-list-item [routerLink]="node.route" routerLinkActive="active" (click)="isMobile && sidenav.close()">
@@ -80,7 +89,7 @@
         </mat-list>
       </nav>
     </mat-sidenav>
-    <mat-sidenav-content style="margin-left: 290px">
+    <mat-sidenav-content class="mat-sidenav ">
       <mat-toolbar class="bg-header">
         <button class="menu-button" mat-icon-button (click)="sidenav.toggle()" fxHide.gt-sm>
           <mat-icon>menu</mat-icon>
