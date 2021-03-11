@@ -17,6 +17,14 @@ import { DadosGeraisClinicaComponent } from './components/charts/dados-gerais-cl
 import { QuantitativoDadosClinicaComponent } from './components/quantitativo-dados-clinica/quantitativo-dados-clinica.component';
 import { CardNovaConsultaComponent } from './components/card-nova-consulta/card-nova-consulta.component';
 import { PacienteModule } from '../paciente/paciente.module';
+import { CardNovoPacienteComponent } from './components/card-novo-paciente/card-novo-paciente.component';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { AgendamentoConsultaComponent } from './components/card-novo-paciente/agendamento-consulta/agendamento-consulta.component';
+import { FormPreCadastroPacienteComponent } from './components/card-novo-paciente/form-pre-cadastro-paciente/form-pre-cadastro-paciente.component';
+
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+};
 
 @NgModule({
   imports: [
@@ -28,6 +36,7 @@ import { PacienteModule } from '../paciente/paciente.module';
     HomeRoutingModule,
     NgApexchartsModule,
     PacienteModule,
+    NgxMaskModule.forRoot()
   ],
   declarations: [
     HomeComponent,
@@ -39,6 +48,9 @@ import { PacienteModule } from '../paciente/paciente.module';
     DadosGeraisClinicaComponent,
     QuantitativoDadosClinicaComponent,
     CardNovaConsultaComponent,
+    CardNovoPacienteComponent,
+    AgendamentoConsultaComponent,
+    FormPreCadastroPacienteComponent,
   ],
 })
 export class HomeModule {}

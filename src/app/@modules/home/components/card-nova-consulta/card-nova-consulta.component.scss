@@ -19,3 +19,28 @@ $f_22: 22px;
   font-size: $f_22;
   font-weight: 800;
 }
+
+.bg-search {
+  height: 500px;
+  background-color: #ECF0F5;
+  width: 100%;
+}
+
+.height-row {
+  height:435px;
+}
+
+::ng-deep .consulta-home {
+  .md-content {
+    width: 1090px !important;
+    height:500px;
+    overflow-y: auto !important;
+    display: flex;
+  }
+}
+
+.bg-procedimento {
+  margin: 40px 10px;
+  background-color: var(--tcc-bg-container);
+  border-radius: 4px;
+}

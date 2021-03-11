@@ -36,6 +36,19 @@ $f_weigth: 400;
   font-size: var(--f_16);
 }
 
+.btn-outline-primary {
+  background-color: transparent !important;
+  color: var(--tcc-primary) !important;
+  border-color:  var(--tcc-primary) !important;
+  font-size: var(--f_16);
+
+  &:hover {
+    transition: 300ms;
+    background-color: var(--tcc-primary) !important;
+    color: var(--tcc-white) !important;
+  }
+}
+
 .btn-success {
   background-color: var(--tcc-bg-success-progress) !important;
   color: var(--tcc-white) !important;
@@ -53,6 +66,19 @@ $f_weigth: 400;
   background-color: var(--tcc-secondary) !important;
   color: var(--tcc-white) !important;
   font-weight: 400 !important;
+}
+
+.btn-outline-secondary {
+  background-color: transparent !important;
+  color: var(--tcc-secondary) !important;
+  border-color:  var(--tcc-secondary) !important;
+  font-size: var(--f_16);
+
+  &:hover {
+    transition: 300ms;
+    background-color: var(--tcc-secondary) !important;
+    color: var(--tcc-white) !important;
+  }
 }
 
 .btn-warning {

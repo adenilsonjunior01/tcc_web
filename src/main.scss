@@ -31,3 +31,8 @@
 
 // Theme material ng-select style
 @import "~@ng-select/ng-select/themes/material.theme.css";
+
+.h-90-auto {
+  overflow-y: auto;
+  height: 100vh;
+}

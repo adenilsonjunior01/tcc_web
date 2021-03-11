@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { finalize } from 'rxjs/operators';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { QuoteService } from './quote.service';
+import { ModalAnimationComponent } from '../../@shared/modal-animation/modal-animation.component';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +9,7 @@ import { QuoteService } from './quote.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  @ViewChild(ModalAnimationComponent) modal: any;
   quote: string | undefined;
   isLoading = false;
 
@@ -16,5 +17,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
+  }
+
+  public openModal(id: string) {
+    this.modal.show(id);
   }
 }

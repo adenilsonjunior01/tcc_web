@@ -10,9 +10,114 @@
       <span class="description-add">Agendar nova consulta</span>
     </div>
     <div class="col-12 text-center">
-      <button type="button" mat-raised-button color="primary" class="btn-success" (click)="openDialog()">
-        Cadastrar
+      <button type="button" mat-raised-button color="primary" class="btn-success" (click)="modal.show('agendar-consulta')">
+        Agendar
       </button>
     </div>
   </div>
 </app-card-content>
+
+<app-modal-animation modalID="agendar-consulta" modalClass="md-effect-7 consulta-home">
+  <div class="md-body container p-0">
+    <div class="row m-0">
+      <div class="col-4 shadow-sm px-0">
+        <div class="bg-search pt-4">
+          <form action="">
+            <div class="row m-0">
+              <div class="col-12">
+                <h2 class="my-1">Dados da consulta</h2>
+                <hr class="my-2" />
+              </div>
+              <div class="col-md-12">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Tipo de consulta</mat-label>
+                  <mat-select>
+                    <!-- formControlName="username"-->
+                    <mat-option [value]="sexo.id" *ngFor="let sexo of listaSexo">{{ sexo.name }}</mat-option>
+                  </mat-select>
+                  <!-- <mat-error>
+                      <app-error-control-message [control]="loginForm.controls.username" label="E-mail"></app-error-control-message>
+                    </mat-error> -->
+                </mat-form-field>
+              </div>
+              <div class="col-md-12">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Datas disponíveis</mat-label>
+                  <mat-select>
+                    <!-- formControlName="username"-->
+                    <mat-option [value]="sexo.id" *ngFor="let sexo of listaSexo">{{ sexo.name }}</mat-option>
+                  </mat-select>
+                  <!-- <mat-error>
+                      <app-error-control-message [control]="loginForm.controls.username" label="E-mail"></app-error-control-message>
+                    </mat-error> -->
+                </mat-form-field>
+              </div>
+              <div class="col-md-12">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Horários disponíveis</mat-label>
+                  <mat-select>
+                    <!-- formControlName="username"-->
+                    <mat-option [value]="sexo.id" *ngFor="let sexo of listaSexo">{{ sexo.name }}</mat-option>
+                  </mat-select>
+                  <!-- <mat-error>
+                      <app-error-control-message [control]="loginForm.controls.username" label="E-mail"></app-error-control-message>
+                    </mat-error> -->
+                </mat-form-field>
+              </div>
+              <div class="col-12">
+                <mat-form-field class="w-100" appearance="outline">
+                  <mat-label>Sintomas (opcional)</mat-label>
+                  <textarea matInput placeholder="Digite os sintomas do paciente aqui..."></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-8 pt-4">
+        <div class="container">
+          <ng-container *ngIf="steps === 0">
+            <div class="row m-0 height-row">
+              <div class="col-12">
+                <h3 class="text-uppercase mb-1">Selecione um Paciente já Cadastrador</h3>
+                <form action="">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Pesquise Paciente pelo nome ou CPF</mat-label>
+                    <mat-icon matSuffix>search</mat-icon>
+                    <input matInput />
+                  </mat-form-field>
+                </form>
+              <!-- <ng-lottie [options]="options" height="220px"></ng-lottie> -->
+              </div>
+              <div class="col-12 pt-4 text-center">
+                <h3 class="text-uppercase mb-1">Ou Cadastre um Novo Paciente</h3>
+                <button mat-stroked-button class="btn btn-outline-primary" (click)="setStep(1)">
+                  <i class="feather icon-plus"></i>
+                  Novo Paciente
+                </button>
+              </div>
+              <div class="col-12 d-flex align-items-end justify-content-end">
+                <button mat-stroked-button class="btn btn-secondary" (click)="closeModalAndResetForm({ close: true, modalId: 'agendar-consulta'})">
+                  <i class="feather icon-x"></i>
+                  Cancelar
+                </button>
+                <button mat-stroked-button class="btn btn-success ms-3">
+                  <i class="feather icon-check"></i>
+                  Confirmar Agendamento
+                </button>
+              </div>
+            </div>
+          </ng-container>
+          <!-- Formulário pré-cadastro Paciente -->
+          <ng-container *ngIf="steps === 1">
+            <app-form-pre-cadastro-paciente (closeModal)="closeModalAndResetForm($event)" (stepId)="setStep($event)" (formPreCadastroPaciente)="getFormPreCadastroPaciente($event)"></app-form-pre-cadastro-paciente>
+          </ng-container>
+          <ng-container *ngIf="steps === 2">
+            <app-agendamento-consulta (closeModal)="closeModalAndResetForm($event)" (stepId)="setStep($event)" [formConsulta]="form" [formPaciente]="formPreCadastroPaciente"></app-agendamento-consulta>
+          </ng-container>
+          <!-- <app-consulta-medica></app-consulta-medica> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</app-modal-animation>

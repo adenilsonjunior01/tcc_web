@@ -1,7 +1,7 @@
 <div class="bg">
-  <div class="container-fluid">
-    <!-- Visão médicos -->
-    <ng-container *ngIf="true">
+  <!-- Visão médicos -->
+  <ng-container *ngIf="false">
+    <div class="container-fluid">
       <div class="row">
         <!--Cards left-->
         <div class="col-md-5 col-sm-12">
@@ -25,36 +25,41 @@
               <app-table-consultas-home></app-table-consultas-home>
             </div>
           </div>
-        </div>
-        <!-- Cards rigth-->
+          <!-- Cards rigth-->
+        </div> <!-- /col-md-5 col-sm-12 -->
         <div class="col-md-7 col-sm-12">
           <app-estatisticas-medico></app-estatisticas-medico>
-        </div>
-      </div>
-    </ng-container>
-    <!-- Visão Clínica -->
-    <ng-container *ngIf="false">
-      <div class="row">
-        <div class="col-md-7 col-sm-12">
+        </div><!-- /col-md-5 col-sm-12 -->
+      </div><!-- /row-->
+    </div>
+  </ng-container>
+  <!-- Visão Clínica -->
+  <ng-container *ngIf="true">
+    <div class="container-fluid">
+      <div class="row m-0">
+        <div class="col-md-7 col-12">
           <app-dados-gerais-clinica></app-dados-gerais-clinica>
         </div>
-        <div class="col-md-5 col-sm-12 pe-0">
+        <div class="col-md-5 col-12">
           <app-quantitativo-dados-clinica></app-quantitativo-dados-clinica>
         </div>
-      </div>
-      <div class="row mt-4">
-        <div class="col-md-8 col-sm-12">
+        <div class="col-md-6 col-12 pt-3">
           <app-estatisticas-gerais></app-estatisticas-gerais>
         </div>
-        <div class="col-md-4 col-sm-12 d-flex justify-content-center align-items-center">
+        <div class="col-md-3 col-12 d-flex justify-content-center align-items-center pt-3 pt-md-0">
           <app-card-nova-consulta></app-card-nova-consulta>
         </div>
-      </div>
+        <div class="col-md-3 col-12 d-flex justify-content-center align-items-center pt-3 pt-md-0">
+          <app-card-novo-paciente></app-card-novo-paciente>
+        </div>
+      </div><!-- /row -->
+      <!-- <div class="row mt-4">
+      </div> -->
       <div class="row pb-3">
         <div class="col-12 mt-3">
           <app-table-consultas-home></app-table-consultas-home>
         </div>
       </div>
-    </ng-container>
-  </div>
+    </div>
+  </ng-container>
 </div>
