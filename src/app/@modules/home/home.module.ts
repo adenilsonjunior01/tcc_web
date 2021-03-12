@@ -19,8 +19,8 @@ import { CardNovaConsultaComponent } from './components/card-nova-consulta/card-
 import { PacienteModule } from '../paciente/paciente.module';
 import { CardNovoPacienteComponent } from './components/card-novo-paciente/card-novo-paciente.component';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
-import { AgendamentoConsultaComponent } from './components/card-novo-paciente/agendamento-consulta/agendamento-consulta.component';
-import { FormPreCadastroPacienteComponent } from './components/card-novo-paciente/form-pre-cadastro-paciente/form-pre-cadastro-paciente.component';
+import { AgendamentoConsultaComponent } from './components/card-nova-consulta/agendamento-consulta/agendamento-consulta.component';
+import { FormPreCadastroPacienteComponent } from './components/card-nova-consulta/form-pre-cadastro-paciente/form-pre-cadastro-paciente.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,

@@ -1,4 +1,5 @@
 <div class="md-modal" [ngClass]="modalClass" id="{{ modalID }}">
+  <ng-content select=".md-header"></ng-content>
   <div class="md-content" [ngClass]="contentClass">
     <ng-content select=".md-body"></ng-content>
   </div>

@@ -1,0 +1,99 @@
+import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ListaUtilitarioMock } from '../../../../../mocks/lista-utilitario-mock';
+import { FormControl, FormGroup } from '@angular/forms';
+import Swal from 'sweetalert2';
+import { AgendamentoConsultaService } from '../../../services/agendamento-consulta/agendamento-consulta.service';
+import { finalize } from 'rxjs/operators';
+import { untilDestroyed } from '../../../../../@core/until-destroyed';
+import { Logger } from '../../../../../@core/logger.service';
+
+const log = new Logger('Agendamento Consulta Home');
+
+@Component({
+  selector: 'app-agendamento-consulta',
+  templateUrl: './agendamento-consulta.component.html',
+  styleUrls: ['./agendamento-consulta.component.scss'],
+})
+export class AgendamentoConsultaComponent implements OnInit, OnChanges {
+  @Output() closeModal = new EventEmitter();
+  @Output() stepId = new EventEmitter();
+  @Input() formConsulta: FormGroup;
+  public search = new FormControl();
+
+  public utilitariosMock = new ListaUtilitarioMock();
+  public listaSexo: any[];
+  datas: any;
+  loading = false;
+
+  constructor(private readonly _service: AgendamentoConsultaService) {}
+
+  ngOnChanges(changes: SimpleChanges): void {}
+
+  ngOnInit(): void {
+    this.listaSexo = this.utilitariosMock.getListaSexos();
+    this.datas = this.formConsulta.value;
+  }
+
+  public closeModalAndResetForm(id: string) {
+    this.formConsulta.reset();
+    this.closeModal.emit({ close: true, modalId: id });
+  }
+
+  public setStep(id: number) {
+    this.stepId.emit(id);
+  }
+
+  /**
+   *
+   * @description: Caso o formulário de consulta esteja válido, é feito o request de agendamento
+   * da consulta pro back-end
+   */
+  public confirmAgendamento(step: number): void {
+    if (this.formConsulta.valid) {
+      this.loading = true;
+      const resquest$ = this._service.submitAgendamentoConsulta(this.formConsulta.value);
+      resquest$
+        .pipe(
+          finalize(() => {
+            this.loading = false;
+          }),
+          untilDestroyed(this)
+        )
+        .subscribe(
+          (response: any) => {},
+          (err: any) => {
+            log.error('Erro ao Agendar Consulta');
+          }
+        );
+      // this.stepId.emit(step);
+      console.log('FORM AGENDAMENTO CONSULTA>>', this.formConsulta.value);
+    } else {
+      Object.keys(this.formConsulta.controls).forEach((campo) => {
+        const controle = this.formConsulta.get(campo);
+        controle.markAsTouched();
+      });
+    }
+  }
+
+  /**
+   * @description: apresenta um Alerta questionando a decisão do usuário, caso ele
+   * confirme, os control paciente e procedimento é resetado e alterado
+   * o step para zero (apresetará o componente inicial)
+   */
+  public back() {
+    Swal.fire({
+      icon: 'question',
+      title: 'Deseja continuar?',
+      text: 'Ao continuar, essa consulta será desconsiderada.',
+      showCancelButton: true,
+      confirmButtonText: `Sim`,
+      cancelButtonText: `Não`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.formConsulta.get('paciente').reset();
+        this.formConsulta.get('procedimento').reset();
+        this.stepId.emit(0);
+      }
+    });
+  }
+}

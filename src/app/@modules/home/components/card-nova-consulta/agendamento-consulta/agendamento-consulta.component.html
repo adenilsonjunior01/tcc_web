@@ -1,42 +1,44 @@
-<div class="row m-0">
+<div class="row m-0 animate__fadeInRight ">
   <div class="col-auto">
     <i class="feather icon-user user-icon"></i>
   </div>
   <div class="col-10">
     <div class="row header-edit">
       <div class="col-12">
-        <h3 class="mb-1 name-user">Nome Usuário</h3>
+        <h3 class="mb-1 name-user text-capitalize">{{ datas?.paciente?.nome }} {{ datas?.paciente?.sobrenome }}</h3>
         <hr class="m-0 w-100">
       </div>
       <div class="col-6">
-        <p class="m-0"><span>Data de nasc.: </span>01/12/1990</p>
+        <p class="m-0"><span>Data de nasc.: </span>{{ datas?.paciente?.dtNascimento | date: 'shortDate' }}</p>
       </div>
       <div class="col-6">
-        <p class="m-0"><span>CPF: </span>000.000.000-00</p>
+        <p class="m-0"><span>CPF: </span>{{ datas?.paciente?.cpf | mask: '000.000.000-00' }}</p>
       </div>
-      <div class="col-12">
-        <p class="m-0"><span>E-mail: </span>teste@teste.com</p>
+      <div class="col-6">
+        <p class="m-0"><span>E-mail: </span>{{ datas?.paciente?.email }}</p>
+      </div>
+      <div class="col-6">
+        <p class="m-0"><span>Sexo: </span>{{ datas?.paciente?.sexo === 2 ? 'Feminino' : 'Masculino' }}</p>
       </div>
     </div>
   </div>
   <div class="col-12">
-    <div class="bg-procedimento">
+    <form [formGroup]="formConsulta" class="bg-procedimento">
       <div class="container row pb-4 pt-3">
         <div class="col-12">
           <h3 class="mb-0">Selecione o procedimento</h3>
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Tipo de procedimento</mat-label>
-            <mat-select>
-              <!-- formControlName="username"-->
+            <mat-select formControlName="procedimento" required>
               <mat-option [value]="sexo.id" *ngFor="let sexo of listaSexo">{{ sexo.name }}</mat-option>
             </mat-select>
-            <!-- <mat-error>
-                <app-error-control-message [control]="loginForm.controls.username" label="E-mail"></app-error-control-message>
-              </mat-error> -->
+            <mat-error>
+                <app-error-control-message [control]="formConsulta.controls.procedimento" label="Procedimento"></app-error-control-message>
+              </mat-error>
           </mat-form-field>
         </div>
       </div>
-    </div>
+    </form>
   </div> <!--/col-12-->
   <div class="col-12 px-4">
     <mat-form-field appearance="outline" class="w-100">
@@ -57,7 +59,7 @@
       <i class="feather icon-x"></i>
       Cancelar
     </button>
-    <button mat-stroked-button class="btn btn-success ms-3" (click)="setStep(2)">
+    <button mat-stroked-button class="btn btn-success ms-3" (click)="confirmAgendamento(2)">
       <i class="feather icon-check"></i>
       Confirmar Agendamento
     </button>

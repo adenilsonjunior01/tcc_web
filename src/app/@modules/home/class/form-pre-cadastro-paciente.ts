@@ -1,4 +1,5 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormValidations } from '../../../@shared/class/form-validations';
 
 export class FormPreCadastroPaciente {
 
@@ -11,7 +12,9 @@ export class FormPreCadastroPaciente {
       nome: [null, Validators.required],
       sobrenome: [null, Validators.required],
       cpf: [null, Validators.required],
-      email: [null, [Validators.required, Validators.email]]
+      email: [null, [Validators.required, Validators.email]],
+      sexo: [null, Validators.required],
+      dtNascimento: [null, [Validators.required, FormValidations.dateValidator]]
     });
     return form;
   }

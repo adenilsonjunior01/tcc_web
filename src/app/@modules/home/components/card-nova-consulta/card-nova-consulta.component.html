@@ -10,66 +10,77 @@
       <span class="description-add">Agendar nova consulta</span>
     </div>
     <div class="col-12 text-center">
-      <button type="button" mat-raised-button color="primary" class="btn-success" (click)="modal.show('agendar-consulta')">
+      <button type="button" mat-raised-button color="primary" class="btn-success"
+        (click)="modal.show('agendar-consulta')">
         Agendar
       </button>
     </div>
   </div>
 </app-card-content>
 
-<app-modal-animation modalID="agendar-consulta" modalClass="md-effect-7 consulta-home">
+<app-modal-animation modalID="agendar-consulta" modalClass="md-effect-7 consulta-home" backDrop="true">
+  <div class="md-header container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2 class="my-3 text-uppercase">Nova Consulta</h2>
+      </div>
+    </div>
+  </div>
   <div class="md-body container p-0">
     <div class="row m-0">
       <div class="col-4 shadow-sm px-0">
         <div class="bg-search pt-4">
-          <form action="">
+          <form [formGroup]="form">
             <div class="row m-0">
               <div class="col-12">
-                <h2 class="my-1">Dados da consulta</h2>
+                <h3 class="my-1 text-uppercase">Dados da consulta</h3>
                 <hr class="my-2" />
               </div>
               <div class="col-md-12">
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Tipo de consulta</mat-label>
-                  <mat-select>
-                    <!-- formControlName="username"-->
+                  <mat-select formControlName="tipoConsulta" required>
                     <mat-option [value]="sexo.id" *ngFor="let sexo of listaSexo">{{ sexo.name }}</mat-option>
                   </mat-select>
-                  <!-- <mat-error>
-                      <app-error-control-message [control]="loginForm.controls.username" label="E-mail"></app-error-control-message>
-                    </mat-error> -->
+                  <mat-error>
+                    <app-error-control-message [control]="form.controls.tipoConsulta" label="Tipo de consulta">
+                    </app-error-control-message>
+                  </mat-error>
                 </mat-form-field>
               </div>
               <div class="col-md-12">
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Datas disponíveis</mat-label>
-                  <mat-select>
-                    <!-- formControlName="username"-->
+                  <mat-select formControlName="data" required>
                     <mat-option [value]="sexo.id" *ngFor="let sexo of listaSexo">{{ sexo.name }}</mat-option>
                   </mat-select>
-                  <!-- <mat-error>
-                      <app-error-control-message [control]="loginForm.controls.username" label="E-mail"></app-error-control-message>
-                    </mat-error> -->
+                  <mat-error>
+                    <app-error-control-message [control]="form.controls.data" label="Data"></app-error-control-message>
+                  </mat-error>
                 </mat-form-field>
               </div>
               <div class="col-md-12">
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Horários disponíveis</mat-label>
-                  <mat-select>
-                    <!-- formControlName="username"-->
+                  <mat-select formControlName="horario" required>
                     <mat-option [value]="sexo.id" *ngFor="let sexo of listaSexo">{{ sexo.name }}</mat-option>
                   </mat-select>
-                  <!-- <mat-error>
-                      <app-error-control-message [control]="loginForm.controls.username" label="E-mail"></app-error-control-message>
-                    </mat-error> -->
+                  <mat-error>
+                    <app-error-control-message [control]="form.controls.horario" label="Horário">
+                    </app-error-control-message>
+                  </mat-error>
                 </mat-form-field>
               </div>
               <div class="col-12">
                 <mat-form-field class="w-100" appearance="outline">
                   <mat-label>Sintomas (opcional)</mat-label>
-                  <textarea matInput placeholder="Digite os sintomas do paciente aqui..."></textarea>
+                  <textarea matInput placeholder="Digite os sintomas do paciente aqui..."
+                    formControlName="sintomas"></textarea>
                 </mat-form-field>
               </div>
+            </div>
+            <div class="col-12">
+              <!-- <app-form-debug [form]="form"></app-form-debug> -->
             </div>
           </form>
         </div>
@@ -77,43 +88,68 @@
       <div class="col-8 pt-4">
         <div class="container">
           <ng-container *ngIf="steps === 0">
-            <div class="row m-0 height-row">
-              <div class="col-12">
-                <h3 class="text-uppercase mb-1">Selecione um Paciente já Cadastrador</h3>
-                <form action="">
-                  <mat-form-field appearance="outline" class="w-100">
+            <form [formGroup]="form">
+              <div class="row m-0 height-row animate__fadeInRight ">
+                <div class="col-12">
+                  <h3 class="text-uppercase mb-1">Selecione um Paciente já Cadastrado</h3>
+                  <!-- <mat-form-field appearance="outline" class="w-100">
                     <mat-label>Pesquise Paciente pelo nome ou CPF</mat-label>
                     <mat-icon matSuffix>search</mat-icon>
                     <input matInput />
+                  </mat-form-field> -->
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Pesquise paciente pelo nome ou CPF</mat-label>
+                    <mat-icon matSuffix>search</mat-icon>
+                    <input type="text"
+                           placeholder="Busque pelo nome do paciente"
+                           aria-label="Number"
+                           matInput
+                           [formControl]="search"
+                           [matAutocomplete]="auto">
+                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                      <mat-option *ngFor="let option of filteredOptions | async" [value]="option.nome"  >
+                        <span class="ms-2 busca-span">Nome:</span> {{ option.nome }}
+                        <span class="ms-2 busca-span">CPF:</span> {{ option.cpf }}
+                      </mat-option>
+                    </mat-autocomplete>
                   </mat-form-field>
-                </form>
-              <!-- <ng-lottie [options]="options" height="220px"></ng-lottie> -->
+                  <!-- <ng-lottie [options]="options" height="220px"></ng-lottie> -->
+                </div>
+                <div class="col-12 pt-4 text-center">
+                  <h3 class="text-uppercase mb-1">Ou Cadastre um Novo Paciente</h3>
+                  <button mat-stroked-button class="btn btn-outline-primary" (click)="setStep(1)">
+                    <i class="feather icon-plus"></i>
+                    Novo Paciente
+                  </button>
+                </div>
+                <div class="col-12 d-flex align-items-end justify-content-end">
+                  <button mat-stroked-button class="btn btn-secondary"
+                    (click)="closeModalAndResetForm({ close: true, modalId: 'agendar-consulta'})">
+                    <i class="feather icon-x"></i>
+                    Cancelar
+                  </button>
+                  <!-- <button mat-stroked-button class="btn btn-success ms-3" [disabled]="!form.valid">
+                    <i class="feather icon-check"></i>
+                    Confirmar Agendamento
+                  </button> -->
+                  <button mat-stroked-button class="btn btn-primary ms-3"
+                  (click)="selectPaciente()">
+                    <i class="feather icon-check"></i>
+                    Avançar
+                  </button>
+                </div>
               </div>
-              <div class="col-12 pt-4 text-center">
-                <h3 class="text-uppercase mb-1">Ou Cadastre um Novo Paciente</h3>
-                <button mat-stroked-button class="btn btn-outline-primary" (click)="setStep(1)">
-                  <i class="feather icon-plus"></i>
-                  Novo Paciente
-                </button>
-              </div>
-              <div class="col-12 d-flex align-items-end justify-content-end">
-                <button mat-stroked-button class="btn btn-secondary" (click)="closeModalAndResetForm({ close: true, modalId: 'agendar-consulta'})">
-                  <i class="feather icon-x"></i>
-                  Cancelar
-                </button>
-                <button mat-stroked-button class="btn btn-success ms-3">
-                  <i class="feather icon-check"></i>
-                  Confirmar Agendamento
-                </button>
-              </div>
-            </div>
+            </form>
+
           </ng-container>
           <!-- Formulário pré-cadastro Paciente -->
           <ng-container *ngIf="steps === 1">
-            <app-form-pre-cadastro-paciente (closeModal)="closeModalAndResetForm($event)" (stepId)="setStep($event)" (formPreCadastroPaciente)="getFormPreCadastroPaciente($event)"></app-form-pre-cadastro-paciente>
+            <app-form-pre-cadastro-paciente (closeModal)="closeModalAndResetForm($event)" (stepId)="setStep($event)"
+              (formPreCadastroPaciente)="getFormPreCadastroPaciente($event)"></app-form-pre-cadastro-paciente>
           </ng-container>
           <ng-container *ngIf="steps === 2">
-            <app-agendamento-consulta (closeModal)="closeModalAndResetForm($event)" (stepId)="setStep($event)" [formConsulta]="form" [formPaciente]="formPreCadastroPaciente"></app-agendamento-consulta>
+            <app-agendamento-consulta (closeModal)="closeModalAndResetForm($event)" (stepId)="setStep($event)"
+              [formConsulta]="form"></app-agendamento-consulta>
           </ng-container>
           <!-- <app-consulta-medica></app-consulta-medica> -->
         </div>

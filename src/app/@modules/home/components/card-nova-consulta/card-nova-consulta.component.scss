@@ -35,6 +35,7 @@ $f_22: 22px;
     width: 1090px !important;
     height:500px;
     overflow-y: auto !important;
+    overflow-x: hidden !important;
     display: flex;
   }
 }
@@ -44,3 +45,25 @@ $f_22: 22px;
   background-color: var(--tcc-bg-container);
   border-radius: 4px;
 }
+
+.md-header {
+  // background: linear-gradient(45deg, #197bbd, #3391d0);
+  background: linear-gradient(45deg, #4099ff, #73b4ff);
+  width: 1090px;
+
+  h2 {
+    color: var(--white);
+  }
+}
+
+::ng-deep .mat-option-text {
+  color: var(--black);
+  font-size: var(--f_14);
+
+  .busca-span {
+    color: var(--black) !important;
+    font-size: var(--f_14);
+    font-weight: 500;
+  }
+}
+
