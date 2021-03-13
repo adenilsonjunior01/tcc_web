@@ -1,46 +1,78 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { tap, map, catchError, take } from 'rxjs/operators';
 
 import { Credentials, CredentialsService } from './credentials.service';
 
-export interface LoginContext {
+const routes = {
+  login: () => '/',
+  resetPassword: () => '/'
+};
+
+export interface ILoginContext {
   username: string;
   password: string;
   remember?: boolean;
+  teste?: boolean;
 }
 
-/**
- * Provides a base for authentication workflow.
- * The login/logout methods should be replaced with proper implementation.
- */
+export interface IResetPassword {
+  oldPassword: string;
+  newPassword: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(private credentialsService: CredentialsService) {}
+  constructor(
+    private readonly _credentialsService: CredentialsService,
+    private readonly _httpClient: HttpClient) {}
 
   /**
-   * Authenticates the user.
-   * @param context The login parameters.
-   * @return The user credentials.
+   * @param context Parametros de login.
+   * @return Recebe as credenciais de acesso e verifica primeiro acesso do usuário.
    */
-  login(context: LoginContext): Observable<Credentials> {
-    // Replace by proper authentication call
+  public login(context: ILoginContext): Observable<Credentials> {
     const data = {
       username: context.username,
       token: '123456',
     };
-    this.credentialsService.setCredentials(data, context.remember);
-    return of(data);
+   return this._httpClient.post(routes.login(), data).pipe(
+     tap({
+       complete:() => {
+         if (!context.teste) {
+            this._credentialsService.setCredentials(data, context.remember);
+          }
+        }
+      }),
+      catchError(() => of('Error')),
+      map((body: any)=> body),
+      take(1)
+    );
+  }
+
+  // MAPEAR MODEL QUANDO BACK-END ESTIVER DEFINIDO O RETORNOS
+  /**
+   *
+   * @param context Nova senha do usuário
+   * @returns
+   */
+  public resetPasswordTemporary(context: IResetPassword): Observable<any> {
+    return this._httpClient.post(routes.resetPassword(), context).pipe(
+      map((body: any)=> body),
+      catchError(() => of('Error')),
+      take(1)
+    );
   }
 
   /**
-   * Logs out the user and clear credentials.
-   * @return True if the user was logged out successfully.
+   * Limpa credenciais do usuário armazenadas no LocalStorage
    */
   logout(): Observable<boolean> {
     // Customize credentials invalidation here
-    this.credentialsService.setCredentials();
+    this._credentialsService.setCredentials();
     return of(true);
   }
 }
