@@ -8,11 +8,11 @@ const routes: Routes = [
     path: '',
     component: ConfiguracoesComponent,
     data: { title: marker('Configurações'), subtitle: marker('Configurações') },
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ConfiguracoesRoutingModule { }
+export class ConfiguracoesRoutingModule {}

@@ -9,7 +9,7 @@ import { FileUploadControl, FileUploadValidators } from '@iplab/ngx-file-upload'
 @Component({
   selector: 'app-form-dados-clinica',
   templateUrl: './form-dados-clinica.component.html',
-  styleUrls: ['./form-dados-clinica.component.scss']
+  styleUrls: ['./form-dados-clinica.component.scss'],
 })
 export class FormDadosClinicaComponent implements OnInit {
   public type: any;
@@ -20,8 +20,7 @@ export class FormDadosClinicaComponent implements OnInit {
   isFileDragDropAvailable: boolean;
   public readonly controlUpload = new FileUploadControl({ accept: ['image/*'] });
 
-
-  constructor(@Inject(MAT_DIALOG_DATA) public dataDialog: any,) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public dataDialog: any) {}
 
   ngOnInit(): void {
     this.type = this.dataDialog.type;
@@ -32,8 +31,8 @@ export class FormDadosClinicaComponent implements OnInit {
       const reader = new FileReader();
       reader.readAsDataURL(this.file.value[0]);
       reader.onload = () => resolve(reader.result);
-      reader.onerror = error => reject(error);
-    }).then(value => this.base64 = value);
+      reader.onerror = (error) => reject(error);
+    }).then((value) => (this.base64 = value));
   }
 
   public removeImg() {

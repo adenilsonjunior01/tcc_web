@@ -16,13 +16,12 @@ export class FormProntuario {
 
   public newObjectControl(): FormGroup {
     return this._fb.group({
-      descricao: [null]
+      descricao: [null],
     });
   }
 
-
   public validateControlAlergias(values: FormGroup): any {
-    Object.keys(values.controls).forEach(campo => {
+    Object.keys(values.controls).forEach((campo) => {
       const controle = values.get(campo);
       controle.markAllAsTouched();
     });
@@ -33,13 +32,13 @@ export class FormProntuario {
    */
   public addValidatorDynamic(form: FormGroup, index: number, control: any, status: boolean): FormGroup {
     if (status) {
-      Object.keys(((form.controls[control] as FormGroup).controls[index] as FormGroup).controls).forEach(campo => {
+      Object.keys(((form.controls[control] as FormGroup).controls[index] as FormGroup).controls).forEach((campo) => {
         (form.controls[control] as FormGroup).controls[index].get(campo).setValidators([Validators.required]);
         (form.controls[control] as FormGroup).controls[index].get(campo).updateValueAndValidity();
       });
       return form;
     } else {
-      Object.keys(((form.controls[control] as FormGroup).controls[index] as FormGroup).controls).forEach(campo => {
+      Object.keys(((form.controls[control] as FormGroup).controls[index] as FormGroup).controls).forEach((campo) => {
         (form.controls[control] as FormGroup).controls[index].get(campo).clearValidators();
         (form.controls[control] as FormGroup).controls[index].get(campo).updateValueAndValidity();
       });

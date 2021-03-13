@@ -16,7 +16,8 @@ export class UpdatePasswordComponent implements OnInit {
   constructor(
     private readonly _router: Router,
     private readonly _formBuilder: FormBuilder,
-    private readonly _service: AuthenticationService) {}
+    private readonly _service: AuthenticationService
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -29,10 +30,8 @@ export class UpdatePasswordComponent implements OnInit {
   public submitNewPassword() {
     if (this.form.valid) {
       this._service.resetPasswordTemporary(this.form.value).subscribe({
-        next: value => {
-
-        },
-        error: error => console.log(error)
+        next: (value) => {},
+        error: (error) => console.log(error),
       });
     }
   }
@@ -40,7 +39,7 @@ export class UpdatePasswordComponent implements OnInit {
   private initForm() {
     this.form = this._formBuilder.group({
       antigoPassword: [null, Validators.required],
-      novoPassword: [null, Validators.required]
+      novoPassword: [null, Validators.required],
     });
   }
 }

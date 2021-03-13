@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ListaUtilitarioMock } from '../../../../mocks/lista-utilitario-mock';
 import { ModalAnimationComponent } from '../../../../@shared/modal-animation/modal-animation.component';
 import { AnimationOptions } from 'ngx-lottie';
@@ -6,7 +6,7 @@ import { IEventCloseModalModel } from '../../models/event-close-modal-model';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormConsultaHome } from '../../class/form-consulta-home';
 import { Observable } from 'rxjs';
-import { startWith, map, tap } from 'rxjs/operators';
+import { startWith, map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -14,10 +14,11 @@ import Swal from 'sweetalert2';
   templateUrl: './card-nova-consulta.component.html',
   styleUrls: ['./card-nova-consulta.component.scss'],
 })
-export class CardNovaConsultaComponent implements OnInit, AfterViewInit {
+export class CardNovaConsultaComponent implements OnInit {
   @ViewChild(ModalAnimationComponent) modal: any;
+  @Input() visibleCard = true;
 
-  private readonly _formConsulta = new FormConsultaHome()
+  private readonly _formConsulta = new FormConsultaHome();
   public utilitariosMock = new ListaUtilitarioMock();
   public listaSexo: any[];
   public novoUsuario = false;
@@ -33,7 +34,7 @@ export class CardNovaConsultaComponent implements OnInit, AfterViewInit {
       cpf: '000.000.000-00',
       email: 'teste@teste.com',
       dtNascimento: '1990-12-02',
-      sexo: 1
+      sexo: 1,
     },
     {
       nome: 'Two',
@@ -41,7 +42,7 @@ export class CardNovaConsultaComponent implements OnInit, AfterViewInit {
       cpf: '111.000.000-00',
       email: 'teste@teste.com',
       dtNascimento: '1990-12-02',
-      sexo: 1
+      sexo: 1,
     },
     {
       nome: 'Three',
@@ -49,7 +50,7 @@ export class CardNovaConsultaComponent implements OnInit, AfterViewInit {
       cpf: '111.222.000-00',
       email: 'teste@teste.com',
       dtNascimento: '1990-12-02',
-      sexo: 2
+      sexo: 2,
     },
     {
       nome: 'Four',
@@ -57,9 +58,8 @@ export class CardNovaConsultaComponent implements OnInit, AfterViewInit {
       cpf: '111.333.000-00',
       email: 'teste@teste.com',
       dtNascimento: '1990-12-02',
-      sexo: 2
+      sexo: 2,
     },
-
   ];
   filteredOptions: Observable<string[]>;
 
@@ -69,14 +69,11 @@ export class CardNovaConsultaComponent implements OnInit, AfterViewInit {
 
   constructor() {}
 
-  ngAfterViewInit(): void {
-    this.modal.show('agendar-consulta');
-  }
-
   ngOnInit(): void {
+    console.log(this.visibleCard);
     this.filteredOptions = this.search.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value)),
+      map((value) => this._filter(value))
     );
 
     this.form = this._formConsulta.initFormConsultaHome();
@@ -85,7 +82,9 @@ export class CardNovaConsultaComponent implements OnInit, AfterViewInit {
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-    const dataFilter = this.optionsAutoComplete.filter(option => option.nome.toLowerCase().indexOf(filterValue) === 0);
+    const dataFilter = this.optionsAutoComplete.filter(
+      (option) => option.nome.toLowerCase().indexOf(filterValue) === 0
+    );
     return dataFilter;
   }
 
@@ -144,7 +143,9 @@ export class CardNovaConsultaComponent implements OnInit, AfterViewInit {
 
   public selectPaciente(): void {
     if (this.search.value) {
-      const values = this.optionsAutoComplete.filter(option => option.nome.toLowerCase().indexOf(this.search.value.toLowerCase()) === 0);
+      const values = this.optionsAutoComplete.filter(
+        (option) => option.nome.toLowerCase().indexOf(this.search.value.toLowerCase()) === 0
+      );
       this.setValuesPaciente(values[0]);
       this.steps = 2;
       this.search.reset();
@@ -154,7 +155,7 @@ export class CardNovaConsultaComponent implements OnInit, AfterViewInit {
         title: 'Oops...',
         confirmButtonText: 'Ok, entendi',
         text: 'Selecione o Paciente cadastrado ou cadastre um novo.',
-      })
+      });
     }
   }
 

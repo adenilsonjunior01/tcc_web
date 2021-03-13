@@ -43,7 +43,6 @@ export class AgendamentoConsultaComponent implements OnInit, OnChanges {
     this.stepId.emit(id);
   }
 
-
   public confirmAgendamento(step: number): void {
     if (this.formConsulta.valid) {
       this.loading = true;
@@ -57,7 +56,9 @@ export class AgendamentoConsultaComponent implements OnInit, OnChanges {
         )
         .subscribe({
           next: () => {},
-          error: (err: any) => {log.error(err)}
+          error: (err: any) => {
+            log.error(err);
+          },
         });
       // this.stepId.emit(step);
       console.log('FORM AGENDAMENTO CONSULTA>>', this.formConsulta.value);
@@ -74,7 +75,7 @@ export class AgendamentoConsultaComponent implements OnInit, OnChanges {
    * confirme, os control paciente e procedimento é resetado e alterado
    * o step para zero (apresetará o componente inicial)
    */
-  public back(): void{
+  public back(): void {
     Swal.fire({
       icon: 'question',
       title: 'Deseja continuar?',

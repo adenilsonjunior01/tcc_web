@@ -10,10 +10,15 @@
       <span class="description-add">Cadastrar novo Paciente</span>
     </div>
     <div class="col-12 text-center">
-      <button type="button" mat-raised-button color="primary" class="btn btn-primary">
+      <button
+        type="button"
+        mat-raised-button
+        color="primary"
+        class="btn btn-primary"
+        (click)="redirectToRegisterPaciente()"
+      >
         Cadastrar
       </button>
     </div>
   </div>
 </app-card-content>
-

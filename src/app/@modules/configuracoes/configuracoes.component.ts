@@ -5,23 +5,22 @@ import { FormDadosClinicaComponent } from './components/form-dados-clinica/form-
 @Component({
   selector: 'app-configuracoes',
   templateUrl: './configuracoes.component.html',
-  styleUrls: ['./configuracoes.component.scss']
+  styleUrls: ['./configuracoes.component.scss'],
 })
 export class ConfiguracoesComponent implements OnInit {
   public dialog = new DialogContent(this._dialog);
-  public detailsProfile = { teste:'Teste' };
+  public detailsProfile = { teste: 'Teste' };
 
-  constructor(private readonly _dialog?: MatDialog) { }
+  constructor(private readonly _dialog?: MatDialog) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   /**
- * @description: Type 1: Edição de Logo, Type 2: edição História, Type 3: edição missão, valores, visão
- */
+   * @description: Type 1: Edição de Logo, Type 2: edição História, Type 3: edição missão, valores, visão
+   */
   openDialog(type: any) {
     const valuesSubmit = Object.assign(this.detailsProfile, {
-      type
+      type,
     });
     this.dialog.openDialog(valuesSubmit);
   }

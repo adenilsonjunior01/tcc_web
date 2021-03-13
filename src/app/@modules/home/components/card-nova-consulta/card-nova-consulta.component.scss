@@ -22,18 +22,18 @@ $f_22: 22px;
 
 .bg-search {
   height: 500px;
-  background-color: #ECF0F5;
+  background-color: #ecf0f5;
   width: 100%;
 }
 
 .height-row {
-  height:435px;
+  height: 435px;
 }
 
 ::ng-deep .consulta-home {
   .md-content {
     width: 1090px !important;
-    height:500px;
+    height: 500px;
     overflow-y: auto !important;
     overflow-x: hidden !important;
     display: flex;
@@ -66,4 +66,3 @@ $f_22: 22px;
     font-weight: 500;
   }
 }
-

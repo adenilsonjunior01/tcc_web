@@ -1,6 +1,4 @@
-
 export class DadosPaciente {
-
   constructor() {}
 
   public setDadosProntuarioLocalStorage(dados: any): void {
@@ -19,7 +17,7 @@ export class DadosPaciente {
     localStorage.setItem('__dadosPaciente', JSON.stringify(dados));
   }
 
-  public getDadosPacienteLocalStorage() : any {
+  public getDadosPacienteLocalStorage(): any {
     return JSON.parse(localStorage.getItem('__dadosPaciente'));
   }
 

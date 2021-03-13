@@ -97,7 +97,6 @@ export class ProntuarioMedicoComponent implements OnInit, OnDestroy {
     for (let i = 0; i <= count; i++) {
       this.removeObject(0, control);
     }
-
   }
 
   public setStep(index: number) {

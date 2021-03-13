@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       )
       .subscribe({
         next: (credentials) => {
-          if (this.loginForm.get('teste').value) {
+          if (!this.loginForm.get('teste').value) {
             this._router.navigate(['/update/password'], { replaceUrl: true });
           } else {
             log.debug(`${credentials.username} successfully logged in`);

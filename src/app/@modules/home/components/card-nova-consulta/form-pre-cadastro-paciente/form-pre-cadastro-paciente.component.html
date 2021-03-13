@@ -25,8 +25,14 @@
     <div class="col-12 col-md-4">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>CPF</mat-label>
-        <input type="text" matInput placeholder="Digite o CPF" autocomplete="off" mask="000.000.000-00"
-          formControlName="cpf" />
+        <input
+          type="text"
+          matInput
+          placeholder="Digite o CPF"
+          autocomplete="off"
+          mask="000.000.000-00"
+          formControlName="cpf"
+        />
         <mat-error>
           <app-error-control-message [control]="form.controls.cpf" label="CPF"></app-error-control-message>
         </mat-error>
@@ -48,19 +54,21 @@
           <mat-option [value]="sexo.id" *ngFor="let sexo of listaSexo">{{ sexo.name }}</mat-option>
         </mat-select>
         <mat-error>
-          <app-error-control-message [control]="form.controls.sexo" label="Sexo">
-          </app-error-control-message>
+          <app-error-control-message [control]="form.controls.sexo" label="Sexo"> </app-error-control-message>
         </mat-error>
       </mat-form-field>
     </div>
     <div class="col-12 col-md-8">
       <mat-form-field appearance="outline">
         <mat-label>Data de nascimento</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="dtNascimento">
+        <input matInput [matDatepicker]="picker" formControlName="dtNascimento" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <mat-error>
-          <app-error-control-message [control]="form.controls.dtNascimento" label="Data de nascimento"></app-error-control-message>
+          <app-error-control-message
+            [control]="form.controls.dtNascimento"
+            label="Data de nascimento"
+          ></app-error-control-message>
           <!-- <app-error-control-message [control]="form.get('dtNascimento').hasError('dateValidator')" label="Data"></app-error-control-message> -->
         </mat-error>
       </mat-form-field>
@@ -70,11 +78,16 @@
         <i class="feather icon-arrow-left"></i>
         Voltar
       </button>
-      <button mat-stroked-button class="btn btn-success ms-3" (click)="submitPreCadastroPaciente(2)"
-        [disabled]="!form.valid">
+      <button
+        mat-stroked-button
+        class="btn btn-success ms-3"
+        (click)="submitPreCadastroPaciente(2)"
+        [disabled]="!form.valid"
+      >
         <i class="feather icon-check"></i>
         Confirmar e continuar o Agendamento
       </button>
     </div>
-  </div><!-- /row-->
+  </div>
+  <!-- /row-->
 </form>

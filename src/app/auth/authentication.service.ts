@@ -7,7 +7,7 @@ import { Credentials, CredentialsService } from './credentials.service';
 
 const routes = {
   login: () => '/',
-  resetPassword: () => '/'
+  resetPassword: () => '/',
 };
 
 export interface ILoginContext {
@@ -26,9 +26,7 @@ export interface IResetPassword {
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(
-    private readonly _credentialsService: CredentialsService,
-    private readonly _httpClient: HttpClient) {}
+  constructor(private readonly _credentialsService: CredentialsService, private readonly _httpClient: HttpClient) {}
 
   /**
    * @param context Parametros de login.
@@ -39,18 +37,20 @@ export class AuthenticationService {
       username: context.username,
       token: '123456',
     };
-   return this._httpClient.post(routes.login(), data).pipe(
-     tap({
-       complete:() => {
-         if (!context.teste) {
-            this._credentialsService.setCredentials(data, context.remember);
-          }
-        }
-      }),
-      catchError(() => of('Error')),
-      map((body: any)=> body),
-      take(1)
-    );
+    //  return this._httpClient.post(routes.login(), data).pipe(
+    //    tap({
+    //      complete:() => {
+    //        if (!context.teste) {
+    //           this._credentialsService.setCredentials(data, context.remember);
+    //         }
+    //       }
+    //     }),
+    //     catchError(() => of('Error')),
+    //     map((body: any)=> body),
+    //     take(1)
+    //   );
+    this._credentialsService.setCredentials(data, context.remember);
+    return of(data);
   }
 
   // MAPEAR MODEL QUANDO BACK-END ESTIVER DEFINIDO O RETORNOS
@@ -61,7 +61,7 @@ export class AuthenticationService {
    */
   public resetPasswordTemporary(context: IResetPassword): Observable<any> {
     return this._httpClient.post(routes.resetPassword(), context).pipe(
-      map((body: any)=> body),
+      map((body: any) => body),
       catchError(() => of('Error')),
       take(1)
     );

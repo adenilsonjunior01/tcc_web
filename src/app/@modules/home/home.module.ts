@@ -36,7 +36,7 @@ const maskConfig: Partial<IConfig> = {
     HomeRoutingModule,
     NgApexchartsModule,
     PacienteModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
   ],
   declarations: [
     HomeComponent,
@@ -52,5 +52,10 @@ const maskConfig: Partial<IConfig> = {
     AgendamentoConsultaComponent,
     FormPreCadastroPacienteComponent,
   ],
+  exports: [
+    CardNovaConsultaComponent,
+    AgendamentoConsultaComponent,
+    FormPreCadastroPacienteComponent
+  ]
 })
 export class HomeModule {}

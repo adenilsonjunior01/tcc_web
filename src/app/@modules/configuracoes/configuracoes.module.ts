@@ -10,12 +10,6 @@ import { FileUploadModule } from '@iplab/ngx-file-upload';
 
 @NgModule({
   declarations: [ConfiguracoesComponent, FormDadosClinicaComponent],
-  imports: [
-    CommonModule,
-    ConfiguracoesRoutingModule,
-    SharedModule,
-    MaterialModule,
-    FileUploadModule
-  ]
+  imports: [CommonModule, ConfiguracoesRoutingModule, SharedModule, MaterialModule, FileUploadModule],
 })
-export class ConfiguracoesModule { }
+export class ConfiguracoesModule {}

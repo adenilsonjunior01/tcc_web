@@ -19,11 +19,12 @@
                 autocomplete="off"
                 formControlName="username"
               />
-              <mat-error>
+              <mat-error class="pt-0">
                 <app-error-control-message
                   [control]="loginForm.controls.username"
                   label="E-mail"
-                ></app-error-control-message>
+                ></app-error-control-message
+                >''
               </mat-error>
             </mat-form-field>
             <mat-form-field [hideRequiredMarker]="true" appearance="outline">
@@ -46,7 +47,7 @@
               >
                 <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
               </button>
-              <mat-error>
+              <mat-error class="pt-0">
                 <app-error-control-message
                   [control]="loginForm.controls.password"
                   label="Senha"

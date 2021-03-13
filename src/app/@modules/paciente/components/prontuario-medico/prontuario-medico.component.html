@@ -3,7 +3,7 @@
     <!-- Cabeçalho -->
     <div class="row m-0">
       <div class="col-12 d-flex align-items-center mb-2">
-        <img src="../../../../../assets/logo-svg.svg" alt="Logo"/>
+        <img src="../../../../../assets/logo-svg.svg" alt="Logo" />
         <h1 class="m-0 d-inline ps-2">IHealth</h1>
       </div>
       <div class="col-12 my-1">
@@ -81,16 +81,25 @@
       <div class="col-12">
         <form [formGroup]="formProntuario">
           <mat-accordion class="detail-consulta">
-
             <!-- Alergias -->
             <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
               <mat-expansion-panel-header>
                 <h3>Alergias</h3>
               </mat-expansion-panel-header>
               <label class="d-block mb-2">Possui alguma alergia?</label>
-              <mat-radio-group aria-label="Select an option" class="d-block" color="primary" [formControl]="controlAlergia">
-                <mat-radio-button [value]="option?.value" class="me-3" *ngFor="let option of optionsRadio"
-                  (change)="validatorsDynamic(option.value, 'alergias')">{{ option?.description }}</mat-radio-button>
+              <mat-radio-group
+                aria-label="Select an option"
+                class="d-block"
+                color="primary"
+                [formControl]="controlAlergia"
+              >
+                <mat-radio-button
+                  [value]="option?.value"
+                  class="me-3"
+                  *ngFor="let option of optionsRadio"
+                  (change)="validatorsDynamic(option.value, 'alergias')"
+                  >{{ option?.description }}</mat-radio-button
+                >
               </mat-radio-group>
 
               <ng-container *ngIf="controlAlergia.value === true">
@@ -98,18 +107,29 @@
                   <div class="d-block animate__fadeInUp" [formGroupName]="i">
                     <mat-form-field>
                       <mat-label>Descrição</mat-label>
-                      <input matInput formControlName="descricao">
+                      <input matInput formControlName="descricao" />
                       <mat-error class="p-0">
-                      <app-error-control-message [control]="alergia.controls.descricao" label="Descrição"></app-error-control-message>
-                    </mat-error>
+                        <app-error-control-message
+                          [control]="alergia.controls.descricao"
+                          label="Descrição"
+                        ></app-error-control-message>
+                      </mat-error>
                     </mat-form-field>
 
                     <mat-dialog-actions align="end">
                       <button mat-button *ngIf="i > 0" (click)="removeObject(i, 'alergia')">remover</button>
-                      <button mat-button (click)="addNewObjectControl(controlAlergia.value, 'alergias')" *ngIf="i === 0">novo</button>
+                      <button
+                        mat-button
+                        (click)="addNewObjectControl(controlAlergia.value, 'alergias')"
+                        *ngIf="i === 0"
+                      >
+                        novo
+                      </button>
                     </mat-dialog-actions>
-                  </div> <!-- formGroupName-->
-                </ng-container> <!-- formArray -->
+                  </div>
+                  <!-- formGroupName-->
+                </ng-container>
+                <!-- formArray -->
               </ng-container>
               <mat-action-row>
                 <button mat-button color="primary" (click)="nextStep()">Próximo</button>
@@ -124,28 +144,52 @@
 
               <label class="d-block mb-2">Possui alguma alergia a medicamentos?</label>
 
-              <mat-radio-group aria-label="Select an option" class="d-block" color="primary" [formControl]="controlMedicamento">
-                <mat-radio-button [value]="option?.value" class="me-3" *ngFor="let option of optionsRadio"
-                  (change)="validatorsDynamic(option.value, 'medicamentos')">{{ option?.description }}</mat-radio-button>
+              <mat-radio-group
+                aria-label="Select an option"
+                class="d-block"
+                color="primary"
+                [formControl]="controlMedicamento"
+              >
+                <mat-radio-button
+                  [value]="option?.value"
+                  class="me-3"
+                  *ngFor="let option of optionsRadio"
+                  (change)="validatorsDynamic(option.value, 'medicamentos')"
+                  >{{ option?.description }}</mat-radio-button
+                >
               </mat-radio-group>
 
               <ng-container *ngIf="controlMedicamento.value === true">
-                <ng-container formArrayName="medicamentos" *ngFor="let medicamento of formArrayMedicamento.controls; index as i">
+                <ng-container
+                  formArrayName="medicamentos"
+                  *ngFor="let medicamento of formArrayMedicamento.controls; index as i"
+                >
                   <div class="d-block animate__fadeInUp" [formGroupName]="i">
                     <mat-form-field>
                       <mat-label>Descrição</mat-label>
-                      <input matInput formControlName="descricao">
+                      <input matInput formControlName="descricao" />
                       <mat-error class="p-0">
-                      <app-error-control-message [control]="medicamento.controls.descricao" label="Descrição"></app-error-control-message>
-                    </mat-error>
+                        <app-error-control-message
+                          [control]="medicamento.controls.descricao"
+                          label="Descrição"
+                        ></app-error-control-message>
+                      </mat-error>
                     </mat-form-field>
 
                     <mat-dialog-actions align="end">
                       <button mat-button *ngIf="i > 0" (click)="removeObject(i, 'medicamentos')">remover</button>
-                      <button mat-button (click)="addNewObjectControl(controlMedicamento.value, 'medicamentos')" *ngIf="i === 0">novo</button>
+                      <button
+                        mat-button
+                        (click)="addNewObjectControl(controlMedicamento.value, 'medicamentos')"
+                        *ngIf="i === 0"
+                      >
+                        novo
+                      </button>
                     </mat-dialog-actions>
-                  </div> <!-- formGroupName-->
-                </ng-container> <!-- formArray -->
+                  </div>
+                  <!-- formGroupName-->
+                </ng-container>
+                <!-- formArray -->
               </ng-container>
               <mat-action-row>
                 <button mat-button color="warn" (click)="prevStep()">Voltar</button>
@@ -161,35 +205,58 @@
 
               <label class="d-block mb-2">Possui alguma doença crônica?</label>
 
-              <mat-radio-group aria-label="Select an option" class="d-block" color="primary" [formControl]="controlDoencaCronica">
-                <mat-radio-button [value]="option?.value" class="me-3" *ngFor="let option of optionsRadio"
-                  (change)="validatorsDynamic(option.value, 'doencaCronica')">{{ option?.description }}</mat-radio-button>
+              <mat-radio-group
+                aria-label="Select an option"
+                class="d-block"
+                color="primary"
+                [formControl]="controlDoencaCronica"
+              >
+                <mat-radio-button
+                  [value]="option?.value"
+                  class="me-3"
+                  *ngFor="let option of optionsRadio"
+                  (change)="validatorsDynamic(option.value, 'doencaCronica')"
+                  >{{ option?.description }}</mat-radio-button
+                >
               </mat-radio-group>
 
               <ng-container *ngIf="controlDoencaCronica.value === true">
-                <ng-container formArrayName="doencaCronica" *ngFor="let doencaCronica of formArrayDoencaCronica.controls; index as i">
+                <ng-container
+                  formArrayName="doencaCronica"
+                  *ngFor="let doencaCronica of formArrayDoencaCronica.controls; index as i"
+                >
                   <div class="d-block animate__fadeInUp" [formGroupName]="i">
                     <mat-form-field>
                       <mat-label>Descrição</mat-label>
-                      <input matInput formControlName="descricao">
+                      <input matInput formControlName="descricao" />
                       <mat-error class="p-0">
-                      <app-error-control-message [control]="doencaCronica.controls.descricao" label="Descrição"></app-error-control-message>
-                    </mat-error>
+                        <app-error-control-message
+                          [control]="doencaCronica.controls.descricao"
+                          label="Descrição"
+                        ></app-error-control-message>
+                      </mat-error>
                     </mat-form-field>
 
                     <mat-dialog-actions align="end">
                       <button mat-button *ngIf="i > 0" (click)="removeObject(i, 'doencaCronica')">remover</button>
-                      <button mat-button (click)="addNewObjectControl(controlDoencaCronica.value, 'doencaCronica')" *ngIf="i === 0">novo</button>
+                      <button
+                        mat-button
+                        (click)="addNewObjectControl(controlDoencaCronica.value, 'doencaCronica')"
+                        *ngIf="i === 0"
+                      >
+                        novo
+                      </button>
                     </mat-dialog-actions>
-                  </div> <!-- formGroupName-->
-                </ng-container> <!-- formArray -->
+                  </div>
+                  <!-- formGroupName-->
+                </ng-container>
+                <!-- formArray -->
               </ng-container>
               <mat-action-row>
                 <button mat-button color="warn" (click)="prevStep()">Voltar</button>
                 <button mat-button color="primary" (click)="nextStep()">Próximo</button>
               </mat-action-row>
             </mat-expansion-panel>
-
           </mat-accordion>
         </form>
       </div>

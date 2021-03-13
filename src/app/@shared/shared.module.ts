@@ -23,14 +23,14 @@ export function playerFactory() {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    LottieModule.forRoot({ player: playerFactory })
+    LottieModule.forRoot({ player: playerFactory }),
   ],
   declarations: [
     LoaderComponent,
     ErrorControlMessageComponent,
     CardContentComponent,
     FormDebugComponent,
-    ModalAnimationComponent
+    ModalAnimationComponent,
   ],
   exports: [
     LoaderComponent,
@@ -40,7 +40,7 @@ export function playerFactory() {
     ReactiveFormsModule,
     FormDebugComponent,
     ModalAnimationComponent,
-    LottieModule
+    LottieModule,
   ],
 })
 export class SharedModule {}

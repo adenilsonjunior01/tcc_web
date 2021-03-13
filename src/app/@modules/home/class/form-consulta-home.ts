@@ -1,8 +1,7 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export class FormConsultaHome {
-
-  private readonly _fb = new FormBuilder;
+  private readonly _fb = new FormBuilder();
 
   constructor() {}
 
@@ -19,8 +18,8 @@ export class FormConsultaHome {
         cpf: [null, Validators.required],
         email: [null, Validators.required],
         dtNascimento: [null, Validators.required],
-        sexo: [null, Validators.required]
-      })
+        sexo: [null, Validators.required],
+      }),
     });
   }
 }

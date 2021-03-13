@@ -8,9 +8,8 @@ describe('FormPreCadastroPacienteComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FormPreCadastroPacienteComponent ]
-    })
-    .compileComponents();
+      declarations: [FormPreCadastroPacienteComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

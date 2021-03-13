@@ -1,4 +1,4 @@
-<div class="row m-0 animate__fadeInRight ">
+<div class="row m-0 animate__fadeInRight">
   <div class="col-auto">
     <i class="feather icon-user user-icon"></i>
   </div>
@@ -6,7 +6,7 @@
     <div class="row header-edit">
       <div class="col-12">
         <h3 class="mb-1 name-user text-capitalize">{{ datas?.paciente?.nome }} {{ datas?.paciente?.sobrenome }}</h3>
-        <hr class="m-0 w-100">
+        <hr class="m-0 w-100" />
       </div>
       <div class="col-6">
         <p class="m-0"><span>Data de nasc.: </span>{{ datas?.paciente?.dtNascimento | date: 'shortDate' }}</p>
@@ -33,13 +33,17 @@
               <mat-option [value]="sexo.id" *ngFor="let sexo of listaSexo">{{ sexo.name }}</mat-option>
             </mat-select>
             <mat-error>
-                <app-error-control-message [control]="formConsulta.controls.procedimento" label="Procedimento"></app-error-control-message>
-              </mat-error>
+              <app-error-control-message
+                [control]="formConsulta.controls.procedimento"
+                label="Procedimento"
+              ></app-error-control-message>
+            </mat-error>
           </mat-form-field>
         </div>
       </div>
     </form>
-  </div> <!--/col-12-->
+  </div>
+  <!--/col-12-->
   <div class="col-12 px-4">
     <mat-form-field appearance="outline" class="w-100">
       <mat-label>Observação <span class="optional">(Opcional)</span></mat-label>
