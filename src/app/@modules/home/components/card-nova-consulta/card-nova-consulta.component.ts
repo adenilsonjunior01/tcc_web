@@ -102,6 +102,7 @@ export class CardNovaConsultaComponent implements OnInit {
           this.steps = 0;
           this.modal.close(event.modalId);
           this.search.reset();
+          this.form.reset();
         }
       });
     }
@@ -154,7 +155,7 @@ export class CardNovaConsultaComponent implements OnInit {
         icon: 'info',
         title: 'Oops...',
         confirmButtonText: 'Ok, entendi',
-        text: 'Selecione o Paciente cadastrado ou cadastre um novo.',
+        text: 'Selecione algum paciente que já possua cadastro ou cadastre um novo.',
       });
     }
   }

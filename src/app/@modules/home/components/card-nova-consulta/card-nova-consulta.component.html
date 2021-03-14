@@ -127,7 +127,13 @@
                   </mat-form-field>
                   <!-- <ng-lottie [options]="options" height="220px"></ng-lottie> -->
                 </div>
-                <div class="col-12 pt-4 text-center">
+                <!-- Detalhes do paciente-->
+                <ng-container *ngIf="search.value">
+                  <div class="col-12">
+                    <app-detalhes-paciente-home></app-detalhes-paciente-home>
+                  </div>
+                </ng-container>
+                <div class="col-12 pt-2 text-center">
                   <h3 class="text-uppercase mb-1">Ou Cadastre um Novo Paciente</h3>
                   <button mat-stroked-button class="btn btn-outline-primary" (click)="setStep(1)">
                     <i class="feather icon-plus"></i>

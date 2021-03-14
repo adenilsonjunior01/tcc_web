@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ListaUtilitarioMock } from '../../../../../mocks/lista-utilitario-mock';
 import { FormPreCadastroPaciente } from '../../../class/form-pre-cadastro-paciente';
@@ -15,7 +15,7 @@ const log = new Logger('Pre-cadastro');
   templateUrl: './form-pre-cadastro-paciente.component.html',
   styleUrls: ['./form-pre-cadastro-paciente.component.scss'],
 })
-export class FormPreCadastroPacienteComponent implements OnInit {
+export class FormPreCadastroPacienteComponent implements OnInit, OnDestroy {
   @Output() closeModal = new EventEmitter();
   @Output() stepId = new EventEmitter();
   @Output() formPreCadastroPaciente = new EventEmitter();
@@ -27,6 +27,8 @@ export class FormPreCadastroPacienteComponent implements OnInit {
   public loading = false;
 
   constructor(private readonly _service: AgendamentoConsultaService) {}
+
+  ngOnDestroy() { }
 
   ngOnInit(): void {
     this.listaSexo = this.utilitariosMock.getListaSexos();
@@ -64,7 +66,7 @@ export class FormPreCadastroPacienteComponent implements OnInit {
    * @param idStep: Id do próximo Step
    * @description: Envia o formulário de pré-cadastro e na resposta de sucesso, emite
    * dois eventos: Um pra alterar o formulário e o Outro com o dados do usuário que foi cadastrado
-   * pra popular os outros componentes.
+   * pra popular outros componentes.
    */
   public submitPreCadastroPaciente(idStep: number) {
     if (this.form.valid) {

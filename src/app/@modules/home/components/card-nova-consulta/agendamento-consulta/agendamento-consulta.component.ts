@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
 import { ListaUtilitarioMock } from '../../../../../mocks/lista-utilitario-mock';
 import { FormControl, FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2';
@@ -14,7 +14,7 @@ const log = new Logger('Agendamento Consulta Home');
   templateUrl: './agendamento-consulta.component.html',
   styleUrls: ['./agendamento-consulta.component.scss'],
 })
-export class AgendamentoConsultaComponent implements OnInit, OnChanges {
+export class AgendamentoConsultaComponent implements OnInit, OnChanges, OnDestroy {
   @Output() closeModal = new EventEmitter();
   @Output() stepId = new EventEmitter();
   @Input() formConsulta: FormGroup;
@@ -26,6 +26,8 @@ export class AgendamentoConsultaComponent implements OnInit, OnChanges {
   loading = false;
 
   constructor(private readonly _service: AgendamentoConsultaService) {}
+
+  ngOnDestroy() { }
 
   ngOnChanges(changes: SimpleChanges): void {}
 
