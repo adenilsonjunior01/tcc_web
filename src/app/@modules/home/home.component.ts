@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { QuoteService } from './quote.service';
 import { ModalAnimationComponent } from '../../@shared/modal-animation/modal-animation.component';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-home',
@@ -12,8 +13,9 @@ export class HomeComponent implements OnInit {
   @ViewChild(ModalAnimationComponent) modal: any;
   quote: string | undefined;
   isLoading = false;
-
-  constructor(private quoteService: QuoteService) {}
+  jwt = new JwtHelperService();
+  constructor(
+    private quoteService: QuoteService) {}
 
   ngOnInit() {
     this.isLoading = true;

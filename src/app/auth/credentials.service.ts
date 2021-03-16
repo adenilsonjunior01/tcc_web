@@ -1,8 +1,17 @@
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 export interface Credentials {
-  username: string;
+  email: string;
   token: string;
+}
+
+export interface Token {
+  perfil: string[];
+  sub: string;
+  dtCadastro: Date;
+  nome: string;
+  export: number;
 }
 
 const credentialsKey = 'credentials';
@@ -12,6 +21,7 @@ const credentialsKey = 'credentials';
 })
 export class CredentialsService {
   private _credentials: Credentials | null = null;
+  private readonly _jwtHelper = new JwtHelperService();
 
   constructor() {
     const savedCredentials = sessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey);
@@ -45,5 +55,17 @@ export class CredentialsService {
       sessionStorage.removeItem(credentialsKey);
       localStorage.removeItem(credentialsKey);
     }
+  }
+
+  public isTokenExpired(): boolean {
+    return this._jwtHelper.isTokenExpired(this._credentials.token);
+  }
+
+  public expirationDate(): any {
+    return this._jwtHelper.getTokenExpirationDate(this.credentials.token);
+  }
+
+  public decodeToken(): Token {
+    return this._jwtHelper.decodeToken(this.credentials.token);
   }
 }

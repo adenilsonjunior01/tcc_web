@@ -30,7 +30,7 @@ export class NavRigthComponent implements OnInit {
 
   get username(): string | null {
     const credentials = this._credentialsService.credentials;
-    return credentials ? credentials.username : null;
+    return credentials ? credentials.email : null;
   }
 
   public getSubtitle() {

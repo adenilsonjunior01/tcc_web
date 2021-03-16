@@ -47,12 +47,12 @@ export class LoginComponent implements OnInit, OnDestroy {
       )
       .subscribe({
         next: (credentials) => {
-          if (!this.loginForm.get('teste').value) {
-            this._router.navigate(['/update/password'], { replaceUrl: true });
-          } else {
-            log.debug(`${credentials.username} successfully logged in`);
-            this._router.navigate([this._route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
-          }
+          // if (!this.loginForm.get('teste').value) {
+          //   this._router.navigate(['/update/password'], { replaceUrl: true });
+          // } else {
+          // }
+          log.debug(`${credentials.email} usuário autenticado!`);
+          this._router.navigate([this._route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
         },
         error: (error) => {
           log.debug(`Login error: ${error}`);
@@ -63,10 +63,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private createForm() {
     this.loginForm = this._formBuilder.group({
-      username: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      senha: ['', Validators.required],
       remember: true,
-      teste: true,
     });
   }
 }

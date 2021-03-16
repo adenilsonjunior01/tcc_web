@@ -1,20 +1,20 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { tap, map, catchError, take } from 'rxjs/operators';
+import { environment } from '@env/environment';
+import { Observable, of, throwError } from 'rxjs';
+import { map, catchError, take } from 'rxjs/operators';
 
 import { Credentials, CredentialsService } from './credentials.service';
 
 const routes = {
-  login: () => '/',
-  resetPassword: () => '/',
+  login: () => `/login`,
+  resetPassword: () => `${environment.serverUrl}/`,
 };
 
 export interface ILoginContext {
-  username: string;
-  password: string;
+  email: string;
+  senha: string;
   remember?: boolean;
-  teste?: boolean;
 }
 
 export interface IResetPassword {
@@ -26,7 +26,9 @@ export interface IResetPassword {
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(private readonly _credentialsService: CredentialsService, private readonly _httpClient: HttpClient) {}
+  constructor(
+    private readonly _credentialsService: CredentialsService,
+    private readonly _httpClient: HttpClient) {}
 
   /**
    * @param context Parametros de login.
@@ -34,31 +36,27 @@ export class AuthenticationService {
    */
   public login(context: ILoginContext): Observable<Credentials> {
     const data = {
-      username: context.username,
-      token: '123456',
+      email: context.email,
+      senha: context.senha
     };
-    //  return this._httpClient.post(routes.login(), data).pipe(
-    //    tap({
-    //      complete:() => {
-    //        if (!context.teste) {
-    //           this._credentialsService.setCredentials(data, context.remember);
-    //         }
-    //       }
-    //     }),
-    //     catchError(() => of('Error')),
-    //     map((body: any)=> body),
-    //     take(1)
-    //   );
-    this._credentialsService.setCredentials(data, context.remember);
-    return of(data);
+     return this._httpClient.post(routes.login(), data).pipe(
+        catchError((error: HttpErrorResponse) => {
+          return throwError(error);
+        }),
+        map((body: any)=> {
+          const credentials = {
+            email: context.email,
+            remember: context.remember,
+            token: body.token
+          };
+
+          this._credentialsService.setCredentials(credentials, context.remember);
+          return body;
+        }),
+        take(1)
+      );
   }
 
-  // MAPEAR MODEL QUANDO BACK-END ESTIVER DEFINIDO O RETORNOS
-  /**
-   *
-   * @param context Nova senha do usuário
-   * @returns
-   */
   public resetPasswordTemporary(context: IResetPassword): Observable<any> {
     return this._httpClient.post(routes.resetPassword(), context).pipe(
       map((body: any) => body),
@@ -75,4 +73,6 @@ export class AuthenticationService {
     this._credentialsService.setCredentials();
     return of(true);
   }
+
+
 }
