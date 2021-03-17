@@ -1,7 +1,7 @@
 <div class="container p-4">
   <div class="row justify-content-center">
     <div class="col-12">
-      <full-calendar *ngIf='calendarVisible' [options]='calendarOptions'></full-calendar>
+      <full-calendar *ngIf="calendarVisible" [options]="calendarOptions"></full-calendar>
     </div>
   </div>
 </div>
@@ -13,16 +13,26 @@
     <div class="row">
       <div class="col-12">
         <h3 class="m-0">Detalhes da Consulta</h3>
-        <hr class="mb-2 mt-1">
+        <hr class="mb-2 mt-1" />
       </div>
       <div class="col-6 d-flex justify-content-start">
         <p class="m-0"><span>Data: </span>{{ detailsConsulta?.consulta?.data | date: 'shortDate' }}</p>
       </div>
       <div class="col-6 d-flex justify-content-start">
-        <p class="m-0"><span>Tipo Consulta: </span>{{ detailsConsulta?.consulta?.tipoConsulta !== undefined ? detailsConsulta?.consulta?.tipoConsulta : 'Não informado'}}</p>
+        <p class="m-0">
+          <span>Tipo Consulta: </span
+          >{{
+            detailsConsulta?.consulta?.tipoConsulta !== undefined
+              ? detailsConsulta?.consulta?.tipoConsulta
+              : 'Não informado'
+          }}
+        </p>
       </div>
       <div class="col-6 d-flex justify-content-start">
-        <p class="m-0"><span>Horário: </span> {{ detailsConsulta?.consulta?.inicio | date: 'shortTime' }} - {{ detailsConsulta?.consulta?.termino | date: 'shortTime' }} </p>
+        <p class="m-0">
+          <span>Horário: </span> {{ detailsConsulta?.consulta?.inicio | date: 'shortTime' }} -
+          {{ detailsConsulta?.consulta?.termino | date: 'shortTime' }}
+        </p>
       </div>
       <div class="col-6 d-flex justify-content-start">
         <p class="m-0"><span>Médico: </span>{{ detailsConsulta?.medico?.nome }}</p>

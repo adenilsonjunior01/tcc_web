@@ -1,12 +1,14 @@
-import { Component, EventEmitter, OnInit, Output, OnDestroy } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output, OnDestroy, Input } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ListaUtilitarioMock } from '../../../../../mocks/lista-utilitario-mock';
 import { FormPreCadastroPaciente } from '../../../class/form-pre-cadastro-paciente';
 import Swal from 'sweetalert2';
-import { AgendamentoConsultaService } from '../../../services/agendamento-consulta/agendamento-consulta.service';
+import { AgendamentoConsultaService } from '../../../../../services/agendamento-consulta/agendamento-consulta.service';
 import { finalize } from 'rxjs/operators';
 import { untilDestroyed } from '../../../../../@core/until-destroyed';
 import { Logger } from '../../../../../@core/logger.service';
+import { IListaPerfil, ListaPerfilMock } from '../../../../../mocks/lista-perfis-mock';
+import { SweetalertService } from '@app/@shared/sweetalert/sweetalert.service';
 
 const log = new Logger('Pre-cadastro');
 
@@ -19,21 +21,32 @@ export class FormPreCadastroPacienteComponent implements OnInit, OnDestroy {
   @Output() closeModal = new EventEmitter();
   @Output() stepId = new EventEmitter();
   @Output() formPreCadastroPaciente = new EventEmitter();
+  @Input() novoPaciente = false;
+
   public readonly _formPreCadastro = new FormPreCadastroPaciente();
   public form: FormGroup;
 
   public utilitariosMock = new ListaUtilitarioMock();
   public listaSexo: any[];
+  public listaPerfis: IListaPerfil[];
   public loading = false;
+  controlPerfil = new FormControl({ disabled: true });
 
-  constructor(private readonly _service: AgendamentoConsultaService) {}
+  constructor(private readonly _service: AgendamentoConsultaService, private readonly _sweetAlert: SweetalertService) {}
 
-  ngOnDestroy() { }
+  ngOnDestroy() {}
 
   ngOnInit(): void {
+    this.listaPerfis = new ListaPerfilMock().getListaPerfil();
     this.listaSexo = this.utilitariosMock.getListaSexos();
     this.form = this._formPreCadastro.initFormPreCadastroPaciente();
+    this.filterPerfil();
     console.log('Form Pre Cadastro init >>', this.form.value);
+  }
+
+  private filterPerfil() {
+    const filter = this.listaPerfis.filter((v: IListaPerfil) => v.id === 3);
+    this.controlPerfil.setValue(filter[0].description);
   }
 
   public closeModalAndResetForm(id: string) {
@@ -45,20 +58,18 @@ export class FormPreCadastroPacienteComponent implements OnInit, OnDestroy {
   }
 
   public back() {
-    if (this.form.invalid) {
-      Swal.fire({
-        icon: 'question',
-        title: 'Deseja continuar?',
-        text: 'Ao continuar, esse cadastro será desconsiderado.',
-        showCancelButton: true,
-        confirmButtonText: `Sim`,
-        cancelButtonText: `Não`,
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.stepId.emit(0);
-        }
-      });
-    }
+    Swal.fire({
+      icon: 'question',
+      title: 'Deseja continuar?',
+      text: 'Ao continuar, esse cadastro será desconsiderado.',
+      showCancelButton: true,
+      confirmButtonText: `Sim`,
+      cancelButtonText: `Não`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.stepId.emit(0);
+      }
+    });
   }
 
   /**
@@ -70,12 +81,14 @@ export class FormPreCadastroPacienteComponent implements OnInit, OnDestroy {
    */
   public submitPreCadastroPaciente(idStep: number) {
     if (this.form.valid) {
-      this.loading = true; // IMPLEMENTAR LOADING
-      const request$ = this._service.submitPreCadastroPaciente(this.form.value);
+      const values = this._formPreCadastro.parseFormPrecadastroPaciente(this.form.value);
+      this.loading = true; // IMPLEMENTAR LOADING46751688091
+      const request$ = this._service.submitPreCadastroPaciente(values);
       request$
         .pipe(
           finalize(() => {
             this.loading = false;
+            this.closeModalAndResetForm('pre-cadastro');
           }),
           untilDestroyed(this)
         )
@@ -83,6 +96,7 @@ export class FormPreCadastroPacienteComponent implements OnInit, OnDestroy {
           (response: any) => {
             this.formPreCadastroPaciente.emit(this.form);
             this.stepId.emit(idStep);
+            this._sweetAlert.openToasty('Cadastro realizado com sucesso!', 'success');
           },
           (error) => {
             log.debug(`Error`);

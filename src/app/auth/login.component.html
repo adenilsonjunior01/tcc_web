@@ -10,13 +10,7 @@
           <div class="login-fields px-3">
             <mat-form-field appearance="outline">
               <mat-label>E-mail</mat-label>
-              <input
-                type="text"
-                matInput
-                placeholder="Digite seu e-mail"
-                autocomplete="off"
-                formControlName="email"
-              />
+              <input type="text" matInput placeholder="Digite seu e-mail" autocomplete="off" formControlName="email" />
               <mat-error class="pt-0">
                 <app-error-control-message
                   [control]="loginForm.controls.email"

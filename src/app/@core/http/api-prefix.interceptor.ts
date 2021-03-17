@@ -18,10 +18,10 @@ export class ApiPrefixInterceptor implements HttpInterceptor {
       request = request.clone({
         setHeaders: {
           'Content-type': 'application/json',
-          'Bearer': JSON.parse(localStorage.getItem('credentials')).token
+          Bearer: JSON.parse(localStorage.getItem('credentials')).token,
         },
-        url: environment.serverUrl + request.url
-       });
+        url: environment.serverUrl + request.url,
+      });
     }
     return next.handle(request);
   }

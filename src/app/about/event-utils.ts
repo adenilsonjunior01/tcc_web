@@ -13,17 +13,17 @@ export const INITIAL_EVENTS: EventInput[] = [
     end: '2021-03-12T10:30:00',
     paciente: {
       name: 'João',
-      sobrenome: 'Silva'
+      sobrenome: 'Silva',
     },
     medico: {
       nome: 'Alex Pedrosa',
-      crm: '41526'
+      crm: '41526',
     },
     consulta: {
       inicio: '08:00',
       termino: '09:00',
-      data: '2021-05-18'
-    }
+      data: '2021-05-18',
+    },
   },
   {
     id: createEventId(),
@@ -32,19 +32,19 @@ export const INITIAL_EVENTS: EventInput[] = [
     end: TODAY_STR + 'T12:30:00',
     paciente: {
       name: 'Augusto',
-      sobrenome: 'Souza'
+      sobrenome: 'Souza',
     },
     medico: {
       nome: 'Alex Pedrosa',
-      crm: '41526'
+      crm: '41526',
     },
     // Ou enviar TimeZone
     consulta: {
       tipoConsulta: 'Lorem Ipsum',
       inicio: '09:00',
       termino: '09:30',
-      data: '2021-03-15'
-    }
+      data: '2021-03-15',
+    },
   },
   {
     id: createEventId(),
@@ -54,13 +54,13 @@ export const INITIAL_EVENTS: EventInput[] = [
     end: TODAY_STR + 'T12:30:00',
     paciente: {
       name: 'João',
-      sobrenome: 'Silva'
+      sobrenome: 'Silva',
     },
     medico: {
       nome: 'Augusto Santos',
-      crm: '998855'
-    }
-  }
+      crm: '998855',
+    },
+  },
 ];
 
 export function createEventId() {

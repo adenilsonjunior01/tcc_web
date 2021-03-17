@@ -6,6 +6,7 @@ import { finalize } from 'rxjs/operators';
 import { environment } from '@env/environment';
 import { Logger, untilDestroyed } from '@core';
 import { AuthenticationService } from './authentication.service';
+import { ICredentialsModel } from '../models/credentials-model';
 
 const log = new Logger('Login');
 
@@ -46,13 +47,14 @@ export class LoginComponent implements OnInit, OnDestroy {
         untilDestroyed(this)
       )
       .subscribe({
-        next: (credentials) => {
-          // if (!this.loginForm.get('teste').value) {
-          //   this._router.navigate(['/update/password'], { replaceUrl: true });
-          // } else {
-          // }
-          log.debug(`${credentials.email} usuário autenticado!`);
-          this._router.navigate([this._route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
+        next: (credentials: ICredentialsModel) => {
+          console.log(credentials);
+          if (credentials.firtAcess) {
+            this._router.navigate(['/update/password'], { replaceUrl: true });
+          } else {
+            log.debug(`${credentials.email} usuário autenticado!`);
+            this._router.navigate([this._route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
+          }
         },
         error: (error) => {
           log.debug(`Login error: ${error}`);

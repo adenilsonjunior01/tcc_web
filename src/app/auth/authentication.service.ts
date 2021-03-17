@@ -8,7 +8,7 @@ import { Credentials, CredentialsService } from './credentials.service';
 
 const routes = {
   login: () => `/login`,
-  resetPassword: () => `${environment.serverUrl}/`,
+  resetPassword: () => `/user/password`,
 };
 
 export interface ILoginContext {
@@ -18,17 +18,17 @@ export interface ILoginContext {
 }
 
 export interface IResetPassword {
-  oldPassword: string;
-  newPassword: string;
+  password: string;
+  passwordConfirmation: string;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(
-    private readonly _credentialsService: CredentialsService,
-    private readonly _httpClient: HttpClient) {}
+  public perfil: any;
+
+  constructor(private readonly _credentialsService: CredentialsService, private readonly _httpClient: HttpClient) {}
 
   /**
    * @param context Parametros de login.
@@ -37,30 +37,48 @@ export class AuthenticationService {
   public login(context: ILoginContext): Observable<Credentials> {
     const data = {
       email: context.email,
-      senha: context.senha
+      senha: context.senha,
     };
-     return this._httpClient.post(routes.login(), data).pipe(
-        catchError((error: HttpErrorResponse) => {
-          return throwError(error);
-        }),
-        map((body: any)=> {
-          const credentials = {
-            email: context.email,
-            remember: context.remember,
-            token: body.token
-          };
-
+    return this._httpClient.post(routes.login(), data).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(error);
+      }),
+      map((body: any) => {
+        const credentials: any = {
+          email: context.email,
+          remember: context.remember,
+          token: body.token,
+          firtAcess: false,
+        };
+        this._credentialsService.setCredentials(credentials, context.remember);
+        if (this.verifyFirtsAccess()) {
+          credentials.firtAcess = true;
           this._credentialsService.setCredentials(credentials, context.remember);
-          return body;
-        }),
-        take(1)
-      );
+          return credentials;
+        } else {
+          return false;
+        }
+      }),
+      take(1)
+    );
+  }
+
+  private verifyFirtsAccess(): boolean {
+    this.decodeToken();
+    const status = this.perfil.filter((v: string) => v === 'PENDENTE');
+    if (status.length > 0) return true;
+    return false;
+  }
+
+  private decodeToken(): void {
+    const decode: any = this._credentialsService.decodeToken();
+    this.perfil = decode.perfis;
   }
 
   public resetPasswordTemporary(context: IResetPassword): Observable<any> {
-    return this._httpClient.post(routes.resetPassword(), context).pipe(
+    return this._httpClient.put(routes.resetPassword(), context).pipe(
       map((body: any) => body),
-      catchError(() => of('Error')),
+      catchError((error: HttpErrorResponse) => throwError(error)),
       take(1)
     );
   }
@@ -73,6 +91,4 @@ export class AuthenticationService {
     this._credentialsService.setCredentials();
     return of(true);
   }
-
-
 }

@@ -11,39 +11,40 @@ const routes = {
 };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MedicoService {
-
-  constructor(
-    private readonly _httpClient: HttpClient
-  ) { }
+  constructor(private readonly _httpClient: HttpClient) {}
 
   public saveMedico(medico: IMedicoModel): Observable<any> {
     return this._httpClient.post(routes.medico(), medico).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),
-      take(1));
+      take(1)
+    );
   }
 
   public updateMedico(medico: IMedicoModel): Observable<any> {
     return this._httpClient.put(routes.medico(), medico).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),
-      take(1));
+      take(1)
+    );
   }
 
   public getMedicoPorEspecializacao(id: number): Observable<any> {
     return this._httpClient.get(routes.medicoEspecializacao(id)).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),
-      take(1));
+      take(1)
+    );
   }
 
   public getTodosMedicos(): Observable<any> {
     return this._httpClient.get(routes.medicoAll()).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),
-      take(1));
+      take(1)
+    );
   }
 }

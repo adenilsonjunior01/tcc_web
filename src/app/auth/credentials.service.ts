@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { ICredentialsModel } from '../models/credentials-model';
 
 export interface Credentials {
   email: string;
@@ -45,7 +46,7 @@ export class CredentialsService {
     return this._credentials;
   }
 
-  setCredentials(credentials?: Credentials, remember?: boolean) {
+  setCredentials(credentials?: ICredentialsModel, remember?: boolean) {
     this._credentials = credentials || null;
 
     if (credentials) {

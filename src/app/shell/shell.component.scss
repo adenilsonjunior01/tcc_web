@@ -107,3 +107,9 @@ a.active {
   color: var(--font-subtitle-color);
   font-size: var(--f_16);
 }
+
+::ng-deep {
+  .mat-drawer.mat-drawer-side {
+    z-index: 1 !important;
+  }
+}

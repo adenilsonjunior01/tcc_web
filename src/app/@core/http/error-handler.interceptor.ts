@@ -19,11 +19,11 @@ const toasty = new SweetalertService();
   providedIn: 'root',
 })
 export class ErrorHandlerInterceptor implements HttpInterceptor {
-
   constructor(
     private readonly _credentials: CredentialsService,
     private readonly _router: Router,
-    private readonly _route: ActivatedRoute) {}
+    private readonly _route: ActivatedRoute
+  ) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(catchError((error) => this.errorHandler(error)));
@@ -82,5 +82,4 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
       this._router.navigate([this._route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
     }
   }
-
 }

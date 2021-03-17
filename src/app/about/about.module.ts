@@ -14,12 +14,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { SharedModule } from '../@shared/shared.module';
 import { HomeModule } from '../@modules/home/home.module';
 
-FullCalendarModule.registerPlugins([
-  dayGridPlugin,
-  timeGridPlugin,
-  listPlugin,
-  interactionPlugin
-]);
+FullCalendarModule.registerPlugins([dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin]);
 
 @NgModule({
   imports: [
@@ -30,7 +25,7 @@ FullCalendarModule.registerPlugins([
     AboutRoutingModule,
     FullCalendarModule,
     SharedModule,
-    HomeModule
+    HomeModule,
   ],
   declarations: [AboutComponent],
 })

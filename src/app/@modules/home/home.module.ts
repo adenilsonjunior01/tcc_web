@@ -54,10 +54,6 @@ const maskConfig: Partial<IConfig> = {
     FormPreCadastroPacienteComponent,
     DetalhesPacienteHomeComponent,
   ],
-  exports: [
-    CardNovaConsultaComponent,
-    AgendamentoConsultaComponent,
-    FormPreCadastroPacienteComponent
-  ]
+  exports: [CardNovaConsultaComponent, AgendamentoConsultaComponent, FormPreCadastroPacienteComponent],
 })
 export class HomeModule {}

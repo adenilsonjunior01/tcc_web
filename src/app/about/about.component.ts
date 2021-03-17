@@ -24,7 +24,7 @@ export class AboutComponent implements OnInit {
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
-      right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+      right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
     },
     initialView: 'dayGridMonth',
     initialEvents: INITIAL_EVENTS,
@@ -41,7 +41,7 @@ export class AboutComponent implements OnInit {
     eventClick: this.handleEventClick.bind(this),
     eventsSet: this.handleEvents.bind(this),
     businessHours: {
-      daysOfWeek: [ 1, 2, 3, 4, 5 ],
+      daysOfWeek: [1, 2, 3, 4, 5],
       hours: true,
       startTime: '10:00',
       endTime: '18:00',
@@ -92,9 +92,9 @@ export class AboutComponent implements OnInit {
     this.detailsConsulta = clickInfo.event._def.extendedProps;
     Object.assign(this.detailsConsulta.consulta, {
       inicio: clickInfo.event.start,
-      termino: clickInfo.event.end
+      termino: clickInfo.event.end,
     });
-    this.modal.show('full-calendar')
+    this.modal.show('full-calendar');
     // if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
     //   clickInfo.event.remove();
     // }
@@ -104,9 +104,7 @@ export class AboutComponent implements OnInit {
     this.currentEvents = events;
   }
 
-  public novaConsulta() {
-
-  }
+  public novaConsulta() {}
 
   public cancelarConsulta() {
     Swal.fire({
@@ -118,7 +116,7 @@ export class AboutComponent implements OnInit {
       cancelButtonText: `Não`,
     }).then((result) => {
       if (result.isConfirmed) {
-        this.modal.close('full-calendar')
+        this.modal.close('full-calendar');
       }
     });
   }

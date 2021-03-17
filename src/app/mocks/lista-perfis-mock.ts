@@ -1,45 +1,42 @@
-
 export interface IListaPerfil {
   id: number;
   description: string;
 }
 
-
 export class ListaPerfilMock {
-
   constructor() {}
 
   public getListaPerfil(): Array<IListaPerfil> {
     return [
       {
+        id: 2,
+        description: 'Médico',
+      },
+      {
         id: 3,
-        description: 'Paciente'
+        description: 'Paciente',
       },
       {
         id: 4,
-        description: 'Médico'
+        description: 'Auxiliar Admnistrativo',
       },
       {
         id: 5,
-        description: 'Auxiliar Admnistrativo'
+        description: 'Administrador',
       },
-      {
-        id: 6,
-        description: 'Administrador'
-      },
-    ]
+    ];
   }
 
   public getStatusAtivoInativo(): Array<IListaPerfil> {
     return [
       {
         id: 1,
-        description: 'Ativo'
+        description: 'Ativo',
       },
       {
         id: 2,
-        description: 'Inativo'
-      }
-    ]
+        description: 'Inativo',
+      },
+    ];
   }
 }

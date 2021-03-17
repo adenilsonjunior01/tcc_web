@@ -14,8 +14,7 @@ export class HomeComponent implements OnInit {
   quote: string | undefined;
   isLoading = false;
   jwt = new JwtHelperService();
-  constructor(
-    private quoteService: QuoteService) {}
+  constructor(private quoteService: QuoteService) {}
 
   ngOnInit() {
     this.isLoading = true;

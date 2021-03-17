@@ -2,10 +2,10 @@ import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChange
 import { ListaUtilitarioMock } from '../../../../../mocks/lista-utilitario-mock';
 import { FormControl, FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { AgendamentoConsultaService } from '../../../services/agendamento-consulta/agendamento-consulta.service';
 import { finalize } from 'rxjs/operators';
 import { untilDestroyed } from '../../../../../@core/until-destroyed';
 import { Logger } from '../../../../../@core/logger.service';
+import { AgendamentoConsultaService } from '../../../../../services/agendamento-consulta/agendamento-consulta.service';
 
 const log = new Logger('Agendamento Consulta Home');
 
@@ -27,7 +27,7 @@ export class AgendamentoConsultaComponent implements OnInit, OnChanges, OnDestro
 
   constructor(private readonly _service: AgendamentoConsultaService) {}
 
-  ngOnDestroy() { }
+  ngOnDestroy() {}
 
   ngOnChanges(changes: SimpleChanges): void {}
 
