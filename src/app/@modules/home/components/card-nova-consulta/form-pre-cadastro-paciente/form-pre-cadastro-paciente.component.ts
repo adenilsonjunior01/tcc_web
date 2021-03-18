@@ -9,6 +9,7 @@ import { untilDestroyed } from '../../../../../@core/until-destroyed';
 import { Logger } from '../../../../../@core/logger.service';
 import { IListaPerfil, ListaPerfilMock } from '../../../../../mocks/lista-perfis-mock';
 import { SweetalertService } from '@app/@shared/sweetalert/sweetalert.service';
+import { IUsuarioModel } from '@app/models/usuario-model';
 
 const log = new Logger('Pre-cadastro');
 
@@ -22,6 +23,7 @@ export class FormPreCadastroPacienteComponent implements OnInit, OnDestroy {
   @Output() stepId = new EventEmitter();
   @Output() formPreCadastroPaciente = new EventEmitter();
   @Input() novoPaciente = false;
+  @Output() dadosUsuario = new EventEmitter();
 
   public readonly _formPreCadastro = new FormPreCadastroPaciente();
   public form: FormGroup;
@@ -31,6 +33,7 @@ export class FormPreCadastroPacienteComponent implements OnInit, OnDestroy {
   public listaPerfis: IListaPerfil[];
   public loading = false;
   controlPerfil = new FormControl({ disabled: true });
+  messageError = '';
 
   constructor(private readonly _service: AgendamentoConsultaService, private readonly _sweetAlert: SweetalertService) {}
 
@@ -41,7 +44,6 @@ export class FormPreCadastroPacienteComponent implements OnInit, OnDestroy {
     this.listaSexo = this.utilitariosMock.getListaSexos();
     this.form = this._formPreCadastro.initFormPreCadastroPaciente();
     this.filterPerfil();
-    console.log('Form Pre Cadastro init >>', this.form.value);
   }
 
   private filterPerfil() {
@@ -49,8 +51,8 @@ export class FormPreCadastroPacienteComponent implements OnInit, OnDestroy {
     this.controlPerfil.setValue(filter[0].description);
   }
 
-  public closeModalAndResetForm(id: string) {
-    this.closeModal.emit({ close: true, modalId: id });
+  public closeModalAndResetForm(closeModal = false, id: string) {
+    this.closeModal.emit({ close: closeModal, modalId: id });
   }
 
   public setStep(id: number) {
@@ -81,6 +83,7 @@ export class FormPreCadastroPacienteComponent implements OnInit, OnDestroy {
    */
   public submitPreCadastroPaciente(idStep: number) {
     if (this.form.valid) {
+      this.messageError = '';
       const values = this._formPreCadastro.parseFormPrecadastroPaciente(this.form.value);
       this.loading = true; // IMPLEMENTAR LOADING46751688091
       const request$ = this._service.submitPreCadastroPaciente(values);
@@ -88,20 +91,39 @@ export class FormPreCadastroPacienteComponent implements OnInit, OnDestroy {
         .pipe(
           finalize(() => {
             this.loading = false;
-            this.closeModalAndResetForm('pre-cadastro');
+            this.closeModalAndResetForm(false, 'pre-cadastro');
           }),
           untilDestroyed(this)
         )
         .subscribe(
-          (response: any) => {
-            this.formPreCadastroPaciente.emit(this.form);
+          (response: IUsuarioModel) => {
             this.stepId.emit(idStep);
             this._sweetAlert.openToasty('Cadastro realizado com sucesso!', 'success');
+            this.resetForm();
+            this.emitUser(response);
           },
           (error) => {
+            this.messageError = error?.error?.message;
+            console.log(error);
             log.debug(`Error`);
           }
         );
     }
+  }
+
+  /**
+   *
+   * @param user recebe dados do usuário e envia pro componente Pai
+   */
+  private emitUser(user: IUsuarioModel) {
+    if (this.novoPaciente) {
+      this.dadosUsuario.emit(user);
+    } else {
+      this.formPreCadastroPaciente.emit(user);
+    }
+  }
+
+  private resetForm() {
+    this.form.reset();
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalAnimationComponent } from '../../../../@shared/modal-animation/modal-animation.component';
+import { IUsuarioModel } from '../../../../models/usuario-model';
 
 @Component({
   selector: 'app-card-novo-paciente',
@@ -9,7 +10,7 @@ import { ModalAnimationComponent } from '../../../../@shared/modal-animation/mod
 })
 export class CardNovoPacienteComponent implements OnInit {
   @ViewChild(ModalAnimationComponent) modal: any;
-
+  public dadosPaciente: IUsuarioModel;
   constructor(private readonly _router: Router) {}
 
   ngOnInit(): void {}
@@ -22,5 +23,10 @@ export class CardNovoPacienteComponent implements OnInit {
     if (event.close) {
       this.modal.close(event.id);
     }
+  }
+
+  public getDadosPaciente(event: IUsuarioModel, idModal: string): void {
+    this.dadosPaciente = event;
+    setTimeout(() => this.modal.show(idModal), 600);
   }
 }

@@ -70,7 +70,6 @@ export class CardNovaConsultaComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.visibleCard);
     this.filteredOptions = this.search.valueChanges.pipe(
       startWith(''),
       map((value) => this._filter(value))
@@ -89,7 +88,7 @@ export class CardNovaConsultaComponent implements OnInit {
   }
 
   public closeModalAndResetForm(event: IEventCloseModalModel): void {
-    if (event.close) {
+    if (event.close === true) {
       Swal.fire({
         icon: 'question',
         title: 'Deseja continuar?',
@@ -127,13 +126,12 @@ export class CardNovaConsultaComponent implements OnInit {
    *
    * @param event recebe o formulário de pré-cadastro do paciente após envio pro back-end
    */
-  public getFormPreCadastroPaciente(event: FormGroup) {
-    this.form.controls['paciente'].get('nome').setValue(event.get('nome').value);
-    this.form.controls['paciente'].get('sobrenome').setValue(event.get('sobrenome').value);
-    this.form.controls['paciente'].get('cpf').setValue(event.get('cpf').value);
-    this.form.controls['paciente'].get('email').setValue(event.get('email').value);
-    this.form.controls['paciente'].get('dtNascimento').setValue(event.get('dtNascimento').value);
-    this.form.controls['paciente'].get('sexo').setValue(event.get('sexo').value);
+  public getFormPreCadastroPaciente(event: any) {
+    this.form.controls['paciente'].get('nome').setValue(event.nome);
+    this.form.controls['paciente'].get('cpf').setValue(event.cpf);
+    this.form.controls['paciente'].get('email').setValue(event.email);
+    this.form.controls['paciente'].get('dtNascimento').setValue(event.dtNascimento);
+    this.form.controls['paciente'].get('sexo').setValue(event.sexo);
   }
 
   public submitNovaConsulta(): void {

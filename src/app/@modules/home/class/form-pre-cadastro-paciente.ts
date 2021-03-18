@@ -9,14 +9,14 @@ export class FormPreCadastroPaciente {
 
   public initFormPreCadastroPaciente(): FormGroup {
     const form = this._fb.group({
-      nome: [null, Validators.required],
-      cpf: [null, Validators.required],
+      nome: ['Teste', Validators.required],
+      cpf: ['66138051068', Validators.required],
       email: [null, [Validators.required, Validators.email]],
-      sexo: [null, Validators.required],
+      sexo: ['m', Validators.required],
       dtNascimento: [null, [Validators.required, FormValidations.dateValidator]],
       perfil: [3, { disabled: true }], // ID do Paciente
       senha: [null],
-      telefone: [null, Validators.required],
+      telefone: ['99999999999', Validators.required],
       endereco: [null],
     });
     return form;

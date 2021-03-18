@@ -14,7 +14,6 @@ export class FormConsultaHome {
       sintomas: [null],
       paciente: this._fb.group({
         nome: [null, Validators.required],
-        sobrenome: [null, Validators.required],
         cpf: [null, Validators.required],
         email: [null, Validators.required],
         dtNascimento: [null, Validators.required],

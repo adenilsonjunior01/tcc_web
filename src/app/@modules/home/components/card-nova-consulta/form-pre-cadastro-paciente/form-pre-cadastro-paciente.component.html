@@ -83,6 +83,9 @@
         Perfil: <span>{{ controlPerfil.value }}</span>
       </p>
     </div>
+    <div class="col-12" *ngIf="messageError !== ''">
+      <p class="m-0 is-invalid">[Error] {{ messageError }}</p>
+    </div>
     <div class="col-12 d-flex align-items-end justify-content-end pt-4">
       <button mat-stroked-button class="btn btn-outline-secondary" (click)="back()" *ngIf="!novoPaciente">
         <i class="feather icon-arrow-left"></i>
@@ -91,7 +94,7 @@
       <button
         mat-stroked-button
         class="btn btn-outline-secondary"
-        (click)="closeModalAndResetForm('pre-cadastro')"
+        (click)="closeModalAndResetForm(true, 'pre-cadastro')"
         *ngIf="novoPaciente"
       >
         <i class="feather icon-x"></i>
@@ -101,14 +104,14 @@
         mat-stroked-button
         class="btn btn-success ms-3"
         (click)="submitPreCadastroPaciente(2)"
-        [disabled]="!form.valid"
+        [disabled]="!form.valid || loading"
       >
         <i *ngIf="!loading" class="feather icon-check"></i>
         <ng-container *ngIf="loading">
           <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
           <span class="sr-only">Aguarde...</span>
         </ng-container>
-        <span *ngIf="!novoPaciente!; loading">confirmar e continuar o Agendamento</span>
+        <span *ngIf="!novoPaciente! && !loading">confirmar e continuar o Agendamento</span>
         <span *ngIf="novoPaciente && !loading">salvar</span>
       </button>
     </div>

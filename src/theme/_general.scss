@@ -2393,3 +2393,9 @@ progress {
 .bg-transparent {
   background-color: transparent !important;
 }
+
+.is-invalid {
+  color: var(--danger);
+  font-size: 14px;
+  font-weight: 400;
+}

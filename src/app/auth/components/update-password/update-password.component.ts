@@ -30,7 +30,7 @@ export class UpdatePasswordComponent implements OnInit, OnDestroy, AfterViewInit
   ) {}
 
   ngAfterViewInit(): void {
-    setTimeout(() => this.getCredentials(), 800);
+    setTimeout(() => this.getCredentials(), 400);
   }
 
   ngOnDestroy(): void {}

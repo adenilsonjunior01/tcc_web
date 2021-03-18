@@ -19,6 +19,7 @@
       >
         Cadastrar
       </button>
+      <button (click)="modal.show('aviso-senha')">Open</button>
     </div>
   </div>
 </app-card-content>
@@ -29,7 +30,31 @@
         <app-form-pre-cadastro-paciente
           novoPaciente="true"
           (closeModal)="closeModal($event)"
+          (dadosUsuario)="getDadosPaciente($event, 'aviso-senha')"
         ></app-form-pre-cadastro-paciente>
+      </div>
+    </div>
+  </div>
+</app-modal-animation>
+<app-modal-animation modalID="aviso-senha" modalClass="md-effect-10 aviso-senha">
+  <div class="container md-body py-3">
+    <div class="row m-0 text-center">
+      <div class="col-12">
+        <h3 class="m-0">Cadastro do usuário efetuado com sucesso!</h3>
+      </div>
+      <div class="col-12">
+        <h4 class="m-0">Atenção!</h4>
+        <p class="m-0">
+          Essa senha é gerada automaticamente pelo Sistema. Será solicitado alteração no primeiro acesso do usuário a
+          plataforma.
+        </p>
+      </div>
+      <div class="col-12">
+        <p class="m-0"><strong>Usuário: </strong>{{ dadosPaciente?.email }}</p>
+        <p class="m-0"><strong>Senha: </strong>12345678</p>
+      </div>
+      <div class="col-12 mt-2">
+        <button class="btn btn-primary" type="button" (click)="modal.close('aviso-senha')">Ok, entendi.</button>
       </div>
     </div>
   </div>

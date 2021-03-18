@@ -19,3 +19,22 @@ $f_22: 22px;
   font-size: $f_22;
   font-weight: 800;
 }
+
+::ng-deep .aviso-senha {
+  h3 {
+    color: var(--dark);
+  }
+
+  h4 {
+    color: var(--danger);
+    font-size: 18px;
+  }
+
+  p {
+    color: var(--dark);
+  }
+
+  .md-content {
+    width: 500px;
+  }
+}

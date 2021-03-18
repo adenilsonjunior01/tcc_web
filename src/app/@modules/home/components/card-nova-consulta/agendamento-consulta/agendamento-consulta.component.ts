@@ -29,11 +29,14 @@ export class AgendamentoConsultaComponent implements OnInit, OnChanges, OnDestro
 
   ngOnDestroy() {}
 
-  ngOnChanges(changes: SimpleChanges): void {}
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.formConsulta) {
+      this.datas = this.formConsulta.value;
+    }
+  }
 
   ngOnInit(): void {
     this.listaSexo = this.utilitariosMock.getListaSexos();
-    this.datas = this.formConsulta.value;
   }
 
   public closeModalAndResetForm(id: string): void {
@@ -63,7 +66,6 @@ export class AgendamentoConsultaComponent implements OnInit, OnChanges, OnDestro
           },
         });
       // this.stepId.emit(step);
-      console.log('FORM AGENDAMENTO CONSULTA>>', this.formConsulta.value);
     } else {
       Object.keys(this.formConsulta.controls).forEach((campo) => {
         const controle = this.formConsulta.get(campo);

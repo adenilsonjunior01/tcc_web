@@ -18,7 +18,7 @@ export class ApiPrefixInterceptor implements HttpInterceptor {
       request = request.clone({
         setHeaders: {
           'Content-type': 'application/json',
-          Bearer: JSON.parse(localStorage.getItem('credentials')).token,
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem('credentials')).token}`,
         },
         url: environment.serverUrl + request.url,
       });
