@@ -14,15 +14,30 @@ export class FormPreCadastroPaciente {
       email: [null, [Validators.required, Validators.email]],
       sexo: ['m', Validators.required],
       dtNascimento: [null, [Validators.required, FormValidations.dateValidator]],
-      perfil: [3, { disabled: true }], // ID do Paciente
+      perfil: [null],
       senha: [null],
       telefone: ['99999999999', Validators.required],
-      endereco: [null],
+      endereco: this._fb.group({
+        descBairro: [null],
+        descRua: [null],
+        noEstado: [null],
+        noCidade: [null],
+        nuCep: [null],
+        numero: [null],
+      }),
     });
     return form;
   }
 
   public parseFormPrecadastroPaciente(form: any): any {
+    let values = Object.assign(form, {});
+    values.dtNascimento = dayjs(values.dtNascimento).format('DD-MM-YYYY');
+    values.endereco = null;
+    values.perfil = 3;
+    return values;
+  }
+
+  public parseFormColaborador(form: any): any {
     let values = Object.assign(form, {});
     values.dtNascimento = dayjs(values.dtNascimento).format('DD-MM-YYYY');
     return values;

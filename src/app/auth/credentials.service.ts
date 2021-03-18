@@ -8,7 +8,7 @@ export interface Credentials {
 }
 
 export interface Token {
-  perfil: string[];
+  perfis: string[];
   sub: string;
   dtCadastro: Date;
   nome: string;

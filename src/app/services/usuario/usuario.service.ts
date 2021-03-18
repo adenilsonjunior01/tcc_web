@@ -15,7 +15,7 @@ const routes = {
 export class UsuarioService {
   constructor(private readonly _httpClient: HttpClient) {}
 
-  public saveNewUser(user: IUsuarioModel): Observable<any> {
+  public saveNewUser(user: IUsuarioModel): Observable<IUsuarioModel> {
     return this._httpClient.post(routes.user(), user).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),

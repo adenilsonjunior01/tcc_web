@@ -2,3 +2,61 @@ img {
   background-color: #ffc145;
   border-radius: 50%;
 }
+
+h3 {
+  font-weight: 500;
+  font-size: var(--f_16);
+}
+
+.icon-mail {
+  color: var(--tcc-text-color-title);
+}
+
+.spinner-grow {
+  animation-duration: 1s;
+  width: 10px;
+  height: 10px;
+  margin-bottom: 23px;
+  color: var(--tcc-inactive);
+}
+
+.notificacoes {
+  &__text {
+    span {
+      font-size: var(--f_14);
+      font-weight: 400;
+      color: var(--dark);
+
+      i {
+        font-size: 18px;
+        color: var(--tcc-primary);
+        margin-right: 3px;
+      }
+    }
+  }
+
+  &__icon {
+    span {
+      color: var(--tcc-light);
+      font-size: var(--f_12);
+
+      i {
+        font-size: var(--f_12);
+        margin-right: 3px;
+        color: var(--dark);
+      }
+    }
+  }
+
+  &__title {
+    span {
+      font-weight: 300;
+      font-size: var(--f_16);
+    }
+  }
+}
+
+::ng-deep .mat-menu-panel {
+  width: 370px !important;
+  max-width: 350px !important;
+}

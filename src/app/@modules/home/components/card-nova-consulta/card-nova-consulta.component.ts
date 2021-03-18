@@ -90,7 +90,7 @@ export class CardNovaConsultaComponent implements OnInit {
   public closeModalAndResetForm(event: IEventCloseModalModel): void {
     if (event.close === true) {
       Swal.fire({
-        icon: 'question',
+        icon: 'info',
         title: 'Deseja continuar?',
         text: 'Ao continuar, essa consulta será desconsiderada.',
         showCancelButton: true,

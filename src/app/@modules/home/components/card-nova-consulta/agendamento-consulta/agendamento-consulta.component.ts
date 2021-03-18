@@ -81,7 +81,7 @@ export class AgendamentoConsultaComponent implements OnInit, OnChanges, OnDestro
    */
   public back(): void {
     Swal.fire({
-      icon: 'question',
+      icon: 'info',
       title: 'Deseja continuar?',
       text: 'Ao continuar, essa consulta será desconsiderada.',
       showCancelButton: true,

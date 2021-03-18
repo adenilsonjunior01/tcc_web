@@ -48,11 +48,9 @@
             </mat-form-field>
           </div>
           <!--/col-md-2-->
-          <div class="col-md-3 p-md-0 align-button col-sm-12">
-            <button mat-raised-button class="btn-warning p-2 w-75 h-75 me-3" type="button">Buscar</button>
-            <button mat-raised-button class="btn-primary p-2 w-100 h-75" type="button" (click)="openDialog()">
-              Novo colaborador
-            </button>
+          <div class="col-md-auto p-md-0 align-button col-sm-12">
+            <button class="btn btn-warning me-3" type="button">Buscar</button>
+            <app-form-cadastro-colaborador></app-form-cadastro-colaborador>
           </div>
         </div>
       </app-card-content>

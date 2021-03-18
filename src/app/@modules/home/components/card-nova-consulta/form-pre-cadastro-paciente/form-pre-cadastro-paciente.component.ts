@@ -61,7 +61,7 @@ export class FormPreCadastroPacienteComponent implements OnInit, OnDestroy {
 
   public back() {
     Swal.fire({
-      icon: 'question',
+      icon: 'info',
       title: 'Deseja continuar?',
       text: 'Ao continuar, esse cadastro será desconsiderado.',
       showCancelButton: true,

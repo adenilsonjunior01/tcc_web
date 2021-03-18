@@ -29,7 +29,7 @@ export class TableMedicoComponent implements OnInit {
 
   public confirmModal(paciente: any): void {
     Swal.fire({
-      icon: 'question',
+      icon: 'info',
       title: 'Deseja continuar?',
       text: 'Ao continuar a consulta será iniciada.',
       showCancelButton: true,
