@@ -26,7 +26,7 @@
           </mat-menu>
         </div> -->
       </mat-toolbar>
-      <nav>
+      <nav style="height: 85%">
         <mat-list>
           <a mat-list-item routerLink="/home" routerLinkActive="active" (click)="isMobile && sidenav.close()">
             <i class="feather icon-home pe-3"></i>
@@ -61,6 +61,7 @@
             <i class="feather icon-settings pe-2"></i>
             <span>Configurações</span>
           </a>
+
           <!-- <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
             <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding routerLinkActive="active">
               <a mat-list-item [routerLink]="node.route" routerLinkActive="active" (click)="isMobile && sidenav.close()">
@@ -82,6 +83,29 @@
             </mat-tree-node>
           </mat-tree> -->
         </mat-list>
+        <section class="position-relative footer-clinica" *ngIf="!errorRequest">
+          <div class="container">
+            <div class="row text-center m-0">
+              <div class="col-12 footer-clinica__nome">
+                <h3 class="m-0">{{ dadosClinica?.nome }}</h3>
+              </div>
+              <div class="col-12 footer-clinica__endereco">
+                <p class="m-0">
+                  {{ dadosClinica?.endereco?.noCidade }}, {{ dadosClinica?.endereco?.descRua }},
+                  {{ dadosClinica?.endereco?.descBairro }}, {{ dadosClinica?.endereco?.noCidade }},
+                  {{ dadosClinica?.endereco?.noEstado }}
+                </p>
+                <p class="m-0">
+                  CEP: <strong>{{ dadosClinica?.endereco?.nuCep }}</strong>
+                </p>
+                <p class="m-0">
+                  Abre às: <strong>{{ dadosClinica?.dtAbertura }}</strong
+                  >, encerra às <strong>{{ dadosClinica?.dtEncerramento }}</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
       </nav>
     </mat-sidenav>
     <mat-sidenav-content class="mat-sidenav">

@@ -360,4 +360,52 @@ export class ListaUtilitarioMock {
       },
     ];
   }
+
+  /**
+   * @description fonte: https://www.educamaisbrasil.com.br/educacao/carreira/saiba-quais-sao-as-especializacoes-da-medicina-e-suas-funcoes
+   */
+  public listaEspecializacoes(): Array<object> {
+    return [
+      {
+        id: 1,
+        description: 'Acupuntura',
+      },
+      {
+        id: 2,
+        description: 'Alergia e imunologia',
+      },
+      {
+        id: 3,
+        description: 'Anestesiologia',
+      },
+      {
+        id: 4,
+        description: 'Angiologia',
+      },
+      {
+        id: 5,
+        description: 'Cancerologia',
+      },
+      {
+        id: 6,
+        description: 'Cirurgia cardiovascular',
+      },
+      {
+        id: 7,
+        description: 'Cirurgia da mão',
+      },
+      {
+        id: 8,
+        description: 'Cirurgia de cabeça e pescoço',
+      },
+      {
+        id: 9,
+        description: 'Cirurgia do aparelho digestivo',
+      },
+      {
+        id: 10,
+        description: 'Cirurgia geral',
+      },
+    ];
+  }
 }

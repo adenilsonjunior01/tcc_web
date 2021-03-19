@@ -1,37 +1,5 @@
 <div>
-  <button mat-icon-button [matMenuTriggerFor]="notification">
-    <i class="feather icon-mail"></i>
-    <span class="spinner-grow spinner-grow-sm"></span>
-  </button>
-  <mat-menu #notification="matMenu">
-    <div class="container">
-      <div class="row m-0">
-        <div class="col-12 py-2 ps-0">
-          <h3 class="m-0">Notificações</h3>
-        </div>
-      </div>
-    </div>
-    <!-- <mat-divider></mat-divider> -->
-    <hr class="my-1" />
-    <mat-list>
-      <mat-list-item>
-        <div class="container notificacoes p-0">
-          <div class="row m-0">
-            <!-- <div class="col-12 notificacoes__title p-0">
-              <span>Dados médicos</span>
-            </div> -->
-            <div class="col-9 p-0 notificacoes__text">
-              <span><i class="feather icon-file-minus"></i> Cadastre seus dados Médicos</span>
-            </div>
-            <div class="col-3 p-0 notificacoes__icon">
-              <span><i class="feather icon-clock"></i> Nova</span>
-            </div>
-          </div>
-        </div>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-    </mat-list>
-  </mat-menu>
+  <app-notification></app-notification>
 
   <button mat-icon-button [matMenuTriggerFor]="userMenu">
     <!-- <mat-icon>person</mat-icon> -->
@@ -41,7 +9,10 @@
   <mat-menu #userMenu="matMenu">
     <mat-list>
       <mat-list-item>
-        <span>Olá, </span>&nbsp;<b>{{ username }}</b>
+        <span>Olá, </span>&nbsp;<b>{{ userName }}</b>
+      </mat-list-item>
+      <mat-list-item>
+        <p class="m-0">Perfil: {{ perfil }}</p>
       </mat-list-item>
       <mat-divider></mat-divider>
     </mat-list>

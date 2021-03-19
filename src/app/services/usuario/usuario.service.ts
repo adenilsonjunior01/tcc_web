@@ -3,10 +3,12 @@ import { IUsuarioModel } from '../../models/usuario-model';
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map, take } from 'rxjs/operators';
+import { IPacienteModel } from '../../models/paciente-model';
 
 const routes = {
   user: () => `/user`,
   tipoSanguineo: () => `/tipoSanguineo`,
+  paciente: () => `/paciente`,
 };
 
 @Injectable({
@@ -34,6 +36,14 @@ export class UsuarioService {
   // MAPEAR MODEL COM RETORNO DO END-POINT
   public getTiposSanguineo(): Observable<any> {
     return this._httpClient.get(routes.tipoSanguineo()).pipe(
+      catchError((error: HttpErrorResponse) => throwError(error)),
+      map((body: any) => body),
+      take(1)
+    );
+  }
+
+  public updatePaciente(user: IPacienteModel): Observable<any> {
+    return this._httpClient.put(routes.paciente(), user).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),
       take(1)

@@ -13,6 +13,8 @@ export interface Token {
   dtCadastro: Date;
   nome: string;
   export: number;
+  id: number;
+  idPerfil: number;
 }
 
 const credentialsKey = 'credentials';
@@ -28,9 +30,16 @@ export class CredentialsService {
     const savedCredentials = sessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey);
     if (savedCredentials) {
       this._credentials = JSON.parse(savedCredentials);
+      this.decodeToken();
+      this.verifyProfilePaciente();
+      this.verifyProfileAdm();
+      this.verifyProfileAssitente();
+      this.verifyProfileMedico();
     }
   }
 
+  public tokenDecode: Token;
+  public perfil: string;
   /**
    * Checks is the user is authenticated.
    * @return True if the user is authenticated.
@@ -44,6 +53,10 @@ export class CredentialsService {
    */
   get credentials(): Credentials | null {
     return this._credentials;
+  }
+
+  get profile(): string | null {
+    return localStorage.getItem('perfil');
   }
 
   setCredentials(credentials?: ICredentialsModel, remember?: boolean) {
@@ -67,6 +80,40 @@ export class CredentialsService {
   }
 
   public decodeToken(): Token {
-    return this._jwtHelper.decodeToken(this.credentials.token);
+    this.tokenDecode = this._jwtHelper.decodeToken(this.credentials.token);
+    return this.tokenDecode;
+  }
+
+  private verifyProfileMedico() {
+    const status = this.tokenDecode.perfis.filter((v: string) => v === 'MEDICO');
+    if (status.length > 0) {
+      this.perfil = status[0];
+      this.setProfileLocalStorage(this.perfil);
+    }
+  }
+  private verifyProfilePaciente() {
+    const status = this.tokenDecode.perfis.filter((v: string) => v === 'PACIENTE');
+    if (status.length > 0) {
+      this.perfil = status[0];
+      this.setProfileLocalStorage(this.perfil);
+    }
+  }
+  private verifyProfileAssitente() {
+    const status = this.tokenDecode.perfis.filter((v: string) => v === 'AUXILIAR');
+    if (status.length > 0) {
+      this.perfil = status[0];
+      this.setProfileLocalStorage(this.perfil);
+    }
+  }
+  private verifyProfileAdm() {
+    const status = this.tokenDecode.perfis.filter((v: string) => v === 'ADMINISTRADOR');
+    if (status.length > 0) {
+      this.perfil = status[0];
+      this.setProfileLocalStorage(this.perfil);
+    }
+  }
+
+  private setProfileLocalStorage(perfil: string) {
+    localStorage.setItem('perfil', perfil);
   }
 }

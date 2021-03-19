@@ -65,7 +65,7 @@ export class AuthenticationService {
 
   private verifyFirtsAccess(): boolean {
     this.decodeToken();
-    const status = this.perfil.filter((v: string) => v === 'PENDENTE');
+    const status = this.perfil.filter((v: string) => v === 'PRIMEIRO_ACESSO');
     if (status.length > 0) return true;
     return false;
   }

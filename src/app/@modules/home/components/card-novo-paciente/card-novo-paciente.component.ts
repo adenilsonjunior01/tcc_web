@@ -27,6 +27,7 @@ export class CardNovoPacienteComponent implements OnInit {
 
   public getDadosPaciente(event: IUsuarioModel, idModal: string): void {
     this.dadosPaciente = event;
+    this.modal.close('pre-cadastro');
     setTimeout(() => this.modal.show(idModal), 600);
   }
 }

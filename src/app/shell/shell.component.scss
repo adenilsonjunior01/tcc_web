@@ -113,3 +113,18 @@ a.active {
     z-index: 1 !important;
   }
 }
+
+.footer-clinica {
+  max-width: 220px;
+  top: 36%;
+  margin-right: 0;
+  background-color: var(--tcc-bg-container);
+  margin: 0px 20px;
+  border-radius: 8px;
+  padding: 12px 0;
+
+  &__endereco {
+    color: var(--tcc-text-color-title);
+    font-size: var(--f_14);
+  }
+}

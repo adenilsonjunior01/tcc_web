@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CredentialsService } from '../../auth/credentials.service';
+import { CredentialsService, Token } from '../../auth/credentials.service';
 import { AuthenticationService } from '../../auth/authentication.service';
 
 @Component({
@@ -11,6 +11,7 @@ import { AuthenticationService } from '../../auth/authentication.service';
 })
 export class NavRigthComponent implements OnInit {
   subtitle: string;
+  tokenDecode: Token;
 
   constructor(
     private readonly _titleService: Title,
@@ -22,6 +23,7 @@ export class NavRigthComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSubtitle();
+    this.decodeToken();
   }
 
   get title(): string {
@@ -33,6 +35,14 @@ export class NavRigthComponent implements OnInit {
     return credentials ? credentials.email : null;
   }
 
+  get perfil(): string | null {
+    return localStorage.getItem('perfil');
+  }
+
+  get userName(): string {
+    return this.tokenDecode.nome;
+  }
+
   public getSubtitle() {
     this.subtitle = this._activetedRouter.snapshot.children[0].data.subtitle;
     console.log(this._activetedRouter.snapshot.children[0].data);
@@ -40,5 +50,9 @@ export class NavRigthComponent implements OnInit {
 
   public logout() {
     this._authenticationService.logout().subscribe(() => this._router.navigate(['/login'], { replaceUrl: true }));
+  }
+
+  private decodeToken(): void {
+    this.tokenDecode = this._credentialsService.decodeToken();
   }
 }

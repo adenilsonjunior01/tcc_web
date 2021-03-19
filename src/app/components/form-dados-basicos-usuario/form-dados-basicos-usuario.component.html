@@ -1,0 +1,67 @@
+<form [formGroup]="form" class="dados-medicos">
+  <div class="row mx-0 py-4">
+    <div class="col-12 dados-medicos__icon--x d-flex justify-content-end">
+      <i class="feather icon-x" (click)="closeModalForm()"></i>
+    </div>
+    <div class="col-12 dados-medicos__header">
+      <h3 class="m-0">Dados do Convênio Médico</h3>
+      <span>Cadastre os dados pendentes</span>
+      <hr />
+    </div>
+
+    <div class="col-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Nome do Convênio</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="Digite o nome convêncio"
+          autocomplete="off"
+          formControlName="descConvenio"
+        />
+        <mat-error>
+          <app-error-control-message
+            [control]="form.controls.descConvenio"
+            label="Convênio"
+          ></app-error-control-message>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Nº Inscrição do convêncio</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="Digite o nome convêncio"
+          autocomplete="off"
+          formControlName="nuInscricaoConvenio"
+        />
+        <mat-error>
+          <app-error-control-message
+            [control]="form.controls.nuInscricaoConvenio"
+            label="Nº da inscrição"
+          ></app-error-control-message>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 pe-0"></div>
+    <div class="col-12" *ngIf="messageError !== ''">
+      <p class="m-0 is-invalid">[Error] {{ messageError }}</p>
+    </div>
+
+    <hr class="mx-0 my-3 w-100" />
+
+    <div class="col-12 d-flex justify-content-end">
+      <button class="btn btn-secondary me-3" (click)="clearForm()">limpar</button>
+      <button class="btn btn-primary" type="button" (click)="submitForm()" [disabled]="!form.valid || loading">
+        <span *ngIf="!loading">salvar</span>
+        <ng-container *ngIf="loading">
+          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+          <span class="sr-only">Aguarde...</span>
+        </ng-container>
+      </button>
+    </div>
+  </div>
+</form>
