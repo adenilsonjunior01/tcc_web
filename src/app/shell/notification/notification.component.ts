@@ -33,4 +33,14 @@ export class NotificationComponent implements OnInit {
       this.modal.close('dados-basicos');
     }
   }
+
+  public verifyProfilePending(): boolean {
+    if (this._credentials.profile === 'MEDICO' && this._credentials.profilePending) {
+      return true;
+    } else if (this._credentials.profile === 'PACIENTE' && this._credentials.profilePending) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

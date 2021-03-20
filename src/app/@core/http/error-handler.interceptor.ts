@@ -8,6 +8,7 @@ import { Logger } from '../logger.service';
 import { SweetalertService } from '../../@shared/sweetalert/sweetalert.service';
 import { CredentialsService } from '../../auth/credentials.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AuthenticationService } from '../../auth/authentication.service';
 
 const log = new Logger('ErrorHandlerInterceptor');
 const toasty = new SweetalertService();
@@ -22,7 +23,8 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
   constructor(
     private readonly _credentials: CredentialsService,
     private readonly _router: Router,
-    private readonly _route: ActivatedRoute
+    private readonly _route: ActivatedRoute,
+    private readonly _authentication: AuthenticationService
   ) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -49,10 +51,13 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
         return toasty.openToasty('Formulário inválido - 400', 'error');
       case 401:
         return this.verifyTokenExpired();
-      case 403:
+      case 403: {
+        this._authentication.logout();
+        this._router.navigate(['/login', { replace: true }]);
         return toasty.openToasty('Usuário ou senha inválidos.', 'error');
+      }
       case 404:
-        return toasty.openToasty('Rota não encontrada - 404', 'error');
+        return toasty.openToasty('Nenhum registro encontrado - 404', 'error');
       case 500:
         return toasty.openToasty('Deu ruim no servidor - 500', 'error');
       default:
@@ -66,8 +71,10 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
         return toasty.openToasty('Erro ao processar dados.', 'error');
       case 401:
         return this.verifyTokenExpired();
-      case 403:
+      case 403: {
+        this._authentication.logout();
         return toasty.openToasty('Usuário ou senha inválidos.', 'error');
+      }
       case 404:
         return toasty.openToasty('Erro ao completar requisição.', 'error');
       case 500:

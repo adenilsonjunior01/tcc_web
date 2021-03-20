@@ -32,35 +32,51 @@
             <i class="feather icon-home pe-3"></i>
             <span>Visão geral</span>
           </a>
-          <a mat-list-item routerLink="/pacientes" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-            <i class="feather icon-users pe-3"></i>
-            <span>Pacientes</span>
-          </a>
+          <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR' || perfil === 'MEDICO'">
+            <a mat-list-item routerLink="/pacientes" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+              <i class="feather icon-users pe-3"></i>
+              <span>Pacientes</span>
+            </a>
+          </ng-container>
+
           <a mat-list-item routerLink="/about" routerLinkActive="active" (click)="isMobile && sidenav.close()">
             <span>Temp</span>
           </a>
-          <a
-            mat-list-item
-            routerLink="/cadastro/colaboradores"
-            routerLinkActive="active"
-            (click)="isMobile && sidenav.close()"
-          >
-            <i class="feather icon-users pe-2"></i>
-            <span>Colaboradores</span>
-          </a>
-          <a
-            mat-list-item
-            routerLink="/cadastro/especialidades"
-            routerLinkActive="active"
-            (click)="isMobile && sidenav.close()"
-          >
-            <i class="feather icon-bookmark pe-2"></i>
-            <span>Especialidades</span>
-          </a>
-          <a mat-list-item routerLink="/configuracoes" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-            <i class="feather icon-settings pe-2"></i>
-            <span>Configurações</span>
-          </a>
+          <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR'">
+            <a
+              mat-list-item
+              routerLink="/cadastro/colaboradores"
+              routerLinkActive="active"
+              (click)="isMobile && sidenav.close()"
+            >
+              <i class="feather icon-users pe-2"></i>
+              <span>Colaboradores</span>
+            </a>
+          </ng-container>
+
+          <ng-container *ngIf="perfil === 'ADMINISTRADOR'">
+            <a
+              mat-list-item
+              routerLink="/cadastro/especialidades"
+              routerLinkActive="active"
+              (click)="isMobile && sidenav.close()"
+            >
+              <i class="feather icon-bookmark pe-2"></i>
+              <span>Especialidades</span>
+            </a>
+          </ng-container>
+
+          <ng-container *ngIf="perfil === 'ADMINISTRADOR'">
+            <a
+              mat-list-item
+              routerLink="/configuracoes"
+              routerLinkActive="active"
+              (click)="isMobile && sidenav.close()"
+            >
+              <i class="feather icon-settings pe-2"></i>
+              <span>Configurações</span>
+            </a>
+          </ng-container>
 
           <!-- <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
             <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding routerLinkActive="active">
@@ -83,7 +99,7 @@
             </mat-tree-node>
           </mat-tree> -->
         </mat-list>
-        <section class="position-relative footer-clinica" *ngIf="!errorRequest">
+        <section class="position-fixed footer-clinica" *ngIf="!errorRequest">
           <div class="container">
             <div class="row text-center m-0">
               <div class="col-12 footer-clinica__nome">

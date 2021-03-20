@@ -1,6 +1,6 @@
 <div class="bg">
   <!-- Visão médicos -->
-  <ng-container *ngIf="false">
+  <ng-container *ngIf="perfil === 'MEDICO'">
     <div class="container-fluid">
       <div class="row">
         <!--Cards left-->
@@ -37,7 +37,7 @@
     </div>
   </ng-container>
   <!-- Visão Clínica -->
-  <ng-container *ngIf="true">
+  <ng-container *ngIf="perfil === 'AUXILIAR' || perfil === 'ADMINISTRADOR'">
     <div class="container-fluid">
       <div class="row m-0">
         <div class="col-md-7 col-12">

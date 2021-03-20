@@ -1,6 +1,7 @@
 <button mat-icon-button [matMenuTriggerFor]="notification">
   <i class="feather icon-mail"></i>
-  <span class="spinner-grow spinner-grow-sm" *ngIf="perfil === 'MEDICO' || perfil === 'PACIENTE'"></span>
+  <span class="spinner-grow spinner-grow-sm" *ngIf="verifyProfilePending()"></span
+  ><!-- *ngIf="perfil === 'MEDICO' || perfil === 'PACIENTE'"-->
 </button>
 
 <mat-menu #notification="matMenu">
@@ -14,7 +15,8 @@
   <!-- <mat-divider></mat-divider> -->
   <hr class="m-0" />
   <!-- Notificação de cadastro médico -->
-  <mat-list (click)="modal.show('dados-basicos')" *ngIf="perfil === 'MEDICO' || perfil === 'PACIENTE'">
+  <mat-list (click)="modal.show('dados-basicos')" *ngIf="verifyProfilePending()"
+    ><!--*ngIf="perfil === 'MEDICO' || perfil === 'PACIENTE'"-->
     <mat-list-item>
       <div class="container notificacoes p-0">
         <div class="row m-0">
@@ -32,7 +34,7 @@
     </mat-list-item>
     <mat-divider></mat-divider>
   </mat-list>
-  <!-- <mat-list *ngIf="perfil !== 'MEDICO' || perfil !== 'PACIENTE'">
+  <mat-list *ngIf="!verifyProfilePending()">
     <mat-list-item>
       <div class="container notificacoes p-0">
         <div class="row m-0">
@@ -43,7 +45,7 @@
       </div>
     </mat-list-item>
     <mat-divider></mat-divider>
-  </mat-list> -->
+  </mat-list>
 </mat-menu>
 
 <app-modal-animation modalID="dados-basicos" modalClass="md-effect-11 pre-cadastro-home">

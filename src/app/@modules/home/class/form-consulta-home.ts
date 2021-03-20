@@ -8,7 +8,8 @@ export class FormConsultaHome {
   public initFormConsultaHome(): FormGroup {
     return this._fb.group({
       tipoConsulta: [null, Validators.required],
-      procedimento: [null, Validators.required],
+      especializacao: [null, Validators.required],
+      medico: [null, Validators.required],
       data: [null, Validators.required],
       horario: [null, Validators.required],
       sintomas: [null],

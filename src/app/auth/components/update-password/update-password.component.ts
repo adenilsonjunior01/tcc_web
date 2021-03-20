@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '../../authentication.service';
 import { untilDestroyed } from '../../../@core/until-destroyed';
 import { finalize } from 'rxjs/operators';
@@ -20,9 +20,11 @@ export class UpdatePasswordComponent implements OnInit, OnDestroy, AfterViewInit
   hide2 = true;
   public form: FormGroup;
   isLoading = false;
+  params: any;
 
   constructor(
     private readonly _router: Router,
+    private readonly _activetedRouter: ActivatedRoute,
     private readonly _formBuilder: FormBuilder,
     private readonly _service: AuthenticationService,
     private readonly _credentialsService: CredentialsService,
@@ -37,6 +39,9 @@ export class UpdatePasswordComponent implements OnInit, OnDestroy, AfterViewInit
 
   ngOnInit(): void {
     this.initForm();
+    this._activetedRouter.queryParams.subscribe((v) => {
+      this.params = v.email;
+    });
   }
 
   public getCredentials() {
@@ -47,7 +52,7 @@ export class UpdatePasswordComponent implements OnInit, OnDestroy, AfterViewInit
   }
 
   public navigateLogin(): void {
-    this._router.navigateByUrl('/login', { replaceUrl: true });
+    this._router.navigate(['/login'], { queryParams: { email: this.params }, replaceUrl: true });
   }
 
   public submitNewPassword(): void {

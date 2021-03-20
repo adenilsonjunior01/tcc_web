@@ -25,6 +25,8 @@ export class ShellComponent implements OnInit, OnDestroy {
   ) {
     this.dataSource.data = this._nav.get();
   }
+  perfil: string;
+
   ngOnDestroy(): void {}
 
   subtitle: string;
@@ -33,6 +35,7 @@ export class ShellComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getDadosClinica();
+    this.getPerfilUser();
   }
 
   get username(): string | null {
@@ -56,6 +59,10 @@ export class ShellComponent implements OnInit, OnDestroy {
         next: (body: IClinicaModel) => (this.dadosClinica = body),
         error: () => (this.errorRequest = true),
       });
+  }
+
+  public getPerfilUser() {
+    this.perfil = this.credentialsService.profile;
   }
 
   private _transformer = (node: IMenuNavigation, level: number) => {

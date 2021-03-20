@@ -145,7 +145,7 @@ export class CardNovaConsultaComponent implements OnInit {
       const values = this.optionsAutoComplete.filter(
         (option) => option.nome.toLowerCase().indexOf(this.search.value.toLowerCase()) === 0
       );
-      this.setValuesPaciente(values[0]);
+      // this.setValuesPaciente(values[0]);
       this.steps = 2;
       this.search.reset();
     } else {

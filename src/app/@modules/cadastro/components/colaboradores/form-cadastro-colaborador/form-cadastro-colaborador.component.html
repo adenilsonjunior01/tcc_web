@@ -19,8 +19,8 @@
               <mat-option [value]="perfil.id" *ngFor="let perfil of listaPerfis">{{ perfil.description }}</mat-option>
             </mat-select>
             <!-- <mat-error>
-                          <app-error-control-message [control]="loginForm.controls.username" label="E-mail"></app-error-control-message>
-                        </mat-error> -->
+              <app-error-control-message [control]="loginForm.controls.username" label="E-mail"></app-error-control-message>
+            </mat-error> -->
           </mat-form-field>
         </div>
       </div>
@@ -37,7 +37,7 @@
               <input
                 type="text"
                 matInput
-                placeholder="Digite primeiro Nome"
+                placeholder="Digite o nome completo"
                 autocomplete="off"
                 formControlName="nome"
               />

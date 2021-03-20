@@ -6,6 +6,8 @@ import { finalize } from 'rxjs/operators';
 import { untilDestroyed } from '../../../../../@core/until-destroyed';
 import { Logger } from '../../../../../@core/logger.service';
 import { AgendamentoConsultaService } from '../../../../../services/agendamento-consulta/agendamento-consulta.service';
+import { MedicoService } from '../../../../../services/medico/medico.service';
+import { error } from '@angular/compiler/src/util';
 
 const log = new Logger('Agendamento Consulta Home');
 
@@ -24,8 +26,10 @@ export class AgendamentoConsultaComponent implements OnInit, OnChanges, OnDestro
   public listaSexo: any[];
   datas: any;
   loading = false;
+  medicos: any[];
+  messageError = '';
 
-  constructor(private readonly _service: AgendamentoConsultaService) {}
+  constructor(private readonly _service: AgendamentoConsultaService, private readonly _medicoService: MedicoService) {}
 
   ngOnDestroy() {}
 
@@ -94,5 +98,25 @@ export class AgendamentoConsultaComponent implements OnInit, OnChanges, OnDestro
         this.stepId.emit(0);
       }
     });
+  }
+
+  public getMedicoPorEspecilizacao(idEspecializacao: number): void {
+    this.loading = true;
+    this.messageError = '';
+    this._medicoService
+      .getMedicoPorEspecializacao(idEspecializacao)
+      .pipe(
+        finalize(() => (this.loading = false)),
+        untilDestroyed(this)
+      )
+      .subscribe({
+        next: (medicos: any) => {
+          this.medicos = medicos;
+        },
+        error: (error) => {
+          this.messageError = error?.error?.message;
+          log.error(error);
+        },
+      });
   }
 }

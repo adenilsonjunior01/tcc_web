@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { Observable, of, throwError } from 'rxjs';
-import { map, catchError, take } from 'rxjs/operators';
+import { map, catchError, take, tap } from 'rxjs/operators';
 
 import { Credentials, CredentialsService } from './credentials.service';
 

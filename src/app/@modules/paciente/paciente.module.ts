@@ -12,6 +12,8 @@ import { DetalhesPacienteComponent } from './components/detalhes-paciente/detalh
 import { TablePacientesComponent } from './components/table-pacientes/table-pacientes.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ProntuarioMedicoComponent } from './components/prontuario-medico/prontuario-medico.component';
+import { FormNovoPacienteComponent } from './components/form-novo-paciente/form-novo-paciente.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -21,8 +23,17 @@ import { ProntuarioMedicoComponent } from './components/prontuario-medico/prontu
     ConsultaMedicaComponent,
     DetalhesPacienteComponent,
     ProntuarioMedicoComponent,
+    FormNovoPacienteComponent,
   ],
-  imports: [CommonModule, PacienteRoutingModule, SharedModule, FlexLayoutModule, MaterialModule, NgSelectModule],
+  imports: [
+    CommonModule,
+    PacienteRoutingModule,
+    SharedModule,
+    FlexLayoutModule,
+    MaterialModule,
+    NgSelectModule,
+    NgxMaskModule,
+  ],
   exports: [ConsultaMedicaComponent],
 })
 export class PacienteModule {}
