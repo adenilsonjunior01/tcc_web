@@ -31,11 +31,11 @@
                 <mat-label>Especializações</mat-label>
                 <mat-select formControlName="id" required>
                   <mat-option [value]="especializacao.id" *ngFor="let especializacao of especializacoes">{{
-                    especializacao.description
+                    especializacao.descEspecializacao
                   }}</mat-option>
                 </mat-select>
                 <mat-error>
-                  <app-error-control-message [control]="especializacao.controls.descEspecializacao" label="Descrição">
+                  <app-error-control-message [control]="especializacao.controls.id" label="Descrição">
                   </app-error-control-message>
                 </mat-error>
               </mat-form-field>
@@ -68,3 +68,4 @@
     </div>
   </div>
 </form>
+<!-- <app-form-debug [form]="form"></app-form-debug> -->

@@ -8,6 +8,7 @@ import { untilDestroyed } from '../../@core/until-destroyed';
 import { Logger } from '../../@core/logger.service';
 import { CredentialsService, Token } from '../../auth/credentials.service';
 import { SweetalertService } from '../../@shared/sweetalert/sweetalert.service';
+import { UtilitariosService } from '../../services/utilitarios/utilitarios.service';
 
 const log = new Logger('Dados Básicos Médico');
 
@@ -33,14 +34,16 @@ export class FormDadosBasicosMedicoComponent implements OnInit, OnDestroy {
   constructor(
     private readonly _service: MedicoService,
     private readonly _credentials: CredentialsService,
-    private readonly _sweetAlert: SweetalertService
+    private readonly _sweetAlert: SweetalertService,
+    private readonly _utilitariosService: UtilitariosService
   ) {}
   ngOnDestroy(): void {}
 
   ngOnInit(): void {
     this.form = this._formDadosBasicos.initForm();
     this.listaSexo = this.utilitariosMock.getListaSexos();
-    this.especializacoes = this.utilitariosMock.listaEspecializacoes();
+    // this.especializacoes = this.utilitariosMock.listaEspecializacoes();
+    this.getEspecializacoes();
 
     this.user = this._credentials.decodeToken();
     this.setIdUserForm();
@@ -89,6 +92,15 @@ export class FormDadosBasicosMedicoComponent implements OnInit, OnDestroy {
           },
         });
     }
+  }
+
+  public getEspecializacoes(): void {
+    this._utilitariosService
+      .getEspecializacoes()
+      .pipe(untilDestroyed(this))
+      .subscribe({
+        next: (especializacoes: any) => (this.especializacoes = especializacoes),
+      });
   }
 
   public closeModalForm() {

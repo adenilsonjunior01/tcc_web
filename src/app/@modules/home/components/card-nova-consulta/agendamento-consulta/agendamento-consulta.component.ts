@@ -8,6 +8,8 @@ import { Logger } from '../../../../../@core/logger.service';
 import { AgendamentoConsultaService } from '../../../../../services/agendamento-consulta/agendamento-consulta.service';
 import { MedicoService } from '../../../../../services/medico/medico.service';
 import { error } from '@angular/compiler/src/util';
+import { UtilitariosService } from '../../../../../services/utilitarios/utilitarios.service';
+import { IEspecializacaoModel } from '../../../../../models/especializacao-model';
 
 const log = new Logger('Agendamento Consulta Home');
 
@@ -27,9 +29,14 @@ export class AgendamentoConsultaComponent implements OnInit, OnChanges, OnDestro
   datas: any;
   loading = false;
   medicos: any[];
+  especializacoes: IEspecializacaoModel[];
   messageError = '';
 
-  constructor(private readonly _service: AgendamentoConsultaService, private readonly _medicoService: MedicoService) {}
+  constructor(
+    private readonly _service: AgendamentoConsultaService,
+    private readonly _medicoService: MedicoService,
+    private readonly _utilitariosService: UtilitariosService
+  ) {}
 
   ngOnDestroy() {}
 
@@ -41,6 +48,7 @@ export class AgendamentoConsultaComponent implements OnInit, OnChanges, OnDestro
 
   ngOnInit(): void {
     this.listaSexo = this.utilitariosMock.getListaSexos();
+    this.getEspecializacoes();
   }
 
   public closeModalAndResetForm(id: string): void {
@@ -117,6 +125,15 @@ export class AgendamentoConsultaComponent implements OnInit, OnChanges, OnDestro
           this.messageError = error?.error?.message;
           log.error(error);
         },
+      });
+  }
+
+  public getEspecializacoes(): void {
+    this._utilitariosService
+      .getEspecializacoes()
+      .pipe(untilDestroyed(this))
+      .subscribe({
+        next: (especializacoes: any) => (this.especializacoes = especializacoes),
       });
   }
 }

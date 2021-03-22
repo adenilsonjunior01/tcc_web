@@ -101,25 +101,35 @@
         </mat-list>
         <section class="position-fixed footer-clinica" *ngIf="!errorRequest">
           <div class="container">
-            <div class="row text-center m-0">
-              <div class="col-12 footer-clinica__nome">
-                <h3 class="m-0">{{ dadosClinica?.nome }}</h3>
+            <ng-container *ngIf="loading">
+              <div class="row m-0 p-4">
+                <div class="col-12 text-center">
+                  <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                  <span class="sr-only d-block">Aguarde...</span>
+                </div>
               </div>
-              <div class="col-12 footer-clinica__endereco">
-                <p class="m-0">
-                  {{ dadosClinica?.endereco?.noCidade }}, {{ dadosClinica?.endereco?.descRua }},
-                  {{ dadosClinica?.endereco?.descBairro }}, {{ dadosClinica?.endereco?.noCidade }},
-                  {{ dadosClinica?.endereco?.noEstado }}
-                </p>
-                <p class="m-0">
-                  CEP: <strong>{{ dadosClinica?.endereco?.nuCep }}</strong>
-                </p>
-                <p class="m-0">
-                  Abre às: <strong>{{ dadosClinica?.dtAbertura }}</strong
-                  >, encerra às <strong>{{ dadosClinica?.dtEncerramento }}</strong>
-                </p>
+            </ng-container>
+            <ng-container *ngIf="!loading">
+              <div class="row text-center m-0">
+                <div class="col-12 footer-clinica__nome">
+                  <h3 class="m-0">{{ dadosClinica?.nome }}</h3>
+                </div>
+                <div class="col-12 footer-clinica__endereco">
+                  <p class="m-0">
+                    {{ dadosClinica?.endereco?.noCidade }}, {{ dadosClinica?.endereco?.descRua }},
+                    {{ dadosClinica?.endereco?.descBairro }}, {{ dadosClinica?.endereco?.noCidade }},
+                    {{ dadosClinica?.endereco?.noEstado }}
+                  </p>
+                  <p class="m-0">
+                    CEP: <strong>{{ dadosClinica?.endereco?.nuCep }}</strong>
+                  </p>
+                  <p class="m-0">
+                    Abre às: <strong>{{ dadosClinica?.dtAbertura }}</strong
+                    >, encerra às <strong>{{ dadosClinica?.dtEncerramento }}</strong>
+                  </p>
+                </div>
               </div>
-            </div>
+            </ng-container>
           </div>
         </section>
       </nav>

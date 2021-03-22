@@ -9,6 +9,7 @@ import { IMenuNavigation, IFlatNode, NavigationItem } from '../config/menu-navig
 import { ClinicaService } from '../services/clinica/clinica.service';
 import { untilDestroyed } from '../@core/until-destroyed';
 import { IClinicaModel } from '../models/clinica-model';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-shell',
@@ -25,7 +26,8 @@ export class ShellComponent implements OnInit, OnDestroy {
   ) {
     this.dataSource.data = this._nav.get();
   }
-  perfil: string;
+  public perfil: string;
+  public loading = false;
 
   ngOnDestroy(): void {}
 
@@ -52,9 +54,13 @@ export class ShellComponent implements OnInit, OnDestroy {
   }
 
   public getDadosClinica() {
+    this.loading = true;
     this._clinica
       .getDadosClinica()
-      .pipe(untilDestroyed(this))
+      .pipe(
+        finalize(() => (this.loading = false)),
+        untilDestroyed(this)
+      )
       .subscribe({
         next: (body: IClinicaModel) => (this.dadosClinica = body),
         error: () => (this.errorRequest = true),

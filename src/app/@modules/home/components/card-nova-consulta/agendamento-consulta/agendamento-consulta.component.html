@@ -34,7 +34,9 @@
               required
               (selectionChange)="getMedicoPorEspecilizacao($event.value)"
             >
-              <mat-option [value]="sexo.id" *ngFor="let sexo of listaSexo">{{ sexo.name }}</mat-option>
+              <mat-option [value]="especializacao.id" *ngFor="let especializacao of especializacoes">{{
+                especializacao.descEspecializacao
+              }}</mat-option>
             </mat-select>
             <mat-error>
               <app-error-control-message

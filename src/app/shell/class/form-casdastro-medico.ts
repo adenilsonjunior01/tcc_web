@@ -16,7 +16,6 @@ export class FormCadastroMedico {
   public newEspecializacao(): FormGroup {
     return this._fb.group({
       id: [null, Validators.required],
-      descEspecializacao: [''],
     });
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConsultaMedicaComponent } from './components/consulta-medica/consulta-medica.component';
+import { CredentialsService } from '../../auth/credentials.service';
 
 @Component({
   selector: 'app-paciente',
@@ -9,15 +10,22 @@ import { ConsultaMedicaComponent } from './components/consulta-medica/consulta-m
 })
 export class PacienteComponent implements OnInit {
   pacientes: any[] = [];
+  perfil: string;
 
   dialog = new DialogContent(this._dialog);
 
-  constructor(private readonly _dialog?: MatDialog) {}
+  constructor(private readonly _dialog?: MatDialog, private readonly _credentials?: CredentialsService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getPerfilUser();
+  }
 
   openDialog() {
     this.dialog.openDialog();
+  }
+
+  public getPerfilUser() {
+    this.perfil = this._credentials.profile;
   }
 }
 

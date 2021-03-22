@@ -27,11 +27,11 @@
       </div>
       <div class="col-12">
         <!-- VISÃO FUNCIONÁRIO -->
-        <ng-container *ngIf="false">
+        <ng-container *ngIf="perfil === 'AUXILIAR' || perfil === 'ADMINISTRADOR'">
           <app-table-pacientes></app-table-pacientes>
         </ng-container>
         <!-- VISÃO MÉDICO -->
-        <ng-container *ngIf="true">
+        <ng-container *ngIf="perfil === 'MEDICO'">
           <app-table-medico></app-table-medico>
         </ng-container>
       </div>
