@@ -2,9 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { Shell } from '@app/shell/shell.service';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
-import { ConfiguracoesModule } from './@modules/configuracoes/configuracoes.module';
 
-//  router-outlet principal,
+//  router-outlet principal
 const routes: Routes = [
   Shell.childRoutes([
     {

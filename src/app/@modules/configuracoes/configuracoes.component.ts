@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { FormDadosClinicaComponent } from './components/form-dados-clinica/form-dados-clinica.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ModalAnimationComponent } from '@app/@shared/modal-animation/modal-animation.component';
+import { ClinicaService } from '../../services/clinica/clinica.service';
+import { Logger } from '../../@core/logger.service';
+
+const log = new Logger('Configurações Clínica');
 
 @Component({
   selector: 'app-configuracoes',
@@ -8,34 +11,34 @@ import { FormDadosClinicaComponent } from './components/form-dados-clinica/form-
   styleUrls: ['./configuracoes.component.scss'],
 })
 export class ConfiguracoesComponent implements OnInit {
-  public dialog = new DialogContent(this._dialog);
+  @ViewChild(ModalAnimationComponent) modal: any;
   public detailsProfile = { teste: 'Teste' };
-
-  constructor(private readonly _dialog?: MatDialog) {}
-
-  ngOnInit(): void {}
+  public dadosClinica: any;
 
   /**
    * @description: Type 1: Edição de Logo, Type 2: edição História, Type 3: edição missão, valores, visão
    */
-  openDialog(type: any) {
-    const valuesSubmit = Object.assign(this.detailsProfile, {
-      type,
-    });
-    this.dialog.openDialog(valuesSubmit);
+  public type: number;
+
+  constructor(private readonly _clinicaService: ClinicaService) {}
+
+  ngOnInit(): void {
+    this.getDadosClinica();
   }
-}
 
-export class DialogContent {
-  constructor(public dialog?: MatDialog) {}
+  public openModal(type: number, idModal: string): void {
+    this.type = type;
+    this.modal.show(idModal);
+  }
 
-  openDialog(values: any) {
-    const dialogRef = this.dialog.open(FormDadosClinicaComponent, {
-      data: values,
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
+  public getDadosClinica(): void {
+    this._clinicaService.getDadosClinica().subscribe({
+      next: (body: any) => {
+        this.dadosClinica = body;
+      },
+      error: (error: any) => {
+        log.error(error);
+      },
     });
   }
 }

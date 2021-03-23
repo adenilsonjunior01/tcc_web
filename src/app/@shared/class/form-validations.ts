@@ -15,7 +15,10 @@ export class FormValidations {
       pattern: 'Campo inválido',
       dateValidator: 'Data inválida',
       cpf: 'CPF inválido',
+      mask: 'Campo inválido',
     };
+    console.log('VALIDATORS >>', validatorName);
+    console.log('VALIDATORS >>', validatorValue);
     return config[validatorName];
   }
 
