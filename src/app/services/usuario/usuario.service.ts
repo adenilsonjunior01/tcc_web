@@ -4,11 +4,13 @@ import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map, take } from 'rxjs/operators';
 import { IPacienteModel } from '../../models/paciente-model';
+import { IDadosUserModel } from '../../models/dados-user-model';
 
 const routes = {
   user: () => `/user`,
   tipoSanguineo: () => `/tipoSanguineo`,
   paciente: () => `/paciente`,
+  dadosUser: () => `/dadosUser`,
 };
 
 @Injectable({
@@ -36,6 +38,14 @@ export class UsuarioService {
   // MAPEAR MODEL COM RETORNO DO END-POINT
   public getTiposSanguineo(): Observable<any> {
     return this._httpClient.get(routes.tipoSanguineo()).pipe(
+      catchError((error: HttpErrorResponse) => throwError(error)),
+      map((body: any) => body),
+      take(1)
+    );
+  }
+
+  public getDadosUser(): Observable<IDadosUserModel> {
+    return this._httpClient.get(routes.dadosUser()).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),
       take(1)

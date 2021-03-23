@@ -25,6 +25,11 @@ const routes: Routes = [
       loadChildren: () => import('./@modules/configuracoes/configuracoes.module').then((m) => m.ConfiguracoesModule),
       data: { title: marker('Configurações'), subtitle: marker('Configurações') },
     },
+    {
+      path: 'perfil',
+      loadChildren: () => import('./@modules/perfil/perfil.module').then((m) => m.PerfilModule),
+      data: { title: marker('Meu Perfil'), subtitle: marker('Perfil') },
+    },
   ]),
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

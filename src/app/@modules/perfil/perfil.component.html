@@ -1,1 +1,59 @@
-<p>perfil works!</p>
+<div class="container-fluid">
+  <div class="row m-0">
+    <div class="col-12 col-md-4">
+      <app-card-content isHeader="true">
+        <div class="card-header">
+          <div class="row m-0">
+            <div class="col-12 d-flex justify-content-between align-items-center p-0">
+              <h4 class="m-0">Dados Pessoais</h4>
+              <button mat-button type="button" (click)="openModal('configuracoes')">
+                <i class="feather icon-edit"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="row ms-0 mt-3">
+          <div class="col-12 d-flex justify-content-center">
+            <figure>
+              <img src="../../../../../assets/logo-svg.svg" alt="Logo" />
+              <figcaption class="text-center">Logo</figcaption>
+            </figure>
+          </div>
+          <div class="col-12">
+            <ul class="detalhes">
+              <li>
+                <i class="feather icon-map-pin"></i>
+                <span>Endereço</span>
+              </li>
+              <li>
+                <i class="feather icon-phone"></i>
+                <span>(00) 0 0000-0000 - (00) 000-0000</span>
+              </li>
+              <li class="email">
+                <i class="feather icon-mail email"></i>
+                <span class="m-0 d-inline">email@gmail.com</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </app-card-content>
+    </div>
+  </div>
+</div>
+<app-modal-animation modalID="perfil" modalClass="md-effect-10 perfil-user">
+  <div class="container md-body py-4 px-0">
+    <div class="row m-0">
+      <div class="col-12 d-flex justify-content-end">
+        <i class="feather icon-x cursor" (click)="modal.close('configuracoes')"></i>
+      </div>
+      <div class="col-12">
+        <ng-container *ngIf="perfil === 'MEDICO'">
+          <app-form-update-medico [dados]="dadosUser"></app-form-update-medico>
+        </ng-container>
+        <ng-container *ngIf="perfil === 'PACIENTE'">
+          <app-form-update-paciente [dados]="dadosUser"></app-form-update-paciente>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</app-modal-animation>

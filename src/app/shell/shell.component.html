@@ -32,6 +32,12 @@
             <i class="feather icon-home pe-3"></i>
             <span>Visão geral</span>
           </a>
+          <ng-container *ngIf="perfil === 'PACIENTE' || perfil === 'MEDICO'">
+            <a mat-list-item routerLink="/perfil" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+              <i class="feather icon-user pe-2"></i>
+              <span>Meu Perfil</span>
+            </a>
+          </ng-container>
           <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR' || perfil === 'MEDICO'">
             <a mat-list-item routerLink="/pacientes" routerLinkActive="active" (click)="isMobile && sidenav.close()">
               <i class="feather icon-users pe-3"></i>
@@ -77,7 +83,6 @@
               <span>Configurações</span>
             </a>
           </ng-container>
-
           <!-- <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
             <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding routerLinkActive="active">
               <a mat-list-item [routerLink]="node.route" routerLinkActive="active" (click)="isMobile && sidenav.close()">
@@ -125,7 +130,8 @@
                   </p>
                   <p class="m-0">
                     Abre às: <strong>{{ dadosClinica?.dtAbertura }}</strong
-                    >, encerra às <strong>{{ dadosClinica?.dtEncerramento }}</strong>
+                    >, encerra às
+                    <strong>{{ dadosClinica?.dtEncerramento }}</strong>
                   </p>
                 </div>
               </div>
