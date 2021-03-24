@@ -18,6 +18,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
 
   public perfil: string;
   public dadosUser: IDadosUserModel;
+  public type: number;
 
   constructor(private readonly _credentials: CredentialsService, private readonly _service: UsuarioService) {}
 
@@ -25,10 +26,16 @@ export class PerfilComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.perfil = this._credentials.profile;
+    this.getDadosUser();
   }
 
-  public openModal(idModal: string): void {
+  public openModal(idModal: string, type: number): void {
     this.modal.show(idModal);
+    this.type = type;
+  }
+
+  public closeModal(idModal: string): void {
+    this.modal.close(idModal);
   }
 
   public getDadosUser(): void {

@@ -7,9 +7,11 @@ import { FormUpdateMedicoComponent } from './components/form-update-medico/form-
 import { FormUpdatePacienteComponent } from './components/form-update-paciente/form-update-paciente.component';
 import { SharedModule } from '../../@shared/shared.module';
 import { MaterialModule } from '../../material.module';
+import { NgxMaskModule } from 'ngx-mask';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [PerfilComponent, FormUpdateMedicoComponent, FormUpdatePacienteComponent],
-  imports: [CommonModule, PerfilRoutingModule, SharedModule, MaterialModule],
+  imports: [CommonModule, PerfilRoutingModule, SharedModule, MaterialModule, NgxMaskModule, NgSelectModule],
 })
 export class PerfilModule {}

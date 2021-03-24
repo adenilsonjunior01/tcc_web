@@ -10,7 +10,7 @@ const routes = {
   user: () => `/user`,
   tipoSanguineo: () => `/tipoSanguineo`,
   paciente: () => `/paciente`,
-  dadosUser: () => `/dadosUser`,
+  dadosUser: () => `/user/dadosUsuario`,
 };
 
 @Injectable({

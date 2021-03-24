@@ -13,6 +13,7 @@ const log = new Logger('Update Paciente');
 })
 export class FormUpdatePacienteComponent implements OnInit {
   @Input() dados: any;
+  @Input() type: any; // Type 1: Formulário dados pessoais, type 2: Formulário convênio
 
   public form: FormGroup;
   private readonly _formConfig = new FormUpdatePaciente();

@@ -17,8 +17,6 @@ export class FormValidations {
       cpf: 'CPF inválido',
       mask: 'Campo inválido',
     };
-    console.log('VALIDATORS >>', validatorName);
-    console.log('VALIDATORS >>', validatorValue);
     return config[validatorName];
   }
 

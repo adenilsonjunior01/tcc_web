@@ -1,1 +1,40 @@
 @import "../../../theme/form";
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.detalhes {
+  li {
+    padding: 2px 0;
+    font-size: var(--f_16);
+
+    span {
+      color: var(--black);
+    }
+
+    &:hover {
+      span {
+        // color: var(--tcc-primary);
+        opacity: 0.6;
+      }
+    }
+  }
+}
+
+.email {
+  color: var(--tcc-light);
+}
+
+.perfil {
+  &__card {
+    &--icon {
+      cursor: pointer;
+      &:hover {
+        opacity: 0.6;
+        transition: 300ms;
+      }
+    }
+  }
+}

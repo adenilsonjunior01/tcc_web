@@ -6,52 +6,123 @@
           <div class="row m-0">
             <div class="col-12 d-flex justify-content-between align-items-center p-0">
               <h4 class="m-0">Dados Pessoais</h4>
-              <button mat-button type="button" (click)="openModal('configuracoes')">
+              <button mat-button type="button" (click)="openModal('perfil', 1)">
                 <i class="feather icon-edit"></i>
               </button>
             </div>
           </div>
         </div>
-        <div class="row ms-0 mt-3">
-          <div class="col-12 d-flex justify-content-center">
+        <div class="row ms-0 mt-2">
+          <!-- <div class="col-12 d-flex justify-content-center">
             <figure>
               <img src="../../../../../assets/logo-svg.svg" alt="Logo" />
-              <figcaption class="text-center">Logo</figcaption>
             </figure>
-          </div>
+          </div> -->
           <div class="col-12">
             <ul class="detalhes">
               <li>
-                <i class="feather icon-map-pin"></i>
-                <span>Endereço</span>
+                <i class="feather icon-user"></i>
+                <span>{{ dadosUser?.nome }}</span>
               </li>
               <li>
                 <i class="feather icon-phone"></i>
-                <span>(00) 0 0000-0000 - (00) 000-0000</span>
+                <span>{{ dadosUser?.telefone | mask: '0 0000-0000' }}</span>
               </li>
-              <li class="email">
-                <i class="feather icon-mail email"></i>
-                <span class="m-0 d-inline">email@gmail.com</span>
+              <li>
+                <i class="feather icon-mail"></i>
+                <span class="m-0 d-inline">{{ dadosUser?.cpf }}</span>
+              </li>
+              <li>
+                <i class="feather icon-calendar"></i>
+                <span class="m-0 d-inline">{{ dadosUser?.dtNascimento }}</span>
+              </li>
+              <li>
+                <i class="feather icon-bookmark"></i>
+                <span class="m-0 d-inline">{{ perfil }}</span>
               </li>
             </ul>
           </div>
         </div>
       </app-card-content>
     </div>
+    <!-- Dados Profissionais do Médico -->
+    <ng-container *ngIf="perfil === 'MEDICO'">
+      <div class="col-12 col-md-8 mt-3 mt-md-0">
+        <app-card-content isHeader="true">
+          <div class="card-header">
+            <div class="row m-0">
+              <div class="col-12 d-flex justify-content-between align-items-center p-0">
+                <h4 class="m-0">Dados Profissionais</h4>
+                <button mat-button type="button" (click)="openModal('perfil', 2)">
+                  <i class="feather icon-edit"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-4">
+              <ul class="detalhes">
+                <li>
+                  <span>CRM: unimed</span>
+                </li>
+                <li>
+                  <!-- <ng-container *ngFor="let item of especializacoes"></ng-container> FALTA RETORNAR DADOS DE ESPECIALIZAÇÕES NO PERFIL MÉDICO -->
+                  <span>Especialização: 4152258</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </app-card-content>
+      </div>
+    </ng-container>
+
+    <!-- Edição do Convênio-->
+    <ng-container *ngIf="perfil === 'PACIENTE'">
+      <div class="col-12 col-md-8 mt-3 mt-md-0">
+        <app-card-content isHeader="true">
+          <div class="card-header">
+            <div class="row m-0">
+              <div class="col-12 d-flex justify-content-between align-items-center p-0">
+                <h4 class="m-0">Dados Convênio</h4>
+                <button mat-button type="button" (click)="openModal('perfil', 2)">
+                  <i class="feather icon-edit"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-4">
+              <ul class="detalhes">
+                <li>
+                  <span>Convênio: unimed</span>
+                </li>
+                <li>
+                  <span>Nº Inscrição: 4152258</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </app-card-content>
+      </div>
+    </ng-container>
   </div>
 </div>
 <app-modal-animation modalID="perfil" modalClass="md-effect-10 perfil-user">
   <div class="container md-body py-4 px-0">
-    <div class="row m-0">
+    <div class="row m-0 perfil__card">
       <div class="col-12 d-flex justify-content-end">
-        <i class="feather icon-x cursor" (click)="modal.close('configuracoes')"></i>
+        <i class="feather icon-x perfil__card--icon" (click)="modal.close('perfil')"></i>
       </div>
       <div class="col-12">
         <ng-container *ngIf="perfil === 'MEDICO'">
-          <app-form-update-medico [dados]="dadosUser"></app-form-update-medico>
+          <app-form-update-medico
+            [dadosUser]="dadosUser"
+            [type]="type"
+            (closeModal)="closeModal($event)"
+          ></app-form-update-medico>
         </ng-container>
         <ng-container *ngIf="perfil === 'PACIENTE'">
-          <app-form-update-paciente [dados]="dadosUser"></app-form-update-paciente>
+          <app-form-update-paciente [dados]="dadosUser" [type]="type"></app-form-update-paciente>
         </ng-container>
       </div>
     </div>

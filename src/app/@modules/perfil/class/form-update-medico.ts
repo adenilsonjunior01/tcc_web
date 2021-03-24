@@ -9,7 +9,7 @@ export class FormUpdateMedico {
     const form = this._fb.group({
       idUser: [null],
       crm: [null],
-      especializacoes: this._fb.array([this.newEspecializacao()]),
+      especializacoes: this._fb.array([]),
     });
     return form;
   }
