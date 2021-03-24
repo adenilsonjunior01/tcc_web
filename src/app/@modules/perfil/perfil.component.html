@@ -63,11 +63,13 @@
             <div class="col-12 col-md-4">
               <ul class="detalhes">
                 <li>
-                  <span>CRM: unimed</span>
+                  <span><strong>CRM:</strong> {{ dadosUser?.medico?.crm }}</span>
                 </li>
                 <li>
-                  <!-- <ng-container *ngFor="let item of especializacoes"></ng-container> FALTA RETORNAR DADOS DE ESPECIALIZAÇÕES NO PERFIL MÉDICO -->
-                  <span>Especialização: 4152258</span>
+                  <strong>Especialização:</strong>
+                  <ng-container *ngFor="let especializacao of dadosUser?.medico?.especializacoes">
+                    <span class="d-block"> - {{ especializacao?.descEspecializacao }}</span>
+                  </ng-container>
                 </li>
               </ul>
             </div>

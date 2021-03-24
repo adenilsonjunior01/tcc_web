@@ -19,4 +19,14 @@ export class FormUpdateMedico {
       id: [null],
     });
   }
+
+  public parserForm(form: any): any {
+    let valuesSubmit = Object.assign(form, {});
+    const values = valuesSubmit.especializacoes.map((value: any) => value.id);
+    valuesSubmit = Object.assign(valuesSubmit, {
+      especializacoes: values,
+    });
+
+    return valuesSubmit;
+  }
 }

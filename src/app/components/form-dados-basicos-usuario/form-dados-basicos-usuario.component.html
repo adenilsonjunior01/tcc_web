@@ -1,7 +1,7 @@
 <form [formGroup]="form" class="dados-medicos">
   <div class="row mx-0 py-4">
     <div class="col-12 dados-medicos__icon--x d-flex justify-content-end">
-      <i class="feather icon-x" (click)="closeModalForm()"></i>
+      <i class="feather icon-x" (click)="closeModal.emit(true)"></i>
     </div>
     <div class="col-12 dados-medicos__header">
       <h3 class="m-0">Dados do Convênio Médico</h3>
@@ -45,6 +45,12 @@
         </mat-error>
       </mat-form-field>
     </div>
+    <div class="col-6">
+      <mat-checkbox class="example-margin" formControlName="compartilhaDados" color="primary"
+        >Compartilhar dados</mat-checkbox
+      >
+      <!-- <i class="feather icon-x" (click)="modal.show('compartilhar-dados')"></i> -->
+    </div>
 
     <div class="col-12 pe-0"></div>
     <div class="col-12" *ngIf="messageError !== ''">
@@ -65,3 +71,15 @@
     </div>
   </div>
 </form>
+<!-- <app-modal-animation modalID="compartilhar-dados"  modalClass="md-effect-11 compartilhar-dados">
+  <div class="container md-body">
+    <div class="row m-0">
+      <div class="col-12">
+        <i class="feather icon-x" (click)="modal.close('compartilhar-dados')"></i>
+      </div>
+      <div class="col-12">
+        <span class="m-0">Você autoriza o profissional da saúde a visualizar e editar seus dados médicos?</span>
+      </div>
+    </div>
+  </div>
+</app-modal-animation> -->

@@ -6,10 +6,10 @@ export class FormCadastroPaciente {
 
   public initForm(): FormGroup {
     return this._fb.group({
-      id: [null, Validators.required],
       idUser: [null, Validators.required],
       nuInscricaoConvenio: [null, Validators.required],
       descConvenio: [null, Validators.required],
+      compartilhaDados: [false],
     });
   }
 }

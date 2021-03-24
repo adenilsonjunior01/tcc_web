@@ -1,3 +1,6 @@
+import { IEnderecoModel } from './endereco-model';
+import { IMedicoModel } from './medico-model';
+
 export interface IDadosUserModel {
   email?: any;
   senha?: any;
@@ -8,8 +11,8 @@ export interface IDadosUserModel {
   dtNascimento: string;
   perfil?: any;
   perfisCadastrados: string[];
-  endereco?: any;
-  cpf?: any;
-  medico?: any;
+  endereco: IEnderecoModel;
+  cpf: string;
+  medico?: IMedicoModel;
   paciente?: any;
 }

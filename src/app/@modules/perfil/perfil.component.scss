@@ -17,7 +17,7 @@ ul {
     &:hover {
       span {
         // color: var(--tcc-primary);
-        opacity: 0.6;
+        // opacity: 0.6;
       }
     }
   }
@@ -36,5 +36,12 @@ ul {
         transition: 300ms;
       }
     }
+  }
+}
+
+::ng-deep .perfil-user {
+  .md-content {
+    max-height: 600px;
+    overflow-y: auto;
   }
 }

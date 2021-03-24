@@ -72,9 +72,10 @@ export class FormDadosBasicosMedicoComponent implements OnInit, OnDestroy {
 
   public submitForm(): void {
     if (this.form.valid) {
+      const values = this._formDadosBasicos.parserForm(this.form.value);
       this.loading = true;
       this._service
-        .saveMedico(this.form.value)
+        .saveMedico(values)
         .pipe(
           finalize(() => {
             this.loading = false;

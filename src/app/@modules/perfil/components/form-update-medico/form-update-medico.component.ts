@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormArray } from '@angular/forms';
 import { MedicoService } from '@app/services/medico/medico.service';
 import { FormUpdateMedico } from '../../class/form-update-medico';
@@ -19,7 +19,7 @@ const log = new Logger('Update Médico');
   templateUrl: './form-update-medico.component.html',
   styleUrls: ['./form-update-medico.component.scss'],
 })
-export class FormUpdateMedicoComponent implements OnInit, OnDestroy {
+export class FormUpdateMedicoComponent implements OnInit, OnDestroy, OnChanges {
   @Input() dadosUser: any;
   @Input() type: any;
   @Output() closeModal = new EventEmitter();
@@ -42,6 +42,17 @@ export class FormUpdateMedicoComponent implements OnInit, OnDestroy {
     private readonly _sweetAlert: SweetalertService,
     private readonly _credentials: CredentialsService
   ) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    let count: any;
+    if (this.formDadosProfissionais) {
+      count = (this.formDadosProfissionais.controls['especializacoes'] as FormGroup).controls.length;
+    }
+    if (this.dadosUser && count === 0) {
+      this.setEspecializacoes(this.dadosUser?.medico?.especializacoes);
+      this.formDadosProfissionais.get('crm').setValue(this.dadosUser?.medico?.crm);
+    }
+  }
 
   ngOnDestroy(): void {}
 
@@ -109,8 +120,9 @@ export class FormUpdateMedicoComponent implements OnInit, OnDestroy {
   }
 
   public updateDadosProfissionais() {
+    const values = this._formConfig.parserForm(this.formDadosProfissionais.value);
     this._medicoService
-      .updateMedico(this.formDadosProfissionais.value)
+      .updateMedico(values)
       .pipe(
         finalize(() => (this.loading = false)),
         untilDestroyed(this)
@@ -133,7 +145,6 @@ export class FormUpdateMedicoComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (especializacoes: any) => {
           this.especializacoes = especializacoes;
-          this.setEspecializacoes(especializacoes);
         },
       });
   }

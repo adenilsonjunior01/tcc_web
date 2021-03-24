@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, OnDestroy, EventEmitter, Output, ViewChild } from '@angular/core';
 import { UsuarioService } from '@app/services/usuario/usuario.service';
 import { CredentialsService, Token } from '../../auth/credentials.service';
 import { SweetalertService } from '../../@shared/sweetalert/sweetalert.service';
@@ -7,6 +7,7 @@ import { FormCadastroPaciente } from '../../shell/class/form-cadastro-paciente';
 import { finalize } from 'rxjs/operators';
 import { untilDestroyed } from '../../@core/until-destroyed';
 import { Logger } from '../../@core/logger.service';
+import { ModalAnimationComponent } from '../../@shared/modal-animation/modal-animation.component';
 
 const log = new Logger('Dados Básicos Paciente');
 
@@ -16,6 +17,7 @@ const log = new Logger('Dados Básicos Paciente');
   styleUrls: ['./form-dados-basicos-usuario.component.scss'],
 })
 export class FormDadosBasicosUsuarioComponent implements OnInit, OnDestroy {
+  @ViewChild(ModalAnimationComponent) modal: any;
   @Output() closeModal = new EventEmitter();
   public form: FormGroup;
   public loading = false;
@@ -41,7 +43,6 @@ export class FormDadosBasicosUsuarioComponent implements OnInit, OnDestroy {
 
   private setIdUserForm() {
     this.form.get('idUser').setValue(this.user.id);
-    this.form.get('idUser').setValue(this.user.idPerfil);
   }
 
   public clearForm(): void {
@@ -53,7 +54,7 @@ export class FormDadosBasicosUsuarioComponent implements OnInit, OnDestroy {
     if (this.form.valid) {
       this.loading = true;
       this._service
-        .updatePaciente(this.form.value)
+        .saveNewPaciente(this.form.value)
         .pipe(
           finalize(() => {
             this.loading = false;
@@ -63,6 +64,7 @@ export class FormDadosBasicosUsuarioComponent implements OnInit, OnDestroy {
         .subscribe({
           next: () => {
             this._sweetAlert.openToasty('Dados atualizados com sucesso!', 'success');
+            this.closeModal.emit(true);
           },
           error: (error: any) => {
             this.errorRequest = true;
@@ -71,9 +73,5 @@ export class FormDadosBasicosUsuarioComponent implements OnInit, OnDestroy {
           },
         });
     }
-  }
-
-  public closeModalForm() {
-    this.closeModal.emit(true);
   }
 }

@@ -59,4 +59,12 @@ export class UsuarioService {
       take(1)
     );
   }
+
+  public saveNewPaciente(user: IPacienteModel): Observable<IPacienteModel> {
+    return this._httpClient.post(routes.paciente(), user).pipe(
+      catchError((error: HttpErrorResponse) => throwError(error)),
+      map((body: any) => body),
+      take(1)
+    );
+  }
 }

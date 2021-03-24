@@ -36,6 +36,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
 
   public closeModal(idModal: string): void {
     this.modal.close(idModal);
+    // setTimeout(() => location.reload(), 800)
   }
 
   public getDadosUser(): void {
