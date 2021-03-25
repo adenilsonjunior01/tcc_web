@@ -1,8 +1,16 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, OnDestroy, SimpleChanges, EventEmitter, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormUpdatePaciente } from '../../class/form-update-paciente';
 import { PacienteService } from '../../../../services/paciente.service';
 import { Logger } from '../../../../@core/logger.service';
+import { FormUpdateUser } from '../../class/form-update-user';
+import { ListaUtilitarioMock } from '../../../../mocks/lista-utilitario-mock';
+import { IDadosUserModel } from '../../../../models/dados-user-model';
+import { UsuarioService } from '../../../../services/usuario/usuario.service';
+import { SweetalertService } from '@app/@shared/sweetalert/sweetalert.service';
+import { untilDestroyed } from '../../../../@core/until-destroyed';
+import { finalize } from 'rxjs/operators';
+import { CredentialsService, Token } from '../../../../auth/credentials.service';
 
 const log = new Logger('Update Paciente');
 
@@ -11,25 +19,121 @@ const log = new Logger('Update Paciente');
   templateUrl: './form-update-paciente.component.html',
   styleUrls: ['./form-update-paciente.component.scss'],
 })
-export class FormUpdatePacienteComponent implements OnInit {
-  @Input() dados: any;
+export class FormUpdatePacienteComponent implements OnInit, OnDestroy, OnChanges {
+  @Input() dadosUser: IDadosUserModel;
   @Input() type: any; // Type 1: Formulário dados pessoais, type 2: Formulário convênio
+  @Output() modalClose = new EventEmitter();
+
+  public formUser: FormGroup;
+  public readonly _formConfigUser = new FormUpdateUser();
+  public listaSexo: any[];
+  public listaEstados: any[];
 
   public form: FormGroup;
   private readonly _formConfig = new FormUpdatePaciente();
+  private readonly utilitariosMock = new ListaUtilitarioMock();
 
-  constructor(private readonly _pacienteService: PacienteService) {}
+  public loading = false;
+  public tokenDecode: Token;
+
+  constructor(
+    private readonly _pacienteService: PacienteService,
+    private readonly _usuarioService: UsuarioService,
+    private readonly _sweetAlert: SweetalertService,
+    private readonly _credentials: CredentialsService
+  ) {}
+
+  ngOnDestroy(): void {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.dadosUser) {
+      this.setDadosPessoais(this.dadosUser);
+      this.setDadosConvenio(this.dadosUser);
+    }
+  }
 
   ngOnInit(): void {
     this.form = this._formConfig.initForm();
+    this.formUser = this._formConfigUser.initForm();
+    this.listaSexo = this.utilitariosMock.getListaSexos();
+    this.listaEstados = this.utilitariosMock.getEstados();
+    this.decodeToken();
   }
 
   public updatePaciente(): void {
-    this._pacienteService.updatePaciente(this.form.value).subscribe({
-      next: () => {},
-      error: (error) => {
-        log.error(error);
-      },
-    });
+    this.loading = true;
+    this._pacienteService
+      .updatePaciente(this.form.value)
+      .pipe(
+        untilDestroyed(this),
+        finalize(() => (this.loading = false))
+      )
+      .subscribe({
+        next: () => {
+          this._sweetAlert.openToasty('Dados atualizado com sucesso', 'success');
+          this.modalClose.emit('perfil');
+        },
+        error: (error) => {
+          log.error(error);
+        },
+      });
+  }
+
+  /**
+   * @description atualiza usuário
+   */
+  public submitFormUser(): void {
+    if (this.formUser.valid) {
+      this.loading = true;
+      const values = this._formConfigUser.parseForm(this.formUser.value);
+      this._usuarioService
+        .updateUser(values)
+        .pipe(
+          untilDestroyed(this),
+          finalize(() => (this.loading = false))
+        )
+        .subscribe({
+          next: () => {
+            this._sweetAlert.openToasty('Usuário atualizado com sucesso', 'success');
+            this.modalClose.emit('perfil');
+          },
+          error: (error) => {
+            log.error(error);
+          },
+        });
+    }
+  }
+
+  public setDadosPessoais(dadosUser: IDadosUserModel): void {
+    this.formUser.get('nome').setValue(dadosUser?.nome);
+    this.formUser.get('cpf').setValue(dadosUser?.cpf);
+    this.formUser.get('email').setValue(dadosUser?.email);
+    this.formUser.get('sexo').setValue(dadosUser?.sexo);
+    this.formUser.get('dtNascimento').setValue(dadosUser?.dtNascimento);
+    this.formUser.get('telefone').setValue(dadosUser?.telefone);
+
+    this.formUser.controls['endereco'].get('descBairro').setValue(dadosUser?.endereco?.descBairro);
+    this.formUser.controls['endereco'].get('descRua').setValue(dadosUser?.endereco?.descRua);
+    this.formUser.controls['endereco'].get('noEstado').setValue(dadosUser?.endereco?.noEstado);
+    this.formUser.controls['endereco'].get('noCidade').setValue(dadosUser.endereco?.noCidade);
+    this.formUser.controls['endereco'].get('nuCep').setValue(dadosUser?.endereco?.nuCep);
+    this.formUser.controls['endereco'].get('numero').setValue(dadosUser?.endereco?.numero);
+  }
+
+  public setDadosConvenio(dadosUser: IDadosUserModel): void {
+    this.form.get('descConvenio').setValue(dadosUser?.paciente?.descConvenio);
+    this.form.get('nuInscricaoConvenio').setValue(dadosUser?.paciente?.nuInscricaoConvenio);
+    this.form.get('compartilhaDados').setValue(dadosUser?.paciente?.compartilhaDados);
+
+    this.form.get('idUser').setValue(this.tokenDecode.id);
+    this.form.get('idPaciente').setValue(this.tokenDecode.idPerfil);
+  }
+
+  private decodeToken(): void {
+    this.tokenDecode = this._credentials.decodeToken();
+  }
+
+  public clearFormUser(): void {
+    this.formUser.reset();
   }
 }

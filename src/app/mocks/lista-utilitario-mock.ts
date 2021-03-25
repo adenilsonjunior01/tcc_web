@@ -36,12 +36,12 @@ export class ListaUtilitarioMock {
       {
         id: 1,
         name: 'Masculino',
-        value: 'm',
+        value: 'M',
       },
       {
         id: 2,
         name: 'Feminino',
-        value: 'f',
+        value: 'F',
       },
     ];
   }

@@ -85,6 +85,7 @@ export class FormDadosBasicosMedicoComponent implements OnInit, OnDestroy {
         .subscribe({
           next: () => {
             this._sweetAlert.openToasty('Dados atualizados com sucesso!', 'success');
+            this.closeModalForm();
           },
           error: (error: any) => {
             this.errorRequest = true;

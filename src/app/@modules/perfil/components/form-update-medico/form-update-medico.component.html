@@ -163,7 +163,13 @@
 
       <div class="col-12 d-flex justify-content-end">
         <button type="button" class="btn btn-secondary me-3">limpar</button>
-        <button type="button" class="btn btn-primary" (click)="updateUser()">salvar</button>
+        <button type="button" class="btn btn-primary" (click)="updateUser()">
+          <ng-container *ngIf="loading">
+            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+            <span class="sr-only">Aguarde...</span>
+          </ng-container>
+          <span *ngIf="!loading">salvar</span>
+        </button>
       </div>
     </div>
   </form>
@@ -212,7 +218,13 @@
 
       <div class="col-12 d-flex justify-content-end">
         <button type="button" class="btn btn-secondary me-3" (click)="clearFormDadosProfissionais()">limpar</button>
-        <button type="button" class="btn btn-primary" (click)="updateDadosProfissionais()">salvar</button>
+        <button type="button" class="btn btn-primary" (click)="updateDadosProfissionais()">
+          <ng-container *ngIf="loading">
+            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+            <span class="sr-only">Aguarde...</span>
+          </ng-container>
+          <span *ngIf="!loading">salvar</span>
+        </button>
       </div>
     </div>
   </form>

@@ -5,6 +5,7 @@ import { UsuarioService } from '../../services/usuario/usuario.service';
 import { untilDestroyed } from '../../@core/until-destroyed';
 import { Logger } from '../../@core/logger.service';
 import { IDadosUserModel } from '../../models/dados-user-model';
+import { finalize } from 'rxjs/operators';
 
 const log = new Logger('Perfil');
 
@@ -17,8 +18,10 @@ export class PerfilComponent implements OnInit, OnDestroy {
   @ViewChild(ModalAnimationComponent) modal: any;
 
   public perfil: string;
+  public perfilPendente: boolean;
   public dadosUser: IDadosUserModel;
   public type: number;
+  public loading = false;
 
   constructor(private readonly _credentials: CredentialsService, private readonly _service: UsuarioService) {}
 
@@ -26,6 +29,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.perfil = this._credentials.profile;
+    this.perfilPendente = this._credentials.profilePending;
     this.getDadosUser();
   }
 
@@ -36,13 +40,19 @@ export class PerfilComponent implements OnInit, OnDestroy {
 
   public closeModal(idModal: string): void {
     this.modal.close(idModal);
-    // setTimeout(() => location.reload(), 800)
+    this.getDadosUser();
   }
 
   public getDadosUser(): void {
+    this.loading = true;
     this._service
       .getDadosUser()
-      .pipe(untilDestroyed(this))
+      .pipe(
+        untilDestroyed(this),
+        finalize(() => {
+          this.loading = false;
+        })
+      )
       .subscribe({
         next: (body: IDadosUserModel) => {
           this.dadosUser = body;

@@ -11,6 +11,7 @@ export class FormUpdatePaciente {
       idPaciente: [null],
       descConvenio: [null],
       nuInscricaoConvenio: [null],
+      compartilhaDados: [null],
     });
 
     return form;
