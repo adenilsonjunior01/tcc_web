@@ -5,10 +5,8 @@ import { FormUpdateMedico } from '../../class/form-update-medico';
 import { untilDestroyed } from '../../../../@core/until-destroyed';
 import { finalize } from 'rxjs/operators';
 import { Logger } from '../../../../@core/logger.service';
-import { FormUpdateUser } from '../../class/form-update-user';
 import { ListaUtilitarioMock } from '../../../../mocks/lista-utilitario-mock';
 import { UtilitariosService } from '../../../../services/utilitarios/utilitarios.service';
-import { UsuarioService } from '../../../../services/usuario/usuario.service';
 import { SweetalertService } from '../../../../@shared/sweetalert/sweetalert.service';
 import { CredentialsService } from '../../../../auth/credentials.service';
 
@@ -25,9 +23,7 @@ export class FormUpdateMedicoComponent implements OnInit, OnDestroy, OnChanges {
   @Output() closeModal = new EventEmitter();
 
   public formDadosProfissionais: FormGroup;
-  public formUser: FormGroup;
   public readonly _formConfig = new FormUpdateMedico();
-  public readonly _formConfigUser = new FormUpdateUser();
   private readonly utilitariosMock = new ListaUtilitarioMock();
   public loading = false;
   public errorMessage = '';
@@ -38,7 +34,6 @@ export class FormUpdateMedicoComponent implements OnInit, OnDestroy, OnChanges {
   constructor(
     private readonly _medicoService: MedicoService,
     private readonly _utilitariosService: UtilitariosService,
-    private readonly _userService: UsuarioService,
     private readonly _sweetAlert: SweetalertService,
     private readonly _credentials: CredentialsService
   ) {}
@@ -59,7 +54,6 @@ export class FormUpdateMedicoComponent implements OnInit, OnDestroy, OnChanges {
   ngOnInit(): void {
     this.getEspecializacoes();
     this.formDadosProfissionais = this._formConfig.initForm();
-    this.formUser = this._formConfigUser.initForm();
     this.listaSexo = this.utilitariosMock.getListaSexos();
     this.listaEstados = this.utilitariosMock.getEstados();
     this.decodeToken();
@@ -98,27 +92,6 @@ export class FormUpdateMedicoComponent implements OnInit, OnDestroy, OnChanges {
     this.formDadosProfissionais.reset();
   }
 
-  public updateUser() {
-    if (this.formUser.valid) {
-      const values = this._formConfigUser.parseForm(this.formUser.value);
-      this._userService
-        .updateUser(values)
-        .pipe(
-          finalize(() => (this.loading = false)),
-          untilDestroyed(this)
-        )
-        .subscribe({
-          next: () => {
-            this._sweetAlert.openToasty('Usuário atualizado com sucesso!', 'success');
-            this.closeModal.emit('perfil');
-          },
-          error: (error) => {
-            log.error(error);
-          },
-        });
-    }
-  }
-
   public updateDadosProfissionais() {
     const values = this._formConfig.parserForm(this.formDadosProfissionais.value);
     this._medicoService
@@ -147,5 +120,9 @@ export class FormUpdateMedicoComponent implements OnInit, OnDestroy, OnChanges {
           this.especializacoes = especializacoes;
         },
       });
+  }
+
+  public modalCloseEvent(idModal: string): void {
+    this.closeModal.emit(idModal);
   }
 }

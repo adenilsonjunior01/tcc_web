@@ -9,9 +9,10 @@ import { SharedModule } from '../../@shared/shared.module';
 import { MaterialModule } from '../../material.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { FormUserComponent } from './components/form-user/form-user.component';
 
 @NgModule({
-  declarations: [PerfilComponent, FormUpdateMedicoComponent, FormUpdatePacienteComponent],
+  declarations: [PerfilComponent, FormUpdateMedicoComponent, FormUpdatePacienteComponent, FormUserComponent],
   imports: [CommonModule, PerfilRoutingModule, SharedModule, MaterialModule, NgxMaskModule, NgSelectModule],
 })
 export class PerfilModule {}

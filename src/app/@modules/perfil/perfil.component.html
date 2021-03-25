@@ -63,12 +63,22 @@
             <div class="col-12 col-md-4">
               <ul class="detalhes">
                 <li>
-                  <span><strong>CRM:</strong> {{ dadosUser?.medico?.crm }}</span>
+                  <span
+                    ><strong>CRM:</strong>
+                    {{ dadosUser?.medico?.crm !== null ? dadosUser?.medico?.crm : 'Sem registro' }}</span
+                  >
                 </li>
                 <li>
                   <strong>Especialização:</strong>
                   <ng-container *ngFor="let especializacao of dadosUser?.medico?.especializacoes">
-                    <span class="d-block"> - {{ especializacao?.descEspecializacao }}</span>
+                    <span class="d-block">
+                      -
+                      {{
+                        especializacao?.descEspecializacao !== null
+                          ? especializacao?.descEspecializacao
+                          : 'Sem registro'
+                      }}</span
+                    >
                   </ng-container>
                 </li>
               </ul>
