@@ -58,7 +58,7 @@ export class FormUpdatePacienteComponent implements OnInit, OnDestroy, OnChanges
       )
       .subscribe({
         next: () => {
-          this._sweetAlert.openToasty('Dados atualizado com sucesso', 'success');
+          this._sweetAlert.openToasty('Dados atualizados com sucesso', 'success');
           this.modalClose.emit('perfil');
         },
         error: (error) => {

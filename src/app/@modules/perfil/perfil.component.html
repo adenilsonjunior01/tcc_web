@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="row m-0">
+  <div class="row m-0 d-flex justify-content-center">
     <div class="col-12 col-md-4">
       <app-card-content isHeader="true">
         <div class="card-header">
@@ -65,7 +65,7 @@
                 <li>
                   <span
                     ><strong>CRM:</strong>
-                    {{ dadosUser?.medico?.crm !== null ? dadosUser?.medico?.crm : 'Sem registro' }}</span
+                    {{ dadosUser?.medico?.crm !== null ? dadosUser?.medico?.crm : 'sem registro' }}</span
                   >
                 </li>
                 <li>
@@ -76,7 +76,7 @@
                       {{
                         especializacao?.descEspecializacao !== null
                           ? especializacao?.descEspecializacao
-                          : 'Sem registro'
+                          : 'sem registro'
                       }}</span
                     >
                   </ng-container>
@@ -90,7 +90,7 @@
 
     <!-- Edição do Convênio-->
     <ng-container *ngIf="perfil === 'PACIENTE'">
-      <div class="col-12 col-md-8 mt-3 mt-md-0">
+      <div class="col-12 col-md-4 mt-3 mt-md-0">
         <app-card-content isHeader="true">
           <div class="card-header">
             <div class="row m-0">
@@ -103,7 +103,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-12 col-md-4">
+            <div class="col-12">
               <ul class="detalhes">
                 <li>
                   <span
@@ -119,7 +119,7 @@
                     {{
                       dadosUser?.paciente?.nuInscricaoConvenio !== null
                         ? dadosUser?.paciente?.nuInscricaoConvenio
-                        : 'Sem registro'
+                        : 'sem registro'
                     }}</span
                   >
                 </li>
@@ -133,6 +133,10 @@
             </div>
           </div>
         </app-card-content>
+      </div>
+      <!-- /col-md-4-->
+      <div class="col-12 mt-3">
+        <app-update-dados-medicos></app-update-dados-medicos>
       </div>
     </ng-container>
   </div>

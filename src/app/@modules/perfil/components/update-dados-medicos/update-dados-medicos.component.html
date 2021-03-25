@@ -1,0 +1,176 @@
+<app-card-content isHeader="true">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col-12 d-flex justify-content-between align-items-center p-0">
+        <h4 class="m-0">Dados Médicos</h4>
+        <button mat-button type="button" (click)="modal.show('dados-medicos')">
+          <i class="feather icon-edit"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-3">
+      <ul class="detalhes">
+        <li>
+          <span>
+            <strong>Tipo Sanguineo:</strong>
+            {{
+              dadosMedicos?.tipoSanguineo?.descricaoTipoSanguineo !== null
+                ? dadosMedicos?.tipoSanguineo?.descricaoTipoSanguineo
+                : 'sem registro'
+            }}
+          </span>
+        </li>
+        <li>
+          <span
+            ><strong>Altura:</strong> {{ dadosMedicos?.altura !== null ? dadosMedicos?.altura : 'sem registro' }}
+          </span>
+        </li>
+        <li>
+          <span><strong>Peso:</strong> {{ dadosMedicos?.peso !== null ? dadosMedicos?.peso : 'sem registro' }} </span>
+        </li>
+      </ul>
+    </div>
+    <div class="col-12 col-md-3">
+      <ul class="detalhes">
+        <li>
+          <span>
+            <strong>Valor IMC:</strong>
+            {{ dadosMedicos?.vlImc !== null ? dadosMedicos?.vlImc : 'sem registro' }}
+          </span>
+        </li>
+        <li>
+          <span>
+            <strong>Descrição:</strong>
+            {{ dadosMedicos?.descImc !== null ? dadosMedicos?.descImc : 'sem registro' }}
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 d-flex justify-content-between align-items-center mb-3">
+      <h3 class="m-0">Detalhes</h3>
+    </div>
+
+    <div class="col-12">
+      <mat-accordion class="">
+        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <strong>Alergias</strong>
+            </mat-panel-title>
+            <mat-panel-description>
+              <!-- Type your name and age
+              <mat-icon>account_circle</mat-icon> -->
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <ul *ngIf="alergias.length > 0; else semregistro">
+            <li *ngFor="let alergia of alergias">
+              <span>{{ alergia?.descAlergia }}</span>
+            </li>
+          </ul>
+          <mat-action-row>
+            <button mat-button color="primary" (click)="nextStep()">próximo</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <strong>Medicamentos</strong>
+            </mat-panel-title>
+            <mat-panel-description>
+              <!-- Descrição das suas aler -->
+              <!-- <mat-icon>map</mat-icon> -->
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <ul *ngIf="medicamentos.length > 0; else semregistro">
+            <li *ngFor="let medicamento of medicamentos">
+              <span>{{ medicamento?.descMedicamento }}</span>
+            </li>
+          </ul>
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">voltar</button>
+            <button mat-button color="primary" (click)="nextStep()">próximo</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <strong>Doenças crônicas</strong>
+            </mat-panel-title>
+            <mat-panel-description>
+              <!-- Inform the date you wish to travel
+              <mat-icon>date_range</mat-icon> -->
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <ul *ngIf="doencasCronicas.length > 0; else semregistro">
+            <li *ngFor="let cronica of doencasCronicas">
+              <span>{{ cronica?.descDoenca }}</span>
+            </li>
+          </ul>
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">voltar</button>
+            <button mat-button color="primary" (click)="nextStep()">fechar</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</app-card-content>
+<app-modal-animation modalID="dados-medicos" modalClass="md-effect-10 dados-medicos">
+  <div class="container md-body py-4 px-0">
+    <form [formGroup]="form">
+      <div class="row m-0 dados-medicos">
+        <div class="col-12 d-flex justify-content-end">
+          <i class="feather icon-x dados-medicos__card--icon" (click)="modal.close('dados-medicos')"></i>
+        </div>
+        <div class="col-md-12 col-sm-12">
+          <h3 class="mt-3 mb-0">Dados convênio</h3>
+          <hr class="my-1" />
+        </div>
+        <div class="col-12 col-md-4">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Tipo Sanguineo</mat-label>
+            <mat-select formControlName="tipoSanguineo" required>
+              <mat-option [value]="tipo.id" *ngFor="let tipo of tiposSanguineo"
+                >{{ tipo?.descricaoTipoSanguineo }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-12 col-md-2">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Altura</mat-label>
+            <input matInput type="text" formControlName="altura" mask="0.00" [dropSpecialCharacters]="false" />
+          </mat-form-field>
+        </div>
+        <div class="col-12 col-md-2">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Peso</mat-label>
+            <input matInput type="text" formControlName="peso" mask="0.00" [dropSpecialCharacters]="false" />
+          </mat-form-field>
+        </div>
+        <div class="col-12" *ngIf="messageError !== ''">
+          <p class="m-0 is-invalid">[Error] {{ messageError }}</p>
+        </div>
+        <div class="col-12 d-flex justify-content-end">
+          <button type="button" class="btn btn-secondary me-3" (click)="clearForm()">limpar</button>
+          <button type="button" class="btn btn-primary" [disabled]="loading" (click)="updateDadosMedicos()">
+            <ng-container *ngIf="loading">
+              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+              <span class="sr-only">Aguarde...</span>
+            </ng-container>
+            <span *ngIf="!loading">salvar</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</app-modal-animation>
+<ng-template #semregistro>
+  <p class="m-0">sem registros</p>
+</ng-template>
