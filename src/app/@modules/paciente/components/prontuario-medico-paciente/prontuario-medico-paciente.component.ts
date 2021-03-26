@@ -7,11 +7,11 @@ import { FormProntuario } from '../../class/form-prontuario';
 import { IOptionsRadioButton } from '../../interfaces/options-radio-button-interface';
 
 @Component({
-  selector: 'app-prontuario-medico',
-  templateUrl: './prontuario-medico.component.html',
-  styleUrls: ['./prontuario-medico.component.scss'],
+  selector: 'app-prontuario-medico-paciente',
+  templateUrl: './prontuario-medico-paciente.component.html',
+  styleUrls: ['./prontuario-medico-paciente.component.scss'],
 })
-export class ProntuarioMedicoComponent implements OnInit, OnDestroy {
+export class ProntuarioMedicoPacienteComponent implements OnInit, OnDestroy {
   private readonly _dadosProntuarioPaciente: any;
   public dadosProntuario: any;
   public step = 0;

@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProntuarioMedicoComponent } from './prontuario-medico.component';
+import { ProtuarioMedicoComponent } from './protuario-medico.component';
 
-describe('ProntuarioMedicoComponent', () => {
-  let component: ProntuarioMedicoComponent;
-  let fixture: ComponentFixture<ProntuarioMedicoComponent>;
+describe('ProtuarioMedicoComponent', () => {
+  let component: ProtuarioMedicoComponent;
+  let fixture: ComponentFixture<ProtuarioMedicoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProntuarioMedicoComponent],
+      declarations: [ProtuarioMedicoComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProntuarioMedicoComponent);
+    fixture = TestBed.createComponent(ProtuarioMedicoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

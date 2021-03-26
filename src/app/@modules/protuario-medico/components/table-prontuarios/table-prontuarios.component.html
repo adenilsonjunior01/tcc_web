@@ -1,0 +1,29 @@
+<div class="row pt-2 m-0">
+  <div class="col-12 table-responsive">
+    <table class="w-100 table-tcc">
+      <thead class="text-uppercase">
+        <tr>
+          <th scope="col">Médico</th>
+          <th scope="col">Procedimento</th>
+          <th scope="col">Data</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let especialidade of especialidades">
+          <td class="td-format">{{ especialidade?.name }}</td>
+          <td class="td-format">{{ especialidade?.perfil }}</td>
+          <td class="td-format">{{ especialidade?.tipoSanguineo }}</td>
+          <td class="td-format width-td">
+            <button mat-raised-button color="primary" type="button" class="btn-secondary me-2">
+              <i class="feather icon-download"></i>
+            </button>
+            <button mat-raised-button color="primary" type="button" class="btn-success me-2">
+              <i class="feather icon-eye"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

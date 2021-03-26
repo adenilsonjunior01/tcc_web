@@ -37,7 +37,7 @@ export class TableMedicoComponent implements OnInit {
       cancelButtonText: `Não`,
     }).then((result) => {
       if (result.isConfirmed) {
-        this._router.navigate(['/pacientes/prontuario'], { state: paciente });
+        this._router.navigate(['/pacientes/prontuario-paciente'], { state: paciente });
       }
     });
   }

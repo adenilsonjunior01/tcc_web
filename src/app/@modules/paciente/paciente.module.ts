@@ -11,7 +11,7 @@ import { ConsultaMedicaComponent } from './components/consulta-medica/consulta-m
 import { DetalhesPacienteComponent } from './components/detalhes-paciente/detalhes-paciente.component';
 import { TablePacientesComponent } from './components/table-pacientes/table-pacientes.component';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { ProntuarioMedicoComponent } from './components/prontuario-medico/prontuario-medico.component';
+import { ProntuarioMedicoPacienteComponent } from './components/prontuario-medico-paciente/prontuario-medico-paciente.component';
 import { FormNovoPacienteComponent } from './components/form-novo-paciente/form-novo-paciente.component';
 import { NgxMaskModule } from 'ngx-mask';
 
@@ -22,7 +22,7 @@ import { NgxMaskModule } from 'ngx-mask';
     TableMedicoComponent,
     ConsultaMedicaComponent,
     DetalhesPacienteComponent,
-    ProntuarioMedicoComponent,
+    ProntuarioMedicoPacienteComponent,
     FormNovoPacienteComponent,
   ],
   imports: [

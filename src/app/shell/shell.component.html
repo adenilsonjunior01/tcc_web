@@ -38,6 +38,14 @@
               <span>Meu Perfil</span>
             </a>
           </ng-container>
+          <ng-container>
+            <!--*ngIf="perfil === 'PACIENTE'"-->
+            <a mat-list-item routerLink="/prontuario" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+              <i class="feather icon-list pe-2"></i>
+              <span>Prontuários</span>
+            </a>
+          </ng-container>
+
           <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR' || perfil === 'MEDICO'">
             <a mat-list-item routerLink="/pacientes" routerLinkActive="active" (click)="isMobile && sidenav.close()">
               <i class="feather icon-users pe-3"></i>

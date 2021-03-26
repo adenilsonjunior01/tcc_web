@@ -30,6 +30,12 @@ const routes: Routes = [
       loadChildren: () => import('./@modules/perfil/perfil.module').then((m) => m.PerfilModule),
       data: { title: marker('Meu Perfil'), subtitle: marker('Perfil') },
     },
+    {
+      path: 'prontuario',
+      loadChildren: () =>
+        import('./@modules/protuario-medico/protuario-medico.module').then((m) => m.ProtuarioMedicoModule),
+      data: { title: marker('Prontuário Médico'), subtitle: marker('Prontuário') },
+    },
   ]),
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
