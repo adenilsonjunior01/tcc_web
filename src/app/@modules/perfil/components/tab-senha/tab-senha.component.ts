@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../../../auth/authentication.service';
 import { SweetalertService } from '../../../../@shared/sweetalert/sweetalert.service';
@@ -10,15 +10,18 @@ import { untilDestroyed } from '../../../../@core/until-destroyed';
   templateUrl: './tab-senha.component.html',
   styleUrls: ['./tab-senha.component.scss'],
 })
-export class TabSenhaComponent implements OnInit {
+export class TabSenhaComponent implements OnInit, OnDestroy {
   public loading = false;
-
+  hide = true;
+  hide2 = true;
   public formResetPassword: FormGroup;
   constructor(
     private readonly _authenticationService: AuthenticationService,
     private readonly _formBuilder: FormBuilder,
     private readonly _sweetAlert: SweetalertService
   ) {}
+
+  ngOnDestroy(): void {}
 
   ngOnInit(): void {
     this.initForm();
@@ -38,6 +41,7 @@ export class TabSenhaComponent implements OnInit {
         .subscribe({
           next: (value) => {
             this._sweetAlert.openToasty('Senha atualizada com sucesso', 'success');
+            this.formResetPassword.reset();
           },
           error: (error) => console.log(error),
         });
@@ -49,5 +53,9 @@ export class TabSenhaComponent implements OnInit {
       password: [null, Validators.required],
       passwordConfirmation: [null, Validators.required],
     });
+  }
+
+  public clearForm() {
+    this.formResetPassword.reset();
   }
 }
