@@ -13,4 +13,12 @@ export class FormUpdateDadosMedicos {
     });
     return form;
   }
+
+  public parserForm(form: any): any {
+    let valuesSubmit = Object.assign(form, {});
+    valuesSubmit.peso = parseFloat(valuesSubmit.peso);
+    valuesSubmit.altura = parseFloat(valuesSubmit.altura);
+
+    return valuesSubmit;
+  }
 }

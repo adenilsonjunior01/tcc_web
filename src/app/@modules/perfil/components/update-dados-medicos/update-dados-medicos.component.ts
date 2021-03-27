@@ -69,6 +69,10 @@ export class UpdateDadosMedicosComponent implements OnInit, OnDestroy {
     this.doencasCronicas = dadosMedicos.doencasCronicas;
     this.medicamentos = dadosMedicos.medicamentos;
     this.alergias = dadosMedicos.alergias;
+
+    this.form.get('altura').setValue(dadosMedicos.altura);
+    this.form.get('peso').setValue(dadosMedicos.peso);
+    this.form.get('tipoSanguineo').setValue(dadosMedicos.tipoSanguineo.id);
   }
 
   public getTiposSanguineo(): void {
@@ -89,8 +93,9 @@ export class UpdateDadosMedicosComponent implements OnInit, OnDestroy {
   public updateDadosMedicos(): void {
     if (this.form.valid) {
       this.loading = true;
+      const values = this._formConfig.parserForm(this.form.value);
       this._dadosMedicosService
-        .updateDadosMedicos(this.form.value)
+        .updateDadosMedicos(values)
         .pipe(
           untilDestroyed(this),
           finalize(() => (this.loading = false))
@@ -98,6 +103,7 @@ export class UpdateDadosMedicosComponent implements OnInit, OnDestroy {
         .subscribe({
           next: (body: any) => {
             this._sweetAlert.openToasty('Dados atualizados com sucesso', 'success');
+            this.getDadosMedicos();
           },
           error: (error) => {
             log.error(error);

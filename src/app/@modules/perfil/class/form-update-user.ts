@@ -11,7 +11,6 @@ export class FormUpdateUser {
     const form = this._fb.group({
       nome: [null, Validators.required],
       cpf: [null, Validators.required],
-      email: [null, [Validators.required, Validators.email]],
       sexo: [null, Validators.required],
       dtNascimento: [null, [Validators.required, FormValidations.dateValidator]],
       telefone: [null, Validators.required],

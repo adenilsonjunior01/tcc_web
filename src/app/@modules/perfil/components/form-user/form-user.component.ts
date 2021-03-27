@@ -76,7 +76,6 @@ export class FormUserComponent implements OnInit, OnChanges, OnDestroy {
     if (this.formUser && dadosUser) {
       this.formUser.get('nome').setValue(dadosUser?.nome);
       this.formUser.get('cpf').setValue(dadosUser?.cpf);
-      this.formUser.get('email').setValue(dadosUser?.email);
       this.formUser.get('sexo').setValue(dadosUser?.sexo);
       this.formUser.get('dtNascimento').setValue(dayjs(dadosUser?.dtNascimento).format('DD/MM/YYYY'));
       this.formUser.get('telefone').setValue(dadosUser?.telefone);

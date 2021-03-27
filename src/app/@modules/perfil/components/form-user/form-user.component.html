@@ -2,7 +2,7 @@
   <div class="card-header">
     <div class="row m-0 py-2">
       <div class="col-12 d-flex justify-content-between align-items-center p-0">
-        <h4 class="m-0">Dados Pessoais</h4>
+        <h4 class="m-0">Editar Dados Pessoais</h4>
       </div>
     </div>
   </div>
@@ -46,15 +46,6 @@
           />
           <mat-error>
             <app-error-control-message [control]="formUser.controls.cpf" label="Telefone"></app-error-control-message>
-          </mat-error>
-        </mat-form-field>
-      </div>
-      <div class="col-12 col-md-5">
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>E-mail</mat-label>
-          <input type="text" matInput placeholder="Digite o e-mail" autocomplete="off" formControlName="email" />
-          <mat-error>
-            <app-error-control-message [control]="formUser.controls.email" label="E-mail"></app-error-control-message>
           </mat-error>
         </mat-form-field>
       </div>
