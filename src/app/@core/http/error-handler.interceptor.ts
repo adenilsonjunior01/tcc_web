@@ -76,7 +76,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
         return toasty.openToasty('Usuário ou senha inválidos.', 'error');
       }
       case 404:
-        return toasty.openToasty('Erro ao completar requisição.', 'error');
+        return toasty.openToasty('Nenhum registro encontrado.', 'error');
       case 500:
         return toasty.openToasty('Desculpe, ocorreu um erro interno, conte o suporte.', 'error');
       default:

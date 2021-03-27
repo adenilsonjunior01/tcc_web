@@ -133,7 +133,7 @@ export class AgendamentoConsultaComponent implements OnInit, OnChanges, OnDestro
       .getEspecializacoes()
       .pipe(untilDestroyed(this))
       .subscribe({
-        next: (especializacoes: any) => (this.especializacoes = especializacoes),
+        next: (especializacoes: IEspecializacaoModel[]) => (this.especializacoes = especializacoes),
       });
   }
 }

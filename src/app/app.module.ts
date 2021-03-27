@@ -1,3 +1,4 @@
+import { MedicosModule } from './@modules/medicos/medicos.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -45,7 +46,8 @@ registerLocaleData(localePt);
     CadastroModule,
     ConfiguracoesModule,
     PerfilModule,
-    ProtuarioMedicoModule, // must be imported as the last module as it contains the fallback route
+    ProtuarioMedicoModule,
+    MedicosModule, // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],

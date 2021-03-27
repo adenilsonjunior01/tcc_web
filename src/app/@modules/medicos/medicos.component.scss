@@ -1,0 +1,8 @@
+@import "../../../theme/form";
+@import "../../../theme/table";
+
+.error-msg {
+  color: var(--dark);
+  font-size: var(--f_16);
+  font-weight: 500;
+}

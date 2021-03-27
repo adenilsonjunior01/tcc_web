@@ -53,6 +53,13 @@
             </a>
           </ng-container>
 
+          <ng-container *ngIf="perfil === 'ADMINISTRADOR'">
+            <a mat-list-item routerLink="/medicos" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+              <i class="feather icon-user-plus pe-3"></i>
+              <span>Médicos</span>
+            </a>
+          </ng-container>
+
           <a mat-list-item routerLink="/about" routerLinkActive="active" (click)="isMobile && sidenav.close()">
             <span>Temp</span>
           </a>

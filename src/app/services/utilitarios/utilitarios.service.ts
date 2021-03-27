@@ -14,7 +14,7 @@ const routes = {
 export class UtilitariosService {
   constructor(private readonly _httpClient: HttpClient) {}
 
-  public getEspecializacoes(): Observable<IEspecializacaoModel> {
+  public getEspecializacoes(): Observable<IEspecializacaoModel[]> {
     return this._httpClient.get(routes.especializacoes()).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),

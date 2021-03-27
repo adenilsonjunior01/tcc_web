@@ -36,6 +36,11 @@ const routes: Routes = [
         import('./@modules/protuario-medico/protuario-medico.module').then((m) => m.ProtuarioMedicoModule),
       data: { title: marker('Prontuário Médico'), subtitle: marker('Prontuário') },
     },
+    {
+      path: 'medicos',
+      loadChildren: () => import('./@modules/medicos/medicos.module').then((m) => m.MedicosModule),
+      data: { title: marker('Listagem de Médicos'), subtitle: marker('Médicos') },
+    },
   ]),
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

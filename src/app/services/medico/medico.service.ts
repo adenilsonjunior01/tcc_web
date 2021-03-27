@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { take, map, catchError } from 'rxjs/operators';
 import { IMedicoModel } from '../../models/medico-model';
+import { IDadosTodosMedicosModel } from '../../models/dados-todos-medicos-model';
 
 const routes = {
   medico: () => `/medico`,
@@ -40,7 +41,7 @@ export class MedicoService {
     );
   }
 
-  public getTodosMedicos(): Observable<any> {
+  public getTodosMedicos(): Observable<IDadosTodosMedicosModel[]> {
     return this._httpClient.get(routes.medicoAll()).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),
