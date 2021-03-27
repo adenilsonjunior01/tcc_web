@@ -75,7 +75,7 @@ export class AuthenticationService {
     this.perfil = decode.perfis;
   }
 
-  public resetPasswordTemporary(context: IResetPassword): Observable<any> {
+  public resetPassword(context: IResetPassword): Observable<any> {
     return this._httpClient.put(routes.resetPassword(), context).pipe(
       map((body: any) => body),
       catchError((error: HttpErrorResponse) => throwError(error)),

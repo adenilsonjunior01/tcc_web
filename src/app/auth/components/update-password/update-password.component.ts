@@ -59,7 +59,7 @@ export class UpdatePasswordComponent implements OnInit, OnDestroy, AfterViewInit
     if (this.form.valid) {
       this.isLoading = true;
       this._service
-        .resetPasswordTemporary(this.form.value)
+        .resetPassword(this.form.value)
         .pipe(
           finalize(() => {
             this.isLoading = false;

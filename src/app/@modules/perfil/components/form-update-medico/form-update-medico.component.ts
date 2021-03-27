@@ -93,6 +93,7 @@ export class FormUpdateMedicoComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   public updateDadosProfissionais() {
+    this.loading = true;
     const values = this._formConfig.parserForm(this.formDadosProfissionais.value);
     this._medicoService
       .updateMedico(values)

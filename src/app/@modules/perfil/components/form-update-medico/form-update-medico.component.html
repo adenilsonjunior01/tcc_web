@@ -1,59 +1,110 @@
-<!-- Formulário Dados Pessoais-->
-<ng-container *ngIf="type === 1">
-  <app-form-user [dadosUser]="dadosUser" (modalClose)="modalCloseEvent($event)"></app-form-user>
-</ng-container>
-
-<ng-container *ngIf="type === 2">
-  <form [formGroup]="formDadosProfissionais">
-    <div class="row m-0">
-      <div class="col-md-12 col-sm-12">
-        <h3 class="mt-3 mb-0">Dados básicos</h3>
-        <hr class="my-1" />
-      </div>
+<mat-tab-group>
+  <mat-tab label="PERFIL">
+    <app-tab-perfil [dadosUser]="dadosUser"></app-tab-perfil>
+  </mat-tab>
+  <mat-tab label="DADOS PROFISSIONAIS">
+    <div class="row pt-4">
       <div class="col-12 col-md-4">
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>CRM</mat-label>
-          <input type="text" matInput autocomplete="off" formControlName="crm" />
-        </mat-form-field>
-      </div>
-      <div class="col-12">
-        <ng-container
-          formArrayName="especializacoes"
-          *ngFor="let especializacao of formArrayEspecializacoes.controls; index as i"
-        >
-          <ng-container [formGroupName]="i">
-            <div class="row">
-              <div class="col-6">
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>Especializações</mat-label>
-                  <mat-select formControlName="id">
-                    <mat-option [value]="especializacao.id" *ngFor="let especializacao of especializacoes">{{
-                      especializacao.descEspecializacao
-                    }}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-              <div class="col-2 d-flex align-items-center dados-medicos__icon" *ngIf="i > 0">
-                <i class="feather icon-x" (click)="removeObject(i)"></i>
+        <app-card-content isHeader="true">
+          <div class="card-header">
+            <div class="row m-0">
+              <div class="col-12 d-flex justify-content-between align-items-center p-0">
+                <h4 class="m-0">Detalhes</h4>
               </div>
             </div>
-          </ng-container>
-        </ng-container>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <ul class="detalhes">
+                <li>
+                  <span
+                    ><strong>CRM:</strong>
+                    {{ dadosUser?.medico?.crm !== null ? dadosUser?.medico?.crm : 'sem registro' }}</span
+                  >
+                </li>
+                <li>
+                  <strong>Especialização:</strong>
+                  <ng-container *ngFor="let especializacao of dadosUser?.medico?.especializacoes">
+                    <span class="d-block">
+                      -
+                      {{
+                        especializacao?.descEspecializacao !== null
+                          ? especializacao?.descEspecializacao
+                          : 'sem registro'
+                      }}</span
+                    >
+                  </ng-container>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </app-card-content>
       </div>
-      <div class="col-12 mt-2">
-        <button class="btn btn-primary" type="button" (click)="addNewEspecializacao()">Nova especialização</button>
-      </div>
-
-      <div class="col-12 d-flex justify-content-end">
-        <button type="button" class="btn btn-secondary me-3" (click)="clearFormDadosProfissionais()">limpar</button>
-        <button type="button" class="btn btn-primary" (click)="updateDadosProfissionais()">
-          <ng-container *ngIf="loading">
-            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-            <span class="sr-only">Aguarde...</span>
-          </ng-container>
-          <span *ngIf="!loading">salvar</span>
-        </button>
+      <div class="col-12 col-md-8">
+        <app-card-content isHeader="true">
+          <div class="card-header">
+            <div class="row m-0">
+              <div class="col-12 d-flex justify-content-between align-items-center p-0">
+                <h4 class="m-0">Dados Profissionais</h4>
+              </div>
+            </div>
+          </div>
+          <form [formGroup]="formDadosProfissionais">
+            <div class="row m-0">
+              <div class="col-12 col-md-4">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>CRM</mat-label>
+                  <input type="text" matInput autocomplete="off" formControlName="crm" />
+                </mat-form-field>
+              </div>
+              <div class="col-12">
+                <ng-container
+                  formArrayName="especializacoes"
+                  *ngFor="let especializacao of formArrayEspecializacoes.controls; index as i"
+                >
+                  <ng-container [formGroupName]="i">
+                    <div class="row">
+                      <div class="col-6">
+                        <mat-form-field appearance="outline" class="w-100">
+                          <mat-label>Especializações</mat-label>
+                          <mat-select formControlName="id">
+                            <mat-option [value]="especializacao.id" *ngFor="let especializacao of especializacoes">{{
+                              especializacao.descEspecializacao
+                            }}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-2 d-flex align-items-center dados-medicos__icon" *ngIf="i > 0">
+                        <i class="feather icon-x" (click)="removeObject(i)"></i>
+                      </div>
+                    </div>
+                  </ng-container>
+                </ng-container>
+              </div>
+              <div class="col-12 mt-2">
+                <button class="btn btn-primary" type="button" (click)="addNewEspecializacao()">
+                  Nova especialização
+                </button>
+              </div>
+              <div class="col-12 d-flex justify-content-end">
+                <button type="button" class="btn btn-secondary me-3" (click)="clearFormDadosProfissionais()">
+                  limpar
+                </button>
+                <button type="button" class="btn btn-primary" (click)="updateDadosProfissionais()" [disabled]="loading">
+                  <ng-container *ngIf="loading">
+                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    <span class="sr-only">Aguarde...</span>
+                  </ng-container>
+                  <span *ngIf="!loading">salvar</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </app-card-content>
       </div>
     </div>
-  </form>
-</ng-container>
+  </mat-tab>
+  <mat-tab label="SENHA">
+    <app-tab-senha></app-tab-senha>
+  </mat-tab>
+</mat-tab-group>

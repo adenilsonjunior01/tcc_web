@@ -1,142 +1,15 @@
 <div class="container-fluid">
-  <div class="row m-0 d-flex justify-content-center">
-    <div class="col-12 col-md-4">
-      <app-card-content isHeader="true">
-        <div class="card-header">
-          <div class="row m-0">
-            <div class="col-12 d-flex justify-content-between align-items-center p-0">
-              <h4 class="m-0">Dados Pessoais</h4>
-              <button mat-button type="button" (click)="openModal('perfil', 1)">
-                <i class="feather icon-edit"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="row ms-0 mt-2">
-          <!-- <div class="col-12 d-flex justify-content-center">
-            <figure>
-              <img src="../../../../../assets/logo-svg.svg" alt="Logo" />
-            </figure>
-          </div> -->
-          <div class="col-12">
-            <ul class="detalhes">
-              <li>
-                <i class="feather icon-user"></i>
-                <span>{{ dadosUser?.nome }}</span>
-              </li>
-              <li>
-                <i class="feather icon-phone"></i>
-                <span>{{ dadosUser?.telefone | mask: '0 0000-0000' }}</span>
-              </li>
-              <li>
-                <i class="feather icon-mail"></i>
-                <span class="m-0 d-inline">{{ dadosUser?.cpf }}</span>
-              </li>
-              <li>
-                <i class="feather icon-calendar"></i>
-                <span class="m-0 d-inline">{{ dadosUser?.dtNascimento }}</span>
-              </li>
-              <li>
-                <i class="feather icon-bookmark"></i>
-                <span class="m-0 d-inline">{{ perfil }}</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </app-card-content>
-    </div>
-    <!-- Dados Profissionais do Médico -->
-    <ng-container *ngIf="perfil === 'MEDICO'">
-      <div class="col-12 col-md-8 mt-3 mt-md-0">
-        <app-card-content isHeader="true">
-          <div class="card-header">
-            <div class="row m-0">
-              <div class="col-12 d-flex justify-content-between align-items-center p-0">
-                <h4 class="m-0">Dados Profissionais</h4>
-                <button mat-button type="button" (click)="openModal('perfil', 2)" *ngIf="!perfilPendente">
-                  <i class="feather icon-edit"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12 col-md-4">
-              <ul class="detalhes">
-                <li>
-                  <span
-                    ><strong>CRM:</strong>
-                    {{ dadosUser?.medico?.crm !== null ? dadosUser?.medico?.crm : 'sem registro' }}</span
-                  >
-                </li>
-                <li>
-                  <strong>Especialização:</strong>
-                  <ng-container *ngFor="let especializacao of dadosUser?.medico?.especializacoes">
-                    <span class="d-block">
-                      -
-                      {{
-                        especializacao?.descEspecializacao !== null
-                          ? especializacao?.descEspecializacao
-                          : 'sem registro'
-                      }}</span
-                    >
-                  </ng-container>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </app-card-content>
+  <div class="row m-0">
+    <ng-container *ngIf="perfil === 'PACIENTE'">
+      <div class="col-12">
+        <app-form-update-paciente [dadosUser]="dadosUser"></app-form-update-paciente>
       </div>
     </ng-container>
 
-    <!-- Edição do Convênio-->
-    <ng-container *ngIf="perfil === 'PACIENTE'">
-      <div class="col-12 col-md-4 mt-3 mt-md-0">
-        <app-card-content isHeader="true">
-          <div class="card-header">
-            <div class="row m-0">
-              <div class="col-12 d-flex justify-content-between align-items-center p-0">
-                <h4 class="m-0">Dados Convênio</h4>
-                <button mat-button type="button" (click)="openModal('perfil', 2)" *ngIf="!perfilPendente">
-                  <i class="feather icon-edit"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12">
-              <ul class="detalhes">
-                <li>
-                  <span
-                    ><strong>Convênio:</strong>
-                    {{
-                      dadosUser?.paciente?.descConvenio !== null ? dadosUser?.paciente?.descConvenio : 'Sem registro'
-                    }}</span
-                  >
-                </li>
-                <li>
-                  <span
-                    ><strong>Nº Inscrição:</strong>
-                    {{
-                      dadosUser?.paciente?.nuInscricaoConvenio !== null
-                        ? dadosUser?.paciente?.nuInscricaoConvenio
-                        : 'sem registro'
-                    }}</span
-                  >
-                </li>
-                <li>
-                  <span
-                    ><strong>Compartilhar dados:</strong>
-                    {{ dadosUser?.paciente?.compartilhaDados === true ? 'Sim' : 'Não' }}</span
-                  >
-                </li>
-              </ul>
-            </div>
-          </div>
-        </app-card-content>
-      </div>
-      <!-- /col-md-4-->
-      <div class="col-12 mt-3">
-        <app-update-dados-medicos></app-update-dados-medicos>
+    <!-- Dados Profissionais do Médico -->
+    <ng-container *ngIf="perfil === 'MEDICO'">
+      <div class="col-12">
+        <app-form-update-medico [dadosUser]="dadosUser"></app-form-update-medico>
       </div>
     </ng-container>
   </div>
@@ -154,13 +27,6 @@
             [type]="type"
             (closeModal)="closeModal($event)"
           ></app-form-update-medico>
-        </ng-container>
-        <ng-container *ngIf="perfil === 'PACIENTE'">
-          <app-form-update-paciente
-            [dadosUser]="dadosUser"
-            [type]="type"
-            (modalClose)="closeModal($event)"
-          ></app-form-update-paciente>
         </ng-container>
       </div>
     </div>

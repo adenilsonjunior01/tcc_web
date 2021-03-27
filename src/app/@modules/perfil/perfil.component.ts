@@ -25,7 +25,9 @@ export class PerfilComponent implements OnInit, OnDestroy {
 
   constructor(private readonly _credentials: CredentialsService, private readonly _service: UsuarioService) {}
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.dadosUser = null;
+  }
 
   ngOnInit(): void {
     this.perfil = this._credentials.profile;

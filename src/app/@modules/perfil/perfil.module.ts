@@ -11,6 +11,8 @@ import { NgxMaskModule } from 'ngx-mask';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormUserComponent } from './components/form-user/form-user.component';
 import { UpdateDadosMedicosComponent } from './components/update-dados-medicos/update-dados-medicos.component';
+import { TabPerfilComponent } from './components/tab-perfil/tab-perfil.component';
+import { TabSenhaComponent } from './components/tab-senha/tab-senha.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { UpdateDadosMedicosComponent } from './components/update-dados-medicos/u
     FormUpdatePacienteComponent,
     FormUserComponent,
     UpdateDadosMedicosComponent,
+    TabPerfilComponent,
+    TabSenhaComponent,
   ],
   imports: [CommonModule, PerfilRoutingModule, SharedModule, MaterialModule, NgxMaskModule, NgSelectModule],
 })
