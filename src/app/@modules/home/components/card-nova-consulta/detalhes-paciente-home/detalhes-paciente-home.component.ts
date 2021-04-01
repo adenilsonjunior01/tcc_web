@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IPacienteModel } from '../../../../../models/paciente-model';
 
 @Component({
   selector: 'app-detalhes-paciente-home',
@@ -6,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./detalhes-paciente-home.component.scss'],
 })
 export class DetalhesPacienteHomeComponent implements OnInit {
-  @Input() paciente: any;
+  @Input() paciente: IPacienteModel;
 
   constructor() {}
 

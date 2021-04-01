@@ -101,8 +101,8 @@ export class AgendamentoConsultaComponent implements OnInit, OnChanges, OnDestro
       cancelButtonText: `Não`,
     }).then((result) => {
       if (result.isConfirmed) {
-        this.formConsulta.get('paciente').reset();
-        this.formConsulta.get('procedimento').reset();
+        // this.formConsulta.get('paciente').reset();
+        // this.formConsulta.get('procedimento').reset();
         this.stepId.emit(0);
       }
     });

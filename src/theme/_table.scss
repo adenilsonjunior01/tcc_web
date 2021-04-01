@@ -160,6 +160,7 @@
 
 .table-responsive {
   overflow-x: auto;
+  height: calc(100vh - 7rem);
   -webkit-overflow-scrolling: touch;
 }
 
@@ -225,7 +226,6 @@ table > thead > tr > th {
 
 .name-profile {
   padding-left: 15px;
-  padding-top: 10px;
 
   .name {
     font-size: var(--f_16);

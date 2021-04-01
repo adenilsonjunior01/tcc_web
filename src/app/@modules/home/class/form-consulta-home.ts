@@ -12,13 +12,16 @@ export class FormConsultaHome {
       medico: [null, Validators.required],
       data: [null, Validators.required],
       horario: [null, Validators.required],
-      sintomas: [null],
+      observacao: [null],
       paciente: this._fb.group({
-        nome: [null, Validators.required],
-        cpf: [null, Validators.required],
-        email: [null, Validators.required],
-        dtNascimento: [null, Validators.required],
-        sexo: [null, Validators.required],
+        idUser: [null],
+        nome: [null],
+        cpf: [null],
+        compartilhaDados: [null],
+        sexo: [null],
+        descConvenio: [null],
+        nuInscricaoConvenio: [null],
+        telefone: [null],
       }),
     });
   }

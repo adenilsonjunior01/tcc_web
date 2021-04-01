@@ -31,6 +31,10 @@ export class ConfiguracoesComponent implements OnInit {
     this.modal.show(idModal);
   }
 
+  public closeModal(idModal?: string): void {
+    this.modal.close(idModal);
+  }
+
   public getDadosClinica(): void {
     this._clinicaService.getDadosClinica().subscribe({
       next: (body: any) => {

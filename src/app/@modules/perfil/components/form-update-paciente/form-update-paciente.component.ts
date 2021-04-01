@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, OnChanges, OnDestroy, SimpleChanges, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormUpdatePaciente } from '../../class/form-update-paciente';
-import { PacienteService } from '../../../../services/paciente.service';
 import { Logger } from '../../../../@core/logger.service';
 import { IDadosUserModel } from '../../../../models/dados-user-model';
 import { SweetalertService } from '@app/@shared/sweetalert/sweetalert.service';
@@ -13,6 +12,7 @@ import { FormUpdateUser } from '../../class/form-update-user';
 import { ListaUtilitarioMock } from '../../../../mocks/lista-utilitario-mock';
 import * as dayjs from 'dayjs';
 import { UsuarioService } from '../../../../services/usuario/usuario.service';
+import { PacienteService } from '../../../../services/paciente/paciente.service';
 
 const log = new Logger('Update Paciente');
 
@@ -80,7 +80,7 @@ export class FormUpdatePacienteComponent implements OnInit, OnDestroy, OnChanges
           this._sweetAlert.openToasty('Dados atualizados com sucesso', 'success');
           this.modalClose.emit('perfil');
         },
-        error: (error) => {
+        error: (error: any) => {
           log.error(error);
         },
       });

@@ -78,20 +78,10 @@
                   </mat-error>
                 </mat-form-field>
               </div>
-              <div class="col-12">
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>Sintomas (opcional)</mat-label>
-                  <textarea
-                    matInput
-                    placeholder="Digite os sintomas do paciente aqui..."
-                    formControlName="sintomas"
-                  ></textarea>
-                </mat-form-field>
-              </div>
             </div>
-            <div class="col-12">
-              <!-- <app-form-debug [form]="form"></app-form-debug> -->
-            </div>
+            <!-- <div class="col-12">
+              <app-form-debug [form]="form"></app-form-debug>
+            </div> -->
           </form>
         </div>
       </div>
@@ -102,11 +92,6 @@
               <div class="row m-0 height-row animate__fadeInRight">
                 <div class="col-12">
                   <h3 class="text-uppercase mb-1">Selecione um Paciente já Cadastrado</h3>
-                  <!-- <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Pesquise Paciente pelo nome ou CPF</mat-label>
-                    <mat-icon matSuffix>search</mat-icon>
-                    <input matInput />
-                  </mat-form-field> -->
                   <mat-form-field appearance="outline" class="w-100">
                     <mat-label>Pesquise paciente pelo nome ou CPF</mat-label>
                     <mat-icon matSuffix>search</mat-icon>
@@ -118,6 +103,7 @@
                       [formControl]="search"
                       [matAutocomplete]="auto"
                     />
+
                     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                       <mat-option *ngFor="let option of filteredOptions | async" [value]="option.nome">
                         <span class="ms-2 busca-span">Nome:</span> {{ option.nome }}
@@ -125,48 +111,72 @@
                       </mat-option>
                     </mat-autocomplete>
                   </mat-form-field>
-                  <!-- <ng-lottie [options]="options" height="220px"></ng-lottie> -->
+                  <ng-lottie [options]="options" height="220px" *ngIf="loading"></ng-lottie>
+                </div>
+                <div class="col-12" *ngIf="pacientes.length > 0">
+                  <table class="table table-striped">
+                    <thead class="text-uppercase">
+                      <tr class="text-center">
+                        <th scope="col">Nome</th>
+                        <th scope="col">Documento</th>
+                        <th scope="col">Convênio</th>
+                        <th scope="col">Inscrição</th>
+                        <th scope="col">Telefone</th>
+                        <th scope="col">Ações</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let paciente of pacientes">
+                        <td>{{ paciente?.nome }}</td>
+                        <td>{{ paciente?.cpf }}</td>
+                        <td>{{ paciente?.descConvenio }}</td>
+                        <td>{{ paciente?.nuInscricaoConvenio }}</td>
+                        <td>{{ paciente?.telefone | mask: '(00) 0 0000 0000' }}</td>
+                        <td>
+                          <a (click)="setValuesPaciente(paciente)" class="link-select">selecionar</a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
                 <!-- Detalhes do paciente-->
-                <ng-container *ngIf="search.value">
+                <!-- <ng-container *ngIf="pacienteSelecionado">
                   <div class="col-12">
-                    <app-detalhes-paciente-home></app-detalhes-paciente-home>
+                    <app-detalhes-paciente-home [paciente]="pacienteSelecionado"></app-detalhes-paciente-home>
                   </div>
-                </ng-container>
-                <div class="col-12 pt-2 text-center">
+                </ng-container> -->
+                <div class="col-12 pt-2 text-center mb-4">
                   <h3 class="text-uppercase mb-1">Ou Cadastre um Novo Paciente</h3>
                   <button mat-stroked-button class="btn btn-outline-primary" (click)="setStep(1)">
                     <i class="feather icon-plus"></i>
                     Novo Paciente
                   </button>
                 </div>
-                <div class="col-12 d-flex align-items-end justify-content-end">
+                <div class="col-12 d-flex align-items-end justify-content-end mb-3">
                   <button
                     mat-stroked-button
-                    class="btn btn-secondary"
+                    class="btn btn-danger"
                     (click)="closeModalAndResetForm({ close: true, modalId: 'agendar-consulta' })"
                   >
                     <i class="feather icon-x"></i>
                     Cancelar
                   </button>
-                  <!-- <button mat-stroked-button class="btn btn-success ms-3" [disabled]="!form.valid">
+
+                  <button mat-stroked-button class="btn btn-secondary ms-3" (click)="resetForm()">
                     <i class="feather icon-check"></i>
-                    Confirmar Agendamento
-                  </button> -->
-                  <button mat-stroked-button class="btn btn-primary ms-3" (click)="selectPaciente()">
-                    <i class="feather icon-check"></i>
-                    Avançar
+                    Limpar
                   </button>
                 </div>
               </div>
+              <!-- /row-->
             </form>
           </ng-container>
           <!-- Formulário pré-cadastro Paciente -->
           <ng-container *ngIf="steps === 1">
+            <!-- (stepId)="setStep($event)" -->
             <app-form-pre-cadastro-paciente
               (closeModal)="closeModalAndResetForm($event)"
-              (stepId)="setStep($event)"
-              (formPreCadastroPaciente)="getFormPreCadastroPaciente($event)"
+              (dadosUsuario)="setValuesPaciente($event)"
             ></app-form-pre-cadastro-paciente>
           </ng-container>
           <ng-container *ngIf="steps === 2">

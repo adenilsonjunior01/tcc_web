@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ListaUtilitarioMock } from '../../../../mocks/lista-utilitario-mock';
 import { ModalAnimationComponent } from '../../../../@shared/modal-animation/modal-animation.component';
 import { AnimationOptions } from 'ngx-lottie';
@@ -6,15 +6,18 @@ import { IEventCloseModalModel } from '../../models/event-close-modal-model';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormConsultaHome } from '../../class/form-consulta-home';
 import { Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
+import { startWith, map, distinctUntilChanged, debounceTime, finalize } from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import { IPacienteModel } from '../../../../models/paciente-model';
+import { untilDestroyed } from '../../../../@core/until-destroyed';
+import { PacienteService } from '../../../../services/paciente/paciente.service';
 
 @Component({
   selector: 'app-card-nova-consulta',
   templateUrl: './card-nova-consulta.component.html',
   styleUrls: ['./card-nova-consulta.component.scss'],
 })
-export class CardNovaConsultaComponent implements OnInit {
+export class CardNovaConsultaComponent implements OnInit, OnDestroy {
   @ViewChild(ModalAnimationComponent) modal: any;
   @Input() visibleCard = true;
 
@@ -24,8 +27,10 @@ export class CardNovaConsultaComponent implements OnInit {
   public novoUsuario = false;
   public steps = 0;
   public form: FormGroup;
-  paciente: any;
   public search = new FormControl();
+  public pacientes: IPacienteModel[] = [];
+  public loading = false;
+  public pacienteSelecionado: IPacienteModel;
 
   optionsAutoComplete: any[] = [
     {
@@ -61,22 +66,43 @@ export class CardNovaConsultaComponent implements OnInit {
       sexo: 2,
     },
   ];
-  filteredOptions: Observable<string[]>;
+  filteredOptions: Observable<any>;
 
   public options: AnimationOptions = {
     path: '/assets/lottie/lottie-search.json',
   };
 
-  constructor() {}
+  constructor(private readonly _pacienteService: PacienteService) {}
+
+  ngOnDestroy(): void {}
 
   ngOnInit(): void {
     this.filteredOptions = this.search.valueChanges.pipe(
       startWith(''),
-      map((value) => this._filter(value))
+      debounceTime(600),
+      distinctUntilChanged(),
+      map((value) => this.getPaciente(value))
     );
 
     this.form = this._formConsulta.initFormConsultaHome();
     this.listaSexo = this.utilitariosMock.getListaSexos();
+  }
+
+  public getPaciente(name: string): void {
+    if (name) {
+      this.loading = true;
+      this._pacienteService
+        .getPaciente(name)
+        .pipe(
+          untilDestroyed(this),
+          finalize(() => (this.loading = false))
+        )
+        .subscribe({
+          next: (body: IPacienteModel[]) => {
+            this.pacientes = body;
+          },
+        });
+    }
   }
 
   private _filter(value: string): string[] {
@@ -115,6 +141,7 @@ export class CardNovaConsultaComponent implements OnInit {
    */
   public setStep(value: number): void {
     this.steps = value;
+    this.resetForm();
   }
 
   // resetar todos os formulários quando o usuário voltar
@@ -126,13 +153,13 @@ export class CardNovaConsultaComponent implements OnInit {
    *
    * @param event recebe o formulário de pré-cadastro do paciente após envio pro back-end
    */
-  public getFormPreCadastroPaciente(event: any) {
-    this.form.controls['paciente'].get('nome').setValue(event.nome);
-    this.form.controls['paciente'].get('cpf').setValue(event.cpf);
-    this.form.controls['paciente'].get('email').setValue(event.email);
-    this.form.controls['paciente'].get('dtNascimento').setValue(event.dtNascimento);
-    this.form.controls['paciente'].get('sexo').setValue(event.sexo);
-  }
+  // public getFormPreCadastroPaciente(event: any) {
+  //   this.form.controls['paciente'].get('nome').setValue(event.nome);
+  //   this.form.controls['paciente'].get('cpf').setValue(event.cpf);
+  //   this.form.controls['paciente'].get('email').setValue(event.email);
+  //   this.form.controls['paciente'].get('dtNascimento').setValue(event.dtNascimento);
+  //   this.form.controls['paciente'].get('sexo').setValue(event.sexo);
+  // }
 
   public submitNovaConsulta(): void {
     if (this.form.valid) {
@@ -158,12 +185,23 @@ export class CardNovaConsultaComponent implements OnInit {
     }
   }
 
-  private setValuesPaciente(object: any): void {
-    this.form.controls['paciente'].get('nome').setValue(object.nome);
-    this.form.controls['paciente'].get('sobrenome').setValue(object.sobrenome);
-    this.form.controls['paciente'].get('cpf').setValue(object.cpf);
-    this.form.controls['paciente'].get('email').setValue(object.email);
-    this.form.controls['paciente'].get('dtNascimento').setValue(object.dtNascimento);
-    this.form.controls['paciente'].get('sexo').setValue(object.sexo);
+  public setValuesPaciente(paciente: IPacienteModel): void {
+    this.form.controls['paciente']
+      .get('idUser')
+      .setValue(paciente?.idUser !== undefined ? paciente.idUser : paciente.id);
+    this.form.controls['paciente'].get('nome').setValue(paciente?.nome);
+    this.form.controls['paciente'].get('cpf').setValue(paciente?.cpf);
+    this.form.controls['paciente'].get('compartilhaDados').setValue(paciente?.compartilhaDados);
+    this.form.controls['paciente'].get('sexo').setValue(paciente?.sexo);
+    this.form.controls['paciente'].get('descConvenio').setValue(paciente?.descConvenio);
+    this.form.controls['paciente'].get('nuInscricaoConvenio').setValue(paciente?.nuInscricaoConvenio);
+    this.form.controls['paciente'].get('telefone').setValue(paciente?.telefone);
+    this.steps = 2;
+  }
+
+  public resetForm() {
+    this.form.controls['paciente'].reset();
+    this.search.reset();
+    this.pacientes = [];
   }
 }

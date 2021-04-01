@@ -1,3 +1,5 @@
+@import "../../../../../theme/table";
+
 $f_38: 38px;
 $f_22: 22px;
 
@@ -64,5 +66,21 @@ $f_22: 22px;
     color: var(--black) !important;
     font-size: var(--f_14);
     font-weight: 500;
+  }
+}
+
+table {
+  font-size: var(--f_14);
+}
+
+.link-select {
+  cursor: pointer;
+  text-transform: underline;
+  color: var(--dark);
+  font-weight: 500;
+
+  &:hover {
+    transition: 300ms;
+    color: var(--tcc-active-menu);
   }
 }

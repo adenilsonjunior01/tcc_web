@@ -39,8 +39,13 @@
             </a>
           </ng-container>
           <ng-container>
-            <!--*ngIf="perfil === 'PACIENTE'"-->
-            <a mat-list-item routerLink="/prontuario" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+            <a
+              mat-list-item
+              routerLink="/prontuario"
+              routerLinkActive="active"
+              (click)="isMobile && sidenav.close()"
+              *ngIf="perfil === 'PACIENTE'"
+            >
               <i class="feather icon-list pe-2"></i>
               <span>Prontuários</span>
             </a>

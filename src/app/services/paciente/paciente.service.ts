@@ -6,6 +6,8 @@ import { catchError, map, take } from 'rxjs/operators';
 
 const routes = {
   updatePaciente: () => `/paciente`,
+  getPaciente: (name: string) => `/paciente/pesquisa?nomePaciente=${name}`,
+  confirmConsulta: (id: number) => `/consulta/confirmaConsulta/${id}`,
 };
 
 @Injectable({
@@ -16,6 +18,22 @@ export class PacienteService {
 
   public updatePaciente(paciente: IPacienteModel): Observable<any> {
     return this._httpClient.put(routes.updatePaciente(), paciente).pipe(
+      catchError((error: HttpErrorResponse) => throwError(error)),
+      map((body: any) => body),
+      take(1)
+    );
+  }
+
+  public getPaciente(name: string): Observable<IPacienteModel[]> {
+    return this._httpClient.get(routes.getPaciente(name)).pipe(
+      catchError((error: HttpErrorResponse) => throwError(error)),
+      map((body: any) => body),
+      take(1)
+    );
+  }
+
+  public confirmConsulta(id: number): Observable<any> {
+    return this._httpClient.get(routes.confirmConsulta(id)).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),
       take(1)

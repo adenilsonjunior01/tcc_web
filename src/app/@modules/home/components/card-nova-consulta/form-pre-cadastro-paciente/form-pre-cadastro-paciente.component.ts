@@ -10,6 +10,7 @@ import { Logger } from '../../../../../@core/logger.service';
 import { IListaPerfil, ListaPerfilMock } from '../../../../../mocks/lista-perfis-mock';
 import { SweetalertService } from '@app/@shared/sweetalert/sweetalert.service';
 import { IUsuarioModel } from '@app/models/usuario-model';
+import { IPacienteModel } from '@app/models/paciente-model';
 
 const log = new Logger('Pre-cadastro');
 
@@ -97,10 +98,10 @@ export class FormPreCadastroPacienteComponent implements OnInit, OnDestroy {
         )
         .subscribe(
           (response: IUsuarioModel) => {
-            this.stepId.emit(idStep);
             this._sweetAlert.openToasty('Cadastro realizado com sucesso!', 'success');
             this.resetForm();
-            this.emitUser(response);
+            this.dadosUsuario.emit(response);
+            this.stepId.emit(idStep);
           },
           (error) => {
             this.messageError = error?.error?.message;
@@ -116,8 +117,8 @@ export class FormPreCadastroPacienteComponent implements OnInit, OnDestroy {
    * @param user recebe dados do usuário e envia pro componente Pai
    */
   private emitUser(user: IUsuarioModel) {
+    this.dadosUsuario.emit(user);
     if (this.novoPaciente) {
-      this.dadosUsuario.emit(user);
     } else {
       this.formPreCadastroPaciente.emit(user);
     }

@@ -64,3 +64,11 @@
     padding: 15px !important;
   }
 }
+
+::ng-deep .dados-pendentes {
+  .md-content {
+    height: 500px;
+    overflow-y: auto !important;
+    padding: 15px !important;
+  }
+}

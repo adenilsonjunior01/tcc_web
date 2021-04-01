@@ -45,7 +45,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
     throw response;
   }
 
-  private responseErrorDev(response: HttpResponse<any>) {
+  private responseErrorDev(response: HttpResponse<any>): any {
     switch (response.status) {
       case 400:
         return toasty.openToasty('Formulário inválido - 400', 'error');
@@ -65,7 +65,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
     }
   }
 
-  private responseErrorProd(response: HttpResponse<any>): void {
+  private responseErrorProd(response: HttpResponse<any>): any {
     switch (response.status) {
       case 400:
         return toasty.openToasty('Erro ao processar dados.', 'error');

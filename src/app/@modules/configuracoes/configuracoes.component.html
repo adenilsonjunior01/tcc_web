@@ -104,14 +104,18 @@
     </div>
   </div>
 </div>
-<app-modal-animation modalID="configuracoes" modalClass="md-effect-10 form-cadastro-colaborador">
+<app-modal-animation modalID="configuracoes" modalClass="md-effect-10 form-cadastro-colaborador" backDrop="true">
   <div class="container md-body py-4 px-0">
     <div class="row m-0">
       <div class="col-12 d-flex justify-content-end">
         <i class="feather icon-x cursor" (click)="modal.close('configuracoes')"></i>
       </div>
       <div class="col-12">
-        <app-form-dados-clinica [type]="type" [dados]="dadosClinica"></app-form-dados-clinica>
+        <app-form-dados-clinica
+          [type]="type"
+          [dados]="dadosClinica"
+          (closeModal)="closeModal($event)"
+        ></app-form-dados-clinica>
       </div>
     </div>
   </div>

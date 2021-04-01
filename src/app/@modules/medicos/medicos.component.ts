@@ -16,7 +16,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class MedicosComponent implements OnInit, OnDestroy {
   public especializacoes: IEspecializacaoModel[];
-  public medicos: IDadosTodosMedicosModel[];
+  public medicos: IDadosTodosMedicosModel[] = [];
   public formBusca: FormGroup;
   public loading = false;
 

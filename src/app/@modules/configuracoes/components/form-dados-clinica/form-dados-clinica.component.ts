@@ -1,17 +1,26 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FileUploadControl, FileUploadValidators } from '@iplab/ngx-file-upload';
 import { FormClinica } from '../../class/form-clinica';
 import { ListaUtilitarioMock } from '../../../../mocks/lista-utilitario-mock';
+import { ClinicaService } from '@app/services/clinica/clinica.service';
+import { untilDestroyed } from '../../../../@core/until-destroyed';
+import { finalize } from 'rxjs/operators';
+import { Logger } from '../../../../@core/logger.service';
+import { SweetalertService } from '@app/@shared/sweetalert/sweetalert.service';
+
+const log = new Logger('Update Clinica');
 
 @Component({
   selector: 'app-form-dados-clinica',
   templateUrl: './form-dados-clinica.component.html',
   styleUrls: ['./form-dados-clinica.component.scss'],
 })
-export class FormDadosClinicaComponent implements OnInit, OnChanges {
+export class FormDadosClinicaComponent implements OnInit, OnChanges, OnDestroy {
   @Input() type: any;
   @Input() dados: any;
+  @Output() closeModal = new EventEmitter<string>();
+
   public file = new FormControl([], FileUploadValidators.filesLimit(1));
   public base64: any;
   public animationFile = false;
@@ -20,11 +29,14 @@ export class FormDadosClinicaComponent implements OnInit, OnChanges {
   public _configForm = new FormClinica();
   private readonly utilitariosMock = new ListaUtilitarioMock();
   public listaEstados: any[];
+  public loading = false;
 
   isFileDragDropAvailable: boolean;
   public readonly controlUpload = new FileUploadControl({ accept: ['image/*'] });
 
-  constructor() {}
+  constructor(private readonly _clinicaService: ClinicaService, private readonly _sweetAlert: SweetalertService) {}
+
+  ngOnDestroy(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
     this.setDadosClinica();
@@ -55,14 +67,37 @@ export class FormDadosClinicaComponent implements OnInit, OnChanges {
       this.form.get('dtAbertura').setValue(this.dados.dtAbertura);
       this.form.get('dtEncerramento').setValue(this.dados.dtEncerramento);
 
-      this.form.controls['endereco'].get('id').setValue(this.dados?.endereco?.id);
+      this.form.controls['endereco']
+        .get('id')
+        .setValue(this.dados?.endereco?.id !== null ? this.dados?.endereco?.id : null);
       this.form.controls['endereco'].get('nuCep').setValue(this.dados?.endereco?.nuCep);
       this.form.controls['endereco'].get('descBairro').setValue(this.dados?.endereco?.descBairro);
       this.form.controls['endereco'].get('descRua').setValue(this.dados?.endereco?.descRua);
-      this.form.controls['endereco'].get('descComplemento').setValue(this.dados?.endereco?.descComplemento);
+      this.form.controls['endereco']
+        .get('descComplemento')
+        .setValue(this.dados?.endereco?.descComplemento !== null ? this.dados?.endereco?.descComplemento : null);
       this.form.controls['endereco'].get('numero').setValue(this.dados?.endereco?.numero);
       this.form.controls['endereco'].get('noCidade').setValue(this.dados?.endereco?.noCidade);
       this.form.controls['endereco'].get('noEstado').setValue(this.dados?.endereco?.noEstado);
     }
+  }
+
+  public updateClinica() {
+    this.loading = true;
+    this._clinicaService
+      .updateClinica(this.form.value, this.form.get('id').value)
+      .pipe(
+        untilDestroyed(this),
+        finalize(() => (this.loading = false))
+      )
+      .subscribe({
+        next: () => {
+          this.closeModal.emit('configuracoes');
+          this._sweetAlert.openToasty('Dados atualizados com sucesso', 'success');
+        },
+        error: (error: any) => {
+          log.error(error);
+        },
+      });
   }
 }

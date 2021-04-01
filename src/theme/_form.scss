@@ -2,7 +2,7 @@
   .mat-form-field-appearance-outline .mat-form-field-outline {
     // background-color: transparent;
     // background-color: #fafafa;
-    border-radius: 6px;
+    border-radius: 6px !important;
     // color: #aaa;
     cursor: pointer;
   }
@@ -20,7 +20,7 @@
   }
 
   .mat-form-field-appearance-outline .mat-form-field-infix {
-    padding: 0.8em 0 0.8em 0;
+    padding: 0.8em 0 0.8em 0 !important;
   }
 
   .mat-form-field-infix {
@@ -40,7 +40,7 @@
   }
 
   .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
-    padding-left: 1rem;
+    padding-left: 1rem !important;
   }
 }
 
