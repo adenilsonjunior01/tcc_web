@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { IAlergiaModel } from '../../models/alergia-model';
 import { Observable, throwError } from 'rxjs';
 import { take, catchError, map } from 'rxjs/operators';
+import { ITipoAlergiaModel } from '@app/models/tipo-alergia-model';
 
 const routes = {
   alergia: () => `/alergia`,
@@ -32,7 +33,7 @@ export class AlergiaService {
   }
 
   // MAPEAR MODEL DE RETORNO
-  public getTiposAlergias(): Observable<IAlergiaModel> {
+  public getTiposAlergias(): Observable<ITipoAlergiaModel[]> {
     return this._httpClient.get(routes.alergia()).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),

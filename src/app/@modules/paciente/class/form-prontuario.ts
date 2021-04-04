@@ -14,9 +14,22 @@ export class FormProntuario {
     });
   }
 
-  public newObjectControl(): FormGroup {
+  public newObjectControlMedicamento(): FormGroup {
     return this._fb.group({
-      descricao: [null],
+      desc: [null],
+    });
+  }
+
+  public newObjectControlDoencaCronica(): FormGroup {
+    return this._fb.group({
+      descDoenca: [null],
+    });
+  }
+
+  public newObjectControlAlergia(): FormGroup {
+    return this._fb.group({
+      descAlergia: [null],
+      idTipoAlergia: [null],
     });
   }
 
@@ -43,6 +56,23 @@ export class FormProntuario {
         (form.controls[control] as FormGroup).controls[index].get(campo).updateValueAndValidity();
       });
       return form;
+    }
+  }
+
+  /**
+   *
+   * @param form
+   * @param tipo: tipo 1 alergia, tipo 2 medicamento, tipo 3 doenca cronica
+   */
+  public parseForm(tipo: number, form: any): any {
+    let values = Object.assign(form, {});
+
+    if (tipo === 1) {
+      return values.alergias;
+    } else if (tipo === 2) {
+      return values.medicamentos;
+    } else {
+      return values.doencaCronica;
     }
   }
 }

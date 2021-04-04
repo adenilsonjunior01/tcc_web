@@ -15,6 +15,7 @@ import { SharedModule } from '../@shared/shared.module';
 import { FormDadosBasicosMedicoComponent } from '.././components/form-dados-basicos-medico/form-dados-basicos-medico.component';
 import { FormDadosBasicosUsuarioComponent } from '.././components/form-dados-basicos-usuario/form-dados-basicos-usuario.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     RouterModule,
     SharedModule,
     NgSelectModule,
+    NgxMaskModule,
   ],
   declarations: [
     ShellComponent,

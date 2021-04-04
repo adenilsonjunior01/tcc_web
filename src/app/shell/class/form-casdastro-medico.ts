@@ -9,6 +9,8 @@ export class FormCadastroMedico {
     return this._fb.group({
       idUser: [null, Validators.required],
       crm: [null, Validators.required],
+      hrEntrada: [null],
+      hrSaida: [null],
       especializacoes: this._fb.array([this.newEspecializacao()]),
     });
   }

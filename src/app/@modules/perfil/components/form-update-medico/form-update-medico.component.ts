@@ -30,6 +30,7 @@ export class FormUpdateMedicoComponent implements OnInit, OnDestroy, OnChanges {
   public listaSexo: any[];
   public listaEstados: any[];
   public especializacoes: any[];
+  public messageError = '';
 
   constructor(
     private readonly _medicoService: MedicoService,
@@ -107,6 +108,7 @@ export class FormUpdateMedicoComponent implements OnInit, OnDestroy, OnChanges {
           this.closeModal.emit('perfil');
         },
         error: (error) => {
+          this.messageError = error.error.message;
           log.error(error);
         },
       });

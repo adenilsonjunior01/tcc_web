@@ -23,7 +23,19 @@
                   >
                 </li>
                 <li>
-                  <strong>Especialização:</strong>
+                  <span
+                    ><strong>Horário de Entrada:</strong>
+                    {{ dadosUser?.medico?.crm !== null ? dadosUser?.medico?.crm : 'sem registro' }}</span
+                  >
+                </li>
+                <li>
+                  <span
+                    ><strong>Horário de Saída:</strong>
+                    {{ dadosUser?.medico?.crm !== null ? dadosUser?.medico?.crm : 'sem registro' }}</span
+                  >
+                </li>
+                <li>
+                  <strong>Especializações:</strong>
                   <ng-container *ngFor="let especializacao of dadosUser?.medico?.especializacoes">
                     <span class="d-block">
                       -
@@ -57,6 +69,32 @@
                   <input type="text" matInput autocomplete="off" formControlName="crm" />
                 </mat-form-field>
               </div>
+              <div class="col-12 col-md-4">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Horário de Entrada</mat-label>
+                  <input
+                    type="text"
+                    matInput
+                    autocomplete="off"
+                    formControlName="hrEntrada"
+                    mask="Hh:m0"
+                    [dropSpecialCharacters]="false"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col-12 col-md-4">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Horário de Saída</mat-label>
+                  <input
+                    type="text"
+                    matInput
+                    autocomplete="off"
+                    formControlName="hrSaida"
+                    mask="Hh:m0"
+                    [dropSpecialCharacters]="false"
+                  />
+                </mat-form-field>
+              </div>
               <div class="col-12">
                 <ng-container
                   formArrayName="especializacoes"
@@ -85,6 +123,9 @@
                 <button class="btn btn-primary" type="button" (click)="addNewEspecializacao()">
                   Nova especialização
                 </button>
+              </div>
+              <div class="col-12" *ngIf="messageError !== ''">
+                <p class="m-0 is-invalid my-3">[Error] {{ messageError }}</p>
               </div>
               <div class="col-12 d-flex justify-content-end">
                 <button type="button" class="btn btn-secondary me-3" (click)="clearFormDadosProfissionais()">

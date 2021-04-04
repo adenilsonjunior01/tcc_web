@@ -84,7 +84,7 @@
             <!-- Alergias -->
             <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
               <mat-expansion-panel-header>
-                <h3>Alergias</h3>
+                <h3>Alergias <i class="feather icon-alert-triangle" *ngIf="visibleAlertAccordionAlergia"></i></h3>
               </mat-expansion-panel-header>
               <label class="d-block mb-2">Possui alguma alergia?</label>
               <mat-radio-group
@@ -104,23 +104,33 @@
 
               <ng-container *ngIf="controlAlergia.value === true">
                 <ng-container formArrayName="alergias" *ngFor="let alergia of formArrayAlergia.controls; index as i">
-                  <div class="d-block animate__fadeInUp" [formGroupName]="i">
+                  <div class="d-block animate__fadeInUp mt-2" [formGroupName]="i">
                     <mat-form-field>
                       <mat-label>Descrição</mat-label>
-                      <input matInput formControlName="descricao" />
+                      <input matInput formControlName="descAlergia" />
                       <mat-error class="p-0">
-                        <app-error-control-message
-                          [control]="alergia.controls.descricao"
-                          label="Descrição"
-                        ></app-error-control-message>
+                        <app-error-control-message [control]="alergia.controls.descAlergia" label="Descrição">
+                        </app-error-control-message>
+                      </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                      <mat-label>Tipo</mat-label>
+                      <mat-select formControlName="idTipoAlergia">
+                        <mat-option [value]="alergia.id" *ngFor="let alergia of tiposAlergias">{{
+                          alergia.descTipo
+                        }}</mat-option>
+                      </mat-select>
+                      <mat-error class="p-0">
+                        <app-error-control-message [control]="alergia.controls.idTipoAlergia" label="Tipo">
+                        </app-error-control-message>
                       </mat-error>
                     </mat-form-field>
 
                     <mat-dialog-actions align="end">
-                      <button mat-button *ngIf="i > 0" (click)="removeObject(i, 'alergia')">remover</button>
+                      <button mat-button *ngIf="i > 0" (click)="removeObject(i, 'alergias')">remover</button>
                       <button
                         mat-button
-                        (click)="addNewObjectControl(controlAlergia.value, 'alergias')"
+                        (click)="addNewObjectControlAlergia(controlAlergia.value, 'alergias')"
                         *ngIf="i === 0"
                       >
                         novo
@@ -132,14 +142,16 @@
                 <!-- formArray -->
               </ng-container>
               <mat-action-row>
-                <button mat-button color="primary" (click)="nextStep()">Próximo</button>
+                <button mat-button color="primary" (click)="submitAlergia()">salvar e continuar</button>
               </mat-action-row>
             </mat-expansion-panel>
 
             <!-- Medicamento-->
             <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
               <mat-expansion-panel-header>
-                <h3>Medicamento</h3>
+                <h3>
+                  Medicamento <i class="feather icon-alert-triangle" *ngIf="visibleAlertAccordionMedicamento"></i>
+                </h3>
               </mat-expansion-panel-header>
 
               <label class="d-block mb-2">Possui alguma alergia a medicamentos?</label>
@@ -155,8 +167,8 @@
                   class="me-3"
                   *ngFor="let option of optionsRadio"
                   (change)="validatorsDynamic(option.value, 'medicamentos')"
-                  >{{ option?.description }}</mat-radio-button
-                >
+                  >{{ option?.description }}
+                </mat-radio-button>
               </mat-radio-group>
 
               <ng-container *ngIf="controlMedicamento.value === true">
@@ -164,15 +176,13 @@
                   formArrayName="medicamentos"
                   *ngFor="let medicamento of formArrayMedicamento.controls; index as i"
                 >
-                  <div class="d-block animate__fadeInUp" [formGroupName]="i">
+                  <div class="d-block animate__fadeInUp mt-2" [formGroupName]="i">
                     <mat-form-field>
                       <mat-label>Descrição</mat-label>
-                      <input matInput formControlName="descricao" />
+                      <input matInput formControlName="desc" />
                       <mat-error class="p-0">
-                        <app-error-control-message
-                          [control]="medicamento.controls.descricao"
-                          label="Descrição"
-                        ></app-error-control-message>
+                        <app-error-control-message [control]="medicamento.controls.desc" label="Descrição">
+                        </app-error-control-message>
                       </mat-error>
                     </mat-form-field>
 
@@ -180,7 +190,7 @@
                       <button mat-button *ngIf="i > 0" (click)="removeObject(i, 'medicamentos')">remover</button>
                       <button
                         mat-button
-                        (click)="addNewObjectControl(controlMedicamento.value, 'medicamentos')"
+                        (click)="addNewObjectControlMedicamento(controlMedicamento.value, 'medicamentos')"
                         *ngIf="i === 0"
                       >
                         novo
@@ -192,15 +202,15 @@
                 <!-- formArray -->
               </ng-container>
               <mat-action-row>
-                <button mat-button color="warn" (click)="prevStep()">Voltar</button>
-                <button mat-button color="primary" (click)="nextStep()">Próximo</button>
+                <button mat-button color="warn" (click)="prevStep()">voltar</button>
+                <button mat-button color="primary" (click)="submitMedicamento()">salvar e continuar</button>
               </mat-action-row>
             </mat-expansion-panel>
 
             <!-- Doença Crônica-->
             <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
               <mat-expansion-panel-header>
-                <h3>Doença Crônica</h3>
+                <h3>Doença Crônica <i class="feather icon-alert-triangle" *ngIf="visibleAlertAccordionDoenca"></i></h3>
               </mat-expansion-panel-header>
 
               <label class="d-block mb-2">Possui alguma doença crônica?</label>
@@ -216,8 +226,8 @@
                   class="me-3"
                   *ngFor="let option of optionsRadio"
                   (change)="validatorsDynamic(option.value, 'doencaCronica')"
-                  >{{ option?.description }}</mat-radio-button
-                >
+                  >{{ option?.description }}
+                </mat-radio-button>
               </mat-radio-group>
 
               <ng-container *ngIf="controlDoencaCronica.value === true">
@@ -225,15 +235,13 @@
                   formArrayName="doencaCronica"
                   *ngFor="let doencaCronica of formArrayDoencaCronica.controls; index as i"
                 >
-                  <div class="d-block animate__fadeInUp" [formGroupName]="i">
+                  <div class="d-block animate__fadeInUp mt-1" [formGroupName]="i">
                     <mat-form-field>
                       <mat-label>Descrição</mat-label>
-                      <input matInput formControlName="descricao" />
+                      <input matInput formControlName="descDoenca" />
                       <mat-error class="p-0">
-                        <app-error-control-message
-                          [control]="doencaCronica.controls.descricao"
-                          label="Descrição"
-                        ></app-error-control-message>
+                        <app-error-control-message [control]="doencaCronica.controls.descDoenca" label="Descrição">
+                        </app-error-control-message>
                       </mat-error>
                     </mat-form-field>
 
@@ -241,7 +249,7 @@
                       <button mat-button *ngIf="i > 0" (click)="removeObject(i, 'doencaCronica')">remover</button>
                       <button
                         mat-button
-                        (click)="addNewObjectControl(controlDoencaCronica.value, 'doencaCronica')"
+                        (click)="addNewObjectControlDoencaCronica(controlDoencaCronica.value, 'doencaCronica')"
                         *ngIf="i === 0"
                       >
                         novo
@@ -254,7 +262,7 @@
               </ng-container>
               <mat-action-row>
                 <button mat-button color="warn" (click)="prevStep()">Voltar</button>
-                <button mat-button color="primary" (click)="nextStep()">Próximo</button>
+                <button mat-button color="primary" (click)="submitDoencasCronicas()">salvar e continuar</button>
               </mat-action-row>
             </mat-expansion-panel>
           </mat-accordion>
