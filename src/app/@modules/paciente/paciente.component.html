@@ -7,9 +7,9 @@
             <div class="col-md-4">
               <form action="">
                 <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>Pesquise usuários por nome ou Documento</mat-label>
+                  <mat-label>Pesquise usuários pelo Nome</mat-label>
                   <mat-icon matSuffix>search</mat-icon>
-                  <input matInput />
+                  <input matInput [formControl]="search" (change)="getPacientePorNome(search.value)" />
                 </mat-form-field>
               </form>
             </div>
@@ -27,7 +27,7 @@
       <div class="col-12">
         <!-- VISÃO FUNCIONÁRIO -->
         <ng-container *ngIf="perfil === 'AUXILIAR' || perfil === 'ADMINISTRADOR'">
-          <app-table-pacientes></app-table-pacientes>
+          <app-table-pacientes [paciente]="pacientes" [reload]="reload"></app-table-pacientes>
         </ng-container>
         <!-- VISÃO MÉDICO -->
         <ng-container *ngIf="perfil === 'MEDICO'">

@@ -14,6 +14,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { ProntuarioMedicoPacienteComponent } from './components/prontuario-medico-paciente/prontuario-medico-paciente.component';
 import { FormNovoPacienteComponent } from './components/form-novo-paciente/form-novo-paciente.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,8 @@ import { NgxMaskModule } from 'ngx-mask';
     FlexLayoutModule,
     MaterialModule,
     NgSelectModule,
+    NgxMaskModule,
+    NgxPaginationModule,
     NgxMaskModule,
   ],
   exports: [ConsultaMedicaComponent],
