@@ -1,6 +1,6 @@
 <div class="row pt-2 m-0">
   <div class="col-12 table-responsive">
-    <table class="w-100 table-tcc">
+    <table class="w-100 table-tcc" *ngIf="colaboradores.length > 0; else semregistro">
       <thead class="text-uppercase">
         <tr class="text-left">
           <th scope="col">Nome</th>
@@ -66,3 +66,12 @@
     </table>
   </div>
 </div>
+<ng-template #semregistro>
+  <div class="row mt-3">
+    <div class="col-12">
+      <app-card-content>
+        <p class="error-msg">Nenhum registro encontrado.</p>
+      </app-card-content>
+    </div>
+  </div>
+</ng-template>
