@@ -18,6 +18,10 @@ export class TablePacientesComponent implements OnInit, OnDestroy, OnChanges {
   @Input() reload: any;
   pacientes: Content[];
   loading = false;
+  itemsPerPage = 5;
+  currentPage: number;
+  totalItems: number;
+  page = 0;
 
   constructor(private readonly _router: Router, private readonly _pacienteService: PacienteService) {}
 
@@ -35,13 +39,13 @@ export class TablePacientesComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit(): void {
     this.getListaPacientes();
-    this.getAllPacientes(5);
+    this.getAllPacientes();
   }
 
-  public getAllPacientes(size = 5): void {
+  public getAllPacientes(page = 0): void {
     this.loading = true;
     this._pacienteService
-      .getAllPacientes(size)
+      .getAllPacientes(this.itemsPerPage, page)
       .pipe(
         untilDestroyed(this),
         finalize(() => (this.loading = false))
@@ -49,6 +53,8 @@ export class TablePacientesComponent implements OnInit, OnDestroy, OnChanges {
       .subscribe({
         next: (body: IPacientesPaginadoModel) => {
           this.pacientes = body.content;
+          this.page = page + 1;
+          this.totalItems = body.totalElements;
         },
         error: (error) => {
           log.error(error);
@@ -59,6 +65,11 @@ export class TablePacientesComponent implements OnInit, OnDestroy, OnChanges {
   public verificaSexoUsuario(sexo: string): string {
     if (sexo == 'M') return './assets/profile/boy-1.svg';
     return './assets/profile/girl-1.svg';
+  }
+
+  public pageChanged(event: number): void {
+    this.getAllPacientes(event - 1);
+    this.page = event;
   }
 
   public getListaPacientes(): void {

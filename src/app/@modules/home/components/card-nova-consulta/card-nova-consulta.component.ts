@@ -11,6 +11,8 @@ import Swal from 'sweetalert2';
 import { IPacienteModel } from '../../../../models/paciente-model';
 import { untilDestroyed } from '../../../../@core/until-destroyed';
 import { PacienteService } from '../../../../services/paciente/paciente.service';
+import * as dayjs from 'dayjs';
+import { ClinicaService } from '@app/services/clinica/clinica.service';
 
 @Component({
   selector: 'app-card-nova-consulta',
@@ -30,7 +32,9 @@ export class CardNovaConsultaComponent implements OnInit, OnDestroy {
   public search = new FormControl();
   public pacientes: IPacienteModel[] = [];
   public loading = false;
+  public loading2 = false;
   public pacienteSelecionado: IPacienteModel;
+  public horariosDisponiveis: any;
 
   optionsAutoComplete: any[] = [
     {
@@ -72,11 +76,12 @@ export class CardNovaConsultaComponent implements OnInit, OnDestroy {
     path: '/assets/lottie/lottie-search.json',
   };
 
-  constructor(private readonly _pacienteService: PacienteService) {}
+  constructor(private readonly _pacienteService: PacienteService, private readonly _clinicaService: ClinicaService) {}
 
   ngOnDestroy(): void {}
 
   ngOnInit(): void {
+    let data = new Date();
     this.filteredOptions = this.search.valueChanges.pipe(
       startWith(''),
       debounceTime(600),
@@ -86,6 +91,7 @@ export class CardNovaConsultaComponent implements OnInit, OnDestroy {
 
     this.form = this._formConsulta.initFormConsultaHome();
     this.listaSexo = this.utilitariosMock.getListaSexos();
+    this.form.get('data').setValue(dayjs(data).format('DD-MM-YYYY'));
   }
 
   public getPaciente(name: string): void {
@@ -101,6 +107,25 @@ export class CardNovaConsultaComponent implements OnInit, OnDestroy {
           next: (body: IPacienteModel[]) => {
             this.pacientes = body;
           },
+        });
+    }
+  }
+
+  public getHorariosDiponiveisConsulta(): void {
+    if (this.form.get('data').valid && this.form.get('tipoConsulta').valid) {
+      this.loading2 = true;
+      this.horariosDisponiveis = [];
+      this._clinicaService
+        .getHorariosDiponiveisConsulta(this.form.get('data').value, this.form.get('tipoConsulta').value)
+        .pipe(
+          untilDestroyed(this),
+          finalize(() => (this.loading2 = false))
+        )
+        .subscribe({
+          next: (datas: any) => {
+            this.horariosDisponiveis = datas;
+          },
+          error: (err) => {},
         });
     }
   }

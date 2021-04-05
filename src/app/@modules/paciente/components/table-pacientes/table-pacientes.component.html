@@ -10,7 +10,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let paciente of pacientes">
+        <tr
+          *ngFor="
+            let paciente of pacientes
+              | paginate
+                : {
+                    itemsPerPage: itemsPerPage,
+                    currentPage: page,
+                    totalItems: totalItems
+                  }
+          "
+        >
           <td class="d-flex align-items-center">
             <img [src]="verificaSexoUsuario(paciente?.sexo)" alt="Icon" class="bg-profile d-inline-block" />
             <div class="d-inline-block name-profile">
@@ -26,6 +36,17 @@
         </tr>
       </tbody>
     </table>
+  </div>
+  <div class="col-12 d-flex justify-content-center mb-4">
+    <pagination-controls
+      (pageChange)="pageChanged($event)"
+      maxSize="5"
+      autoHide="true"
+      directionLinks="true"
+      responsive="true"
+      previousLabel=""
+      nextLabel=""
+    ></pagination-controls>
   </div>
 </div>
 <app-loader *ngIf="loading"></app-loader>

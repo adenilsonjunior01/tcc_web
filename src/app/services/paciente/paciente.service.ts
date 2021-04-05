@@ -8,7 +8,7 @@ import { IPacientesPaginadoModel } from '../../models/pacientes-paginado-model';
 const routes = {
   updatePaciente: () => `/paciente`,
   getPaciente: (name: string) => `/paciente/pesquisa?nomePaciente=${name}`,
-  getAllPacientes: (size: number) => `/paciente?size=${size}`,
+  getAllPacientes: (size: number, page: number) => `/paciente?size=${size}&page=${page}`,
   confirmConsulta: (id: number) => `/consulta/confirmaConsulta/${id}`,
 };
 
@@ -34,8 +34,8 @@ export class PacienteService {
     );
   }
 
-  public getAllPacientes(size: number): Observable<IPacientesPaginadoModel> {
-    return this._httpClient.get(routes.getAllPacientes(size)).pipe(
+  public getAllPacientes(size: number, page: number): Observable<IPacientesPaginadoModel> {
+    return this._httpClient.get(routes.getAllPacientes(size, page)).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),
       take(1)

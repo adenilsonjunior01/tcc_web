@@ -7,6 +7,8 @@ import { catchError, map, take } from 'rxjs/operators';
 const routes = {
   clinica: () => `/clinica`,
   update: (id: number) => `/clinica/${id}`,
+  horariosDisponiveis: (data: string, idProcedimento: number) =>
+    `/consulta/horariosLivres?data=${data}&idTipoProcedimento=${idProcedimento}`,
 };
 
 @Injectable({
@@ -33,6 +35,15 @@ export class ClinicaService {
 
   public getDadosClinica(): Observable<IClinicaModel> {
     return this._httpClient.get(routes.clinica()).pipe(
+      catchError((error: HttpErrorResponse) => throwError(error)),
+      map((body: any) => body),
+      take(1)
+    );
+  }
+
+  // MAPEAR MODEL
+  public getHorariosDiponiveisConsulta(data: string, idProcedimento: number): Observable<any> {
+    return this._httpClient.get(routes.horariosDisponiveis(data, idProcedimento)).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),
       take(1)
