@@ -5,7 +5,7 @@ import { catchError, map, take } from 'rxjs/operators';
 import { IUsuarioModel } from '@app/models/usuario-model';
 
 const routes = {
-  agendamento: () => `/`,
+  agendamento: () => `/consulta`,
   preCadastroPaciente: () => `/user`,
 };
 

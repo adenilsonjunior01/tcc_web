@@ -1,4 +1,5 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import * as dayjs from 'dayjs';
 
 export class FormConsultaHome {
   private readonly _fb = new FormBuilder();
@@ -7,10 +8,11 @@ export class FormConsultaHome {
 
   public initFormConsultaHome(): FormGroup {
     return this._fb.group({
-      tipoConsulta: [null, Validators.required],
+      idTipoProcedimento: [null, Validators.required], // pl
       especializacao: [null, Validators.required],
-      medico: [null, Validators.required],
-      data: [null, Validators.required],
+      idMedico: [null], // ok
+      idPaciente: [null], // ok
+      dtInicio: [null, Validators.required],
       horario: [null, Validators.required],
       observacao: [null],
       paciente: this._fb.group({
@@ -24,5 +26,15 @@ export class FormConsultaHome {
         telefone: [null],
       }),
     });
+  }
+
+  public parseForm(form: any): any {
+    let values = Object.assign(form, {});
+    values.dtInicio = `${dayjs(values.dtInicio).format('YYYY-MM-DD')} ${values.horario}`;
+
+    delete values.especializacao;
+    delete values.paciente;
+    delete values.horario;
+    return values;
   }
 }

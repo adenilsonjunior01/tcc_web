@@ -58,19 +58,19 @@
           </div>
           <ng-container *ngIf="loading">
             <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-            <span class="sr-only">Aguarde, buscando médicos...</span>
+            <span class="sr-only">Aguarde...</span>
           </ng-container>
         </div>
         <div class="col-6">
           <h3 class="mb-0">Selecione o médico</h3>
           <mat-form-field appearance="outline" class="w-100">
-            <mat-label>Lista de médicos</mat-label>
-            <mat-select formControlName="medico" required>
+            <mat-label>Médicos disponíveis</mat-label>
+            <mat-select formControlName="idMedico" required>
               <mat-option [value]="medico.id" *ngFor="let medico of medicos">{{ medico.nome }}</mat-option>
             </mat-select>
             <mat-error>
               <app-error-control-message
-                [control]="formConsulta.controls.medico"
+                [control]="formConsulta.controls.idMedico"
                 label="Médico"
               ></app-error-control-message>
             </mat-error>

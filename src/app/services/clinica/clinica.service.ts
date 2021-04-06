@@ -3,12 +3,14 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { IClinicaModel } from '../../models/clinica-model';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, take } from 'rxjs/operators';
+import { ITiposConsultaModel } from '../../models/tipos-consulta-model';
 
 const routes = {
   clinica: () => `/clinica`,
   update: (id: number) => `/clinica/${id}`,
   horariosDisponiveis: (data: string, idProcedimento: number) =>
     `/consulta/horariosLivres?data=${data}&idTipoProcedimento=${idProcedimento}`,
+  tiposConsulta: () => `/procedimentoMedico/tipos`,
 };
 
 @Injectable({
@@ -44,6 +46,14 @@ export class ClinicaService {
   // MAPEAR MODEL
   public getHorariosDiponiveisConsulta(data: string, idProcedimento: number): Observable<any> {
     return this._httpClient.get(routes.horariosDisponiveis(data, idProcedimento)).pipe(
+      catchError((error: HttpErrorResponse) => throwError(error)),
+      map((body: any) => body),
+      take(1)
+    );
+  }
+
+  public getTiposConsulta(): Observable<ITiposConsultaModel[]> {
+    return this._httpClient.get(routes.tiposConsulta()).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),
       take(1)

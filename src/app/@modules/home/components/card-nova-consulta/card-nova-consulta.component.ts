@@ -13,6 +13,7 @@ import { untilDestroyed } from '../../../../@core/until-destroyed';
 import { PacienteService } from '../../../../services/paciente/paciente.service';
 import * as dayjs from 'dayjs';
 import { ClinicaService } from '@app/services/clinica/clinica.service';
+import { ITiposConsultaModel } from '@app/models/tipos-consulta-model';
 
 @Component({
   selector: 'app-card-nova-consulta',
@@ -31,10 +32,12 @@ export class CardNovaConsultaComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   public search = new FormControl();
   public pacientes: IPacienteModel[] = [];
+  public tiposConsulta: ITiposConsultaModel[] = [];
   public loading = false;
   public loading2 = false;
   public pacienteSelecionado: IPacienteModel;
   public horariosDisponiveis: any;
+  public resumo: any;
 
   optionsAutoComplete: any[] = [
     {
@@ -91,7 +94,8 @@ export class CardNovaConsultaComponent implements OnInit, OnDestroy {
 
     this.form = this._formConsulta.initFormConsultaHome();
     this.listaSexo = this.utilitariosMock.getListaSexos();
-    this.form.get('data').setValue(dayjs(data).format('DD-MM-YYYY'));
+    this.form.get('dtInicio').setValue(dayjs(data).format('DD-MM-YYYY'));
+    this.getTiposConsulta();
   }
 
   public getPaciente(name: string): void {
@@ -112,11 +116,11 @@ export class CardNovaConsultaComponent implements OnInit, OnDestroy {
   }
 
   public getHorariosDiponiveisConsulta(): void {
-    if (this.form.get('data').valid && this.form.get('tipoConsulta').valid) {
+    if (this.form.get('dtInicio').valid && this.form.get('idTipoProcedimento').valid) {
       this.loading2 = true;
       this.horariosDisponiveis = [];
       this._clinicaService
-        .getHorariosDiponiveisConsulta(this.form.get('data').value, this.form.get('tipoConsulta').value)
+        .getHorariosDiponiveisConsulta(this.form.get('dtInicio').value, this.form.get('idTipoProcedimento').value)
         .pipe(
           untilDestroyed(this),
           finalize(() => (this.loading2 = false))
@@ -128,6 +132,17 @@ export class CardNovaConsultaComponent implements OnInit, OnDestroy {
           error: (err) => {},
         });
     }
+  }
+
+  public getTiposConsulta(): void {
+    this._clinicaService
+      .getTiposConsulta()
+      .pipe(untilDestroyed(this))
+      .subscribe({
+        next: (datas: ITiposConsultaModel[]) => {
+          this.tiposConsulta = datas;
+        },
+      });
   }
 
   private _filter(value: string): string[] {
@@ -211,6 +226,7 @@ export class CardNovaConsultaComponent implements OnInit, OnDestroy {
   }
 
   public setValuesPaciente(paciente: IPacienteModel): void {
+    this.form.get('idPaciente').setValue(paciente?.idPaciente);
     this.form.controls['paciente']
       .get('idUser')
       .setValue(paciente?.idUser !== undefined ? paciente.idUser : paciente.id);
@@ -228,5 +244,13 @@ export class CardNovaConsultaComponent implements OnInit, OnDestroy {
     this.form.controls['paciente'].reset();
     this.search.reset();
     this.pacientes = [];
+  }
+
+  public resumoConsulta(event: any): void {
+    this.modal.close('agendar-consulta');
+    if (event.agendamento) {
+      this.resumo = event.resumo;
+      setTimeout(() => this.modal.show('resumo-consulta'), 400);
+    }
   }
 }

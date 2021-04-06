@@ -46,11 +46,13 @@
               <div class="col-md-12">
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Tipo de consulta</mat-label>
-                  <mat-select formControlName="tipoConsulta" required>
-                    <mat-option [value]="sexo.id" *ngFor="let sexo of listaSexo">{{ sexo.name }}</mat-option>
+                  <mat-select formControlName="idTipoProcedimento" required>
+                    <mat-option [value]="tipo.id" *ngFor="let tipo of tiposConsulta">{{
+                      tipo.descTipoProcedimento
+                    }}</mat-option>
                   </mat-select>
                   <mat-error>
-                    <app-error-control-message [control]="form.controls.tipoConsulta" label="Tipo de consulta">
+                    <app-error-control-message [control]="form.controls.idTipoProcedimento" label="Tipo de consulta">
                     </app-error-control-message>
                   </mat-error>
                 </mat-form-field>
@@ -58,9 +60,12 @@
               <div class="col-md-12">
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Data</mat-label>
-                  <input type="text" matInput autocomplete="off" formControlName="data" />
+                  <input type="text" matInput autocomplete="off" formControlName="dtInicio" />
                   <mat-error>
-                    <app-error-control-message [control]="form.controls.data" label="Data"></app-error-control-message>
+                    <app-error-control-message
+                      [control]="form.controls.dtInicio"
+                      label="Data"
+                    ></app-error-control-message>
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -68,7 +73,7 @@
                 <button
                   class="btn btn-primary"
                   type="button"
-                  [disabled]="!form.get('data').valid && !form.get('tipoConsulta').valid"
+                  [disabled]="!form.get('dtInicio').valid && !form.get('idTipoProcedimento').valid"
                   (click)="getHorariosDiponiveisConsulta()"
                 >
                   <ng-container *ngIf="loading2">
@@ -98,9 +103,10 @@
                 </div>
               </ng-container>
             </div>
-            <!-- <div class="col-12">
+            <button (click)="modal.show('resumo-consulta')">Open</button>
+            <div class="col-12">
               <app-form-debug [form]="form"></app-form-debug>
-            </div> -->
+            </div>
           </form>
         </div>
       </div>
@@ -202,10 +208,39 @@
             <app-agendamento-consulta
               (closeModal)="closeModalAndResetForm($event)"
               (stepId)="setStep($event)"
+              (consultaAgendada)="resumoConsulta($event)"
               [formConsulta]="form"
             ></app-agendamento-consulta>
           </ng-container>
           <!-- <app-consulta-medica></app-consulta-medica> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</app-modal-animation>
+<app-modal-animation modalID="resumo-consulta" modalClass="md-effect-11 resumo-consulta" backDrop="true">
+  <div class="md-body container p-0">
+    <div class="container py-4">
+      <div class="row">
+        <div class="col-12 text-center mb-3">
+          <h3 class="m-0">Resumo da Consulta</h3>
+          <p class="m-0">
+            Aqui está o resumo da consulta do paciente
+            <strong class="text-capitalize">{{ resumo?.paciente?.nome }}</strong>
+          </p>
+        </div>
+        <div class="col-12 text-center mb-2">
+          <p class="m-0"><strong>Início: </strong>{{ resumo?.dtInicio | date: 'medium' }}</p>
+          <p class="m-0"><strong>Termino: </strong>{{ resumo?.dtFim | date: 'medium' }}</p>
+          <p class="m-0 text-capitalize"><strong>Médico: </strong>{{ resumo?.medico?.nome }}</p>
+          <p class="m-0"><strong>CRM: </strong>{{ resumo?.medico?.crm }}</p>
+          <p class="m-0 text-capitalize">
+            <strong>Procedimento: </strong>{{ resumo?.procedimento?.descTipoProcedimento }}
+          </p>
+          <p class="m-0"><strong>Observação: </strong>{{ resumo?.observacao }}</p>
+        </div>
+        <div class="col-12 mt-2 text-center">
+          <button class="btn btn-primary" type="button" (click)="modal.close('resumo-consulta')">Ok, entendi.</button>
         </div>
       </div>
     </div>

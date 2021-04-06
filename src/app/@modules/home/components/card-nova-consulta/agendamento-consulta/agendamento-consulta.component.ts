@@ -10,6 +10,8 @@ import { MedicoService } from '../../../../../services/medico/medico.service';
 import { error } from '@angular/compiler/src/util';
 import { UtilitariosService } from '../../../../../services/utilitarios/utilitarios.service';
 import { IEspecializacaoModel } from '../../../../../models/especializacao-model';
+import { FormConsultaHome } from '../../../class/form-consulta-home';
+import { SweetalertService } from '@app/@shared/sweetalert/sweetalert.service';
 
 const log = new Logger('Agendamento Consulta Home');
 
@@ -21,11 +23,13 @@ const log = new Logger('Agendamento Consulta Home');
 export class AgendamentoConsultaComponent implements OnInit, OnChanges, OnDestroy {
   @Output() closeModal = new EventEmitter();
   @Output() stepId = new EventEmitter();
+  @Output() consultaAgendada = new EventEmitter();
   @Input() formConsulta: FormGroup;
   public search = new FormControl();
 
   public utilitariosMock = new ListaUtilitarioMock();
   public listaSexo: any[];
+  private readonly _formConfig = new FormConsultaHome();
   datas: any;
   loading = false;
   medicos: any[];
@@ -35,7 +39,8 @@ export class AgendamentoConsultaComponent implements OnInit, OnChanges, OnDestro
   constructor(
     private readonly _service: AgendamentoConsultaService,
     private readonly _medicoService: MedicoService,
-    private readonly _utilitariosService: UtilitariosService
+    private readonly _utilitariosService: UtilitariosService,
+    private readonly _sweetAlert: SweetalertService
   ) {}
 
   ngOnDestroy() {}
@@ -63,7 +68,8 @@ export class AgendamentoConsultaComponent implements OnInit, OnChanges, OnDestro
   public confirmAgendamento(step: number): void {
     if (this.formConsulta.valid) {
       this.loading = true;
-      const resquest$ = this._service.submitAgendamentoConsulta(this.formConsulta.value);
+      const valuesSubmit = this._formConfig.parseForm(this.formConsulta.value);
+      const resquest$ = this._service.submitAgendamentoConsulta(valuesSubmit);
       resquest$
         .pipe(
           finalize(() => {
@@ -72,12 +78,15 @@ export class AgendamentoConsultaComponent implements OnInit, OnChanges, OnDestro
           untilDestroyed(this)
         )
         .subscribe({
-          next: () => {},
+          next: (body: any) => {
+            this._sweetAlert.openToasty('Consulta agendada com sucesso!', 'success');
+            // this.stepId.emit(step);
+            this.consultaAgendada.emit({ agendamento: true, resumo: body });
+          },
           error: (err: any) => {
             log.error(err);
           },
         });
-      // this.stepId.emit(step);
     } else {
       Object.keys(this.formConsulta.controls).forEach((campo) => {
         const controle = this.formConsulta.get(campo);

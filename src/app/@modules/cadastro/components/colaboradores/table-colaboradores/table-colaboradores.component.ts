@@ -19,6 +19,10 @@ export class TableColaboradoresComponent implements OnInit, OnDestroy {
   private readonly listaPacientesMock = new ListaPacientesMock();
   public colaboradores: any[];
   loading = false;
+  itemsPerPage = 5;
+  currentPage: number;
+  totalItems: number;
+  page = 0;
 
   public dialog = new DialogContent(this._dialog);
 
@@ -32,7 +36,7 @@ export class TableColaboradoresComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getListaColaboradores();
-    this.getTodosColaboradores();
+    this.getAllColaboradores();
   }
 
   public getListaColaboradores(): void {
@@ -40,7 +44,7 @@ export class TableColaboradoresComponent implements OnInit, OnDestroy {
   }
 
   public verificaSexoUsuario(sexo: string): string {
-    if (sexo == 'M') return './assets/profile/boy-1.svg';
+    if (sexo.toUpperCase() == 'M') return './assets/profile/boy-1.svg';
     return './assets/profile/girl-1.svg';
   }
 
@@ -48,22 +52,29 @@ export class TableColaboradoresComponent implements OnInit, OnDestroy {
     this._router.navigate(['/cadastro/colaborador/detalhes'], { state: colaborador });
   }
 
-  public getTodosColaboradores(): void {
+  public getAllColaboradores(page = 0): void {
     this.loading = true;
     this._colaboradoresService
-      .getAllColaboradores()
+      .getAllColaboradores(page, this.itemsPerPage)
       .pipe(
         untilDestroyed(this),
         finalize(() => (this.loading = false))
       )
       .subscribe({
-        next: (colaboradores) => {
-          this.colaboradores = colaboradores;
+        next: (body: any) => {
+          this.colaboradores = body.content;
+          this.page = page + 1;
+          this.totalItems = body.totalElements;
         },
         error: (err) => {
           log.error(err);
         },
       });
+  }
+
+  public pageChanged(event: number): void {
+    this.getAllColaboradores(event - 1);
+    this.page = event;
   }
 
   /**

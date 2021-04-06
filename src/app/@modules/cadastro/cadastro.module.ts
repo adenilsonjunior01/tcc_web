@@ -14,6 +14,7 @@ import { EspecialidadesComponent } from './pages/especialidades/especialidades.c
 import { TableEspecialidadesComponent } from './components/especialidades/table-especialidades/table-especialidades.component';
 import { FormCadastroEspecialidadeComponent } from './components/especialidades/form-cadastro-especialidade/form-cadastro-especialidade.component';
 import { DetalheColaboradorComponent } from './pages/detalhe-colaborador/detalhe-colaborador.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -37,6 +38,8 @@ const maskConfig: Partial<IConfig> = {
     MaterialModule,
     FlexLayoutModule,
     NgxMaskModule.forRoot(),
+    NgxPaginationModule,
+    NgxMaskModule,
   ],
 })
 export class CadastroModule {}

@@ -6,22 +6,39 @@
           <th scope="col">Nome</th>
           <th scope="col">Documento</th>
           <th scope="col">Perfil</th>
-          <th scope="col">Data Registro</th>
+          <th scope="col">Data Nascimento</th>
+          <th scope="col">Telefone</th>
           <th scope="col">Status</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let colaborador of colaboradores" class="shadow-sm">
+        <tr
+          *ngFor="
+            let colaborador of colaboradores
+              | paginate
+                : {
+                    itemsPerPage: itemsPerPage,
+                    currentPage: page,
+                    totalItems: totalItems
+                  }
+          "
+          class="shadow-sm"
+        >
           <td class="d-flex align-items-center">
             <img [src]="verificaSexoUsuario(colaborador?.sexo)" alt="Icon" class="bg-profile d-inline-block" />
             <div class="d-inline-block name-profile">
-              <span class="d-block name">{{ colaborador?.name }}</span>
+              <span class="d-block name text-capitalize">{{ colaborador?.nome }}</span>
               <span class="profile">{{ colaborador.email }}</span>
             </div>
           </td>
-          <td class="td-format">{{ colaborador?.documento }}</td>
-          <td class="td-format">{{ colaborador?.perfil }}</td>
-          <td class="td-format">{{ colaborador?.idade }}</td>
+          <td class="td-format">{{ colaborador?.cpf | mask: '000.000.000-00' }}</td>
+          <td class="td-format">
+            <ng-container *ngFor="let perfil of colaborador?.perfisCadastrados; index as i">
+              <span *ngIf="i > 0">,</span> <span>{{ perfil }}</span>
+            </ng-container>
+          </td>
+          <td class="td-format">{{ colaborador?.dtNascimento | date: 'shortDate' }}</td>
+          <td class="td-format">{{ colaborador?.telefone | mask: '(00) 0 0000 0000' }}</td>
           <td class="td-format width-td">
             <div class="overlay-text">
               <span
@@ -64,6 +81,17 @@
         </tr>
       </tbody>
     </table>
+  </div>
+  <div class="col-12 d-flex justify-content-center mb-4">
+    <pagination-controls
+      (pageChange)="pageChanged($event)"
+      maxSize="5"
+      autoHide="true"
+      directionLinks="true"
+      responsive="true"
+      previousLabel=""
+      nextLabel=""
+    ></pagination-controls>
   </div>
 </div>
 <ng-template #semregistro>
