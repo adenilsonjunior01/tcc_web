@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges, ViewChild, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges, ViewChild, OnDestroy, AfterViewInit } from '@angular/core';
 import { ListaUtilitarioMock } from '../../../../../mocks/lista-utilitario-mock';
 import { ModalAnimationComponent } from '../../../../../@shared/modal-animation/modal-animation.component';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -11,13 +11,14 @@ import { untilDestroyed } from '../../../../../@core/until-destroyed';
 import { IUsuarioModel } from '@app/models/usuario-model';
 import Swal from 'sweetalert2';
 import { SweetalertService } from '../../../../../@shared/sweetalert/sweetalert.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-form-cadastro-colaborador',
   templateUrl: './form-cadastro-colaborador.component.html',
   styleUrls: ['./form-cadastro-colaborador.component.scss'],
 })
-export class FormCadastroColaboradorComponent implements OnInit, OnChanges, OnDestroy {
+export class FormCadastroColaboradorComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
   @ViewChild(ModalAnimationComponent) modal: any;
   @Input() type: any;
 
@@ -40,8 +41,13 @@ export class FormCadastroColaboradorComponent implements OnInit, OnChanges, OnDe
   constructor(
     private readonly _credentials: CredentialsService,
     private readonly _service: UsuarioService,
-    private readonly _sweetAlert: SweetalertService
+    private readonly _sweetAlert: SweetalertService,
+    private readonly _activetedRouter: ActivatedRoute
   ) {}
+
+  ngAfterViewInit(): void {
+    this.verifyOpenModal();
+  }
 
   ngOnDestroy(): void {}
 
@@ -59,6 +65,11 @@ export class FormCadastroColaboradorComponent implements OnInit, OnChanges, OnDe
     this.listaSexo = this.utilitariosMock.getListaSexos();
     this.listaEstados = this.utilitariosMock.getEstados();
     this.getListaPerfis();
+  }
+
+  private verifyOpenModal(): void {
+    const param = this._activetedRouter.snapshot.queryParams?.openModal;
+    if (param) setTimeout(() => this.modal.show(this.modalID), 1000);
   }
 
   private getCredentials(): void {

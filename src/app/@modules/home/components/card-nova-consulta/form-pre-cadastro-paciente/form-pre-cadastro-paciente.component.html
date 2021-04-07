@@ -84,7 +84,7 @@
       <p class="m-0 is-invalid">[Error] {{ messageError }}</p>
     </div>
     <div class="col-12 d-flex align-items-end justify-content-end pt-4">
-      <button mat-stroked-button class="btn btn-outline-secondary" (click)="back()" *ngIf="!novoPaciente">
+      <button mat-stroked-button class="btn btn-outline-secondary" (click)="back()" *ngIf="!novoPaciente" type="button">
         <i class="feather icon-arrow-left"></i>
         voltar
       </button>
@@ -98,6 +98,7 @@
         cancelar
       </button>
       <button
+        type="button"
         mat-stroked-button
         class="btn btn-success ms-3"
         (click)="submitPreCadastroPaciente(2)"

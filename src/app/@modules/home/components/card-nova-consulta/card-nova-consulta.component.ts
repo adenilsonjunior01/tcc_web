@@ -242,6 +242,7 @@ export class CardNovaConsultaComponent implements OnInit, OnDestroy {
 
   public resetForm() {
     this.form.controls['paciente'].reset();
+    this.form.get('idPaciente').reset();
     this.search.reset();
     this.pacientes = [];
   }

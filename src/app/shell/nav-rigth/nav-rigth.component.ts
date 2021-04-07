@@ -43,6 +43,22 @@ export class NavRigthComponent implements OnInit {
     return this.tokenDecode.nome;
   }
 
+  get email(): string {
+    return this.tokenDecode.sub;
+  }
+
+  get profilePending(): boolean {
+    return this._credentialsService.profilePending;
+  }
+
+  public navigateProfile(): void {
+    this._router.navigateByUrl('/perfil');
+  }
+
+  public navigateRegisterColaborador(): void {
+    this._router.navigateByUrl('/cadastro/colaboradores?openModal=true');
+  }
+
   public getSubtitle() {
     this.subtitle = this._activetedRouter.snapshot.children[0].data.subtitle;
     console.log(this._activetedRouter.snapshot.children[0].data);

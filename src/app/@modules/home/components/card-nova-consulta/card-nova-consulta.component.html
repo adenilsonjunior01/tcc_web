@@ -103,7 +103,6 @@
                 </div>
               </ng-container>
             </div>
-            <button (click)="modal.show('resumo-consulta')">Open</button>
             <div class="col-12">
               <app-form-debug [form]="form"></app-form-debug>
             </div>
@@ -202,6 +201,7 @@
             <app-form-pre-cadastro-paciente
               (closeModal)="closeModalAndResetForm($event)"
               (dadosUsuario)="setValuesPaciente($event)"
+              (stepId)="setStep($event)"
             ></app-form-pre-cadastro-paciente>
           </ng-container>
           <ng-container *ngIf="steps === 2">

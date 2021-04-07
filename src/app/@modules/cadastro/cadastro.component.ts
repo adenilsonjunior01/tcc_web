@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ListaUtilitarioMock } from '../../mocks/lista-utilitario-mock';
 import { MatDialog } from '@angular/material/dialog';
 import { CadastroColaboradorComponent } from './components/colaboradores/cadastro-colaborador/cadastro-colaborador.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -15,7 +16,7 @@ export class CadastroComponent implements OnInit {
 
   dialog = new DialogContent(this._dialog);
 
-  constructor(private readonly _dialog?: MatDialog) {}
+  constructor(private readonly _activetedRouter: ActivatedRoute, private readonly _dialog?: MatDialog) {}
 
   ngOnInit(): void {
     this.listaSexo = this.utilitariosMock.getListaSexos();

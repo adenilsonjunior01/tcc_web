@@ -11,3 +11,57 @@ h3 {
 .icon-mail {
   color: var(--tcc-text-color-title);
 }
+
+.profile {
+  &__username {
+    &--name {
+      color: var(--dark);
+      font-size: var(--f_16);
+      font-weight: 700;
+    }
+
+    &--perfil {
+      color: var(--tcc-text-color-cinza);
+      text-transform: uppercase;
+      font-size: var(--f_14);
+    }
+    &--perfil-button {
+    }
+  }
+}
+
+.details {
+  &__email {
+    span {
+      font-size: var(--f_16);
+      font-weight: 500;
+      i {
+        font-size: 18px;
+        padding-right: 10px;
+        padding-top: 9px;
+      }
+    }
+  }
+
+  &__new-user {
+    span {
+      font-size: var(--f_16);
+      font-weight: 500;
+      i {
+        font-size: 18px;
+        padding-right: 10px;
+        padding-top: 9px;
+      }
+    }
+
+    &:hover {
+      transition: 300ms;
+      opacity: 0.7;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+}
+::ng-deep.mat-button-wrapper {
+  font-size: var(--f_16);
+}
