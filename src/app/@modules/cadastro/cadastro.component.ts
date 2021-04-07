@@ -16,7 +16,7 @@ export class CadastroComponent implements OnInit {
 
   dialog = new DialogContent(this._dialog);
 
-  constructor(private readonly _activetedRouter: ActivatedRoute, private readonly _dialog?: MatDialog) {}
+  constructor(private readonly _dialog?: MatDialog) {}
 
   ngOnInit(): void {
     this.listaSexo = this.utilitariosMock.getListaSexos();
