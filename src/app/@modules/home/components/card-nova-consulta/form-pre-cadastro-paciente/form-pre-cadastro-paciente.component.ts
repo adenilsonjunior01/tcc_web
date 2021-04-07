@@ -11,6 +11,10 @@ import { IListaPerfil, ListaPerfilMock } from '../../../../../mocks/lista-perfis
 import { SweetalertService } from '@app/@shared/sweetalert/sweetalert.service';
 import { IUsuarioModel } from '@app/models/usuario-model';
 import { IPacienteModel } from '@app/models/paciente-model';
+import { FormUpdateUser } from '../../../../perfil/class/form-update-user';
+import { FormUpdatePaciente } from '../../../../perfil/class/form-update-paciente';
+import { FormCadastroPaciente } from '../../../../../shell/class/form-cadastro-paciente';
+import { UsuarioService } from '../../../../../services/usuario/usuario.service';
 
 const log = new Logger('Pre-cadastro');
 
@@ -27,7 +31,9 @@ export class FormPreCadastroPacienteComponent implements OnInit, OnDestroy {
   @Output() dadosUsuario = new EventEmitter();
 
   public readonly _formPreCadastro = new FormPreCadastroPaciente();
+  public readonly _formConfig = new FormCadastroPaciente();
   public form: FormGroup;
+  public formPaciente: FormGroup;
 
   public utilitariosMock = new ListaUtilitarioMock();
   public listaSexo: any[];
@@ -36,7 +42,11 @@ export class FormPreCadastroPacienteComponent implements OnInit, OnDestroy {
   controlPerfil = new FormControl({ disabled: true });
   messageError = '';
 
-  constructor(private readonly _service: AgendamentoConsultaService, private readonly _sweetAlert: SweetalertService) {}
+  constructor(
+    private readonly _service: AgendamentoConsultaService,
+    private readonly _sweetAlert: SweetalertService,
+    private readonly _serviceUser: UsuarioService
+  ) {}
 
   ngOnDestroy() {}
 
@@ -44,6 +54,7 @@ export class FormPreCadastroPacienteComponent implements OnInit, OnDestroy {
     this.listaPerfis = new ListaPerfilMock().getListaPerfil();
     this.listaSexo = this.utilitariosMock.getListaSexos();
     this.form = this._formPreCadastro.initFormPreCadastroPaciente();
+    this.formPaciente = this._formConfig.initForm();
     this.filterPerfil();
   }
 
@@ -88,28 +99,43 @@ export class FormPreCadastroPacienteComponent implements OnInit, OnDestroy {
       const values = this._formPreCadastro.parseFormPrecadastroPaciente(this.form.value);
       this.loading = true; // IMPLEMENTAR LOADING46751688091
       const request$ = this._service.submitPreCadastroPaciente(values);
-      request$
-        .pipe(
-          finalize(() => {
-            this.loading = false;
-            this.closeModalAndResetForm(false, 'pre-cadastro');
-          }),
-          untilDestroyed(this)
-        )
-        .subscribe(
-          (response: IUsuarioModel) => {
-            this._sweetAlert.openToasty('Cadastro realizado com sucesso!', 'success');
-            this.resetForm();
-            this.dadosUsuario.emit(response);
-            this.stepId.emit(idStep);
-          },
-          (error) => {
-            this.messageError = error?.error?.message;
-            console.log(error);
-            log.debug(`Error`);
-          }
-        );
+      request$.pipe(untilDestroyed(this)).subscribe(
+        (response: IUsuarioModel) => {
+          this._sweetAlert.openToasty('Cadastro realizado com sucesso!', 'success');
+          this.formPaciente.get('idUser').setValue(response.id);
+          this.submitCadastroPaciente(idStep, response);
+        },
+        (error) => {
+          this.messageError = error?.error?.message;
+          console.log(error);
+          log.debug(`Error`);
+        }
+      );
     }
+  }
+
+  public submitCadastroPaciente(idStep: number, user: IUsuarioModel): void {
+    this._serviceUser
+      .saveNewPaciente(this.formPaciente.value)
+      .pipe(
+        finalize(() => {
+          this.loading = false;
+          this.closeModalAndResetForm(false, 'pre-cadastro');
+        }),
+        untilDestroyed(this)
+      )
+      .subscribe({
+        next: (body: any) => {
+          this.closeModal.emit(true);
+          this.stepId.emit(idStep);
+          this.dadosUsuario.emit(user);
+          this.resetForm();
+        },
+        error: (error: any) => {
+          this.messageError = error?.error?.message;
+          log.debug(`Error`);
+        },
+      });
   }
 
   /**
