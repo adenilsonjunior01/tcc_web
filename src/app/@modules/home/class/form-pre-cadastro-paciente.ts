@@ -17,6 +17,11 @@ export class FormPreCadastroPaciente {
       perfil: [null],
       senha: [null],
       telefone: ['99999999999', Validators.required],
+      idPaciente: [null],
+      id: [null],
+      nuInscricaoConvenio: [null],
+      descConvenio: [null],
+      compartilhaDados: [false],
       endereco: this._fb.group({
         descBairro: [null],
         descRua: [null],
@@ -31,7 +36,7 @@ export class FormPreCadastroPaciente {
 
   public parseFormPrecadastroPaciente(form: any): any {
     let values = Object.assign(form, {});
-    values.dtNascimento = dayjs(values.dtNascimento).format('DD-MM-YYYY');
+    values.dtNascimento = dayjs(values.dtNascimento).format('MM-DD-YYYY');
     values.endereco = null;
     values.perfil = 3;
     return values;
@@ -39,7 +44,7 @@ export class FormPreCadastroPaciente {
 
   public parseFormColaborador(form: any): any {
     let values = Object.assign(form, {});
-    values.dtNascimento = dayjs(values.dtNascimento).format('DD-MM-YYYY');
+    values.dtNascimento = dayjs(values.dtNascimento).format('MM-DD-YYYY');
     return values;
   }
 }

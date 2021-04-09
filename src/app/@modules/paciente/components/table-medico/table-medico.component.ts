@@ -1,25 +1,59 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ListaPacientesMock } from '../../../../mocks/lista-pacientes-mock';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { IConsultaModel, IConsultasModel } from '../../../../models/consultas-model';
+import { FormControl } from '@angular/forms';
+import { ListaTemporalidade } from '../../../home/mocks/lista-temporalidade';
+import { untilDestroyed } from '../../../../@core/until-destroyed';
+import { finalize } from 'rxjs/operators';
+import { Logger } from '../../../../@core/logger.service';
+import { CredentialsService, Token } from '../../../../auth/credentials.service';
+import { ClinicaService } from '../../../../services/clinica/clinica.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { AnimationOptions } from 'ngx-lottie';
+
+const log = new Logger('Pacientes Médico');
 
 @Component({
   selector: 'app-table-medico',
   templateUrl: './table-medico.component.html',
   styleUrls: ['./table-medico.component.scss'],
 })
-export class TableMedicoComponent implements OnInit {
+export class TableMedicoComponent implements OnInit, OnDestroy {
   private readonly listaPacientesMock = new ListaPacientesMock();
   pacientes: any[];
 
-  constructor(private readonly _router: Router) {}
+  loading = false;
+  itemsPerPage = 5;
+  currentPage: number;
+  totalItems: number;
+  page = 0;
+  perfil: string;
+  idPerfil: number;
+
+  public consultas: IConsultaModel[] = [];
+  public temporalidadeControl = new FormControl();
+  public opcoesTemporalidade: any[] = [];
+
+  constructor(
+    private readonly _router: Router,
+    private readonly _clinicaService: ClinicaService,
+    private readonly _credentials: CredentialsService
+  ) {}
+
+  public options: AnimationOptions = {
+    path: '/assets/lottie/lottie-search.json',
+  };
+
+  ngOnDestroy(): void {}
 
   ngOnInit(): void {
-    this.getListaPacientes();
-  }
-
-  public getListaPacientes(): void {
-    this.pacientes = this.listaPacientesMock.listaPacientesMedico();
+    this.getPerfilUser();
+    this.getIdPerfil();
+    this.opcoesTemporalidade = ListaTemporalidade.getListaOpcoesTemporalidade();
+    this.temporalidadeControl.setValue(this.opcoesTemporalidade[0].value);
+    this.getAllConsultasMedico();
   }
 
   public verificaSexoUsuario(sexo: string): string {
@@ -40,5 +74,40 @@ export class TableMedicoComponent implements OnInit {
         this._router.navigate(['/pacientes/prontuario-paciente'], { state: paciente });
       }
     });
+  }
+
+  public getPerfilUser() {
+    this.perfil = this._credentials.profile;
+  }
+
+  public getIdPerfil() {
+    const tokenDecode: Token = this._credentials.decodeToken();
+    this.idPerfil = tokenDecode.idPerfil;
+  }
+
+  public getAllConsultasMedico(page = 0): void {
+    this.loading = true;
+    this.consultas = [];
+    this._clinicaService
+      .getAllConsultasMedico(this.itemsPerPage, page, this.idPerfil, this.temporalidadeControl.value)
+      .pipe(
+        untilDestroyed(this),
+        finalize(() => (this.loading = false))
+      )
+      .subscribe({
+        next: (body: IConsultasModel) => {
+          this.consultas = body.content;
+          this.page = page + 1;
+          this.totalItems = body.totalElements;
+        },
+        error: (error: HttpErrorResponse) => {
+          log.error(error);
+        },
+      });
+  }
+
+  public pageChanged(event: number): void {
+    this.getAllConsultasMedico(event - 1);
+    this.page = event;
   }
 }

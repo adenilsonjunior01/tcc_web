@@ -31,7 +31,7 @@ export class FormPaciente {
 
   public parseFormPaciente(form: any): any {
     let values = Object.assign(form, {});
-    values.dtNascimento = dayjs(values.dtNascimento).format('DD-MM-YYYY');
+    values.dtNascimento = dayjs(values.dtNascimento).format('MM-DD-YYYY');
     values.perfil = 3;
     return values;
   }

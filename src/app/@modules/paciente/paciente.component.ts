@@ -5,8 +5,6 @@ import { CredentialsService } from '../../auth/credentials.service';
 import { PacienteService } from '@app/services/paciente/paciente.service';
 import { untilDestroyed } from '../../@core/until-destroyed';
 import { FormControl } from '@angular/forms';
-import { startWith, debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-paciente',
@@ -44,6 +42,7 @@ export class PacienteComponent implements OnInit, OnDestroy {
   public getPacientePorNome(name: string): void {
     this.pacientes = [];
     if (name !== '') {
+      this.reload = false;
       this._pacienteService
         .getPaciente(name)
         .pipe(untilDestroyed(this))

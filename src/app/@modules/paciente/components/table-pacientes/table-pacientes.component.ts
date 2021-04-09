@@ -5,6 +5,8 @@ import { untilDestroyed } from '../../../../@core/until-destroyed';
 import { finalize } from 'rxjs/operators';
 import { Logger } from '../../../../@core/logger.service';
 import { IPacientesPaginadoModel, Content } from '../../../../models/pacientes-paginado-model';
+import { CredentialsService } from '../../../../auth/credentials.service';
+import { AnimationOptions } from 'ngx-lottie';
 
 const log = new Logger('Pacientes');
 
@@ -22,8 +24,14 @@ export class TablePacientesComponent implements OnInit, OnDestroy, OnChanges {
   currentPage: number;
   totalItems: number;
   page = 0;
+  perfil: string;
+  idPerfil: number;
 
-  constructor(private readonly _router: Router, private readonly _pacienteService: PacienteService) {}
+  constructor(
+    private readonly _router: Router,
+    private readonly _pacienteService: PacienteService,
+    private readonly _credentials: CredentialsService
+  ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.paciente.length > 0) {

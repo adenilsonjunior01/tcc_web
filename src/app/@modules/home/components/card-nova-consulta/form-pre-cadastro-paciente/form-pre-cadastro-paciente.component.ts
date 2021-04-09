@@ -97,20 +97,26 @@ export class FormPreCadastroPacienteComponent implements OnInit, OnDestroy {
     if (this.form.valid) {
       this.messageError = '';
       const values = this._formPreCadastro.parseFormPrecadastroPaciente(this.form.value);
-      this.loading = true; // IMPLEMENTAR LOADING46751688091
+      this.loading = true;
       const request$ = this._service.submitPreCadastroPaciente(values);
-      request$.pipe(untilDestroyed(this)).subscribe(
-        (response: IUsuarioModel) => {
-          this._sweetAlert.openToasty('Cadastro realizado com sucesso!', 'success');
-          this.formPaciente.get('idUser').setValue(response.id);
-          this.submitCadastroPaciente(idStep, response);
-        },
-        (error) => {
-          this.messageError = error?.error?.message;
-          console.log(error);
-          log.debug(`Error`);
-        }
-      );
+      request$
+        .pipe(
+          untilDestroyed(this),
+          finalize(() => (this.loading = false))
+        )
+        .subscribe(
+          (response: IUsuarioModel) => {
+            this._sweetAlert.openToasty('Cadastro realizado com sucesso!', 'success');
+            this.formPaciente.get('idUser').setValue(response.id);
+            this.form.get('id').setValue(response.id);
+            this.submitCadastroPaciente(idStep, response);
+          },
+          (error) => {
+            this.messageError = error?.error?.message;
+            console.log(error);
+            log.debug(`Error`);
+          }
+        );
     }
   }
 
@@ -126,10 +132,12 @@ export class FormPreCadastroPacienteComponent implements OnInit, OnDestroy {
       )
       .subscribe({
         next: (body: any) => {
-          this.closeModal.emit(true);
-          this.stepId.emit(idStep);
-          this.dadosUsuario.emit(user);
-          this.resetForm();
+          this.form.get('idPaciente').setValue(body.id);
+          this.form.get('nuInscricaoConvenio').setValue(body.nuInscricaoConvenio);
+          this.form.get('descConvenio').setValue(body.descConvenio);
+          this.form.get('compartilhaDados').setValue(body.compartilhaDados);
+          this.dadosUsuario.emit(this.form.value);
+          // this.closeModal.emit(true);
         },
         error: (error: any) => {
           this.messageError = error?.error?.message;
@@ -138,16 +146,10 @@ export class FormPreCadastroPacienteComponent implements OnInit, OnDestroy {
       });
   }
 
-  /**
-   *
-   * @param user recebe dados do usuário e envia pro componente Pai
-   */
-  private emitUser(user: IUsuarioModel) {
-    this.dadosUsuario.emit(user);
-    if (this.novoPaciente) {
-    } else {
-      this.formPreCadastroPaciente.emit(user);
-    }
+  private resetFormAndSetNextStep(idStep: number) {
+    this.closeModal.emit(true);
+    this.stepId.emit(idStep);
+    this.resetForm();
   }
 
   private resetForm() {

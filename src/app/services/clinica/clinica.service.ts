@@ -4,6 +4,7 @@ import { IClinicaModel } from '../../models/clinica-model';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, take } from 'rxjs/operators';
 import { ITiposConsultaModel } from '../../models/tipos-consulta-model';
+import { IConsultasModel } from '../../models/consultas-model';
 
 const routes = {
   clinica: () => `/clinica`,
@@ -11,6 +12,9 @@ const routes = {
   horariosDisponiveis: (data: string, idProcedimento: number) =>
     `/consulta/horariosLivres?data=${data}&idTipoProcedimento=${idProcedimento}`,
   tiposConsulta: () => `/procedimentoMedico/tipos`,
+  consultas: (size: number, page: number) => `/consulta?size=${size}&page=${page}`,
+  consultasPorMedico: (size: number, page: number, idMedico: number, idTemporalidade: number) =>
+    `/consulta/porMedico/${idMedico}/${idTemporalidade}?size=${size}&page=${page}`,
 };
 
 @Injectable({
@@ -54,6 +58,27 @@ export class ClinicaService {
 
   public getTiposConsulta(): Observable<ITiposConsultaModel[]> {
     return this._httpClient.get(routes.tiposConsulta()).pipe(
+      catchError((error: HttpErrorResponse) => throwError(error)),
+      map((body: any) => body),
+      take(1)
+    );
+  }
+
+  public getAllConsultas(size: number, page: number): Observable<IConsultasModel> {
+    return this._httpClient.get(routes.consultas(size, page)).pipe(
+      catchError((error: HttpErrorResponse) => throwError(error)),
+      map((body: any) => body),
+      take(1)
+    );
+  }
+
+  public getAllConsultasMedico(
+    size: number,
+    page: number,
+    idMedico: number,
+    idTemporalidade: number
+  ): Observable<IConsultasModel> {
+    return this._httpClient.get(routes.consultasPorMedico(size, page, idMedico, idTemporalidade)).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),
       take(1)

@@ -1,3 +1,5 @@
+@import "../../../../../theme/paginate";
+
 tr {
   border: 1px solid #ececec;
   th {
@@ -20,5 +22,29 @@ tr {
       color: var(--tcc-dark);
       font-weight: bold;
     }
+
+    a {
+      font-size: var(--f_14);
+      font-weight: 400;
+      text-decoration: underline;
+      cursor: pointer;
+
+      &:hover {
+        transition: 300ms;
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+.table-responsive {
+  height: auto !important;
+}
+
+.not-found {
+  p {
+    color: var(--dark);
+    font-size: var(--f_14);
+    font-weight: 500;
   }
 }

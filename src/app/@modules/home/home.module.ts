@@ -22,6 +22,7 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { AgendamentoConsultaComponent } from './components/card-nova-consulta/agendamento-consulta/agendamento-consulta.component';
 import { FormPreCadastroPacienteComponent } from './components/card-nova-consulta/form-pre-cadastro-paciente/form-pre-cadastro-paciente.component';
 import { DetalhesPacienteHomeComponent } from './components/card-nova-consulta/detalhes-paciente-home/detalhes-paciente-home.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -38,6 +39,7 @@ const maskConfig: Partial<IConfig> = {
     NgApexchartsModule,
     PacienteModule,
     NgxMaskModule.forRoot(),
+    NgxPaginationModule,
   ],
   declarations: [
     HomeComponent,

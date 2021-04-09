@@ -94,7 +94,7 @@ export class CardNovaConsultaComponent implements OnInit, OnDestroy {
 
     this.form = this._formConsulta.initFormConsultaHome();
     this.listaSexo = this.utilitariosMock.getListaSexos();
-    this.form.get('dtInicio').setValue(dayjs(data).format('DD-MM-YYYY'));
+    this.form.get('dtInicio').setValue(dayjs(data).format('MM-DD-YYYY'));
     this.getTiposConsulta();
   }
 

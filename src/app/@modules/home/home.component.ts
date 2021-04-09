@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { QuoteService } from './quote.service';
 import { ModalAnimationComponent } from '../../@shared/modal-animation/modal-animation.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { CredentialsService } from '../../auth/credentials.service';
+import { CredentialsService, Token } from '../../auth/credentials.service';
 
 @Component({
   selector: 'app-home',
@@ -17,12 +17,14 @@ export class HomeComponent implements OnInit {
   jwt = new JwtHelperService();
 
   perfil: string;
+  idPerfil: number;
 
   constructor(private readonly _credentials: CredentialsService) {}
 
   ngOnInit() {
     this.isLoading = true;
     this.getPerfilUser();
+    this.getIdPerfil();
   }
 
   public openModal(id: string) {
@@ -31,5 +33,10 @@ export class HomeComponent implements OnInit {
 
   public getPerfilUser() {
     this.perfil = this._credentials.profile;
+  }
+
+  public getIdPerfil() {
+    const tokenDecode: Token = this._credentials.decodeToken();
+    this.idPerfil = tokenDecode.idPerfil;
   }
 }

@@ -57,8 +57,19 @@ export class AgendamentoConsultaComponent implements OnInit, OnChanges, OnDestro
   }
 
   public closeModalAndResetForm(id: string): void {
-    this.formConsulta.reset();
-    this.closeModal.emit({ close: true, modalId: id });
+    Swal.fire({
+      icon: 'info',
+      title: 'Deseja continuar?',
+      text: 'Ao continuar, essa consulta será desconsiderada.',
+      showCancelButton: true,
+      confirmButtonText: `Sim`,
+      cancelButtonText: `Não`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.formConsulta.reset();
+        this.stepId.emit(0);
+      }
+    });
   }
 
   public setStep(id: number) {
@@ -92,6 +103,9 @@ export class AgendamentoConsultaComponent implements OnInit, OnChanges, OnDestro
         const controle = this.formConsulta.get(campo);
         controle.markAsTouched();
       });
+
+      if (this.formConsulta.get('horario').invalid)
+        this._sweetAlert.openToasty('Selecione o horário da consulta!', 'info');
     }
   }
 

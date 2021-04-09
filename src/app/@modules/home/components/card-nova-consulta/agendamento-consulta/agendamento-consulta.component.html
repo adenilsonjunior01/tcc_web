@@ -56,10 +56,6 @@
           <div class="col-12" *ngIf="messageError !== ''">
             <p class="m-0 is-invalid">{{ messageError }}</p>
           </div>
-          <ng-container *ngIf="loading">
-            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-            <span class="sr-only">Aguarde...</span>
-          </ng-container>
         </div>
         <div class="col-6">
           <h3 class="mb-0">Selecione o médico</h3>
@@ -86,6 +82,10 @@
               </mat-error> -->
           </mat-form-field>
         </div>
+        <ng-container *ngIf="loading">
+          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+          <span class="sr-only">Aguarde...</span>
+        </ng-container>
       </div>
     </form>
   </div>

@@ -7,7 +7,9 @@ export interface IUsuarioModel {
   dtNascimento: Date;
   sexo: string;
   senha?: string;
+  cpf?: string;
   telefone: string;
   endereco?: IEnderecoModel;
   perfil?: number;
+  idPaciente?: number;
 }
