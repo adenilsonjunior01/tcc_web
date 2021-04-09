@@ -7,7 +7,6 @@ import { untilDestroyed } from '../../../../../@core/until-destroyed';
 import { Logger } from '../../../../../@core/logger.service';
 import { AgendamentoConsultaService } from '../../../../../services/agendamento-consulta/agendamento-consulta.service';
 import { MedicoService } from '../../../../../services/medico/medico.service';
-import { error } from '@angular/compiler/src/util';
 import { UtilitariosService } from '../../../../../services/utilitarios/utilitarios.service';
 import { IEspecializacaoModel } from '../../../../../models/especializacao-model';
 import { FormConsultaHome } from '../../../class/form-consulta-home';

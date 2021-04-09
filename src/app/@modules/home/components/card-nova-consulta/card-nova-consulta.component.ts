@@ -48,30 +48,6 @@ export class CardNovaConsultaComponent implements OnInit, OnDestroy {
       dtNascimento: '1990-12-02',
       sexo: 1,
     },
-    {
-      nome: 'Two',
-      sobrenome: 'Pereira',
-      cpf: '111.000.000-00',
-      email: 'teste@teste.com',
-      dtNascimento: '1990-12-02',
-      sexo: 1,
-    },
-    {
-      nome: 'Three',
-      sobrenome: 'Santos',
-      cpf: '111.222.000-00',
-      email: 'teste@teste.com',
-      dtNascimento: '1990-12-02',
-      sexo: 2,
-    },
-    {
-      nome: 'Four',
-      sobrenome: 'Silva',
-      cpf: '111.333.000-00',
-      email: 'teste@teste.com',
-      dtNascimento: '1990-12-02',
-      sexo: 2,
-    },
   ];
   filteredOptions: Observable<any>;
 
@@ -145,15 +121,8 @@ export class CardNovaConsultaComponent implements OnInit, OnDestroy {
       });
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    const dataFilter = this.optionsAutoComplete.filter(
-      (option) => option.nome.toLowerCase().indexOf(filterValue) === 0
-    );
-    return dataFilter;
-  }
-
   public closeModalAndResetForm(event: IEventCloseModalModel): void {
+    let data = new Date();
     if (event.close === true) {
       Swal.fire({
         icon: 'info',
@@ -168,6 +137,7 @@ export class CardNovaConsultaComponent implements OnInit, OnDestroy {
           this.modal.close(event.modalId);
           this.search.reset();
           this.form.reset();
+          this.form.get('dtInicio').setValue(dayjs(data).format('MM-DD-YYYY'));
         }
       });
     }
@@ -189,21 +159,8 @@ export class CardNovaConsultaComponent implements OnInit, OnDestroy {
     this.steps = 0;
   }
 
-  /**
-   *
-   * @param event recebe o formulário de pré-cadastro do paciente após envio pro back-end
-   */
-  // public getFormPreCadastroPaciente(event: any) {
-  //   this.form.controls['paciente'].get('nome').setValue(event.nome);
-  //   this.form.controls['paciente'].get('cpf').setValue(event.cpf);
-  //   this.form.controls['paciente'].get('email').setValue(event.email);
-  //   this.form.controls['paciente'].get('dtNascimento').setValue(event.dtNascimento);
-  //   this.form.controls['paciente'].get('sexo').setValue(event.sexo);
-  // }
-
   public submitNovaConsulta(): void {
     if (this.form.valid) {
-      console.log('DADOS CONSULTA >>', this.form.value);
     }
   }
 
@@ -212,7 +169,6 @@ export class CardNovaConsultaComponent implements OnInit, OnDestroy {
       const values = this.optionsAutoComplete.filter(
         (option) => option.nome.toLowerCase().indexOf(this.search.value.toLowerCase()) === 0
       );
-      // this.setValuesPaciente(values[0]);
       this.steps = 2;
       this.search.reset();
     } else {
@@ -251,7 +207,16 @@ export class CardNovaConsultaComponent implements OnInit, OnDestroy {
     this.modal.close('agendar-consulta');
     if (event.agendamento) {
       this.resumo = event.resumo;
+      this.resetCampos();
       setTimeout(() => this.modal.show('resumo-consulta'), 400);
     }
+  }
+
+  private resetCampos(): void {
+    this.steps = 0;
+    this.horariosDisponiveis = [];
+    this.pacientes = [];
+    this.form.reset();
+    this.search.reset();
   }
 }

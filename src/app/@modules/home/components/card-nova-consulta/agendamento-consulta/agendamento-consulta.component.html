@@ -76,15 +76,13 @@
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Observação <span class="optional">(Opcional)</span></mat-label>
             <textarea matInput autocomplete="off" formControlName="observacao"></textarea>
-            <!-- formControlName="username"-->
-            <!-- <mat-error>
-                <app-error-control-message [control]="loginForm.controls.username" label="E-mail"></app-error-control-message>
-              </mat-error> -->
           </mat-form-field>
         </div>
         <ng-container *ngIf="loading">
-          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-          <span class="sr-only">Aguarde...</span>
+          <div class="col-12">
+            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+            <span class="sr-only">Aguarde...</span>
+          </div>
         </ng-container>
       </div>
     </form>
@@ -100,7 +98,7 @@
       <i class="feather icon-x"></i>
       Cancelar
     </button>
-    <button mat-stroked-button class="btn btn-success ms-3" (click)="confirmAgendamento(2)">
+    <button mat-stroked-button class="btn btn-success ms-3" (click)="confirmAgendamento(2)" [disabled]="loading">
       <i class="feather icon-check"></i>
       Confirmar Agendamento
     </button>

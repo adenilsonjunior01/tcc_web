@@ -11,12 +11,11 @@
             <mat-form-field appearance="outline">
               <mat-label>E-mail</mat-label>
               <input type="text" matInput placeholder="Digite seu e-mail" autocomplete="off" formControlName="email" />
-              <mat-error class="pt-0">
+              <mat-error>
                 <app-error-control-message
                   [control]="loginForm.controls.email"
                   label="E-mail"
-                ></app-error-control-message
-                >''
+                ></app-error-control-message>
               </mat-error>
             </mat-form-field>
             <mat-form-field [hideRequiredMarker]="true" appearance="outline">
@@ -39,7 +38,7 @@
               >
                 <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
               </button>
-              <mat-error class="pt-0">
+              <mat-error>
                 <app-error-control-message
                   [control]="loginForm.controls.senha"
                   label="Senha"
