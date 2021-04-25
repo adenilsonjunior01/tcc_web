@@ -87,7 +87,7 @@
                     <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                     <span class="sr-only">Aguarde...</span>
                   </ng-container>
-                  <span *ngIf="!loading2">Buscar horários</span>
+                  <span *ngIf="!loading2">buscar horários</span>
                 </button>
               </div>
               <ng-container *ngIf="horariosDisponiveis">
@@ -184,12 +184,12 @@
                     (click)="closeModalAndResetForm({ close: true, modalId: 'agendar-consulta' })"
                   >
                     <i class="feather icon-x"></i>
-                    Cancelar
+                    cancelar
                   </button>
 
                   <button mat-stroked-button class="btn btn-secondary ms-3" (click)="resetForm()">
-                    <i class="feather icon-check"></i>
-                    Limpar
+                    <i class="feather icon-x-circle"></i>
+                    limpar
                   </button>
                 </div>
               </div>

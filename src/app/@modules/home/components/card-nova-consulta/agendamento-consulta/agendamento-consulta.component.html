@@ -34,9 +34,9 @@
     <form [formGroup]="formConsulta" class="bg-procedimento">
       <div class="container row pb-4 pt-3">
         <div class="col-6">
-          <h3 class="mb-0">Selecione a especializacao</h3>
+          <h3 class="mb-0">Selecione a especialização</h3>
           <mat-form-field appearance="outline" class="w-100">
-            <mat-label>Especialização</mat-label>
+            <mat-label>Selecione</mat-label>
             <mat-select
               formControlName="especializacao"
               required
@@ -60,7 +60,7 @@
         <div class="col-6">
           <h3 class="mb-0">Selecione o médico</h3>
           <mat-form-field appearance="outline" class="w-100">
-            <mat-label>Médicos disponíveis</mat-label>
+            <mat-label>Selecione</mat-label>
             <mat-select formControlName="idMedico" required>
               <mat-option [value]="medico.id" *ngFor="let medico of medicos">{{ medico.nome }}</mat-option>
             </mat-select>
@@ -94,7 +94,7 @@
       <i class="feather icon-arrow-left"></i>
       Voltar
     </button>
-    <button mat-stroked-button class="btn btn-secondary ms-3" (click)="closeModalAndResetForm('agendar-consulta')">
+    <button mat-stroked-button class="btn btn-danger ms-3" (click)="closeModalAndResetForm('agendar-consulta')">
       <i class="feather icon-x"></i>
       Cancelar
     </button>

@@ -23,6 +23,7 @@ import { AgendamentoConsultaComponent } from './components/card-nova-consulta/ag
 import { FormPreCadastroPacienteComponent } from './components/card-nova-consulta/form-pre-cadastro-paciente/form-pre-cadastro-paciente.component';
 import { DetalhesPacienteHomeComponent } from './components/card-nova-consulta/detalhes-paciente-home/detalhes-paciente-home.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ComponentsModule } from '../../components/components.module';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -40,6 +41,7 @@ const maskConfig: Partial<IConfig> = {
     PacienteModule,
     NgxMaskModule.forRoot(),
     NgxPaginationModule,
+    ComponentsModule,
   ],
   declarations: [
     HomeComponent,

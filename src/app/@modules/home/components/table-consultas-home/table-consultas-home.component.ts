@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, ViewChild } from '@angular/core';
 import { IConsultasModel } from '@app/models/consultas-model';
 import { ClinicaService } from '@app/services/clinica/clinica.service';
 import { untilDestroyed } from '../../../../@core/until-destroyed';
@@ -9,6 +9,7 @@ import { IConsultaModel } from '../../../../models/consultas-model';
 import { AnimationOptions } from 'ngx-lottie';
 import { ListaTemporalidade } from '../../mocks/lista-temporalidade';
 import { FormControl } from '@angular/forms';
+import { ModalAnimationComponent } from '../../../../@shared/modal-animation/modal-animation.component';
 
 const log = new Logger('Consultas');
 
@@ -18,6 +19,7 @@ const log = new Logger('Consultas');
   styleUrls: ['./table-consultas-home.component.scss'],
 })
 export class TableConsultasHomeComponent implements OnInit, OnDestroy {
+  @ViewChild(ModalAnimationComponent) modal: any;
   @Input() perfil: string;
   @Input() idMedico: number;
 

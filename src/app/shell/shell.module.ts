@@ -12,10 +12,9 @@ import { NavigationItem } from '../config/menu-navigation';
 import { NavRigthComponent } from './nav-rigth/nav-rigth.component';
 import { NotificationComponent } from './notification/notification.component';
 import { SharedModule } from '../@shared/shared.module';
-import { FormDadosBasicosMedicoComponent } from '.././components/form-dados-basicos-medico/form-dados-basicos-medico.component';
-import { FormDadosBasicosUsuarioComponent } from '.././components/form-dados-basicos-usuario/form-dados-basicos-usuario.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxMaskModule } from 'ngx-mask';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   imports: [
@@ -29,14 +28,9 @@ import { NgxMaskModule } from 'ngx-mask';
     SharedModule,
     NgSelectModule,
     NgxMaskModule,
+    ComponentsModule,
   ],
-  declarations: [
-    ShellComponent,
-    NavRigthComponent,
-    NotificationComponent,
-    FormDadosBasicosMedicoComponent,
-    FormDadosBasicosUsuarioComponent,
-  ],
+  declarations: [ShellComponent, NavRigthComponent, NotificationComponent],
   providers: [NavigationItem],
 })
 export class ShellModule {}

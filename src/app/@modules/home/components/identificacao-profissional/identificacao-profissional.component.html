@@ -2,11 +2,12 @@
   <div class="container">
     <div class="row">
       <div class="col-12 name-medico mt-4">
-        <h3 class="m-0">Nome Médico</h3>
+        <h3 class="m-0">{{ dadosUser?.medico?.nome }}</h3>
         <span>Médico</span>
       </div>
       <div class="col-12 py-4 crm">
-        <h2>CRM: 415215</h2>
+        <img src="../../../../../assets/home/icon-med.png" alt="Icon Med" />
+        <h2>CRM: {{ dadosUser?.medico?.crm }}</h2>
       </div>
     </div>
   </div>

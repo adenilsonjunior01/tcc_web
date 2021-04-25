@@ -14,6 +14,7 @@ import { PacienteService } from '../../../../services/paciente/paciente.service'
 import * as dayjs from 'dayjs';
 import { ClinicaService } from '@app/services/clinica/clinica.service';
 import { ITiposConsultaModel } from '@app/models/tipos-consulta-model';
+import { SweetalertService } from '@app/@shared/sweetalert/sweetalert.service';
 
 @Component({
   selector: 'app-card-nova-consulta',
@@ -55,12 +56,15 @@ export class CardNovaConsultaComponent implements OnInit, OnDestroy {
     path: '/assets/lottie/lottie-search.json',
   };
 
-  constructor(private readonly _pacienteService: PacienteService, private readonly _clinicaService: ClinicaService) {}
+  constructor(
+    private readonly _pacienteService: PacienteService,
+    private readonly _clinicaService: ClinicaService,
+    private readonly _sweetAlert: SweetalertService
+  ) {}
 
   ngOnDestroy(): void {}
 
   ngOnInit(): void {
-    let data = new Date();
     this.filteredOptions = this.search.valueChanges.pipe(
       startWith(''),
       debounceTime(600),
@@ -70,7 +74,6 @@ export class CardNovaConsultaComponent implements OnInit, OnDestroy {
 
     this.form = this._formConsulta.initFormConsultaHome();
     this.listaSexo = this.utilitariosMock.getListaSexos();
-    this.form.get('dtInicio').setValue(dayjs(data).format('MM-DD-YYYY'));
     this.getTiposConsulta();
   }
 
@@ -104,9 +107,12 @@ export class CardNovaConsultaComponent implements OnInit, OnDestroy {
         .subscribe({
           next: (datas: any) => {
             this.horariosDisponiveis = datas;
+            this._sweetAlert.openToasty('Horários encontrado!', 'success');
           },
           error: (err) => {},
         });
+    } else {
+      this.form.get('idTipoProcedimento').markAsTouched();
     }
   }
 

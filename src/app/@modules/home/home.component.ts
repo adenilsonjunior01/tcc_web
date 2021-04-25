@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { QuoteService } from './quote.service';
 import { ModalAnimationComponent } from '../../@shared/modal-animation/modal-animation.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { CredentialsService, Token } from '../../auth/credentials.service';
