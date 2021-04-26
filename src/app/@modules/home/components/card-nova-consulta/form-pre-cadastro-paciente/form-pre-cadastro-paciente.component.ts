@@ -137,6 +137,7 @@ export class FormPreCadastroPacienteComponent implements OnInit, OnDestroy {
           this.form.get('descConvenio').setValue(body.descConvenio);
           this.form.get('compartilhaDados').setValue(body.compartilhaDados);
           this.dadosUsuario.emit(this.form.value);
+          setTimeout(() => this.resetForm(), 800);
           // this.closeModal.emit(true);
         },
         error: (error: any) => {
@@ -152,7 +153,14 @@ export class FormPreCadastroPacienteComponent implements OnInit, OnDestroy {
     this.resetForm();
   }
 
-  private resetForm() {
-    this.form.reset();
+  public resetForm() {
+    this.form.get('cpf').reset();
+    this.form.get('dtNascimento').reset();
+    this.form.get('nome').reset();
+    this.form.get('sexo').reset();
+    this.form.get('telefone').reset();
+    this.form.get('email').reset();
+    this.formPaciente.get('nuInscricaoConvenio').reset();
+    this.formPaciente.get('descConvenio').reset();
   }
 }

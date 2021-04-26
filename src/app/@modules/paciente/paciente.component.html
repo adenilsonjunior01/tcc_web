@@ -9,12 +9,16 @@
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Pesquise usuários pelo Nome</mat-label>
                   <mat-icon matSuffix>search</mat-icon>
-                  <input matInput [formControl]="search" (change)="getPacientePorNome(search.value)" />
+                  <input matInput [formControl]="search" />
                 </mat-form-field>
               </form>
             </div>
             <!-- /col-md-4 -->
             <div class="col-md-8 d-flex align-items-center justify-content-end">
+              <button class="btn btn-warning me-3" (click)="getPacientePorNome(search.value)">
+                <i class="feather icon-search"></i>
+                <span>buscar</span>
+              </button>
               <app-form-novo-paciente></app-form-novo-paciente>
               <div></div>
             </div>

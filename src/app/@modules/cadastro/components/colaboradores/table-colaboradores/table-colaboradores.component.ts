@@ -35,7 +35,7 @@ export class TableColaboradoresComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {}
 
   ngOnInit(): void {
-    this.getListaColaboradores();
+    // this.getListaColaboradores();
     this.getAllColaboradores();
   }
 
@@ -54,6 +54,7 @@ export class TableColaboradoresComponent implements OnInit, OnDestroy {
 
   public getAllColaboradores(page = 0): void {
     this.loading = true;
+    this.colaboradores = [];
     this._colaboradoresService
       .getAllColaboradores(page, this.itemsPerPage)
       .pipe(

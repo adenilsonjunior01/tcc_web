@@ -87,6 +87,7 @@
                     <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                     <span class="sr-only">Aguarde...</span>
                   </ng-container>
+                  <i class="feather icon-search me-1"></i>
                   <span *ngIf="!loading2">buscar horários</span>
                 </button>
               </div>
@@ -125,7 +126,6 @@
                   <h3 class="text-uppercase mb-1">Selecione um Paciente já Cadastrado</h3>
                   <mat-form-field appearance="outline" class="w-100">
                     <mat-label>Pesquise paciente pelo nome ou CPF</mat-label>
-                    <mat-icon matSuffix>Buscar</mat-icon>
                     <input
                       type="text"
                       placeholder="Busque pelo nome do paciente"
@@ -174,7 +174,7 @@
                   <h3 class="text-uppercase mb-1">Ou Cadastre um Novo Paciente</h3>
                   <button mat-stroked-button class="btn btn-outline-primary" (click)="setStep(1)">
                     <i class="feather icon-plus"></i>
-                    Novo Paciente
+                    novo paciente
                   </button>
                 </div>
                 <div class="col-12 d-flex align-items-end justify-content-end mb-3">

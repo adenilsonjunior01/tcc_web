@@ -1,5 +1,6 @@
 <button class="btn btn-primary" type="button" (click)="modal.show('form-cadastro-colaborador')">
-  Novo colaborador
+  <i class="feather icon-plus"></i>
+  <span>novo colaborador</span>
 </button>
 
 <app-modal-animation [modalID]="modalID" modalClass="md-effect-10 form-cadastro-colaborador" backDrop="true">
@@ -191,12 +192,13 @@
           </div>
           <div class="col-12 d-flex justify-content-end">
             <button class="btn btn-secondary ps-2 me-3" (click)="clearForm()">Limpar</button>
-            <button class="btn btn-primary ps-2" [disabled]="!form.valid || loading" (click)="submitUser()">
+            <button class="btn btn-success ps-2" [disabled]="!form.valid || loading" (click)="submitUser()">
               <ng-container *ngIf="loading">
                 <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                 <span class="sr-only">Aguarde...</span>
               </ng-container>
-              <span *ngIf="!loading">Salvar</span>
+              <i *ngIf="!loading" class="feather icon-check"></i>
+              <span *ngIf="!loading">salvar</span>
             </button>
           </div>
         </div>

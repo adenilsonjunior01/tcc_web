@@ -71,4 +71,9 @@ export class NavRigthComponent implements OnInit {
   private decodeToken(): void {
     this.tokenDecode = this._credentialsService.decodeToken();
   }
+
+  public splitNameUser(): string {
+    const name: any = this.userName.split(' ');
+    return name[0];
+  }
 }

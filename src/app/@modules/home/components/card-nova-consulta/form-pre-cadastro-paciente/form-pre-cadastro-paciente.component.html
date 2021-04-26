@@ -1,8 +1,15 @@
 <form [formGroup]="form" class="animate__fadeInRight">
   <div class="row m-0">
+    <div class="col-12 d-flex justify-content-between">
+      <div>
+        <h3 class="m-0">Novo Paciente</h3>
+        <span>Pré-cadastro do paciente</span>
+      </div>
+      <div class="close-modal">
+        <i class="feather icon-x" (click)="closeModalAndResetForm(true, 'pre-cadastro')"></i>
+      </div>
+    </div>
     <div class="col-12">
-      <h3 class="m-0">Novo Paciente</h3>
-      <span>Pré-cadastro do paciente</span>
       <hr class="my-2" />
     </div>
     <div class="col-12">
@@ -114,14 +121,9 @@
           <i class="feather icon-arrow-left"></i>
           voltar
         </button>
-        <button
-          mat-stroked-button
-          class="btn btn-outline-secondary"
-          (click)="closeModalAndResetForm(true, 'pre-cadastro')"
-          *ngIf="novoPaciente"
-        >
+        <button mat-stroked-button class="btn btn-outline-secondary" (click)="resetForm()" *ngIf="novoPaciente">
           <i class="feather icon-x"></i>
-          cancelar
+          limpar
         </button>
         <button
           type="button"

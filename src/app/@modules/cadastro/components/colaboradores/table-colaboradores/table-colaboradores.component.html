@@ -37,7 +37,7 @@
               <span *ngIf="i > 0">,</span> <span>{{ perfil }}</span>
             </ng-container>
           </td>
-          <td class="td-format">{{ colaborador?.dtNascimento | date: 'shortDate' }}</td>
+          <td class="td-format">{{ colaborador?.dtNascimento }}</td>
           <td class="td-format">{{ colaborador?.telefone | mask: '(00) 0 0000 0000' }}</td>
           <td class="td-format width-td">
             <div class="overlay-text">
@@ -103,3 +103,4 @@
     </div>
   </div>
 </ng-template>
+<app-loader *ngIf="loading"></app-loader>
