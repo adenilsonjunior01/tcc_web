@@ -1,71 +1,60 @@
-<div class="container bg-prontuario mb-4">
-  <!-- <div class="row m-0">
-      <div class="col-12 d-flex align-items-center mb-2">
-        <img src="../../../../../assets/logo-svg.svg" alt="Logo" />
-        <h1 class="m-0 d-inline ps-2">IHealth</h1>
-      </div>
-      <div class="col-12 my-1">
-        <p class="m-0">Nome Clínica</p>
-      </div>
-      <div class="col-12 my-1">
-        <p class="m-0">QR-1A, Conjuto RS, Casa 25, Apartamento 203 - Complemento..</p>
-      </div>
-      <div class="col-12 my-1">
-        <p class="m-0 email">email@gmail.com</p>
-      </div>
-      <div class="col-12 my-1">
-        <p class="m-0">(00) 0 0000-0000 - (00) 0000-0000</p>
-      </div>
-    </div> -->
-  <div class="row ms-0 mt-5">
+<div class="container bg-prontuario py-4">
+  <div class="row ms-0">
+    <div class="col-12 close-icon d-flex justify-content-end">
+      <i class="feather icon-x" (click)="emitEventCloseModal()"></i>
+    </div>
     <div class="col-4">
       <h3 class="m-0 text-uppercase">Dados do Paciente:</h3>
-      <ul class="dados-medicos">
+      <ul class="dados-medicos ps-0">
         <li>
           <h4 class="fw-bold m-0">Nome</h4>
-          <span>Dr. Alex Monteiro</span>
+          <span>{{ consulta?.paciente?.nome }}</span>
         </li>
         <li>
-          <h4 class="fw-bold m-0">Data Nascimento:</h4>
-          <span>01/01/01</span>
+          <h4 class="fw-bold m-0">Convênio:</h4>
+          <span>{{ consulta?.paciente?.descConvenio }}</span>
         </li>
         <li>
-          <h4 class="fw-bold m-0">Tipo Sanguíneo</h4>
-          <span>A+</span>
+          <h4 class="fw-bold m-0">Nº Incrição Convênio:</h4>
+          <span>{{ consulta?.paciente?.nuInscricaoConvenio }}</span>
+        </li>
+        <li>
+          <h4 class="fw-bold m-0">Contato</h4>
+          <span>{{ consulta?.paciente?.telefone | mask: '(00) 0 0000 0000' }}</span>
         </li>
       </ul>
     </div>
     <div class="col-4">
       <h3 class="m-0 text-uppercase">Dados do Médico:</h3>
-      <ul class="dados-medicos">
+      <ul class="dados-medicos ps-0">
         <li>
           <h4 class="fw-bold m-0">Nome</h4>
-          <span>Dr. Alex Monteiro</span>
+          <span>{{ consulta?.medico?.nome }}</span>
         </li>
         <li>
           <h4 class="fw-bold m-0">CRM:</h4>
-          <span>88455112</span>
-        </li>
-        <li>
-          <h4 class="fw-bold m-0">Data Inscrição:</h4>
-          <span>01/01/01</span>
+          <span>{{ consulta?.medico?.crm }}</span>
         </li>
         <li>
           <h4 class="fw-bold m-0">Especialidade(s):</h4>
-          <span>Cadiologista, Pediatra</span>
+          <ng-container *ngFor="let especializacao of consulta?.medico?.especializacoes; index as i">
+            <span *ngIf="i > 0">, </span>
+            <span>{{ especializacao?.descEspecializacao }}</span>
+          </ng-container>
         </li>
       </ul>
     </div>
     <div class="col-4">
-      <h3 class="m-0 text-uppercase">Identificador do Atendimento:</h3>
-      <ul class="dados-medicos">
+      <h3 class="m-0 text-uppercase">Procedimento:</h3>
+      <ul class="dados-medicos ps-0">
         <li>
-          <h4 class="fw-bold m-0">Número</h4>
-          <span class="id-atendimento fw-bold">4451254</span>
+          <h4 class="fw-bold m-0">Descrição</h4>
+          <!-- <span class="id-atendimento fw-bold"></span> -->
+          <span>{{ consulta?.procedimento?.descTipoProcedimento }}</span>
         </li>
         <li>
-          <h4 class="fw-bold m-0">Data do Atendimento</h4>
-          <span>01/01/01</span>
+          <h4 class="fw-bold m-0">Duração</h4>
+          <span>{{ consulta?.procedimento?.duracao }}</span>
         </li>
       </ul>
     </div>

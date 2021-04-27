@@ -60,7 +60,7 @@
             <span class="bold">Ativo</span>
           </td>
           <td>
-            <a (click)="modal.show('detalhe-consulta')"> visualizar</a>
+            <a (click)="openModalDetalhes('detalhe-consulta', consulta)"> visualizar</a>
           </td>
         </tr>
       </tbody>
@@ -90,6 +90,6 @@
 </ng-template>
 <app-modal-animation modalID="detalhe-consulta" modalClass="md-effect-10">
   <div class="md-body container p-0">
-    <app-detalhes-consulta></app-detalhes-consulta>
+    <app-detalhes-consulta [consulta]="consulta" (closeModal)="closeModal($event)"></app-detalhes-consulta>
   </div>
 </app-modal-animation>

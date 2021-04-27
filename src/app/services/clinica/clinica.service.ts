@@ -15,6 +15,7 @@ const routes = {
   consultas: (size: number, page: number) => `/consulta?size=${size}&page=${page}`,
   consultasPorMedico: (size: number, page: number, idMedico: number, idTemporalidade: number) =>
     `/consulta/porMedico/${idMedico}/${idTemporalidade}?size=${size}&page=${page}`,
+  consultasTemporalidade: (idTemporalidade: number) => `/consulta/temporalidade/${idTemporalidade}`,
 };
 
 @Injectable({
@@ -79,6 +80,14 @@ export class ClinicaService {
     idTemporalidade: number
   ): Observable<IConsultasModel> {
     return this._httpClient.get(routes.consultasPorMedico(size, page, idMedico, idTemporalidade)).pipe(
+      catchError((error: HttpErrorResponse) => throwError(error)),
+      map((body: any) => body),
+      take(1)
+    );
+  }
+
+  public getConsultasTemporalidade(idTemporalidade: number): Observable<any> {
+    return this._httpClient.get(routes.consultasTemporalidade(idTemporalidade)).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),
       take(1)

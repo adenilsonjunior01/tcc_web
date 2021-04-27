@@ -47,7 +47,14 @@
               *ngIf="perfil === 'PACIENTE'"
             >
               <i class="feather icon-list pe-2"></i>
-              <span>Prontuários</span>
+              <span>Meus Prontuários</span>
+            </a>
+          </ng-container>
+
+          <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR'">
+            <a mat-list-item routerLink="/consultas" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+              <i class="feather icon-file-text pe-3"></i>
+              <span>Consultas</span>
             </a>
           </ng-container>
 

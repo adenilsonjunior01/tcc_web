@@ -70,9 +70,9 @@ export class UpdateDadosMedicosComponent implements OnInit, OnDestroy {
     this.medicamentos = dadosMedicos.medicamentos;
     this.alergias = dadosMedicos.alergias;
 
-    this.form.get('altura').setValue(dadosMedicos.altura);
-    this.form.get('peso').setValue(dadosMedicos.peso);
-    this.form.get('tipoSanguineo').setValue(dadosMedicos.tipoSanguineo.id);
+    this.form.get('altura').setValue(dadosMedicos?.altura);
+    this.form.get('peso').setValue(dadosMedicos?.peso);
+    this.form.get('tipoSanguineo').setValue(dadosMedicos.tipoSanguineo?.id);
   }
 
   public getTiposSanguineo(): void {

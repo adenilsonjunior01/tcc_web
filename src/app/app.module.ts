@@ -23,6 +23,7 @@ import { registerLocaleData } from '@angular/common';
 import { ConfiguracoesModule } from './@modules/configuracoes/configuracoes.module';
 import { PerfilModule } from './@modules/perfil/perfil.module';
 import { ProtuarioMedicoModule } from './@modules/protuario-medico/protuario-medico.module';
+import { ConsultasModule } from './@modules/consultas/consultas.module';
 
 registerLocaleData(localePt);
 
@@ -47,7 +48,8 @@ registerLocaleData(localePt);
     ConfiguracoesModule,
     PerfilModule,
     ProtuarioMedicoModule,
-    MedicosModule, // must be imported as the last module as it contains the fallback route
+    MedicosModule,
+    ConsultasModule, // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],

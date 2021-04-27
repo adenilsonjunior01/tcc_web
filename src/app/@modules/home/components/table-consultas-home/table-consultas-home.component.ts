@@ -35,6 +35,7 @@ export class TableConsultasHomeComponent implements OnInit, OnDestroy {
   public temporalidadeControl = new FormControl();
 
   public opcoesTemporalidade: any[] = [];
+  public consulta: any;
 
   ngOnDestroy(): void {}
 
@@ -110,5 +111,14 @@ export class TableConsultasHomeComponent implements OnInit, OnDestroy {
       this.getAllConsultas(event - 1);
     }
     this.page = event;
+  }
+
+  public openModalDetalhes(idModal: string, consulta: any): void {
+    this.consulta = consulta;
+    this.modal.show(idModal);
+  }
+
+  public closeModal(event: any): void {
+    this.modal.close(event.modalId);
   }
 }
