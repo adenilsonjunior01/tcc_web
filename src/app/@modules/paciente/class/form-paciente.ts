@@ -9,14 +9,14 @@ export class FormPaciente {
 
   public initForm(): FormGroup {
     const form = this._fb.group({
-      nome: ['Teste', Validators.required],
-      cpf: ['66138051068', Validators.required],
+      nome: [null, Validators.required],
+      cpf: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
-      sexo: ['m', Validators.required],
+      sexo: [null, Validators.required],
       dtNascimento: [null, [Validators.required, FormValidations.dateValidator]],
       perfil: [null],
       senha: [null],
-      telefone: ['99999999999', Validators.required],
+      telefone: [null, Validators.required],
       endereco: this._fb.group({
         descBairro: [null],
         descRua: [null],

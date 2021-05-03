@@ -6,17 +6,17 @@ export class ListaTemporalidade {
       {
         id: 1,
         text: 'Dia',
-        value: 0,
+        value: 1,
       },
       {
         id: 2,
         text: 'Semanal',
-        value: 1,
+        value: 2,
       },
       {
         id: 3,
         text: 'Mensal',
-        value: 2,
+        value: 3,
       },
     ];
   }

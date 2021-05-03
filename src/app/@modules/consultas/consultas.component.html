@@ -67,7 +67,7 @@
                 />
                 <div class="d-inline-block name-profile">
                   <span class="d-block name">{{ consulta?.paciente?.nome }}</span>
-                  <span class="profile">{{ consulta?.paciente?.cpf }}</span>
+                  <span class="profile">{{ consulta?.paciente?.cpf | mask: '000.000.000-00' }}</span>
                 </div>
               </td>
               <td class="td-format">{{ consulta?.medico?.nome }}</td>
@@ -77,7 +77,33 @@
                 <span class="badge bg-primary">Pendente</span>
               </td>
               <td class="text-center">
-                <button mat-raised-button color="primary" type="button" class="btn-success">Iniciar Consulta</button>
+                <button
+                  mat-raised-button
+                  color="primary"
+                  type="button"
+                  class="btn-secondary"
+                  (click)="openModalDetalhes('detalhe-consulta', consulta)"
+                >
+                  <i class="feather icon-eye"></i> ver detalhes
+                </button>
+                <button
+                  mat-raised-button
+                  color="primary"
+                  type="button"
+                  class="btn-success"
+                  (click)="submit('confirm', consulta)"
+                >
+                  <i class="feather icon-check"></i> confirmar
+                </button>
+                <button
+                  mat-raised-button
+                  color="primary"
+                  type="button"
+                  class="btn-danger"
+                  (click)="submit('cancel', consulta)"
+                >
+                  <i class="feather icon-x"></i> cancelar
+                </button>
               </td>
             </tr>
           </tbody>
@@ -106,3 +132,9 @@
     </div>
   </app-card-content>
 </ng-template>
+<app-modal-animation modalID="detalhe-consulta" modalClass="md-effect-10">
+  <div class="md-body container p-0">
+    <app-detalhes-consulta [consulta]="consulta" (closeModal)="closeModal($event)"></app-detalhes-consulta>
+  </div>
+</app-modal-animation>
+<app-loader *ngIf="loading2"></app-loader>

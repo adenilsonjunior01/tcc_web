@@ -7,9 +7,18 @@ import { SharedModule } from '../../@shared/shared.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MaterialModule } from '@app/material.module';
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   declarations: [ConsultasComponent],
-  imports: [CommonModule, ConsultasRoutingModule, SharedModule, NgxMaskModule, NgxPaginationModule, MaterialModule],
+  imports: [
+    CommonModule,
+    ConsultasRoutingModule,
+    SharedModule,
+    NgxMaskModule,
+    NgxPaginationModule,
+    MaterialModule,
+    ComponentsModule,
+  ],
 })
 export class ConsultasModule {}
