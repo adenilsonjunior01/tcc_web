@@ -17,6 +17,7 @@ export class FormProntuario {
   public newObjectControlMedicamento(): FormGroup {
     return this._fb.group({
       desc: [null],
+      duracaoTratamento: [null],
     });
   }
 

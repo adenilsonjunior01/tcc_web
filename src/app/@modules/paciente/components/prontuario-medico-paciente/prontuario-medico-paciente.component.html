@@ -127,13 +127,18 @@
                     </mat-form-field>
 
                     <mat-dialog-actions align="end">
-                      <button mat-button *ngIf="i > 0" (click)="removeObject(i, 'alergias')">remover</button>
+                      <button mat-button (click)="removeObject(i, 'alergias')" class="remove">
+                        <i class="feather icon-x"></i>
+                        <span>remover</span>
+                      </button>
                       <button
+                        class="new"
                         mat-button
                         (click)="addNewObjectControlAlergia(controlAlergia.value, 'alergias')"
                         *ngIf="i === 0"
                       >
-                        novo
+                        <i class="feather icon-plus"></i>
+                        <span>novo</span>
                       </button>
                     </mat-dialog-actions>
                   </div>
@@ -154,7 +159,7 @@
                 </h3>
               </mat-expansion-panel-header>
 
-              <label class="d-block mb-2">Possui alguma alergia a medicamentos?</label>
+              <label class="d-block mb-2">Medicamento</label>
 
               <mat-radio-group
                 aria-label="Select an option"
@@ -185,15 +190,31 @@
                         </app-error-control-message>
                       </mat-error>
                     </mat-form-field>
+                    <mat-form-field>
+                      <mat-label>Duração tratamento</mat-label>
+                      <input matInput formControlName="duracaoTratamento" />
+                      <mat-error class="p-0">
+                        <app-error-control-message
+                          [control]="medicamento.controls.duracaoTratamento"
+                          label="Duração tratamento"
+                        >
+                        </app-error-control-message>
+                      </mat-error>
+                    </mat-form-field>
 
                     <mat-dialog-actions align="end">
-                      <button mat-button *ngIf="i > 0" (click)="removeObject(i, 'medicamentos')">remover</button>
+                      <button mat-button (click)="removeObject(i, 'medicamentos')" class="remove">
+                        <i class="feather icon-x"></i>
+                        <span>remover</span>
+                      </button>
                       <button
                         mat-button
+                        class="new"
                         (click)="addNewObjectControlMedicamento(controlMedicamento.value, 'medicamentos')"
                         *ngIf="i === 0"
                       >
-                        novo
+                        <i class="feather icon-plus"></i>
+                        <span>novo</span>
                       </button>
                     </mat-dialog-actions>
                   </div>
@@ -246,13 +267,18 @@
                     </mat-form-field>
 
                     <mat-dialog-actions align="end">
-                      <button mat-button *ngIf="i > 0" (click)="removeObject(i, 'doencaCronica')">remover</button>
+                      <button mat-button (click)="removeObject(i, 'doencaCronica')" class="remove">
+                        <i class="feather icon-x"></i>
+                        <span>remover</span>
+                      </button>
                       <button
                         mat-button
+                        class="new"
                         (click)="addNewObjectControlDoencaCronica(controlDoencaCronica.value, 'doencaCronica')"
                         *ngIf="i === 0"
                       >
-                        novo
+                        <i class="feather icon-plus"></i>
+                        <span>novo</span>
                       </button>
                     </mat-dialog-actions>
                   </div>

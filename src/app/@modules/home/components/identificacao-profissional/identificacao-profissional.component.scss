@@ -19,8 +19,23 @@
   }
 }
 
-.crm {
+.dados-medico {
   h2 {
+    color: var(--tcc-white);
+    font-family: var(--tcc-font-lato);
+    font-weight: 500;
+  }
+}
+
+.description {
+  span {
+    font-weight: 300;
+    font-size: 11px;
+    color: var(--tcc-white);
+  }
+
+  h4 {
+    font-weight: 500;
     color: var(--tcc-white);
   }
 }

@@ -23,11 +23,12 @@ export class ConsultasComponent implements OnInit, OnDestroy {
   public listaMedicos: any[] = [];
   public formOptions: FormGroup;
 
-  itemsPerPage = 5;
+  itemsPerPage = 15;
   currentPage: number;
   totalItems: number;
   page = 0;
   loading = false;
+  paginationVisible = false;
   public consultas: IConsultaModel[] = [];
   public options: AnimationOptions = {
     path: '/assets/lottie/lottie-search.json',
@@ -74,6 +75,7 @@ export class ConsultasComponent implements OnInit, OnDestroy {
   public getConsultasTemporalidadeMedico(page = 0): void {
     this.loading = true;
     this.consultas = [];
+    this.paginationVisible = true;
     this._clinicaService
       .getAllConsultasMedico(
         this.itemsPerPage,
@@ -105,6 +107,7 @@ export class ConsultasComponent implements OnInit, OnDestroy {
   public getConsultasTemporalidade(): void {
     this.loading = true;
     this.consultas = [];
+    this.paginationVisible = false;
     this._clinicaService
       .getConsultasTemporalidade(this.formOptions.get('temporalidade').value)
       .pipe(

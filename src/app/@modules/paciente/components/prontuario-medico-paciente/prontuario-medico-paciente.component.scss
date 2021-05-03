@@ -40,3 +40,17 @@ ul {
 .icon-alert-triangle {
   color: red;
 }
+
+.remove {
+  &:hover {
+    color: var(--danger);
+    transition: 300ms;
+  }
+}
+
+.new {
+  &:hover {
+    color: var(--tcc-primary);
+    transition: 300ms;
+  }
+}

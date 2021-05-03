@@ -4,6 +4,8 @@ import { untilDestroyed } from '../../../../@core/until-destroyed';
 import { finalize } from 'rxjs/operators';
 import { Logger } from '../../../../@core/logger.service';
 import { IDadosUserModel } from '../../../../models/dados-user-model';
+import { ClinicaService } from '@app/services/clinica/clinica.service';
+import { IClinicaModel } from '../../../../models/clinica-model';
 
 const log = new Logger('Identificação Profissional');
 
@@ -15,12 +17,14 @@ const log = new Logger('Identificação Profissional');
 export class IdentificacaoProfissionalComponent implements OnInit, OnDestroy {
   public loading = false;
   public dadosUser: IDadosUserModel;
+  public nomeClinica: string;
 
-  constructor(private readonly _usuarioService: UsuarioService) {}
+  constructor(private readonly _usuarioService: UsuarioService, private readonly _dadosClinica: ClinicaService) {}
 
   ngOnDestroy(): void {}
 
   ngOnInit(): void {
+    this.getDadosClinica();
     this.getDadosUser();
   }
 
@@ -40,6 +44,17 @@ export class IdentificacaoProfissionalComponent implements OnInit, OnDestroy {
         },
         error: (error) => {
           log.error(error);
+        },
+      });
+  }
+
+  public getDadosClinica(): void {
+    this._dadosClinica
+      .getDadosClinica()
+      .pipe(untilDestroyed(this))
+      .subscribe({
+        next: (body: IClinicaModel) => {
+          this.nomeClinica = body.nome;
         },
       });
   }

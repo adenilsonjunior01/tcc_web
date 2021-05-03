@@ -62,7 +62,9 @@ export class ShellComponent implements OnInit, OnDestroy {
         untilDestroyed(this)
       )
       .subscribe({
-        next: (body: IClinicaModel) => (this.dadosClinica = body),
+        next: (body: IClinicaModel) => {
+          this.dadosClinica = body;
+        },
         error: () => (this.errorRequest = true),
       });
   }
