@@ -30,7 +30,7 @@ export class FormConsultaHome {
 
   public parseForm(form: any): any {
     let values = Object.assign(form, {});
-    values.dtInicio = `${dayjs(values.dtInicio).format('YYYY-DD-MM')} ${values.horario}`;
+    values.dtInicio = `${values.dtInicio.split('-').reverse().join('-')} ${values.horario}`;
 
     delete values.especializacao;
     delete values.paciente;
