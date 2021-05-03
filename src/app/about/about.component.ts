@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { environment } from '@env/environment';
 import { CalendarOptions, DateSelectArg, EventApi, EventClickArg } from '@fullcalendar/common';
-import { INITIAL_EVENTS, createEventId } from './event-utils';
+import { INITIAL_EVENTS } from './event-utils';
 import { ModalAnimationComponent } from '../@shared/modal-animation/modal-animation.component';
 import Swal from 'sweetalert2';
 
@@ -18,7 +17,7 @@ export class AboutComponent implements OnInit {
 
   constructor() {}
 
-  version: string | null = environment.version;
+  version: string;
   calendarVisible = true;
   calendarOptions: CalendarOptions = {
     headerToolbar: {
