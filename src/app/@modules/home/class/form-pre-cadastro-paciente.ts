@@ -36,7 +36,7 @@ export class FormPreCadastroPaciente {
 
   public parseFormPrecadastroPaciente(form: any): any {
     let values = Object.assign(form, {});
-    values.dtNascimento = dayjs(values.dtNascimento).format('MM-DD-YYYY');
+    values.dtNascimento = values.dtNascimento.split('/').join('-');
     values.endereco = null;
     values.perfil = 3;
     return values;
@@ -44,7 +44,7 @@ export class FormPreCadastroPaciente {
 
   public parseFormColaborador(form: any): any {
     let values = Object.assign(form, {});
-    values.dtNascimento = dayjs(values.dtNascimento).format('MM-DD-YYYY');
+    values.dtNascimento = values.dtNascimento.split('/').join('-');
     return values;
   }
 }
