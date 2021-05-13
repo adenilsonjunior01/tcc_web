@@ -1,0 +1,88 @@
+<!-- <app-apex-chart chartID="support-chart-1" [chartConfig]="this.chart1"></app-apex-chart> -->
+
+<div class="row">
+  <div class="col-md-6 col-sm-12 mt-sm-2 mt-md-0">
+    <app-card-content
+      cardClass="padd-footer"
+      isCardFooter="true"
+      footerClass="bg-card-primary"
+      [loadingLine]="loading"
+      progressClass="progress-azul"
+    >
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1 class="m-0 title">100</h1>
+            <span class="subtitle d-block">Total de Consultas</span>
+            <p class="desc m-0">Quantitativo das consultas médicas</p>
+          </div>
+        </div>
+      </div>
+      <apx-chart
+        [series]="chart1.series"
+        [chart]="chart1.chart"
+        [title]="chart1.title"
+        [colors]="chart1.colors"
+      ></apx-chart>
+      <div class="app-card-footer">
+        <div class="row text-center py-3 text-white m-0">
+          <div class="col">
+            <h4 class="m-0 text-white">10</h4>
+            <span>Abertas</span>
+          </div>
+          <div class="col">
+            <h4 class="m-0 text-white">10</h4>
+            <span>Andamento</span>
+          </div>
+          <div class="col">
+            <h4 class="m-0 text-white">10</h4>
+            <span>Finalizadas</span>
+          </div>
+        </div>
+      </div>
+    </app-card-content>
+  </div>
+  <div class="col-md-6 col-sm-12 mt-sm-2 mt-md-0">
+    <app-card-content
+      cardClass="padd-footer"
+      isCardFooter="true"
+      footerClass="bg-card-secondary"
+      [loadingLine]="loading"
+      progressClass="progress-verde"
+    >
+      <div class="card-body">
+        <div class="row m-0">
+          <div class="col-sm-12">
+            <h1 class="m-0 title">100</h1>
+            <span class="subtitle2 d-block">Total de Pacientes</span>
+            <p class="desc m-0">Quantitativo dos pacientes</p>
+          </div>
+        </div>
+      </div>
+      <apx-chart
+        [series]="chart2.series"
+        [chart]="chart2.chart"
+        [title]="chart2.title"
+        [colors]="chart2.colors"
+      ></apx-chart>
+      <div class="app-card-footer">
+        <div class="row py-3 m-0">
+          <div class="row text-center text-white">
+            <div class="col">
+              <h4 class="m-0 text-white">10</h4>
+              <span>Ativos</span>
+            </div>
+            <div class="col">
+              <h4 class="m-0 text-white">10</h4>
+              <span>Agendado</span>
+            </div>
+            <div class="col">
+              <h4 class="m-0 text-white">10</h4>
+              <span>Concluído</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-card-content>
+  </div>
+</div>

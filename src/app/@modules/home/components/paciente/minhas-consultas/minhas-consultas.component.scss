@@ -1,0 +1,23 @@
+$f_38: 38px;
+$f_22: 22px;
+
+.icon-file {
+  color: var(--tcc-bg-info-progress);
+  font-size: $f_38;
+}
+
+.description-eye {
+  font-weight: 300;
+  font-size: var(--f_14);
+}
+
+.title {
+  font-size: $f_22;
+}
+
+.icon-eye {
+  font-size: $f_22;
+  color: var(--tcc-bg-info-progress);
+  font-weight: 800;
+  margin-right: 8px;
+}

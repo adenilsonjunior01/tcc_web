@@ -1,0 +1,23 @@
+<div class="row m-0">
+  <div class="col-md-6 col-sm-12 mt-sm-2 mt-md-0 w-100 p-0">
+    <app-card-content>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1 class="m-0 title">Gráfico de Especialidade</h1>
+            <span class="subtitle d-block">Consultas realizadas por especialidade</span>
+          </div>
+          <div class="col-12">
+            <apx-chart
+              [series]="chartPieConfig.series"
+              [chart]="chartPieConfig.chart"
+              [labels]="chartPieConfig.labels"
+              [responsive]="chartPieConfig.responsive"
+              [colors]="chartPieConfig.colors"
+            ></apx-chart>
+          </div>
+        </div>
+      </div>
+    </app-card-content>
+  </div>
+</div>

@@ -24,6 +24,11 @@ import { FormPreCadastroPacienteComponent } from './components/card-nova-consult
 import { DetalhesPacienteHomeComponent } from './components/card-nova-consulta/detalhes-paciente-home/detalhes-paciente-home.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ComponentsModule } from '../../components/components.module';
+import { EstatisticasPacienteComponent } from './components/charts/estatisticas-paciente/estatisticas-paciente.component';
+import { PieEspecialidadesPacienteComponent } from './components/charts/pie-especialidades-paciente/pie-especialidades-paciente.component';
+import { NovaConsultaPacienteComponent } from './components/paciente/nova-consulta-paciente/nova-consulta-paciente.component';
+import { BoxInfoPacienteComponent } from './components/paciente/box-info-paciente/box-info-paciente.component';
+import { MinhasConsultasComponent } from './components/paciente/minhas-consultas/minhas-consultas.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -57,6 +62,11 @@ const maskConfig: Partial<IConfig> = {
     AgendamentoConsultaComponent,
     FormPreCadastroPacienteComponent,
     DetalhesPacienteHomeComponent,
+    EstatisticasPacienteComponent,
+    BoxInfoPacienteComponent,
+    PieEspecialidadesPacienteComponent,
+    NovaConsultaPacienteComponent,
+    MinhasConsultasComponent,
   ],
   exports: [CardNovaConsultaComponent, AgendamentoConsultaComponent, FormPreCadastroPacienteComponent],
 })

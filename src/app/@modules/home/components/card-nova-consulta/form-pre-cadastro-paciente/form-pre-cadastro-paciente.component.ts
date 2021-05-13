@@ -10,9 +10,6 @@ import { Logger } from '../../../../../@core/logger.service';
 import { IListaPerfil, ListaPerfilMock } from '../../../../../mocks/lista-perfis-mock';
 import { SweetalertService } from '@app/@shared/sweetalert/sweetalert.service';
 import { IUsuarioModel } from '@app/models/usuario-model';
-import { IPacienteModel } from '@app/models/paciente-model';
-import { FormUpdateUser } from '../../../../perfil/class/form-update-user';
-import { FormUpdatePaciente } from '../../../../perfil/class/form-update-paciente';
 import { FormCadastroPaciente } from '../../../../../shell/class/form-cadastro-paciente';
 import { UsuarioService } from '../../../../../services/usuario/usuario.service';
 

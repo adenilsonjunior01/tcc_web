@@ -1,9 +1,46 @@
 <div class="bg">
+  <!-- Visão paciente -->
+  <ng-container *ngIf="perfil === 'PACIENTE'">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-5 col-sm-12">
+          <div class="row">
+            <div class="col-12">
+              <app-card-content>
+                <div class="row">
+                  <div class="col-12">
+                    <h3 class="m-0 mb-3">Dados gerais</h3>
+                  </div>
+                  <div class="col-12">
+                    <app-box-info-paciente></app-box-info-paciente>
+                  </div>
+                </div>
+              </app-card-content>
+            </div>
+            <div class="col-12 mt-3">
+              <app-pie-especialidades-paciente></app-pie-especialidades-paciente>
+              <!-- <app-table-consultas-home [perfil]="perfil" [idMedico]="idPerfil"></app-table-consultas-home> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7 col-sm-12">
+          <app-estatisticas-paciente></app-estatisticas-paciente>
+          <div class="row mt-3">
+            <div class="col-6">
+              <app-nova-consulta-paciente></app-nova-consulta-paciente>
+            </div>
+            <div class="col-6">
+              <app-minhas-consultas></app-minhas-consultas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
   <!-- Visão médicos -->
   <ng-container *ngIf="perfil === 'MEDICO'">
     <div class="container-fluid">
       <div class="row">
-        <!--Cards left-->
         <div class="col-md-5 col-sm-12">
           <div class="row">
             <div class="col-12">
@@ -15,9 +52,6 @@
                   <div class="col-12">
                     <app-identificacao-profissional></app-identificacao-profissional>
                   </div>
-                  <!-- <div class="col-4">
-                    <app-dados-gerais-medico></app-dados-gerais-medico>
-                  </div> -->
                 </div>
               </app-card-content>
             </div>
@@ -25,15 +59,11 @@
               <app-table-consultas-home [perfil]="perfil" [idMedico]="idPerfil"></app-table-consultas-home>
             </div>
           </div>
-          <!-- Cards rigth-->
         </div>
-        <!-- /col-md-5 col-sm-12 -->
         <div class="col-md-7 col-sm-12">
           <app-estatisticas-medico></app-estatisticas-medico>
         </div>
-        <!-- /col-md-5 col-sm-12 -->
       </div>
-      <!-- /row-->
     </div>
   </ng-container>
   <!-- Visão Clínica -->
@@ -56,9 +86,6 @@
           <app-card-novo-paciente></app-card-novo-paciente>
         </div>
       </div>
-      <!-- /row -->
-      <!-- <div class="row mt-4">
-      </div> -->
       <div class="row pb-3">
         <div class="col-12 mt-3">
           <app-table-consultas-home [perfil]="perfil"></app-table-consultas-home>

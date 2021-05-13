@@ -1,4 +1,5 @@
 @import "src/theme/theme-variables";
+@import "../../theme/mixin";
 
 :host {
   display: flex;
@@ -59,4 +60,14 @@
   color: #197bbd;
   font-size: var(--f_14);
   font-weight: 600;
+}
+
+@include query(mobile) {
+  img {
+    display: none;
+  }
+
+  .box-form {
+    width: 325px;
+  }
 }

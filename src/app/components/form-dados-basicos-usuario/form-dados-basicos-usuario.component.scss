@@ -33,3 +33,12 @@
     width: 200px;
   }
 }
+
+::ng-deep .dados-pendentes {
+  .md-content {
+    width: 500px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    display: flex;
+  }
+}
