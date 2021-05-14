@@ -1,0 +1,74 @@
+<app-card-content>
+  <h3 class="mb-0 mt-2 ps-1">Medicamentos receitados</h3>
+  <div class="table-responsive">
+    <ng-lottie [options]="options" height="220px" *ngIf="loading"></ng-lottie>
+    <table class="table" *ngIf="medicamentos.length > 0; else semregistro">
+      <thead>
+        <tr>
+          <th scope="col">Paciente</th>
+          <th scope="col">Procedimento</th>
+          <th scope="col">Início</th>
+          <th scope="col">Término</th>
+          <th scope="col">Médico</th>
+          <th scope="col">Status</th>
+          <!-- visão funcionário o tipo corresponde a Paciente ou Médico-->
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let medicamento of medicamentos
+              | paginate
+                : {
+                    itemsPerPage: itemsPerPage,
+                    currentPage: page,
+                    totalItems: totalItems
+                  };
+            index as i
+          "
+        >
+          <td class="text-capitalize">{{ medicamento?.paciente?.nome }}</td>
+          <td>
+            <span>{{ medicamento?.procedimento?.descTipoProcedimento }}</span>
+          </td>
+          <td>
+            <span>{{ medicamento?.dtInicio | date: 'shortDate' }}</span>
+          </td>
+          <td>
+            <span>{{ medicamento?.dtFim | date: 'shortDate' }}</span>
+          </td>
+          <td>
+            <span>{{ medicamento?.medico?.nome }}</span>
+          </td>
+          <td>
+            <span class="bold">Ativo</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row" *ngIf="!loading">
+    <div class="col-12 d-flex justify-content-center">
+      <pagination-controls
+        (pageChange)="pageChanged($event)"
+        maxSize="5"
+        autoHide="true"
+        directionLinks="true"
+        responsive="true"
+        previousLabel=""
+        nextLabel=""
+      ></pagination-controls>
+    </div>
+  </div>
+</app-card-content>
+
+<ng-template #semregistro>
+  <div class="row m-0" *ngIf="!loading">
+    <div class="col-12 ps-1 mt-2 not-found">
+      <p class="m-0">Nenhum registro encontrado.</p>
+    </div>
+  </div>
+</ng-template>
+<app-modal-animation modalID="detalhe-consulta" modalClass="md-effect-10">
+  <div class="md-body container p-0"></div>
+</app-modal-animation>

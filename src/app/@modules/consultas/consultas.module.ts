@@ -8,9 +8,11 @@ import { NgxMaskModule } from 'ngx-mask';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MaterialModule } from '@app/material.module';
 import { ComponentsModule } from '../../components/components.module';
+import { ListaMedicoComponent } from './lista-medico/lista-medico.component';
+import { ListaPacienteComponent } from './lista-paciente/lista-paciente.component';
 
 @NgModule({
-  declarations: [ConsultasComponent],
+  declarations: [ConsultasComponent, ListaMedicoComponent, ListaPacienteComponent],
   imports: [
     CommonModule,
     ConsultasRoutingModule,

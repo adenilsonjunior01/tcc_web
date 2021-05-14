@@ -29,6 +29,7 @@ import { PieEspecialidadesPacienteComponent } from './components/charts/pie-espe
 import { NovaConsultaPacienteComponent } from './components/paciente/nova-consulta-paciente/nova-consulta-paciente.component';
 import { BoxInfoPacienteComponent } from './components/paciente/box-info-paciente/box-info-paciente.component';
 import { MinhasConsultasComponent } from './components/paciente/minhas-consultas/minhas-consultas.component';
+import { TabelaMedicamentosComponent } from './components/paciente/tabela-medicamentos/tabela-medicamentos.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -67,6 +68,7 @@ const maskConfig: Partial<IConfig> = {
     PieEspecialidadesPacienteComponent,
     NovaConsultaPacienteComponent,
     MinhasConsultasComponent,
+    TabelaMedicamentosComponent,
   ],
   exports: [CardNovaConsultaComponent, AgendamentoConsultaComponent, FormPreCadastroPacienteComponent],
 })

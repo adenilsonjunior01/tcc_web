@@ -1,0 +1,135 @@
+<div class="row">
+  <div class="col-12 mb-3">
+    <app-card-content>
+      <div class="row" [formGroup]="formOptions">
+        <div class="col-md-3 col-sm-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Temporalidade</mat-label>
+            <mat-select formControlName="temporalidade">
+              <mat-option [value]="item.value" *ngFor="let item of listaTemporalidade">{{ item.text }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-5 col-sm-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Médicos</mat-label>
+            <mat-select formControlName="medico">
+              <mat-option [value]="item.id" *ngFor="let item of listaMedicos">{{ item.nome }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-auto p-md-0 align-button col-sm-12 d-flex align-items-center">
+          <button class="btn btn-warning me-3" type="button" (click)="buscar()">
+            <i class="feather icon-search"></i>
+            <span>buscar</span>
+          </button>
+          <button class="btn btn-secondary me-3" type="button" (click)="clearForm()">
+            <i class="feather icon-x"></i> limpar
+          </button>
+        </div>
+      </div>
+    </app-card-content>
+  </div>
+</div>
+
+<div class="row pt-4">
+  <div class="col-12 table-responsive">
+    <ng-lottie [options]="options" height="220px" *ngIf="loading"></ng-lottie>
+    <table class="w-100 table-tcc" *ngIf="consultas.length > 0; else semregistro">
+      <thead class="text-uppercase">
+        <tr>
+          <th scope="col">Paciente</th>
+          <th scope="col">Médico</th>
+          <th scope="col">Procedimento</th>
+          <th scope="col">Data</th>
+          <th scope="col">Status</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let consulta of consultas
+              | paginate
+                : {
+                    itemsPerPage: itemsPerPage,
+                    currentPage: page,
+                    totalItems: totalItems
+                  };
+            index as i
+          "
+        >
+          <td class="d-flex align-items-center">
+            <img [src]="verificaSexoUsuario(consulta?.paciente?.sexo)" alt="Icon" class="bg-profile d-inline-block" />
+            <div class="d-inline-block name-profile">
+              <span class="d-block name">{{ consulta?.paciente?.nome }}</span>
+              <span class="profile">{{ consulta?.paciente?.cpf | mask: '000.000.000-00' }}</span>
+            </div>
+          </td>
+          <td class="td-format">{{ consulta?.medico?.nome }}</td>
+          <td class="td-format">{{ consulta?.procedimento?.descTipoProcedimento }}</td>
+          <td class="td-format">{{ consulta?.dtInicio | date: 'shortDate' }}</td>
+          <td class="td-format">
+            <span class="badge bg-primary">Pendente</span>
+          </td>
+          <td class="text-center">
+            <button
+              mat-raised-button
+              color="primary"
+              type="button"
+              class="btn-secondary"
+              (click)="openModalDetalhes('detalhe-consulta', consulta)"
+            >
+              <i class="feather icon-eye"></i> ver detalhes
+            </button>
+            <button
+              mat-raised-button
+              color="primary"
+              type="button"
+              class="btn-success"
+              (click)="submit('confirm', consulta)"
+            >
+              <i class="feather icon-check"></i> confirmar
+            </button>
+            <button
+              mat-raised-button
+              color="primary"
+              type="button"
+              class="btn-danger"
+              (click)="submit('cancel', consulta)"
+            >
+              <i class="feather icon-x"></i> cancelar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-12 d-flex justify-content-center" *ngIf="paginationVisible">
+    <pagination-controls
+      (pageChange)="pageChanged($event)"
+      maxSize="5"
+      autoHide="true"
+      directionLinks="true"
+      responsive="true"
+      previousLabel=""
+      nextLabel=""
+    ></pagination-controls>
+  </div>
+</div>
+
+<ng-template #semregistro>
+  <app-card-content *ngIf="!loading">
+    <div class="row m-0">
+      <div class="col-12 ps-1 mt-2 not-found">
+        <p class="m-0">Nenhum registro encontrado.</p>
+      </div>
+    </div>
+  </app-card-content>
+</ng-template>
+<app-modal-animation modalID="detalhe-consulta" modalClass="md-effect-10">
+  <div class="md-body container p-0">
+    <app-detalhes-consulta [consulta]="consulta" (closeModal)="closeModal($event)"></app-detalhes-consulta>
+  </div>
+</app-modal-animation>
+<app-loader *ngIf="loading2"></app-loader>
