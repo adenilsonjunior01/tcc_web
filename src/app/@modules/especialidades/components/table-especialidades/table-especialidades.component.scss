@@ -1,0 +1,19 @@
+@import "../../../../../theme/form";
+
+::ng-deep .editar-especialidade {
+  .md-content {
+    width: 700px !important;
+    // height: 500px;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+}
+
+i {
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.6;
+    transition: 300ms;
+  }
+}

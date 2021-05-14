@@ -10,9 +10,6 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { CadastroColaboradorComponent } from './components/colaboradores/cadastro-colaborador/cadastro-colaborador.component';
 import { FormCadastroColaboradorComponent } from './components/colaboradores/form-cadastro-colaborador/form-cadastro-colaborador.component';
 import { TableColaboradoresComponent } from './components/colaboradores/table-colaboradores/table-colaboradores.component';
-import { EspecialidadesComponent } from './pages/especialidades/especialidades.component';
-import { TableEspecialidadesComponent } from './components/especialidades/table-especialidades/table-especialidades.component';
-import { FormCadastroEspecialidadeComponent } from './components/especialidades/form-cadastro-especialidade/form-cadastro-especialidade.component';
 import { DetalheColaboradorComponent } from './pages/detalhe-colaborador/detalhe-colaborador.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 
@@ -26,9 +23,6 @@ const maskConfig: Partial<IConfig> = {
     TableColaboradoresComponent,
     CadastroColaboradorComponent,
     FormCadastroColaboradorComponent,
-    EspecialidadesComponent,
-    TableEspecialidadesComponent,
-    FormCadastroEspecialidadeComponent,
     DetalheColaboradorComponent,
   ],
   imports: [

@@ -24,6 +24,7 @@ import { ConfiguracoesModule } from './@modules/configuracoes/configuracoes.modu
 import { PerfilModule } from './@modules/perfil/perfil.module';
 import { ProtuarioMedicoModule } from './@modules/protuario-medico/protuario-medico.module';
 import { ConsultasModule } from './@modules/consultas/consultas.module';
+import { EspecialidadesModule } from './@modules/especialidades/especialidades.module';
 
 registerLocaleData(localePt);
 
@@ -49,7 +50,8 @@ registerLocaleData(localePt);
     PerfilModule,
     ProtuarioMedicoModule,
     MedicosModule,
-    ConsultasModule, // must be imported as the last module as it contains the fallback route
+    ConsultasModule,
+    EspecialidadesModule, // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],

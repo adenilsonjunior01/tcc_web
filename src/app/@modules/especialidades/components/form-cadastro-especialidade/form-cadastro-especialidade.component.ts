@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -9,19 +8,14 @@ import { FormGroup } from '@angular/forms';
 })
 export class FormCadastroEspecialidadeComponent implements OnInit {
   public form: FormGroup;
-  dialog = new DialogContent(this._dialog);
 
-  constructor(@Inject(MAT_DIALOG_DATA) public dataDialog: any, private readonly _dialog?: MatDialog) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    console.log('DADOS DIALOG>> ', this.dataDialog);
-  }
+  ngOnInit(): void {}
 
   public initForm() {}
 
-  public closeDialog() {
-    this.dialog.closeDialog();
-  }
+  public closeDialog() {}
 
   /**
    * @description: Verifica se é uma nova Especialidade ou atualização e se o
@@ -35,12 +29,4 @@ export class FormCadastroEspecialidadeComponent implements OnInit {
   private save() {}
 
   private update() {}
-}
-
-export class DialogContent {
-  constructor(public dialog?: MatDialog) {}
-
-  closeDialog() {
-    this.dialog.closeAll();
-  }
 }

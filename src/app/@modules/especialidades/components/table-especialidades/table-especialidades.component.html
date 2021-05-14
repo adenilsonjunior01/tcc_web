@@ -21,7 +21,14 @@
             >
               <i class="feather icon-edit-2"></i>
             </button>
-            <button mat-raised-button color="primary" type="button" class="btn-danger me-2" matTooltip="Excluir">
+            <button
+              mat-raised-button
+              color="primary"
+              type="button"
+              class="btn-danger me-2"
+              matTooltip="Excluir"
+              (click)="confirmModal()"
+            >
               <i class="feather icon-x"></i>
             </button>
           </td>
@@ -30,8 +37,13 @@
     </table>
   </div>
 </div>
-<app-modal-animation modalID="editar-especialidade" modalClass="md-effect-10">
+<app-modal-animation modalID="editar-especialidade" modalClass="md-effect-10 editar-especialidade">
   <div class="container md-body">
+    <div class="row">
+      <div class="col-12 d-flex justify-content-end mt-3">
+        <i class="feather icon-x" (click)="modal.close('editar-especialidade')"></i>
+      </div>
+    </div>
     <form action="">
       <div class="row m-0 py-3">
         <div class="col-12">
@@ -46,10 +58,16 @@
         </div>
         <div class="row d-flex justify-content-end ms-1 mt-4">
           <div class="col-2 p-0">
-            <button type="button" class="btn btn-secondary-tcc p-2">limpar</button>
+            <button type="button" class="btn btn-secondary-tcc p-2">
+              <i class="feather icon-x"></i>
+              limpar
+            </button>
           </div>
           <div class="col-2 p-0">
-            <button type="submit" class="btn btn-primary-tcc p-2">salvar</button>
+            <button type="submit" class="btn btn-primary-tcc p-2">
+              <i class="feather icon-check"></i>
+              salvar
+            </button>
           </div>
         </div>
       </div>

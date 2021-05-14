@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row m-0">
     <div class="col-12">
-      <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR'">
+      <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR' || perfil === 'MEDICO'">
         <app-lista-medico></app-lista-medico>
       </ng-container>
     </div>

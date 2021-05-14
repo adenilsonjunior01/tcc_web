@@ -1,13 +1,13 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { ListaPacientesMock } from '../../../../../mocks/lista-pacientes-mock';
 import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
-import { FormCadastroEspecialidadeComponent } from '../form-cadastro-especialidade/form-cadastro-especialidade.component';
-import { UtilitariosService } from '../../../../../services/utilitarios/utilitarios.service';
-import { untilDestroyed } from '../../../../../@core/until-destroyed';
 import { finalize } from 'rxjs/operators';
-import { IEspecializacaoModel } from '../../../../../models/especializacao-model';
 import { ModalAnimationComponent } from '@app/@shared/modal-animation/modal-animation.component';
+import { ListaPacientesMock } from '../../../../mocks/lista-pacientes-mock';
+import { IEspecializacaoModel } from '../../../../models/especializacao-model';
+import { UtilitariosService } from '../../../../services/utilitarios/utilitarios.service';
+import { untilDestroyed } from '../../../../@core/until-destroyed';
+import { FormCadastroEspecialidadeComponent } from '../form-cadastro-especialidade/form-cadastro-especialidade.component';
 
 @Component({
   selector: 'app-table-especialidades',
@@ -47,9 +47,12 @@ export class TableEspecialidadesComponent implements OnInit, OnDestroy {
     this.dialog.openDialog(values);
   }
 
+  // SE FOR DESATIVAR, O TEXTO MUDARÁ INFORMANDO O USUÁRIO QUE ELE PODE REATIVAR
   public confirmModal() {
     Swal.fire({
-      title: 'Esta ação não poderá ser revertida, quer continuar?',
+      icon: 'info',
+      title: 'Deseja continuar?',
+      text: 'Esta ação não poderá ser revertida.',
       showCancelButton: true,
       confirmButtonText: `Sim`,
       cancelButtonText: `Não`,

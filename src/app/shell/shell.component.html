@@ -47,22 +47,22 @@
               *ngIf="perfil === 'PACIENTE'"
             >
               <i class="feather icon-list pe-2"></i>
-              <span>Prontuários</span>
+              <span>Meus Prontuários</span>
             </a>
           </ng-container>
 
           <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR' || perfil === 'PACIENTE'">
             <a mat-list-item routerLink="/consultas" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-              <i class="feather icon-file-text pe-2"></i>
+              <i class="feather icon-file-text pe-3"></i>
               <span *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR'">Consultas</span>
-              <span *ngIf="perfil === 'PACIENTE'">Consultas</span>
+              <span *ngIf="perfil === 'PACIENTE'">Minhas Consultas</span>
             </a>
           </ng-container>
 
           <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR' || perfil === 'MEDICO'">
             <a mat-list-item routerLink="/pacientes" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-              <i class="feather icon-file pe-3"></i>
-              <span>Consultas</span>
+              <i class="feather icon-users pe-3"></i>
+              <span>Pacientes</span>
             </a>
           </ng-container>
 
@@ -91,7 +91,7 @@
           <ng-container *ngIf="perfil === 'ADMINISTRADOR'">
             <a
               mat-list-item
-              routerLink="/cadastro/especialidades"
+              routerLink="/especialidades"
               routerLinkActive="active"
               (click)="isMobile && sidenav.close()"
             >

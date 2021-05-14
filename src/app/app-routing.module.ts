@@ -46,6 +46,11 @@ const routes: Routes = [
       loadChildren: () => import('./@modules/consultas/consultas.module').then((m) => m.ConsultasModule),
       data: { title: marker('Consultas'), subtitle: marker('Consultas') },
     },
+    {
+      path: 'especialidades',
+      loadChildren: () => import('./@modules/especialidades/especialidades.module').then((m) => m.EspecialidadesModule),
+      data: { title: marker('Especialidades'), subtitle: marker('Especialidades') },
+    },
   ]),
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
