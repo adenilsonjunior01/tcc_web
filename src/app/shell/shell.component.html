@@ -47,7 +47,7 @@
               *ngIf="perfil === 'PACIENTE'"
             >
               <i class="feather icon-list pe-2"></i>
-              <span>Meus Prontuários</span>
+              <span>Prontuários</span>
             </a>
           </ng-container>
 
@@ -55,7 +55,7 @@
             <a mat-list-item routerLink="/consultas" routerLinkActive="active" (click)="isMobile && sidenav.close()">
               <i class="feather icon-file-text pe-3"></i>
               <span *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR'">Consultas</span>
-              <span *ngIf="perfil === 'PACIENTE'">Minhas Consultas</span>
+              <span *ngIf="perfil === 'PACIENTE'">Consultas</span>
             </a>
           </ng-container>
 

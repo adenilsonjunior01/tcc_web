@@ -1,6 +1,11 @@
 @import "./general";
 $f_weigth: 600;
 
+button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}
+
 .btn-primary-tcc {
   background-color: var(--tcc-primary) !important;
   color: #fff !important;

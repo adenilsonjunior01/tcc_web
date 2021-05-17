@@ -28,4 +28,5 @@ export interface IConsultaModel {
   idTipoProcedimento?: any;
   idPaciente?: any;
   idMedico?: any;
+  status?: string;
 }
