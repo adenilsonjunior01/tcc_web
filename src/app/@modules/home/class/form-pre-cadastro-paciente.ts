@@ -13,7 +13,7 @@ export class FormPreCadastroPaciente {
       cpf: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
       sexo: [null, Validators.required],
-      dtNascimento: [null, [Validators.required, FormValidations.dateValidator]],
+      dtNascimento: [null, Validators.required],
       perfil: [null],
       senha: [null],
       telefone: [null, Validators.required],

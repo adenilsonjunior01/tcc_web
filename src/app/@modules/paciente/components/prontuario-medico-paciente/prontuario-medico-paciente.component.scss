@@ -54,3 +54,12 @@ ul {
     transition: 300ms;
   }
 }
+
+/* NG FILE - FORMART */
+.files-row {
+  .file-list {
+    h6 {
+      font-size: 16px;
+    }
+  }
+}

@@ -10,6 +10,7 @@ export class FormProntuario {
     return this._fb.group({
       descConsulta: [null, Validators.required],
       descSumario: [null],
+      arquivos: [null],
       alergias: this._fb.array([]),
       medicamentos: this._fb.array([]),
       doencaCronica: this._fb.array([]),

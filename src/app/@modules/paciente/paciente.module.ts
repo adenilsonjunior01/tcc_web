@@ -15,6 +15,7 @@ import { ProntuarioMedicoPacienteComponent } from './components/prontuario-medic
 import { FormNovoPacienteComponent } from './components/form-novo-paciente/form-novo-paciente.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FileUploadModule } from '@iplab/ngx-file-upload';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     NgxMaskModule,
     NgxPaginationModule,
     NgxMaskModule,
+    FileUploadModule,
   ],
   exports: [ConsultaMedicaComponent],
 })

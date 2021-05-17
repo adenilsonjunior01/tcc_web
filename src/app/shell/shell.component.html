@@ -32,7 +32,7 @@
             <i class="feather icon-home pe-3"></i>
             <span>Visão geral</span>
           </a>
-          <ng-container *ngIf="perfil === 'PACIENTE' || perfil === 'MEDICO'">
+          <ng-container>
             <a mat-list-item routerLink="/perfil" routerLinkActive="active" (click)="isMobile && sidenav.close()">
               <i class="feather icon-user pe-2"></i>
               <span>Meu Perfil</span>

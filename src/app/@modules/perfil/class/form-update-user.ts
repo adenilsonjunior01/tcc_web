@@ -11,8 +11,9 @@ export class FormUpdateUser {
     const form = this._fb.group({
       nome: [null, Validators.required],
       cpf: [null, Validators.required],
+      email: [null],
       sexo: [null, Validators.required],
-      dtNascimento: [null, [Validators.required, FormValidations.dateValidator]],
+      dtNascimento: [null, [Validators.required]],
       telefone: [null, Validators.required],
       endereco: this._fb.group({
         descBairro: [null],
@@ -28,7 +29,7 @@ export class FormUpdateUser {
 
   public parseForm(form: any): any {
     let values = Object.assign(form, {});
-    values.dtNascimento = dayjs(values.dtNascimento).format('MM-DD-YYYY');
+    values.dtNascimento = values.dtNascimento = values.dtNascimento.split('/').join('-');
     values.sexo = values.sexo.toLowerCase();
     return values;
   }

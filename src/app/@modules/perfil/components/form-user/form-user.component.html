@@ -157,7 +157,10 @@
         <p class="m-0 is-invalid">[Error] {{ messageError }}</p>
       </div>
       <div class="col-12 d-flex justify-content-end">
-        <button type="button" class="btn btn-secondary me-3" (click)="clearFormUser()">limpar</button>
+        <button type="button" class="btn btn-secondary me-3" (click)="clearFormUser()">
+          <i class="feather icon-x"></i>
+          limpar
+        </button>
         <button
           type="button"
           class="btn btn-primary"
@@ -168,7 +171,10 @@
             <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
             <span class="sr-only">Aguarde...</span>
           </ng-container>
-          <span *ngIf="!loading">salvar</span>
+          <span *ngIf="!loading">
+            <i class="feather icon-check"></i>
+            salvar
+          </span>
         </button>
       </div>
     </div>

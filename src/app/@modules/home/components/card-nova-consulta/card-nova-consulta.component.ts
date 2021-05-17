@@ -143,7 +143,7 @@ export class CardNovaConsultaComponent implements OnInit, OnDestroy {
           this.modal.close(event.modalId);
           this.search.reset();
           this.form.reset();
-          this.form.get('dtInicio').setValue(dayjs(data).format('MM-DD-YYYY'));
+          // this.form.get('dtInicio').setValue(dayjs(data).format('MM-DD-YYYY'));
         }
       });
     }

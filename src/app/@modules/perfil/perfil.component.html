@@ -1,15 +1,24 @@
 <div class="container-fluid">
   <div class="row m-0">
+    <!-- >>> Perfil Paciente <<< -->
     <ng-container *ngIf="perfil === 'PACIENTE'">
       <div class="col-12">
         <app-form-update-paciente [dadosUser]="dadosUser"></app-form-update-paciente>
       </div>
     </ng-container>
 
-    <!-- Dados Profissionais do Médico -->
+    <!-- >>> Perfil Médico <<< -->
     <ng-container *ngIf="perfil === 'MEDICO'">
       <div class="col-12">
         <app-form-update-medico [dadosUser]="dadosUser"></app-form-update-medico>
+      </div>
+    </ng-container>
+
+    <!-- >>> Perfil Adm e Aux <<< -->
+
+    <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR'">
+      <div class="col-12">
+        <app-form-update-aux-adm [dadosUser]="dadosUser"></app-form-update-aux-adm>
       </div>
     </ng-container>
   </div>

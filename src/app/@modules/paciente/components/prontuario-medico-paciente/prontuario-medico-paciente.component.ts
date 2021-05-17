@@ -13,6 +13,7 @@ import { untilDestroyed } from '../../../../@core/until-destroyed';
 import { finalize } from 'rxjs/operators';
 import { ITipoAlergiaModel } from '@app/models/tipo-alergia-model';
 import { Logger } from '../../../../@core/logger.service';
+import { FileUploadControl, FileUploadValidators } from '@iplab/ngx-file-upload';
 
 const log = new Logger('Prontuario');
 
@@ -36,6 +37,15 @@ export class ProntuarioMedicoPacienteComponent implements OnInit, OnDestroy {
   public visibleAlertAccordionAlergia = false;
   public visibleAlertAccordionMedicamento = false;
   public visibleAlertAccordionDoenca = false;
+  public animationFile = false;
+
+  public files = new FileUploadControl(
+    // control configuration
+    { listVisible: true, discardInvalid: true, accept: ['image/*'] },
+
+    // validator used to discard files
+    [FileUploadValidators.accept(['image/*']), FileUploadValidators.fileSize(80000)]
+  );
 
   constructor(
     private readonly _router: Router,
@@ -77,6 +87,10 @@ export class ProntuarioMedicoPacienteComponent implements OnInit, OnDestroy {
 
   public get formArrayDoencaCronica() {
     return this.formProntuario.get('doencaCronica') as FormArray;
+  }
+
+  public get formArrayArquivos() {
+    return this.formProntuario.get('arquivos').value;
   }
 
   /**
@@ -123,6 +137,10 @@ export class ProntuarioMedicoPacienteComponent implements OnInit, OnDestroy {
    */
   public removeObject(index: number, control: string): void {
     (this.formProntuario.get(control) as FormArray).removeAt(index);
+  }
+
+  public removeFile(event: any): void {
+    (this.formProntuario.get('arquivos') as FormArray).removeAt(1);
   }
 
   public validatorsDynamic(value: boolean, control?: string): void {

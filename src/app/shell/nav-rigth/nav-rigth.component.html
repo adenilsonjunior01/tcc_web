@@ -19,10 +19,7 @@
           <p class="m-0 text-capitalize profile__username--name">{{ userName }}</p>
           <p class="m-0 text-capitalize profile__username--perfil">{{ perfil }}</p>
         </div>
-        <div
-          class="col-12 d-flex justify-content-center mt-4 profile__username--perfil-button"
-          *ngIf="perfil !== 'ADMINISTRADOR'"
-        >
+        <div class="col-12 d-flex justify-content-center mt-4 profile__username--perfil-button">
           <button mat-stroked-button type="button" class="w-50" (click)="navigateProfile()">Ver perfil</button>
         </div>
       </div>
