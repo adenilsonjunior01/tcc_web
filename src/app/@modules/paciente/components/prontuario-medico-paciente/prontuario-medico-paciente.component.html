@@ -279,14 +279,14 @@
                   [value]="option?.value"
                   class="me-3"
                   *ngFor="let option of optionsRadio"
-                  (change)="validatorsDynamic(option.value, 'doencaCronica')"
+                  (change)="validatorsDynamic(option.value, 'doencas')"
                   >{{ option?.description }}
                 </mat-radio-button>
               </mat-radio-group>
 
               <ng-container *ngIf="controlDoencaCronica.value === true">
                 <ng-container
-                  formArrayName="doencaCronica"
+                  formArrayName="doencas"
                   *ngFor="let doencaCronica of formArrayDoencaCronica.controls; index as i"
                 >
                   <div class="d-block animate__fadeInUp mt-1" [formGroupName]="i">
@@ -300,14 +300,14 @@
                     </mat-form-field>
 
                     <mat-dialog-actions align="end">
-                      <button mat-button (click)="removeObject(i, 'doencaCronica')" class="remove">
+                      <button mat-button (click)="removeObject(i, 'doencas')" class="remove">
                         <i class="feather icon-x"></i>
                         <span>remover</span>
                       </button>
                       <button
                         mat-button
                         class="new"
-                        (click)="addNewObjectControlDoencaCronica(controlDoencaCronica.value, 'doencaCronica')"
+                        (click)="addNewObjectControlDoencaCronica(controlDoencaCronica.value, 'doencas')"
                         *ngIf="i === 0"
                       >
                         <i class="feather icon-plus"></i>

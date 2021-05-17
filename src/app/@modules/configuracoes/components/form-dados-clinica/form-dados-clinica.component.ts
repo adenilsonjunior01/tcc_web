@@ -20,6 +20,7 @@ export class FormDadosClinicaComponent implements OnInit, OnChanges, OnDestroy {
   @Input() type: any;
   @Input() dados: any;
   @Output() closeModal = new EventEmitter<string>();
+  @Output() reload = new EventEmitter<boolean>();
 
   public file = new FormControl([], FileUploadValidators.filesLimit(1));
   public base64: any;
@@ -66,6 +67,9 @@ export class FormDadosClinicaComponent implements OnInit, OnChanges, OnDestroy {
       this.form.get('nome').setValue(this.dados.nome);
       this.form.get('dtAbertura').setValue(this.dados.dtAbertura);
       this.form.get('dtEncerramento').setValue(this.dados.dtEncerramento);
+      this.form.get('missao').setValue(this.dados.descMissao);
+      this.form.get('visao').setValue(this.dados.descVisao);
+      this.form.get('valores').setValue(this.dados.descValores);
 
       this.form.controls['endereco']
         .get('id')
@@ -93,6 +97,7 @@ export class FormDadosClinicaComponent implements OnInit, OnChanges, OnDestroy {
       .subscribe({
         next: () => {
           this.closeModal.emit('configuracoes');
+          this.reload.emit(true);
           this._sweetAlert.openToasty('Dados atualizados com sucesso', 'success');
         },
         error: (error: any) => {

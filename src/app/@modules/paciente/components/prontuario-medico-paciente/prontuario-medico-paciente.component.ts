@@ -86,7 +86,7 @@ export class ProntuarioMedicoPacienteComponent implements OnInit, OnDestroy {
   }
 
   public get formArrayDoencaCronica() {
-    return this.formProntuario.get('doencaCronica') as FormArray;
+    return this.formProntuario.get('doencas') as FormArray;
   }
 
   public get formArrayArquivos() {
@@ -162,7 +162,7 @@ export class ProntuarioMedicoPacienteComponent implements OnInit, OnDestroy {
       this.addNewObjectControlAlergia(value, control);
     } else if (control === 'medicamentos') {
       this.addNewObjectControlMedicamento(value, control);
-    } else if (control === 'doencaCronica') {
+    } else if (control === 'doencas') {
       this.addNewObjectControlDoencaCronica(value, control);
     }
   }

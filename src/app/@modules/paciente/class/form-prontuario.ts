@@ -13,7 +13,7 @@ export class FormProntuario {
       arquivos: [null],
       alergias: this._fb.array([]),
       medicamentos: this._fb.array([]),
-      doencaCronica: this._fb.array([]),
+      doencas: this._fb.array([]),
     });
   }
 

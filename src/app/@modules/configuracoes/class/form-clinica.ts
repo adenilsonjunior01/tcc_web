@@ -11,6 +11,9 @@ export class FormClinica {
       nome: [null],
       dtAbertura: [null, Validators.required],
       dtEncerramento: [null, Validators.required],
+      missao: [null],
+      visao: [null],
+      valores: [null],
       endereco: this._fb.group({
         id: [null],
         nuCep: [null],

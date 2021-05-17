@@ -35,7 +35,7 @@ export class ConfiguracoesComponent implements OnInit {
     this.modal.close(idModal);
   }
 
-  public getDadosClinica(): void {
+  public getDadosClinica(event?: boolean): void {
     this._clinicaService.getDadosClinica().subscribe({
       next: (body: any) => {
         this.dadosClinica = body;
