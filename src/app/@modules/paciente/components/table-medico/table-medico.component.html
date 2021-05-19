@@ -52,7 +52,18 @@
           <td class="td-format">{{ consulta?.procedimento?.descTipoProcedimento }}</td>
           <td class="td-format">{{ consulta?.dtInicio | date: 'shortDate' }}</td>
           <td class="td-format">{{ consulta?.dtFim | date: 'shortDate' }}</td>
-          <td class="td-format">status</td>
+          <td class="td-format">
+            <span
+              class="badge bg-secondary2"
+              [ngClass]="{
+                'bg-primary': consulta?.status === 'Pendente',
+                'bg-success': consulta?.status === 'Confirmada',
+                'bg-danger': consulta?.status === 'Cancelada',
+                'bg-secondary': consulta?.status === 'Finalizada'
+              }"
+              >{{ consulta?.status }}</span
+            >
+          </td>
           <td class="text-center">
             <button
               mat-raised-button
@@ -60,6 +71,9 @@
               type="button"
               class="btn-success"
               (click)="confirmModal(consulta)"
+              [disabled]="
+                consulta?.status === 'Pendente' || consulta?.status === 'Cancelada' || consulta?.status === 'Finalizada'
+              "
             >
               iniciar consulta
             </button>

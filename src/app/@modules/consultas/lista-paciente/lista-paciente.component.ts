@@ -172,6 +172,7 @@ export class ListaPacienteComponent implements OnInit, OnDestroy {
 
   public getConsultas(): void {
     this.loading = true;
+    this.consultas = [];
     this._clinicaService
       .getConsultasPaciente(this.idPerfil)
       .pipe(

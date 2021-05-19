@@ -16,6 +16,7 @@ import { FormNovoPacienteComponent } from './components/form-novo-paciente/form-
 import { NgxMaskModule } from 'ngx-mask';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FileUploadModule } from '@iplab/ngx-file-upload';
+import { DadosMedicosPacienteComponent } from './components/dados-medicos-paciente/dados-medicos-paciente.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FileUploadModule } from '@iplab/ngx-file-upload';
     DetalhesPacienteComponent,
     ProntuarioMedicoPacienteComponent,
     FormNovoPacienteComponent,
+    DadosMedicosPacienteComponent,
   ],
   imports: [
     CommonModule,

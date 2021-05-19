@@ -2,25 +2,86 @@
   <app-card-content>
     <!-- Cabeçalho -->
     <div class="row m-0">
-      <div class="col-12 d-flex align-items-center mb-2">
-        <img src="../../../../../assets/logo-svg.svg" alt="Logo" />
-        <h1 class="m-0 d-inline ps-2">IHealth</h1>
+      <div class="col-12 d-flex align-items-center mb-2 d-flex justify-content-between">
+        <div>
+          <img src="../../../../../assets/logo-svg.svg" alt="Logo" />
+          <h1 class="m-0 d-inline ps-2">IHealth</h1>
+        </div>
+        <div class="img-icon-height" *ngIf="dadosProntuario?.consulta?.paciente?.compartilhaDados">
+          <img src="../../../../../assets/icon-drop.svg" alt="Icone Dropdown" [matMenuTriggerFor]="userMenu" />
+          <mat-menu #userMenu="matMenu">
+            <button mat-menu-item type="button" type="button" (click)="navigateDadosCompartilhadosPaciente()">
+              <span>Dados Médicos</span>
+            </button>
+          </mat-menu>
+        </div>
       </div>
       <div class="col-12 my-1">
-        <p class="m-0">Nome Clínica</p>
+        <p class="m-0">{{ dadosClinica?.nome }}</p>
       </div>
       <div class="col-12 my-1">
-        <p class="m-0">QR-1A, Conjuto RS, Casa 25, Apartamento 203 - Complemento..</p>
+        <p class="m-0">
+          {{ dadosClinica?.endereco?.noCidade }}, {{ dadosClinica?.endereco?.descRua }},
+          {{ dadosClinica?.endereco?.descBairro }}, {{ dadosClinica?.endereco?.noCidade }},
+          {{ dadosClinica?.endereco?.noEstado }}.
+        </p>
       </div>
-      <div class="col-12 my-1">
+      <!-- <div class="col-12 my-1">
         <p class="m-0 email">email@gmail.com</p>
-      </div>
+      </div> -->
       <div class="col-12 my-1">
-        <p class="m-0">(00) 0 0000-0000 - (00) 0000-0000</p>
+        <p class="m-0">
+          <i class="feather icon-clock"></i> {{ dadosClinica?.dtAbertura }} - {{ dadosClinica?.dtEncerramento }}
+        </p>
       </div>
     </div>
     <!-- Informações do Paciente-->
     <div class="row ms-0 mt-5">
+      <div class="col-4">
+        <h3 class="m-0 text-uppercase">Dados do Atendimento:</h3>
+        <ul class="dados-medicos">
+          <li>
+            <h4 class="fw-bold m-0">Status</h4>
+            <span class="id-atendimento fw-bold">{{ dadosProntuario?.consulta?.statusConsulta }}</span>
+          </li>
+          <li>
+            <h4 class="fw-bold m-0">Data do Atendimento</h4>
+            <span>{{ dadosProntuario?.consulta?.dtIncio | date: 'shortDate' }}</span>
+          </li>
+          <li>
+            <h4 class="fw-bold m-0">Tipo Procedimento</h4>
+            <span>{{ dadosProntuario?.consulta?.tipoProcedimento?.descTipoProcedimento }}</span>
+          </li>
+          <li>
+            <h4 class="fw-bold m-0">Duração</h4>
+            <span>{{ dadosProntuario?.consulta?.tipoProcedimento?.duracao }}</span>
+          </li>
+          <li>
+            <h4 class="fw-bold m-0">Observação</h4>
+            <span>{{ dadosProntuario?.consulta?.observacao }}</span>
+          </li>
+        </ul>
+      </div>
+      <div class="col-4">
+        <h3 class="m-0 text-uppercase">Dados do Médico:</h3>
+        <ul class="dados-medicos">
+          <li>
+            <h4 class="fw-bold m-0">Nome</h4>
+            <span>{{ nomeMedico }}</span>
+          </li>
+          <li>
+            <h4 class="fw-bold m-0">CRM:</h4>
+            <span>{{ dadosProntuario?.consulta?.medico?.crm }}</span>
+          </li>
+          <li>
+            <h4 class="fw-bold m-0">Especialidade(s):</h4>
+            <ng-container *ngFor="let especializacao of dadosProntuario?.consulta?.medico?.especializacoes; index as i">
+              <span *ngIf="i > 0">, </span>
+              <span>{{ especializacao?.descEspecializacao }} </span>
+            </ng-container>
+          </li>
+        </ul>
+      </div>
       <div class="col-4">
         <h3 class="m-0 text-uppercase">Dados do Paciente:</h3>
         <ul class="dados-medicos">
@@ -35,40 +96,6 @@
           <li>
             <h4 class="fw-bold m-0">Tipo Sanguíneo</h4>
             <span>A+</span>
-          </li>
-        </ul>
-      </div>
-      <div class="col-4">
-        <h3 class="m-0 text-uppercase">Dados do Médico:</h3>
-        <ul class="dados-medicos">
-          <li>
-            <h4 class="fw-bold m-0">Nome</h4>
-            <span>Dr. Alex Monteiro</span>
-          </li>
-          <li>
-            <h4 class="fw-bold m-0">CRM:</h4>
-            <span>88455112</span>
-          </li>
-          <li>
-            <h4 class="fw-bold m-0">Data Inscrição:</h4>
-            <span>01/01/01</span>
-          </li>
-          <li>
-            <h4 class="fw-bold m-0">Especialidade(s):</h4>
-            <span>Cadiologista, Pediatra</span>
-          </li>
-        </ul>
-      </div>
-      <div class="col-4">
-        <h3 class="m-0 text-uppercase">Identificador do Atendimento:</h3>
-        <ul class="dados-medicos">
-          <li>
-            <h4 class="fw-bold m-0">Número</h4>
-            <span class="id-atendimento fw-bold">4451254</span>
-          </li>
-          <li>
-            <h4 class="fw-bold m-0">Data do Atendimento</h4>
-            <span>01/01/01</span>
           </li>
         </ul>
       </div>
@@ -180,7 +207,7 @@
                 <!-- formArray -->
               </ng-container>
               <mat-action-row>
-                <button mat-button color="primary" (click)="submitAlergia()">salvar e continuar</button>
+                <button mat-button color="primary" (click)="nextStep()">continuar</button>
               </mat-action-row>
             </mat-expansion-panel>
 
@@ -257,7 +284,7 @@
               </ng-container>
               <mat-action-row>
                 <button mat-button color="warn" (click)="prevStep()">voltar</button>
-                <button mat-button color="primary" (click)="submitMedicamento()">salvar e continuar</button>
+                <button mat-button color="primary" (click)="nextStep()">continuar</button>
               </mat-action-row>
             </mat-expansion-panel>
 
@@ -321,7 +348,7 @@
               </ng-container>
               <mat-action-row>
                 <button mat-button color="warn" (click)="prevStep()">Voltar</button>
-                <button mat-button color="primary" (click)="submitDoencasCronicas()">salvar e continuar</button>
+                <button mat-button color="primary" (click)="nextStep()">continuar</button>
               </mat-action-row>
             </mat-expansion-panel>
           </mat-accordion>
@@ -343,7 +370,7 @@
           </file-upload>
         </div>
         <div class="col-12 mt-4 d-flex justify-content-end">
-          <button class="btn btn-primary">
+          <button class="btn btn-primary" [disabled]="!formProntuario.valid" type="button" (click)="confirmEnvio()">
             <i class="feather icon-check"></i>
             salvar prontuário
           </button>

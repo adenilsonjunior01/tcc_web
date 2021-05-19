@@ -12,6 +12,7 @@ import { CredentialsService, Token } from '../../../../auth/credentials.service'
 import { ClinicaService } from '../../../../services/clinica/clinica.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AnimationOptions } from 'ngx-lottie';
+import { IIniciarAtendimentoModel } from '../../../../models/iniciar-atendimento-model';
 
 const log = new Logger('Pacientes Médico');
 
@@ -61,7 +62,7 @@ export class TableMedicoComponent implements OnInit, OnDestroy {
     return './assets/profile/girl-1.svg';
   }
 
-  public confirmModal(paciente: any): void {
+  public confirmModal(consulta: any): void {
     Swal.fire({
       icon: 'info',
       title: 'Deseja continuar?',
@@ -71,9 +72,20 @@ export class TableMedicoComponent implements OnInit, OnDestroy {
       cancelButtonText: `Não`,
     }).then((result) => {
       if (result.isConfirmed) {
-        this._router.navigate(['/pacientes/prontuario-paciente'], { state: paciente });
+        this.iniciarAtendimento(consulta);
       }
     });
+  }
+
+  public iniciarAtendimento(consulta: any): void {
+    this._clinicaService
+      .iniciarAtendimento(consulta.id)
+      .pipe(untilDestroyed(this))
+      .subscribe({
+        next: (body: IIniciarAtendimentoModel) => {
+          this._router.navigate(['/pacientes/prontuario-paciente'], { state: body });
+        },
+      });
   }
 
   public getPerfilUser() {
@@ -88,6 +100,9 @@ export class TableMedicoComponent implements OnInit, OnDestroy {
   public getAllConsultasMedico(page = 0): void {
     this.loading = true;
     this.consultas = [];
+    this.totalItems = 0;
+    this.page = -1;
+    this.currentPage = -1;
     const valuesParse = this.temporalidadeControl.value - 1;
     this._clinicaService
       .getAllConsultasMedico(this.itemsPerPage, page, this.idPerfil, valuesParse)

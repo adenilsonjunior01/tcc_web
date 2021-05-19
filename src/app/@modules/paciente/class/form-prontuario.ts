@@ -1,4 +1,4 @@
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 export class FormProntuario {
   form: FormGroup;
@@ -8,6 +8,7 @@ export class FormProntuario {
 
   public initFormProntuario(): FormGroup {
     return this._fb.group({
+      id: [null],
       descConsulta: [null, Validators.required],
       descSumario: [null],
       arquivos: [null],
@@ -78,5 +79,20 @@ export class FormProntuario {
     } else {
       return values.doencaCronica;
     }
+  }
+
+  public parseFormSubmit(form: any, idPaciente: number): any {
+    let valuesSubmit = Object.assign(form, {});
+    valuesSubmit.alergias = valuesSubmit.alergias.map((element: any) =>
+      Object.assign(element, { idPaciente: idPaciente })
+    );
+    valuesSubmit.medicamentos = valuesSubmit.medicamentos.map((element: any) =>
+      Object.assign(element, { idPaciente: idPaciente })
+    );
+    valuesSubmit.doencas = valuesSubmit.doencas.map((element: any) =>
+      Object.assign(element, { idPaciente: idPaciente })
+    );
+
+    return valuesSubmit;
   }
 }

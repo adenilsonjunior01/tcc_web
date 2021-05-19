@@ -5,6 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map, take } from 'rxjs/operators';
 import { ITiposConsultaModel } from '../../models/tipos-consulta-model';
 import { IConsultasModel, IConsultaModel } from '../../models/consultas-model';
+import { IIniciarAtendimentoModel } from '../../models/iniciar-atendimento-model';
 
 const routes = {
   clinica: () => `/clinica`,
@@ -19,6 +20,8 @@ const routes = {
   confirmarConsulta: (idConsulta: number) => `/consulta/confirmaConsulta/${idConsulta}`,
   cancelConsulta: (idConsulta: number) => `/consulta/cancelaConsulta/${idConsulta}`,
   buscarConsultas: (idPerfil: number) => `/consulta/filtrar?paciente=${idPerfil}`,
+  iniciarAtendimento: (idConsulta: number) => `/prontuario/${idConsulta}`,
+  salvarProntuario: () => `/prontuario/finalizar`,
 };
 
 @Injectable({
@@ -117,6 +120,23 @@ export class ClinicaService {
 
   public getConsultasPaciente(idPerfil: number): Observable<IConsultasModel> {
     return this._httpClient.get(routes.buscarConsultas(idPerfil)).pipe(
+      catchError((error: HttpErrorResponse) => throwError(error)),
+      map((body: any) => body),
+      take(1)
+    );
+  }
+
+  public iniciarAtendimento(idConsulta: number): Observable<IIniciarAtendimentoModel> {
+    const body = {};
+    return this._httpClient.post(routes.iniciarAtendimento(idConsulta), body).pipe(
+      catchError((error: HttpErrorResponse) => throwError(error)),
+      map((body: any) => body),
+      take(1)
+    );
+  }
+
+  public salvarProntuarioMedico(prontuario: any): Observable<any> {
+    return this._httpClient.put(routes.salvarProntuario(), prontuario).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),
       take(1)

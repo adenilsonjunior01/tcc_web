@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, OnChanges, OnDestroy, SimpleChanges, EventEmitter, Output } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { FormUpdatePaciente } from '../../class/form-update-paciente';
 import { Logger } from '../../../../@core/logger.service';
 import { IDadosUserModel } from '../../../../models/dados-user-model';
@@ -7,7 +7,6 @@ import { SweetalertService } from '@app/@shared/sweetalert/sweetalert.service';
 import { untilDestroyed } from '../../../../@core/until-destroyed';
 import { finalize } from 'rxjs/operators';
 import { CredentialsService, Token } from '../../../../auth/credentials.service';
-import { AuthenticationService } from '../../../../auth/authentication.service';
 import { FormUpdateUser } from '../../class/form-update-user';
 import { ListaUtilitarioMock } from '../../../../mocks/lista-utilitario-mock';
 import * as dayjs from 'dayjs';
@@ -65,6 +64,12 @@ export class FormUpdatePacienteComponent implements OnInit, OnDestroy, OnChanges
     this.decodeToken();
     this.formUser = this._formConfigUser.initForm();
     this.form = this._formConfig.initForm();
+  }
+
+  public clearFormConvenio(): void {
+    this.form.get('descConvenio').reset();
+    this.form.get('nuInscricaoConvenio').reset();
+    this.form.get('compartilhaDados').reset();
   }
 
   public updatePaciente(): void {

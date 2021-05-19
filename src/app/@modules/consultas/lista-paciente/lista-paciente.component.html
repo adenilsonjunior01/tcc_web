@@ -69,7 +69,7 @@
           <td class="td-format">{{ consulta?.dtInicio | date: 'shortDate' }}</td>
           <td class="td-format">
             <span
-              class="badge"
+              class="badge bg-secondary2"
               [ngClass]="{
                 'bg-primary': consulta?.status === 'Pendente',
                 'bg-success': consulta?.status === 'Confirmada',
@@ -98,6 +98,7 @@
               [disabled]="
                 consulta?.status === 'Confirmada' ||
                 consulta?.status === 'Finalizada' ||
+                consulta?.status === 'Em Andamento' ||
                 consulta?.status === 'Cancelada'
               "
             >
@@ -110,7 +111,11 @@
               type="button"
               class="btn-danger"
               (click)="confirmCancel(consulta)"
-              [disabled]="consulta?.status === 'Cancelada' || consulta?.status === 'Finalizada'"
+              [disabled]="
+                consulta?.status === 'Cancelada' ||
+                consulta?.status === 'Em Andamento' ||
+                consulta?.status === 'Finalizada'
+              "
             >
               <i class="feather icon-x"></i> cancelar
             </button>

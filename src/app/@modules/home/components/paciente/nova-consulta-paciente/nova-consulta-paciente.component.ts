@@ -25,7 +25,7 @@ export class NovaConsultaPacienteComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   public loading2 = false;
   public loading = false;
-  public horariosDisponiveis: any;
+  public horariosDisponiveis: any[] = [];
   public tiposConsulta: ITiposConsultaModel[] = [];
   public messageError = '';
   public medicos: any[];
