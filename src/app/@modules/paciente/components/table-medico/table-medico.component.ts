@@ -103,7 +103,7 @@ export class TableMedicoComponent implements OnInit, OnDestroy {
     this.totalItems = 0;
     this.page = -1;
     this.currentPage = -1;
-    const valuesParse = this.temporalidadeControl.value - 1;
+    const valuesParse = this.temporalidadeControl.value;
     this._clinicaService
       .getAllConsultasMedico(this.itemsPerPage, page, this.idPerfil, valuesParse)
       .pipe(

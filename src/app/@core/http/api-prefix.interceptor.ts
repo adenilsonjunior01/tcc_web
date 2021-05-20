@@ -17,7 +17,6 @@ export class ApiPrefixInterceptor implements HttpInterceptor {
     } else if (!/^(http|https):/i.test(request.url)) {
       request = request.clone({
         setHeaders: {
-          'Content-type': 'application/json',
           Authorization: `Bearer ${JSON.parse(localStorage.getItem('credentials')).token}`,
         },
         url: environment.serverUrl + request.url,

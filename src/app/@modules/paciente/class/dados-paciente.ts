@@ -24,4 +24,12 @@ export class DadosPaciente {
   public removeDadosPacienteLocalStorage(): void {
     localStorage.removeItem('__dadosPaciente');
   }
+
+  public setDadosMedicosLocalStorage(dados: any): void {
+    localStorage.setItem('__dadosMedico', JSON.stringify(dados));
+  }
+
+  public getDadosMedicosLocalStorage(): any {
+    return JSON.parse(localStorage.getItem('__dadosMedico'));
+  }
 }

@@ -3,11 +3,120 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <h1 class="mb-0">Dados Médicos</h1>
+          <h1 class="mb-0">Histórico</h1>
           <span>Dados anteriores do paciente</span>
           <hr class="my-2" />
+        </div>
+        <div class="col-3">
+          <ul class="dados-medicos">
+            <li>
+              <h4 class="fw-bold m-0">Altura</h4>
+              <span>{{ dadosMedicos?.altura ? dadosMedicos?.altura : 'Sem registro' }}</span>
+            </li>
+            <li>
+              <h4 class="fw-bold m-0">Peso</h4>
+              <span>{{ dadosMedicos?.peso ? dadosMedicos?.peso : 'Sem registro' }}</span>
+            </li>
+            <li>
+              <h4 class="fw-bold m-0">Tipo Sanguíneo</h4>
+              <span>{{
+                dadosMedicos?.tipoSanguineo ? dadosMedicos?.tipoSanguineo?.descricaoTipoSanguineo : 'Sem registro'
+              }}</span>
+            </li>
+            <li>
+              <h4 class="fw-bold m-0 last-update">Ultima Atualização:</h4>
+              <span>{{ dadosMedicos?.dtAtualizacao }}</span>
+            </li>
+          </ul>
+        </div>
+        <div class="col-3">
+          <ul class="dados-medicos">
+            <li>
+              <h4 class="fw-bold m-0">Valor IMC</h4>
+              <span>{{ dadosMedicos?.vlImc ? dadosMedicos?.vlImc : 'Sem registro' }}</span>
+            </li>
+            <li>
+              <h4 class="fw-bold m-0">Descrição IMC</h4>
+              <span>{{ dadosMedicos?.descImc ? dadosMedicos?.descImc : 'Sem registro' }}</span>
+            </li>
+          </ul>
+        </div>
+        <div class="col-12">
+          <mat-accordion class="">
+            <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <strong>Alergias</strong>
+                </mat-panel-title>
+                <mat-panel-description> </mat-panel-description>
+              </mat-expansion-panel-header>
+              <ul *ngIf="dadosMedicos?.alergias.length > 0; else semregistro">
+                <li *ngFor="let alergia of dadosMedicos?.alergias">
+                  <span> - {{ alergia?.descAlergia }}</span>
+                </li>
+              </ul>
+              <mat-action-row>
+                <button mat-button color="primary" (click)="nextStep()">próximo</button>
+              </mat-action-row>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <strong>Medicamentos</strong>
+                </mat-panel-title>
+                <mat-panel-description> </mat-panel-description>
+              </mat-expansion-panel-header>
+              <ul *ngIf="dadosMedicos?.medicamentos.length > 0; else semregistro">
+                <li *ngFor="let medicamento of dadosMedicos?.medicamentos" class="medicamento py-2">
+                  <span class="d-block"><strong>Descrição:</strong> {{ medicamento?.descMedicamento }}</span>
+                  <span class="d-block"><strong>Duração:</strong> {{ medicamento?.duracaoTratamento }}</span>
+                  <span class="d-block medicamento__registro"
+                    ><strong>Registro:</strong> {{ medicamento?.dtRegistro }}</span
+                  >
+                </li>
+              </ul>
+              <mat-action-row>
+                <button mat-button color="warn" (click)="prevStep()">voltar</button>
+                <button mat-button color="primary" (click)="nextStep()">próximo</button>
+              </mat-action-row>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <strong>Doenças crônicas</strong>
+                </mat-panel-title>
+                <mat-panel-description> </mat-panel-description>
+              </mat-expansion-panel-header>
+              <ul *ngIf="dadosMedicos?.doencasCronicas.length > 0; else semregistro">
+                <li *ngFor="let cronica of dadosMedicos?.doencasCronicas">
+                  <span> - {{ cronica?.descDoenca }}</span>
+                </li>
+              </ul>
+              <mat-action-row>
+                <button mat-button color="warn" (click)="prevStep()">voltar</button>
+                <button mat-button color="primary" (click)="nextStep()">fechar</button>
+              </mat-action-row>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h3 class="mb-0">Arquivos</h3>
+          <hr class="my-2" />
+        </div>
+        <div class="col-12">
+          <!-- <ng-container *ngFor="let item of items"></ng-container> -->
+
+          <p></p>
         </div>
       </div>
     </div>
   </app-card-content>
 </div>
+
+<ng-template #semregistro>
+  <p class="m-0">sem registros</p>
+</ng-template>

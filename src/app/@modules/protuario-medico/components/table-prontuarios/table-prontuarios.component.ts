@@ -9,6 +9,7 @@ import { ListaPacientesMock } from '../../../../mocks/lista-pacientes-mock';
 export class TableProntuariosComponent implements OnInit {
   private readonly listaPacientesMock = new ListaPacientesMock();
   especialidades: any[];
+  public loading = false;
 
   constructor() {}
 

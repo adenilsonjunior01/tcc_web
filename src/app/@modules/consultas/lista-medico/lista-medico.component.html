@@ -97,6 +97,12 @@
               type="button"
               class="btn-success"
               (click)="submit('confirm', consulta)"
+              [disabled]="
+                consulta?.status === 'Confirmada' ||
+                consulta?.status === 'Finalizada' ||
+                consulta?.status === 'Em Andamento' ||
+                consulta?.status === 'Cancelada'
+              "
             >
               <i class="feather icon-check"></i> confirmar
             </button>
@@ -106,6 +112,11 @@
               type="button"
               class="btn-danger"
               (click)="submit('cancel', consulta)"
+              [disabled]="
+                consulta?.status === 'Cancelada' ||
+                consulta?.status === 'Em Andamento' ||
+                consulta?.status === 'Finalizada'
+              "
             >
               <i class="feather icon-x"></i> cancelar
             </button>

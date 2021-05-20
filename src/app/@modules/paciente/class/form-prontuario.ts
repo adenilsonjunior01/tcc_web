@@ -95,4 +95,17 @@ export class FormProntuario {
 
     return valuesSubmit;
   }
+
+  public formFilesConfig(): FormGroup {
+    return this._fb.group({
+      arquivos: this._fb.array([this.newObjectFile()]),
+    });
+  }
+
+  public newObjectFile(): FormGroup {
+    return this._fb.group({
+      idTipo: [null],
+      file: [null],
+    });
+  }
 }

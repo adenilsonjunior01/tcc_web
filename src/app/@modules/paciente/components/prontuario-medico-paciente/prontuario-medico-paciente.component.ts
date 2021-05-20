@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DadosPaciente } from '../../class/dados-paciente';
 import { Router, Route } from '@angular/router';
 import { OptionsRadioButton } from '../../mocks/options-radio-button';
-import { FormArray, FormGroup, FormControl } from '@angular/forms';
+import { FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormProntuario } from '../../class/form-prontuario';
 import { IOptionsRadioButton } from '../../interfaces/options-radio-button-interface';
 import { SweetalertService } from '@app/@shared/sweetalert/sweetalert.service';
@@ -16,6 +16,8 @@ import { ClinicaService } from '@app/services/clinica/clinica.service';
 import { IClinicaModel } from '../../../../models/clinica-model';
 import { CredentialsService } from '../../../../auth/credentials.service';
 import Swal from 'sweetalert2';
+import { UtilitariosService } from '@app/services/utilitarios/utilitarios.service';
+import { ITiposFileModel } from '../../../../models/tipos-file-model';
 
 const log = new Logger('Prontuario');
 
@@ -29,6 +31,7 @@ export class ProntuarioMedicoPacienteComponent implements OnInit, OnDestroy {
   public dadosProntuario: any;
   public step = 0;
   public formProntuario: FormGroup;
+  public formFile: FormGroup;
   public optionsRadio: IOptionsRadioButton[];
   public configForm = new FormProntuario();
   public controlAlergia = new FormControl();
@@ -42,13 +45,12 @@ export class ProntuarioMedicoPacienteComponent implements OnInit, OnDestroy {
   public animationFile = false;
   public dadosClinica: IClinicaModel;
   public nomeMedico: string;
+  public tiposFile: ITiposFileModel[];
+  count: number;
 
   public files = new FileUploadControl(
     // control configuration
-    { listVisible: true, discardInvalid: true, accept: ['image/*'] },
-
-    // validator used to discard files
-    [FileUploadValidators.accept(['image/*']), FileUploadValidators.fileSize(80000)]
+    { listVisible: true, discardInvalid: true }
   );
 
   constructor(
@@ -56,7 +58,8 @@ export class ProntuarioMedicoPacienteComponent implements OnInit, OnDestroy {
     private readonly _sweetAlert: SweetalertService,
     private readonly _alergiaService: AlergiaService,
     private readonly _clinicaService: ClinicaService,
-    private readonly _credentials: CredentialsService
+    private readonly _credentials: CredentialsService,
+    private readonly _utilitariosService: UtilitariosService
   ) {
     const state = this._router.getCurrentNavigation();
     if (state?.extras?.state) {
@@ -75,8 +78,10 @@ export class ProntuarioMedicoPacienteComponent implements OnInit, OnDestroy {
     this.nomeMedico = this._credentials.decodeToken().nome;
     this.getDadosClinica();
     this.getTiposAlergias();
+    this.getTiposFile();
     this.optionsRadio = OptionsRadioButton.optionsRadio;
     this.formProntuario = this.configForm.initFormProntuario();
+    this.formFile = this.configForm.formFilesConfig();
     this.formProntuario.get('id').setValue(this.dadosProntuario.id);
     this.controlAlergia.setValue(false);
     this.controlMedicamento.setValue(false);
@@ -97,6 +102,10 @@ export class ProntuarioMedicoPacienteComponent implements OnInit, OnDestroy {
 
   public get formArrayArquivos() {
     return this.formProntuario.get('arquivos').value;
+  }
+
+  public get formArrayFile() {
+    return this.formFile.get('arquivos') as FormArray;
   }
 
   public confirmEnvio() {
@@ -128,10 +137,48 @@ export class ProntuarioMedicoPacienteComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (body: any) => {
           this._sweetAlert.openToasty('Prontuário salvo com sucesso!', 'success');
-          setTimeout(() => this._router.navigateByUrl('/pacientes'), 1500);
+          this.count = 1;
+          this.submitFile();
         },
         error: (error: any) => {
           log.error(error);
+        },
+      });
+  }
+
+  public submitFile() {
+    const values = this.formFile.get('arquivos').value;
+    if (this.count <= values.length) {
+      const file = values[this.count - 1];
+      this.uploadArquivo(file);
+    } else {
+      this._sweetAlert.openToasty('Arquivo(s) salvo com sucesso!', 'success');
+      setTimeout(() => this._router.navigateByUrl('/pacientes'), 1500);
+    }
+  }
+
+  public uploadArquivo(file: any): void {
+    const fileFormData = this._utilitariosService.toFormData(file.file);
+    this._utilitariosService
+      .uploadFile(file.idTipo, this.dadosProntuario.id, fileFormData)
+      .pipe(untilDestroyed(this))
+      .subscribe({
+        next: (body: any) => {
+          console.log(body);
+          this.count++;
+
+          this.submitFile();
+        },
+      });
+  }
+
+  public getTiposFile(): void {
+    this._utilitariosService
+      .getTiposFile()
+      .pipe(untilDestroyed(this))
+      .subscribe({
+        next: (body: ITiposFileModel[]) => {
+          this.tiposFile = body;
         },
       });
   }
@@ -145,6 +192,14 @@ export class ProntuarioMedicoPacienteComponent implements OnInit, OnDestroy {
           this.dadosClinica = body;
         },
       });
+  }
+
+  public addNewObjectFile(): void {
+    (this.formFile.get('arquivos') as FormArray).push(this.configForm.newObjectFile());
+  }
+
+  public removeObjectFile(index: number): void {
+    (this.formFile.get('arquivos') as FormArray).removeAt(index);
   }
 
   /**

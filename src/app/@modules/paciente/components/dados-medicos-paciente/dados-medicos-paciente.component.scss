@@ -1,0 +1,21 @@
+.dados-medicos {
+  li {
+    padding: 2px 0;
+    span {
+      color: var(--black);
+    }
+
+    .id-atendimento {
+      color: var(--tcc-primary);
+    }
+  }
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.last-update {
+  color: var(--tcc-primary);
+}

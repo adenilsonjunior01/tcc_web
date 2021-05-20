@@ -82,7 +82,7 @@
           </li>
         </ul>
       </div>
-      <div class="col-4">
+      <!-- <div class="col-4">
         <h3 class="m-0 text-uppercase">Dados do Paciente:</h3>
         <ul class="dados-medicos">
           <li>
@@ -98,7 +98,7 @@
             <span>A+</span>
           </li>
         </ul>
-      </div>
+      </div> -->
     </div>
     <!-- Cadastro da Consulta -->
     <form [formGroup]="formProntuario">
@@ -353,31 +353,70 @@
             </mat-expansion-panel>
           </mat-accordion>
         </div>
-        <div class="col-12">
-          <file-upload [animation]="animationFile" [control]="files" class="mt-3">
-            <ng-template let-isFileDragDropAvailable="isFileDragDropAvailable" #placeholder>
-              <span *ngIf="isFileDragDropAvailable">Arraste ou Clique aqui</span>
-            </ng-template>
-
-            <ng-template let-i="index" let-file="file" let-control="control" #item>
-              <div class="file-info">
-                <span class="file-name">{{ file.name }}</span>
-                <button mat-button type="button" (click)="files.removeFile(file)">
-                  <i class="feather icon-x"></i>
-                </button>
-              </div>
-            </ng-template>
-          </file-upload>
-        </div>
-        <div class="col-12 mt-4 d-flex justify-content-end">
-          <button class="btn btn-primary" [disabled]="!formProntuario.valid" type="button" (click)="confirmEnvio()">
-            <i class="feather icon-check"></i>
-            salvar prontuário
-          </button>
-        </div>
       </div>
       <!-- /row -->
     </form>
-    <app-form-debug [form]="formProntuario"></app-form-debug>
+    <form [formGroup]="formFile">
+      <div class="row">
+        <ng-container formArrayName="arquivos" *ngFor="let file of formArrayFile.controls; index as i">
+          <ng-container [formGroupName]="i">
+            <div class="col-4 mt-3">
+              <mat-label>Tipo</mat-label>
+              <ng-select
+                [items]="tiposFile"
+                bindLabel="descricao"
+                bindValue="id"
+                appearance="outline"
+                placeholder="Selecione"
+                formControlName="idTipo"
+              >
+              </ng-select>
+            </div>
+            <div class="col-4 ng-star-inserted d-flex align-items-center mt-4">
+              <button class="btn btn-primary" (click)="addNewObjectFile()" *ngIf="i == 0">
+                <i class="feather icon-plus"></i>
+                novo arquivo
+              </button>
+            </div>
+            <div class="col-12">
+              <file-upload [animation]="animationFile" formControlName="file">
+                <ng-template let-isFileDragDropAvailable="isFileDragDropAvailable" #placeholder>
+                  <span *ngIf="isFileDragDropAvailable">Arraste ou Clique aqui</span>
+                </ng-template>
+
+                <ng-template let-i="index" let-file="file" let-control="control" #item>
+                  <div class="file-info">
+                    <span class="file-name">{{ file.name }}</span>
+                    <button mat-button type="button" (click)="files.removeFile(file)">
+                      <i class="feather icon-x"></i>
+                    </button>
+                  </div>
+                </ng-template>
+              </file-upload>
+            </div>
+          </ng-container>
+          <div class="col-12 mt-2">
+            <button class="btn btn-danger" (click)="removeObjectFile(i)">
+              <i class="feather icon-x"></i>
+              remover arquivo
+            </button>
+          </div>
+        </ng-container>
+      </div>
+    </form>
+    <div class="row">
+      <div class="col-12 mt-4 d-flex justify-content-end">
+        <button class="btn btn-success" type="button" (click)="submitFile()">
+          <i class="feather icon-check"></i>
+          TESTE
+        </button>
+      </div>
+    </div>
+    <div class="col-12 mt-4 d-flex justify-content-end">
+      <button class="btn btn-success" [disabled]="!formProntuario.valid" type="button" (click)="confirmEnvio()">
+        <i class="feather icon-check"></i>
+        salvar prontuário
+      </button>
+    </div>
   </app-card-content>
 </div>

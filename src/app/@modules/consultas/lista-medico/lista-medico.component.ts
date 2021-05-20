@@ -27,7 +27,7 @@ export class ListaMedicoComponent implements OnInit, OnDestroy {
   public listaMedicos: any[] = [];
   public formOptions: FormGroup;
 
-  itemsPerPage = 5;
+  itemsPerPage = 10;
   currentPage: number;
   totalItems: number;
   page = 0;
@@ -71,9 +71,9 @@ export class ListaMedicoComponent implements OnInit, OnDestroy {
   }
 
   public buscar(): void {
-    if (this.formOptions.get('temporalidade').value && this.formOptions.get('medico').value) {
+    if (this.formOptions.get('temporalidade').value >= 0 && this.formOptions.get('medico').value) {
       this.getConsultasTemporalidadeMedico();
-    } else if (this.formOptions.get('temporalidade').value && !this.formOptions.get('medico').value) {
+    } else if (this.formOptions.get('temporalidade').value >= 0 && !this.formOptions.get('medico').value) {
       this.getConsultasTemporalidade();
     } else {
       this._sweetAlert.openToasty('Busca inválida', 'error');
@@ -85,9 +85,10 @@ export class ListaMedicoComponent implements OnInit, OnDestroy {
     let valuesParse: any = this.formOptions.value;
 
     this.consultas = [];
+    this.itemsPerPage = 10;
     this.paginationVisible = true;
     this._clinicaService
-      .getAllConsultasMedico(this.itemsPerPage, page, valuesParse.medico, valuesParse.temporalidade - 1)
+      .getAllConsultasMedico(this.itemsPerPage, page, valuesParse.medico, valuesParse.temporalidade)
       .pipe(
         untilDestroyed(this),
         finalize(() => (this.loading = false))
@@ -122,6 +123,7 @@ export class ListaMedicoComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (body: any) => {
           this.consultas = body;
+          this.itemsPerPage = body.length;
         },
         error: (error: HttpErrorResponse) => {
           log.error(error);
@@ -142,7 +144,7 @@ export class ListaMedicoComponent implements OnInit, OnDestroy {
   }
 
   public clearForm(): void {
-    this.formOptions.reset();
+    this.formOptions.get('medico').reset();
   }
 
   public openModalDetalhes(idModal: string, consulta: any): void {

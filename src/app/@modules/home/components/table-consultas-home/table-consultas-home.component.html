@@ -57,7 +57,7 @@
             <span>{{ consulta?.medico?.nome }}</span>
           </td>
           <td>
-            <span class="bold">Ativo</span>
+            <span class="bold">{{ consulta?.status }}</span>
           </td>
           <td>
             <a (click)="openModalDetalhes('detalhe-consulta', consulta)"> visualizar</a>
