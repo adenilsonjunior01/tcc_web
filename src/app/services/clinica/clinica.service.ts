@@ -19,7 +19,8 @@ const routes = {
   consultasTemporalidade: (idTemporalidade: number) => `/consulta/temporalidade/${idTemporalidade}`,
   confirmarConsulta: (idConsulta: number) => `/consulta/confirmaConsulta/${idConsulta}`,
   cancelConsulta: (idConsulta: number) => `/consulta/cancelaConsulta/${idConsulta}`,
-  buscarConsultas: (idPerfil: number) => `/consulta/filtrar?paciente=${idPerfil}`,
+  buscarConsultas: (idPerfil: number, size: number, page: number) =>
+    `/consulta/filtrar?paciente=${idPerfil}&size=${size}&page=${page}`,
   iniciarAtendimento: (idConsulta: number) => `/prontuario/${idConsulta}`,
   salvarProntuario: () => `/prontuario/finalizar`,
 };
@@ -118,8 +119,8 @@ export class ClinicaService {
     );
   }
 
-  public getConsultasPaciente(idPerfil: number): Observable<IConsultasModel> {
-    return this._httpClient.get(routes.buscarConsultas(idPerfil)).pipe(
+  public getConsultasPaciente(idPerfil: number, size: number, page: number): Observable<IConsultasModel> {
+    return this._httpClient.get(routes.buscarConsultas(idPerfil, size, page)).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),
       take(1)

@@ -29,7 +29,7 @@ export class ListaPacienteComponent implements OnInit, OnDestroy {
   public consultas: IConsultaModel[] = [];
   public consulta: any;
 
-  itemsPerPage = 10;
+  itemsPerPage = 2;
   currentPage: number;
   totalItems: number;
   page = 0;
@@ -76,11 +76,6 @@ export class ListaPacienteComponent implements OnInit, OnDestroy {
   }
 
   public buscar(): void {}
-
-  public pageChanged(event: number): void {
-    // this.getConsultasTemporalidadeMedico(event - 1);
-    this.page = event;
-  }
 
   public openModalDetalhes(idModal: string, consulta: any): void {
     this.consulta = consulta;
@@ -170,11 +165,11 @@ export class ListaPacienteComponent implements OnInit, OnDestroy {
       });
   }
 
-  public getConsultas(): void {
+  public getConsultas(page = 0): void {
     this.loading = true;
     this.consultas = [];
     this._clinicaService
-      .getConsultasPaciente(this.idPerfil)
+      .getConsultasPaciente(this.idPerfil, this.itemsPerPage, page)
       .pipe(
         untilDestroyed(this),
         finalize(() => (this.loading = false))
@@ -182,7 +177,14 @@ export class ListaPacienteComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (body: IConsultasModel) => {
           this.consultas = body.content;
+          this.page = page + 1;
+          this.totalItems = body.totalElements;
         },
       });
+  }
+
+  public pageChanged(event: number): void {
+    this.getConsultas(event - 1);
+    this.page = event;
   }
 }

@@ -86,7 +86,7 @@ export class TableConsultasHomeComponent implements OnInit, OnDestroy {
   public getAllConsultasMedico(page = 0): void {
     this.loading = true;
     this.consultas = [];
-    const valuesParse = this.temporalidadeControl.value - 1;
+    const valuesParse = this.temporalidadeControl.value;
     this._clinicaService
       .getAllConsultasMedico(this.itemsPerPage, page, this.idMedico, valuesParse)
       .pipe(

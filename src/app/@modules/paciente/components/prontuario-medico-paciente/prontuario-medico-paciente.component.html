@@ -373,13 +373,13 @@
               </ng-select>
             </div>
             <div class="col-4 ng-star-inserted d-flex align-items-center mt-4">
-              <button class="btn btn-primary" (click)="addNewObjectFile()" *ngIf="i == 0">
+              <button mat-button class="new" (click)="addNewObjectFile()" *ngIf="i == 0">
                 <i class="feather icon-plus"></i>
                 novo arquivo
               </button>
             </div>
             <div class="col-12">
-              <file-upload [animation]="animationFile" formControlName="file">
+              <file-upload [animation]="animationFile" formControlName="file" [fileslimit]="2">
                 <ng-template let-isFileDragDropAvailable="isFileDragDropAvailable" #placeholder>
                   <span *ngIf="isFileDragDropAvailable">Arraste ou Clique aqui</span>
                 </ng-template>
@@ -396,22 +396,15 @@
             </div>
           </ng-container>
           <div class="col-12 mt-2">
-            <button class="btn btn-danger" (click)="removeObjectFile(i)">
+            <button mat-button (click)="removeObjectFile(i)" class="remove">
               <i class="feather icon-x"></i>
               remover arquivo
             </button>
+            <hr />
           </div>
         </ng-container>
       </div>
     </form>
-    <div class="row">
-      <div class="col-12 mt-4 d-flex justify-content-end">
-        <button class="btn btn-success" type="button" (click)="submitFile()">
-          <i class="feather icon-check"></i>
-          TESTE
-        </button>
-      </div>
-    </div>
     <div class="col-12 mt-4 d-flex justify-content-end">
       <button class="btn btn-success" [disabled]="!formProntuario.valid" type="button" (click)="confirmEnvio()">
         <i class="feather icon-check"></i>

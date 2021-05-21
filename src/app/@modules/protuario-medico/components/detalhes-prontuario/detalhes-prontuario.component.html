@@ -1,0 +1,219 @@
+<app-card-content>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 d-flex justify-content-end">
+        <i class="feather icon-x" (click)="close('detalhes-prontuario')"></i>
+      </div>
+      <div class="col-12">
+        <h1 class="mb-0">Prontuário Eletrônico Médico</h1>
+        <hr class="my-2" />
+      </div>
+      <div class="col-4 my-3">
+        <h3 class="m-0 text-uppercase">Dados do Paciente</h3>
+        <ul class="dados-medicos">
+          <li>
+            <h4 class="fw-bold m-0">Altura</h4>
+            <span>{{
+              prontuario?.paciente?.dadosMedicos?.altura ? prontuario?.paciente?.dadosMedicos?.altura : 'Sem registro'
+            }}</span>
+          </li>
+          <li>
+            <h4 class="fw-bold m-0">Peso</h4>
+            <span>{{
+              prontuario?.paciente?.dadosMedicos?.peso ? prontuario?.paciente?.dadosMedicos?.peso : 'Sem registro'
+            }}</span>
+          </li>
+          <li>
+            <h4 class="fw-bold m-0">Tipo Sanguíneo</h4>
+            <span>{{
+              prontuario?.paciente?.dadosMedicos?.tipoSanguineo
+                ? prontuario?.paciente?.dadosMedicos?.tipoSanguineo?.descricaoTipoSanguineo
+                : 'Sem registro'
+            }}</span>
+          </li>
+          <li>
+            <h4 class="fw-bold m-0 last-update">Ultima Atualização:</h4>
+            <span>{{ prontuario?.paciente?.dadosMedicos?.dtAtualizacao }}</span>
+          </li>
+        </ul>
+      </div>
+      <div class="col-4 my-3">
+        <h3 class="m-0 text-uppercase">Dados do Médico:</h3>
+        <ul class="dados-medicos">
+          <li>
+            <h4 class="fw-bold m-0">Nome</h4>
+            <span>{{ prontuario?.medico?.nome }}</span>
+          </li>
+          <li>
+            <h4 class="fw-bold m-0">CRM:</h4>
+            <span>{{ prontuario?.medico?.crm }}</span>
+          </li>
+          <li>
+            <h4 class="fw-bold m-0">Especialidade(s):</h4>
+            <ng-container *ngFor="let especializacao of prontuario?.medico?.especializacoes; index as i">
+              <span *ngIf="i > 0">, </span>
+              <span>{{ especializacao?.descEspecializacao }} </span>
+            </ng-container>
+          </li>
+        </ul>
+      </div>
+      <div class="col-4 my-3">
+        <h3 class="m-0 text-uppercase">Dados do Atendimento:</h3>
+        <ul class="dados-medicos">
+          <li>
+            <h4 class="fw-bold m-0">Status</h4>
+            <span class="id-atendimento fw-bold">{{ prontuario?.status }}</span>
+          </li>
+          <li>
+            <h4 class="fw-bold m-0">Data do Atendimento</h4>
+            <span>{{ prontuario?.dtInicio | date: 'shortDate' }}</span>
+          </li>
+          <li>
+            <h4 class="fw-bold m-0">Tipo Procedimento</h4>
+            <span>{{ prontuario?.procedimento?.descTipoProcedimento }}</span>
+          </li>
+          <li>
+            <h4 class="fw-bold m-0">Duração</h4>
+            <span>{{ prontuario?.procedimento?.duracao }}</span>
+          </li>
+        </ul>
+      </div>
+      <div class="col-12">
+        <h3 class="mb-0">Dados da Consulta</h3>
+        <hr class="mt-1 mb-2" />
+      </div>
+      <div class="col-md-12">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Descrição geral da consulta</mat-label>
+          <textarea
+            [value]="prontuario?.prontuario?.descProntuario"
+            matInput
+            disabled
+            placeholder="Descrição geral da consulta"
+            autocomplete="off"
+            rows="5"
+          ></textarea>
+        </mat-form-field>
+      </div>
+      <div class="col-md-12 mb-3">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Sumário médico</mat-label>
+          <textarea
+            [value]="prontuario?.prontuario?.descSumario"
+            matInput
+            disabled
+            autocomplete="off"
+            rows="5"
+          ></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12">
+        <mat-accordion class="">
+          <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <strong>Alergias</strong>
+              </mat-panel-title>
+              <mat-panel-description> </mat-panel-description>
+            </mat-expansion-panel-header>
+            <ul *ngIf="prontuario?.paciente?.dadosMedicos?.alergias.length > 0; else semregistro">
+              <li *ngFor="let alergia of prontuario?.paciente?.dadosMedicos?.alergias">
+                <span> - {{ alergia?.descAlergia }}</span>
+              </li>
+            </ul>
+            <mat-action-row>
+              <button mat-button color="primary" (click)="nextStep()">próximo</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <strong>Medicamentos</strong>
+              </mat-panel-title>
+              <mat-panel-description> </mat-panel-description>
+            </mat-expansion-panel-header>
+            <ul *ngIf="prontuario?.paciente?.dadosMedicos?.medicamentos.length > 0; else semregistro">
+              <li *ngFor="let medicamento of prontuario?.paciente?.dadosMedicos?.medicamentos" class="medicamento py-2">
+                <span class="d-block"><strong>Descrição:</strong> {{ medicamento?.descMedicamento }}</span>
+                <span class="d-block"><strong>Duração:</strong> {{ medicamento?.duracaoTratamento }}</span>
+                <span class="d-block medicamento__registro"
+                  ><strong>Registro:</strong> {{ medicamento?.dtRegistro }}</span
+                >
+              </li>
+            </ul>
+            <mat-action-row>
+              <button mat-button color="warn" (click)="prevStep()">voltar</button>
+              <button mat-button color="primary" (click)="nextStep()">próximo</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <strong>Doenças crônicas</strong>
+              </mat-panel-title>
+              <mat-panel-description> </mat-panel-description>
+            </mat-expansion-panel-header>
+            <ul *ngIf="prontuario?.paciente?.dadosMedicos?.doencasCronicas.length > 0; else semregistro">
+              <li *ngFor="let cronica of prontuario?.paciente?.dadosMedicos?.doencasCronicas">
+                <span> - {{ cronica?.descDoenca }}</span>
+              </li>
+            </ul>
+            <mat-action-row>
+              <button mat-button color="warn" (click)="prevStep()">voltar</button>
+              <button mat-button color="primary" (click)="nextStep()">fechar</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h3 class="mb-0">Anexos</h3>
+        <hr class="my-2" />
+      </div>
+      <div class="col-12">
+        <div class="table-responsive">
+          <table class="table" *ngIf="prontuario?.prontuario?.documentos.length > 0; else semregistro">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Formato</th>
+                <th scope="col">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let anexo of prontuario?.prontuario?.documentos; index as i">
+                <td>
+                  <span>{{ i + 1 }}</span>
+                </td>
+                <td>
+                  <span>{{ anexo?.nome }}</span>
+                </td>
+                <td>
+                  <span>{{ anexo?.tipo }}</span>
+                </td>
+                <td>
+                  <span>{{ anexo?.formato }}</span>
+                </td>
+                <td>
+                  <button mat-button type="button" (click)="downloadAnexo(anexo.id, anexo.formato)">
+                    <i class="feather icon-download"></i>
+                    baixar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-card-content>
+<ng-template #semregistro>
+  <p class="m-0">sem registros</p>
+</ng-template>

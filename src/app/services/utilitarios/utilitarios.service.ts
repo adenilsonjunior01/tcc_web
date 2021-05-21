@@ -42,8 +42,8 @@ export class UtilitariosService {
     return formData;
   }
 
-  public getFile(idFile: any): Observable<any> {
-    return this._httpClient.get(routes.downloadFile(idFile)).pipe(
+  public downloadAnexo(idFile: any, responseType: any): Observable<any> {
+    return this._httpClient.get(routes.downloadFile(idFile), { responseType: 'blob' as 'json' }).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),
       take(1)

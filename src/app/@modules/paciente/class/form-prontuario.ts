@@ -1,4 +1,5 @@
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FileUploadValidators } from '@iplab/ngx-file-upload';
 
 export class FormProntuario {
   form: FormGroup;
@@ -103,9 +104,10 @@ export class FormProntuario {
   }
 
   public newObjectFile(): FormGroup {
+    const filesControl = new FormControl(null, FileUploadValidators.filesLimit(1));
     return this._fb.group({
       idTipo: [null],
-      file: [null],
+      file: filesControl,
     });
   }
 }

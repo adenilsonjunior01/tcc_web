@@ -13,6 +13,7 @@ import { ClinicaService } from '../../../../services/clinica/clinica.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AnimationOptions } from 'ngx-lottie';
 import { IIniciarAtendimentoModel } from '../../../../models/iniciar-atendimento-model';
+import { DadosPaciente } from '../../class/dados-paciente';
 
 const log = new Logger('Pacientes Médico');
 
@@ -23,6 +24,7 @@ const log = new Logger('Pacientes Médico');
 })
 export class TableMedicoComponent implements OnInit, OnDestroy {
   private readonly listaPacientesMock = new ListaPacientesMock();
+  private readonly _dadosMedicos = new DadosPaciente();
   pacientes: any[];
 
   loading = false;
@@ -84,6 +86,7 @@ export class TableMedicoComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (body: IIniciarAtendimentoModel) => {
           this._router.navigate(['/pacientes/prontuario-paciente'], { state: body });
+          this._dadosMedicos.setDadosMedicosLocalStorage(body);
         },
       });
   }
