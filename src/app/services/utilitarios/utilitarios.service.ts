@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { IEspecializacaoModel } from '../../models/especializacao-model';
 import { throwError, Observable } from 'rxjs';
-import { catchError, map, take } from 'rxjs/operators';
+import { catchError, map, take, tap } from 'rxjs/operators';
 import { ITiposFileModel } from '../../models/tipos-file-model';
+import { CredentialsService } from '../../auth/credentials.service';
 
 const routes = {
   especializacoes: () => `/especializacao`,
@@ -17,7 +18,7 @@ const routes = {
   providedIn: 'root',
 })
 export class UtilitariosService {
-  constructor(private readonly _httpClient: HttpClient) {}
+  constructor(private readonly _httpClient: HttpClient, private readonly _credentials: CredentialsService) {}
 
   public getEspecializacoes(): Observable<IEspecializacaoModel[]> {
     return this._httpClient.get(routes.especializacoes()).pipe(
@@ -37,17 +38,50 @@ export class UtilitariosService {
 
   public toFormData(file: any): any {
     const formData = new FormData();
-    formData.append('file', new Blob([file], { type: 'multipart/form-data' }), file.name);
+    formData.append('file', new Blob([file]), file.name);
+    // formData.append('file', new Blob([file], { type: 'multipart/form-data' }), file.name);
 
     return formData;
   }
 
-  public downloadAnexo(idFile: any, responseType: any): Observable<any> {
-    return this._httpClient.get(routes.downloadFile(idFile), { responseType: 'blob' as 'json' }).pipe(
-      catchError((error: HttpErrorResponse) => throwError(error)),
-      map((body: any) => body),
-      take(1)
-    );
+  public downloadFile(urlToSend: string): void {
+    const req = new XMLHttpRequest();
+    req.open('GET', urlToSend, true);
+    req.setRequestHeader('Authorization', `Bearer ${this._credentials.credentials.token}`);
+    req.responseType = 'blob';
+    req.send();
+    req.onload = (_) => {
+      const blob = req.response;
+      // IE
+      if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+        window.navigator.msSaveOrOpenBlob(blob);
+        return;
+      }
+
+      const fileName = req.getResponseHeader('Content-Disposition');
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = fileName;
+      link.click();
+
+      // firefox
+      setTimeout(() => {
+        window.URL.revokeObjectURL(blob);
+        link.remove();
+      }, 200);
+    };
+  }
+
+  public download(urlToSend: string): any {
+    const request = this._httpClient.get(urlToSend, {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this._credentials.credentials.token}`,
+        responseType: 'blob',
+      }),
+    });
+    request.subscribe((response: any) => {
+      console.log(response);
+    });
   }
 
   public deleteFile(idFile: any): Observable<any> {

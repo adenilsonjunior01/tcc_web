@@ -1,7 +1,5 @@
 import { Component, Input, OnInit, OnDestroy, ViewChild, EventEmitter, Output } from '@angular/core';
 import { UtilitariosService } from '@app/services/utilitarios/utilitarios.service';
-import { untilDestroyed } from '../../../../@core/until-destroyed';
-import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-detalhes-prontuario',
@@ -32,48 +30,12 @@ export class DetalhesProntuarioComponent implements OnInit, OnDestroy {
     this.step--;
   }
 
-  public downloadAnexo(idAnexo: number, formato: string): void {
-    this.loadingDownload = true;
-    this._utilitariosService
-      .downloadAnexo(idAnexo, formato)
-      .pipe(
-        untilDestroyed(this),
-        finalize(() => (this.loadingDownload = false))
-      )
-      .subscribe({
-        next: (body: any) => {
-          console.log(body);
-          this.download(body, formato);
-        },
-      });
+  public downloadFile(urlDownload: string): void {
+    this._utilitariosService.downloadFile(urlDownload);
   }
 
-  public download(resp: any, formato: any) {
-    const file = new Blob([resp], { type: resp.type });
-
-    // IE
-    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-      window.navigator.msSaveOrOpenBlob(file);
-      return;
-    }
-
-    const blob = window.URL.createObjectURL(file);
-
-    const link = document.createElement('a');
-    link.href = blob;
-    link.dispatchEvent(
-      new MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-        view: window,
-      })
-    );
-
-    // firefox
-    setTimeout(() => {
-      window.URL.revokeObjectURL(blob);
-      link.remove();
-    }, 200);
+  public downloadFile2(urlDownload: string): void {
+    this._utilitariosService.download(urlDownload);
   }
 
   public close(idModal: string) {
