@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, OnDestroy, ViewChild, EventEmitter, Output } from '@angular/core';
+import { MatAccordion } from '@angular/material/expansion';
 import { UtilitariosService } from '@app/services/utilitarios/utilitarios.service';
 
 @Component({
@@ -7,9 +8,10 @@ import { UtilitariosService } from '@app/services/utilitarios/utilitarios.servic
   styleUrls: ['./detalhes-prontuario.component.scss'],
 })
 export class DetalhesProntuarioComponent implements OnInit, OnDestroy {
+  @ViewChild(MatAccordion) accordion: MatAccordion;
   @Input() prontuario: any;
   @Output() closeModal = new EventEmitter();
-  public step = 0;
+  public step: number;
   public loadingDownload = false;
 
   constructor(private readonly _utilitariosService: UtilitariosService) {}

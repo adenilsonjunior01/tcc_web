@@ -29,7 +29,7 @@ export class ListaPacienteComponent implements OnInit, OnDestroy {
   public consultas: IConsultaModel[] = [];
   public consulta: any;
 
-  itemsPerPage = 2;
+  itemsPerPage = 15;
   currentPage: number;
   totalItems: number;
   page = 0;

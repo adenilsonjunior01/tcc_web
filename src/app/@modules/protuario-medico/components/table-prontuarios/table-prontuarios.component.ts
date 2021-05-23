@@ -20,7 +20,7 @@ export class TableProntuariosComponent implements OnInit, OnDestroy {
   especialidades: any[];
   public consultas: IConsultaModel[] = [];
   public idPerfil: number;
-  itemsPerPage = 2;
+  itemsPerPage = 15;
   currentPage: number;
   totalItems: number;
   page = 0;
