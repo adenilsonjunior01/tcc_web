@@ -148,11 +148,10 @@ export class ProntuarioMedicoPacienteComponent implements OnInit, OnDestroy {
 
   public submitFile() {
     const values = this.formFile.get('arquivos').value;
-    if (this.count <= values.length) {
+    if (this.count <= values.length && values[0].file !== null) {
       const file = values[this.count - 1];
       this.uploadArquivo(file);
     } else {
-      this._sweetAlert.openToasty('Arquivo(s) salvo com sucesso!', 'success');
       setTimeout(() => this._router.navigateByUrl('/pacientes'), 1500);
     }
   }

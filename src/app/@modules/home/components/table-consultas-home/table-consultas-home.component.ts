@@ -28,7 +28,7 @@ export class TableConsultasHomeComponent implements OnInit, OnDestroy {
   public consultas: IConsultaModel[] = [];
   public loading = false;
 
-  public itemsPerPage = 10;
+  public itemsPerPage = 4;
   public currentPage: number;
   public totalItems: number;
   public page = 0;

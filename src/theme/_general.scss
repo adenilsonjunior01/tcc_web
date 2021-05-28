@@ -2403,3 +2403,9 @@ progress {
   font-size: 14px;
   font-weight: 400;
 }
+
+.mat-input-element:disabled,
+.mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after {
+  color: var(--dark);
+  font-size: var(--f_16);
+}

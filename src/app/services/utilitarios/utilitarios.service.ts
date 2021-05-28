@@ -38,7 +38,7 @@ export class UtilitariosService {
 
   public toFormData(file: any): any {
     const formData = new FormData();
-    formData.append('file', new Blob([file]), file.name);
+    formData.append('file', new Blob([file[0]], { type: file[0].type }), file[0].name);
     // formData.append('file', new Blob([file], { type: 'multipart/form-data' }), file.name);
 
     return formData;

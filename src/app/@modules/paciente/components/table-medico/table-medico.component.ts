@@ -28,7 +28,7 @@ export class TableMedicoComponent implements OnInit, OnDestroy {
   pacientes: any[];
 
   loading = false;
-  itemsPerPage = 5;
+  itemsPerPage = 15;
   currentPage: number;
   totalItems: number;
   page = 0;
