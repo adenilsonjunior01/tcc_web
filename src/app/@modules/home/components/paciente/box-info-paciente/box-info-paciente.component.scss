@@ -1,9 +1,14 @@
+@import "../../../../../../theme/mixin";
+
 .bg-box-info {
   min-height: 215px;
   // max-width: 320px;
   // background-color: rgb(25, 123, 189);
   background: linear-gradient(#197bbd, #3391d0);
   border-radius: 26px;
+
+  @include query(mobile) {
+  }
 }
 
 .name-medico {
@@ -39,4 +44,8 @@
     color: var(--tcc-white);
     font-size: var(--f_16);
   }
+}
+
+h3 {
+  font-size: 22px;
 }

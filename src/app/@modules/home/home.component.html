@@ -1,23 +1,14 @@
 <div class="bg">
   <!-- Visão paciente -->
   <ng-container *ngIf="perfil === 'PACIENTE'">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-5 col-sm-12">
-          <div class="row">
+    <div class="container-fluid cards">
+      <div class="row m-0 cards__row">
+        <div class="col-md-5 col-sm-12 p-0">
+          <div class="row m-0">
             <div class="col-12">
-              <app-card-content>
-                <div class="row">
-                  <div class="col-12">
-                    <h3 class="m-0 mb-3">Dados gerais</h3>
-                  </div>
-                  <div class="col-12">
-                    <app-box-info-paciente></app-box-info-paciente>
-                  </div>
-                </div>
-              </app-card-content>
+              <app-box-info-paciente></app-box-info-paciente>
             </div>
-            <div class="col-12 mt-3">
+            <div class="col-12 mt-3 mb-md-0 mb-3">
               <app-pie-especialidades-paciente></app-pie-especialidades-paciente>
               <!-- <app-table-consultas-home [perfil]="perfil" [idMedico]="idPerfil"></app-table-consultas-home> -->
             </div>
@@ -25,11 +16,11 @@
         </div>
         <div class="col-md-7 col-sm-12">
           <app-estatisticas-paciente></app-estatisticas-paciente>
-          <div class="row mt-3">
-            <div class="col-6">
+          <div class="row mt-3 m-0">
+            <div class="col-12 col-md-6 mb-md-0 mb-3">
               <app-nova-consulta-paciente></app-nova-consulta-paciente>
             </div>
-            <div class="col-6">
+            <div class="col-12 col-md-6">
               <app-minhas-consultas></app-minhas-consultas>
             </div>
           </div>

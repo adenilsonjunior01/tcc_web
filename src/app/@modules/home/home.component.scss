@@ -1,4 +1,5 @@
 @import "../../../theme/form";
+@import "../../../theme/mixin";
 
 .container {
   text-align: center;
@@ -21,4 +22,14 @@ q {
 
 h3 {
   font-size: 22px;
+}
+
+.cards {
+  &__row {
+    display: flex;
+
+    @include query(mobile) {
+      display: block;
+    }
+  }
 }

@@ -36,12 +36,8 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
    * @param response = apresenta Toasty padrão pra determinados errors
    */
   private errorHandler(response: HttpResponse<any>): Observable<HttpEvent<any>> {
-    if (!environment.production) {
-      this.responseErrorDev(response);
-      log.error('Request error', response);
-    } else {
-      this.responseErrorProd(response);
-    }
+    this.responseErrorProd(response);
+    log.error('Request error', response);
     throw response;
   }
 
@@ -73,12 +69,13 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
         return this.verifyTokenExpired();
       case 403: {
         this._authentication.logout();
+        this._router.navigate(['/login', { replace: true }]);
         return toasty.openToasty('Usuário ou senha inválidos.', 'error');
       }
       case 404:
         return toasty.openToasty('Nenhum registro encontrado.', 'error');
       case 500:
-        return toasty.openToasty('Desculpe, ocorreu um erro interno, conte o suporte.', 'error');
+        return toasty.openToasty('Desculpe, ocorreu um erro interno, contate o suporte.', 'error');
       default:
         return toasty.openToasty('Erro desconhecido, contate o suporte', 'error');
     }
