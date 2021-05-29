@@ -8,13 +8,12 @@ import { MaterialModule } from '@app/material.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { TableConsultasHomeComponent } from './components/table-consultas-home/table-consultas-home.component';
-import { EstatisticasGeraisComponent } from './components/estatisticas-gerais/estatisticas-gerais.component';
 import { IdentificacaoProfissionalComponent } from './components/identificacao-profissional/identificacao-profissional.component';
 import { DadosGeraisMedicoComponent } from './components/dados-gerais-medico/dados-gerais-medico.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { EstatisticasMedicoComponent } from './components/charts/estatisticas-medico/estatisticas-medico.component';
 import { DadosGeraisClinicaComponent } from './components/charts/dados-gerais-clinica/dados-gerais-clinica.component';
-import { QuantitativoDadosClinicaComponent } from './components/quantitativo-dados-clinica/quantitativo-dados-clinica.component';
+import { QuantitativoDadosClinicaComponent } from './components/administrador/quantitativo-dados-clinica/quantitativo-dados-clinica.component';
 import { CardNovaConsultaComponent } from './components/card-nova-consulta/card-nova-consulta.component';
 import { PacienteModule } from '../paciente/paciente.module';
 import { CardNovoPacienteComponent } from './components/card-novo-paciente/card-novo-paciente.component';
@@ -32,6 +31,9 @@ import { MinhasConsultasComponent } from './components/paciente/minhas-consultas
 import { TabelaMedicamentosComponent } from './components/paciente/tabela-medicamentos/tabela-medicamentos.component';
 import { SemiDonoutProcedimentoComponent } from './components/charts/semi-donout-procedimento/semi-donout-procedimento.component';
 import { TabelaDiagnosticosDataComponent } from './components/paciente/tabela-diagnosticos-data/tabela-diagnosticos-data.component';
+import { QuantitativoUsuariosComponent } from './components/administrador/quantitativo-usuarios/quantitativo-usuarios.component';
+import { PieEspecializacoesMesComponent } from './components/charts/pie-especializacoes-mes/pie-especializacoes-mes.component';
+import { CardNovoColaboradorComponent } from './components/administrador/card-novo-colaborador/card-novo-colaborador.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -54,7 +56,6 @@ const maskConfig: Partial<IConfig> = {
   declarations: [
     HomeComponent,
     TableConsultasHomeComponent,
-    EstatisticasGeraisComponent,
     IdentificacaoProfissionalComponent,
     DadosGeraisMedicoComponent,
     EstatisticasMedicoComponent,
@@ -73,6 +74,9 @@ const maskConfig: Partial<IConfig> = {
     TabelaMedicamentosComponent,
     SemiDonoutProcedimentoComponent,
     TabelaDiagnosticosDataComponent,
+    QuantitativoUsuariosComponent,
+    PieEspecializacoesMesComponent,
+    CardNovoColaboradorComponent,
   ],
   exports: [CardNovaConsultaComponent, AgendamentoConsultaComponent, FormPreCadastroPacienteComponent],
 })

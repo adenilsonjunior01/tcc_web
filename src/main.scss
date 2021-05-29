@@ -41,6 +41,22 @@
   // padding-top: 0 !important;
 }
 
-.bg-card-grafic {
-  // background: linear-gradient(45deg,#4099ff,#73b4ff)!important;
+.bg-card-home-primary {
+  background: linear-gradient(45deg, #4099ff, #73b4ff);
+  padding: 0 0.5rem;
+}
+
+.bg-card-home-secondary {
+  background: linear-gradient(45deg, #2ed8b6, #59e0c5);
+  padding: 0 0.5rem;
+}
+
+.bg-card-home-thirt {
+  background: linear-gradient(45deg, #ffb64d, #ffcb80);
+  padding: 0 0.5rem;
+}
+
+.bg-card-home-four {
+  background: linear-gradient(45deg, #ff5370, #ff869a);
+  padding: 0 0.5rem;
 }

@@ -70,26 +70,44 @@
     </div>
   </ng-container>
   <!-- Visão Clínica -->
-  <ng-container *ngIf="perfil === 'AUXILIAR' || perfil === 'ADMINISTRADOR'">
+  <ng-container *ngIf="perfil === 'ADMINISTRADOR'">
+    <div class="container-fluid">
+      <div class="col-12">
+        <app-quantitativo-usuarios [quantitativoUsuarios]="quantitativoUsuarios"></app-quantitativo-usuarios>
+      </div>
+
+      <div class="row m-0">
+        <div class="col-md-6 col-12">
+          <app-dados-gerais-clinica [medicoAtendimento]="medicoAtendimento"></app-dados-gerais-clinica>
+        </div>
+        <div class="col-md-6 col-12">
+          <app-quantitativo-dados-clinica
+            [consultaMensalPorStatus]="consultaMensalPorStatus"
+          ></app-quantitativo-dados-clinica>
+        </div>
+      </div>
+      <div class="row m-0">
+        <div class="col-md-6 col-12 pt-3">
+          <app-pie-especializacoes-mes [especializacoesMes]="especializacoesMes"></app-pie-especializacoes-mes>
+        </div>
+        <div class="col-md-3 col-12 d-flex pt-3 pt-md-0">
+          <app-card-novo-colaborador></app-card-novo-colaborador>
+        </div>
+      </div>
+      <div class="col-12 mt-3 mb-4">
+        <app-table-consultas-home [perfil]="perfil"></app-table-consultas-home>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="perfil === 'AUXILIAR'">
     <div class="container-fluid">
       <div class="row m-0">
-        <div class="col-md-7 col-12">
-          <app-dados-gerais-clinica></app-dados-gerais-clinica>
-        </div>
-        <div class="col-md-5 col-12">
-          <app-quantitativo-dados-clinica></app-quantitativo-dados-clinica>
-        </div>
-        <div class="col-md-6 col-12 pt-3">
-          <app-estatisticas-gerais></app-estatisticas-gerais>
-        </div>
         <div class="col-md-3 col-12 d-flex justify-content-center align-items-center pt-3 pt-md-0">
           <app-card-nova-consulta></app-card-nova-consulta>
         </div>
         <div class="col-md-3 col-12 d-flex justify-content-center align-items-center pt-3 pt-md-0">
           <app-card-novo-paciente></app-card-novo-paciente>
         </div>
-      </div>
-      <div class="row pb-3">
         <div class="col-12 mt-3">
           <app-table-consultas-home [perfil]="perfil"></app-table-consultas-home>
         </div>

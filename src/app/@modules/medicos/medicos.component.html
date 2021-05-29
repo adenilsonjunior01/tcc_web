@@ -6,12 +6,6 @@
           <div class="row m-0">
             <div class="col-12 col-md-4">
               <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Pesquise pelo CRM</mat-label>
-                <input type="text" matInput placeholder="Digite aqui" autocomplete="off" formControlName="crm" />
-              </mat-form-field>
-            </div>
-            <div class="col-12 col-md-4">
-              <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Especializações</mat-label>
                 <mat-select formControlName="idEspecializacao">
                   <mat-option [value]="especializacao.id" *ngFor="let especializacao of especializacoes">{{

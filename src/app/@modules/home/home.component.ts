@@ -12,6 +12,15 @@ import {
   IDiagnosticosPorDataModel,
   IQuantitativosPorTipoAlergiaModel,
 } from '../../models/dados-estatisticos-paciente-model';
+import { ClinicaService } from '@app/services/clinica/clinica.service';
+import {
+  IConsultaMensalPorStatusModel,
+  IDadosEstatisticosModel,
+  IEspecializacoesMedicosModel,
+  IMedicoAtendimentoModel,
+  IPacienteConsultaModel,
+  IQuantitativoUsuariosModel,
+} from '../../models/dados-estastisticos-administrador';
 
 @Component({
   selector: 'app-home',
@@ -30,10 +39,20 @@ export class HomeComponent implements OnInit, OnDestroy {
   public quantitativosPorTipoEspecializacao: IQuantitativosPorTipoProcedimentoModel[];
   public quantitativoDadosMedicos: any;
 
+  public medicoAtendimento: IMedicoAtendimentoModel[];
+  public pacienteConsulta: IPacienteConsultaModel[];
+  public consultaMensalPorStatus: IConsultaMensalPorStatusModel[];
+  public especializacoesMes: IEspecializacoesMedicosModel[];
+  public quantitativoUsuarios: IQuantitativoUsuariosModel[];
+
   perfil: string;
   idPerfil: number;
 
-  constructor(private readonly _credentials: CredentialsService, private readonly _pacienteService: PacienteService) {}
+  constructor(
+    private readonly _credentials: CredentialsService,
+    private readonly _pacienteService: PacienteService,
+    private readonly _clinicaService: ClinicaService
+  ) {}
 
   ngOnDestroy(): void {}
 
@@ -64,6 +83,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       // IMPLEMENTAR CHAMADA AOS DADOS ESTATISTICOS DO MÉDICO
     } else {
       // IMPLEMENTAR CHAMADA AOS DADOS ESTATISTICOS PARA PERFIL AUXILIAR E ADM
+      this.getDadosEstatisticosAdministrador();
     }
   }
 
@@ -86,6 +106,29 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.diagnosticosPorData = body.diagnosticosPorData;
           this.quantitativosPorTipoEspecializacao = body.quantitativosPorTipoEspecializacao;
           this.quantitativoDadosMedicos = body;
+        },
+      });
+  }
+
+  /**
+   * @description busca os dados estatisticos do Admnistrador e envia os dados para os
+   * componentes filhos na Home.
+   */
+  private getDadosEstatisticosAdministrador(): void {
+    this.isLoading = true;
+    this._clinicaService
+      .getDadosEstatisticosHomeAdm()
+      .pipe(
+        untilDestroyed(this),
+        finalize(() => (this.isLoading = false))
+      )
+      .subscribe({
+        next: (body: IDadosEstatisticosModel) => {
+          this.medicoAtendimento = body.medicoAtendimento;
+          this.pacienteConsulta = body.pacienteConsulta;
+          this.consultaMensalPorStatus = body.consultaMensalPorStatus;
+          this.especializacoesMes = body.especializacoesMes;
+          this.quantitativoUsuarios = body.quantitativoUsuarios;
         },
       });
   }

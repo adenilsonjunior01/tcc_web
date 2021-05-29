@@ -6,6 +6,7 @@ import { catchError, map, take } from 'rxjs/operators';
 import { ITiposConsultaModel } from '../../models/tipos-consulta-model';
 import { IConsultasModel, IConsultaModel } from '../../models/consultas-model';
 import { IIniciarAtendimentoModel } from '../../models/iniciar-atendimento-model';
+import { IDadosEstatisticosModel } from '../../models/dados-estastisticos-administrador';
 
 const routes = {
   clinica: () => `/clinica`,
@@ -23,6 +24,7 @@ const routes = {
     `/consulta/filtrar?paciente=${idPerfil}&size=${size}&page=${page}`,
   iniciarAtendimento: (idConsulta: number) => `/prontuario/${idConsulta}`,
   salvarProntuario: () => `/prontuario/finalizar`,
+  dadosEstatisticos: () => `/dashboard/administrador/3`,
 };
 
 @Injectable({
@@ -138,6 +140,14 @@ export class ClinicaService {
 
   public salvarProntuarioMedico(prontuario: any): Observable<any> {
     return this._httpClient.put(routes.salvarProntuario(), prontuario).pipe(
+      catchError((error: HttpErrorResponse) => throwError(error)),
+      map((body: any) => body),
+      take(1)
+    );
+  }
+
+  public getDadosEstatisticosHomeAdm(): Observable<IDadosEstatisticosModel> {
+    return this._httpClient.get(routes.dadosEstatisticos()).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),
       take(1)
