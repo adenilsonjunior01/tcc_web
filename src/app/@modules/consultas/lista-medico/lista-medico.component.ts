@@ -160,7 +160,7 @@ export class ListaMedicoComponent implements OnInit, OnDestroy {
     Swal.fire({
       icon: 'info',
       title: 'Deseja continuar?',
-      text: 'Ao continuar a consulta será agendada.',
+      text: 'Esta ação não poderá ser revertida.',
       showCancelButton: true,
       confirmButtonText: `Sim`,
       cancelButtonText: `Não`,
@@ -176,6 +176,7 @@ export class ListaMedicoComponent implements OnInit, OnDestroy {
       this.confirmConsulta(consulta);
     } else if (action === 'cancel') {
       console.log('Cancel consulta');
+      this.cancelarConsulta(consulta);
     }
   }
 
@@ -190,6 +191,25 @@ export class ListaMedicoComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (body: any) => {
           this._sweetAlert.openToasty('Consulta confirmada com sucesso.', 'success');
+          this.buscar();
+        },
+        error: (error: HttpErrorResponse) => {
+          log.error(error);
+        },
+      });
+  }
+
+  private cancelarConsulta(consulta: IConsultaModel): void {
+    this.loading2 = true;
+    this._clinicaService
+      .cancelConsulta(consulta?.id)
+      .pipe(
+        untilDestroyed(this),
+        finalize(() => (this.loading2 = false))
+      )
+      .subscribe({
+        next: (body: any) => {
+          this._sweetAlert.openToasty('Consulta cancelada com sucesso.', 'success');
           this.buscar();
         },
         error: (error: HttpErrorResponse) => {

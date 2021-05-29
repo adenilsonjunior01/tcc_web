@@ -81,9 +81,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.getDadosEstatisticosPaciete();
     } else if (this.perfil === 'MEDICO') {
       // IMPLEMENTAR CHAMADA AOS DADOS ESTATISTICOS DO MÉDICO
-    } else {
-      // IMPLEMENTAR CHAMADA AOS DADOS ESTATISTICOS PARA PERFIL AUXILIAR E ADM
+    } else if (this.perfil === 'ADMINISTRADOR') {
       this.getDadosEstatisticosAdministrador();
+    } else {
+      this.getDadosEstatisticosAuxiliar();
     }
   }
 
@@ -129,6 +130,22 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.consultaMensalPorStatus = body.consultaMensalPorStatus;
           this.especializacoesMes = body.especializacoesMes;
           this.quantitativoUsuarios = body.quantitativoUsuarios;
+        },
+      });
+  }
+
+  public getDadosEstatisticosAuxiliar(): void {
+    this.isLoading = true;
+    this._clinicaService
+      .getDadosEstatisticosHomeAuxiliar()
+      .pipe(
+        untilDestroyed(this),
+        finalize(() => (this.isLoading = false))
+      )
+      .subscribe({
+        next: (body: IDadosEstatisticosModel) => {
+          this.quantitativoUsuarios = body.quantitativoUsuarios;
+          this.consultaMensalPorStatus = body.consultaMensalPorStatus;
         },
       });
   }

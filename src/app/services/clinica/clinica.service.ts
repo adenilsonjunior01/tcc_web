@@ -7,6 +7,7 @@ import { ITiposConsultaModel } from '../../models/tipos-consulta-model';
 import { IConsultasModel, IConsultaModel } from '../../models/consultas-model';
 import { IIniciarAtendimentoModel } from '../../models/iniciar-atendimento-model';
 import { IDadosEstatisticosModel } from '../../models/dados-estastisticos-administrador';
+import { IDadosEstatisticosAuxiliarModel } from '../../models/dados-estatisticos-auxiliar-home';
 
 const routes = {
   clinica: () => `/clinica`,
@@ -24,7 +25,8 @@ const routes = {
     `/consulta/filtrar?paciente=${idPerfil}&size=${size}&page=${page}`,
   iniciarAtendimento: (idConsulta: number) => `/prontuario/${idConsulta}`,
   salvarProntuario: () => `/prontuario/finalizar`,
-  dadosEstatisticos: () => `/dashboard/administrador/3`,
+  dadosEstatisticosAdm: () => `/dashboard/administrador/3`,
+  dadosEstatisticosAuxiliar: () => `/dashboard/auxiliar/3`,
 };
 
 @Injectable({
@@ -147,7 +149,15 @@ export class ClinicaService {
   }
 
   public getDadosEstatisticosHomeAdm(): Observable<IDadosEstatisticosModel> {
-    return this._httpClient.get(routes.dadosEstatisticos()).pipe(
+    return this._httpClient.get(routes.dadosEstatisticosAdm()).pipe(
+      catchError((error: HttpErrorResponse) => throwError(error)),
+      map((body: any) => body),
+      take(1)
+    );
+  }
+
+  public getDadosEstatisticosHomeAuxiliar(): Observable<IDadosEstatisticosAuxiliarModel> {
+    return this._httpClient.get(routes.dadosEstatisticosAuxiliar()).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),
       take(1)
