@@ -30,6 +30,8 @@ import { NovaConsultaPacienteComponent } from './components/paciente/nova-consul
 import { BoxInfoPacienteComponent } from './components/paciente/box-info-paciente/box-info-paciente.component';
 import { MinhasConsultasComponent } from './components/paciente/minhas-consultas/minhas-consultas.component';
 import { TabelaMedicamentosComponent } from './components/paciente/tabela-medicamentos/tabela-medicamentos.component';
+import { SemiDonoutProcedimentoComponent } from './components/charts/semi-donout-procedimento/semi-donout-procedimento.component';
+import { TabelaDiagnosticosDataComponent } from './components/paciente/tabela-diagnosticos-data/tabela-diagnosticos-data.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -69,6 +71,8 @@ const maskConfig: Partial<IConfig> = {
     NovaConsultaPacienteComponent,
     MinhasConsultasComponent,
     TabelaMedicamentosComponent,
+    SemiDonoutProcedimentoComponent,
+    TabelaDiagnosticosDataComponent,
   ],
   exports: [CardNovaConsultaComponent, AgendamentoConsultaComponent, FormPreCadastroPacienteComponent],
 })

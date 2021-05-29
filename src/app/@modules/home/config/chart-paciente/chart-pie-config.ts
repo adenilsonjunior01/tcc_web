@@ -1,12 +1,17 @@
 export class ChartPieConfig {
   public static configChartData = {
-    series: [44, 55, 13, 43, 22],
+    series: [0],
     chart: {
-      width: 400,
+      height: 280,
       type: 'pie',
     },
+    theme: {
+      monochrome: {
+        enabled: true,
+      },
+    },
     // colors: ['#70A6E8', "2ed8b6", "#fcae73", "#ff5252", "#2ed8b6", "#f8f9fa"],
-    labels: ['Cardiologista', 'Dermatologista', 'Cirurgião', 'Team D', 'Team E'],
+    labels: [''],
     responsive: [
       {
         breakpoint: 480,

@@ -4,7 +4,7 @@ import { ListaPacientesMock } from '../../../../mocks/lista-pacientes-mock';
 import { IConsultasModel, IConsultaModel } from '../../../../models/consultas-model';
 import { CredentialsService } from '../../../../auth/credentials.service';
 import { untilDestroyed } from '../../../../@core/until-destroyed';
-import { finalize } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 import { AnimationOptions } from 'ngx-lottie';
 import { ModalAnimationComponent } from '../../../../@shared/modal-animation/modal-animation.component';
 
@@ -64,7 +64,7 @@ export class TableProntuariosComponent implements OnInit, OnDestroy {
       )
       .subscribe({
         next: (body: IConsultasModel) => {
-          this.consultas = body.content;
+          this.consultas = body.content.filter((v: any) => v.prontuario !== null); // ANALISAR - PAGINAÇÃO PODE BUGAR
           this.page = page + 1;
           this.totalItems = body.totalElements;
         },

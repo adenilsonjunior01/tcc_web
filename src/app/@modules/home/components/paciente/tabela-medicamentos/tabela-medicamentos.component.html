@@ -5,13 +5,10 @@
     <table class="table" *ngIf="medicamentos.length > 0; else semregistro">
       <thead>
         <tr>
-          <th scope="col">Paciente</th>
-          <th scope="col">Procedimento</th>
-          <th scope="col">Início</th>
-          <th scope="col">Término</th>
-          <th scope="col">Médico</th>
-          <th scope="col">Status</th>
-          <!-- visão funcionário o tipo corresponde a Paciente ou Médico-->
+          <th scope="col">Descrição</th>
+          <th scope="col">Duração Tratamento</th>
+          <th scope="col">Dosagem</th>
+          <th scope="col">Data</th>
         </tr>
       </thead>
       <tbody>
@@ -27,21 +24,15 @@
             index as i
           "
         >
-          <td class="text-capitalize">{{ medicamento?.paciente?.nome }}</td>
+          <td class="text-capitalize">{{ medicamento?.descMedicamento }}</td>
           <td>
-            <span>{{ medicamento?.procedimento?.descTipoProcedimento }}</span>
+            <span>{{ medicamento?.duracaoTratamento ? medicamento?.duracaoTratamento : 'Sem registro' }}</span>
           </td>
           <td>
-            <span>{{ medicamento?.dtInicio | date: 'shortDate' }}</span>
+            <span>{{ medicamento?.dosagem ? medicamento?.dosagem : 'Sem registro' }}</span>
           </td>
           <td>
-            <span>{{ medicamento?.dtFim | date: 'shortDate' }}</span>
-          </td>
-          <td>
-            <span>{{ medicamento?.medico?.nome }}</span>
-          </td>
-          <td>
-            <span class="bold">Ativo</span>
+            <span>{{ medicamento?.dtRegistro }}</span>
           </td>
         </tr>
       </tbody>
@@ -69,6 +60,3 @@
     </div>
   </div>
 </ng-template>
-<app-modal-animation modalID="detalhe-consulta" modalClass="md-effect-10">
-  <div class="md-body container p-0"></div>
-</app-modal-animation>

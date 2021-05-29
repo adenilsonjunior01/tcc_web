@@ -4,12 +4,16 @@ import { IPacienteModel } from '@app/models/paciente-model';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, take } from 'rxjs/operators';
 import { IPacientesPaginadoModel } from '../../models/pacientes-paginado-model';
+import { IDadosEstatisticosPacienteModel } from '../../models/dados-estatisticos-paciente-model';
+import { IMedicamentosReceitadosModel } from '../../models/medicamentos-receitados-model';
 
 const routes = {
   updatePaciente: () => `/paciente`,
   getPaciente: (name: string) => `/paciente/pesquisa?nomePaciente=${name}`,
   getAllPacientes: (size: number, page: number) => `/paciente?size=${size}&page=${page}`,
   confirmConsulta: (id: number) => `/consulta/confirmaConsulta/${id}`,
+  dadosEstatisticos: () => `/dashboard/paciente`,
+  todosMendicamentos: (size: number, page: number) => `/medicamentos?size=${size}&page=${page}`,
 };
 
 @Injectable({
@@ -44,6 +48,22 @@ export class PacienteService {
 
   public confirmConsulta(id: number): Observable<any> {
     return this._httpClient.get(routes.confirmConsulta(id)).pipe(
+      catchError((error: HttpErrorResponse) => throwError(error)),
+      map((body: any) => body),
+      take(1)
+    );
+  }
+
+  public getDadosEstatisticos(): Observable<IDadosEstatisticosPacienteModel> {
+    return this._httpClient.get(routes.dadosEstatisticos()).pipe(
+      catchError((error: HttpErrorResponse) => throwError(error)),
+      map((body: any) => body),
+      take(1)
+    );
+  }
+
+  public getMedicamentosReceitados(size: number, page: number): Observable<IMedicamentosReceitadosModel> {
+    return this._httpClient.get(routes.todosMendicamentos(size, page)).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),
       take(1)

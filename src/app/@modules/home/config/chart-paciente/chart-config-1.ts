@@ -7,14 +7,18 @@ export class ChartConfig1 {
         enabled: true,
       },
     },
-    colors: ['#70A6E8'],
     stroke: {
       curve: 'smooth',
       width: 2,
     },
     series: [
       {
-        data: [0, 20, 10, 45, 30, 55, 20, 30, 0],
+        name: 'series1',
+        data: [31, 40, 28, 51, 42, 109, 100],
+      },
+      {
+        name: 'series2',
+        data: [11, 32, 45, 32, 34, 52, 41],
       },
     ],
     tooltip: {

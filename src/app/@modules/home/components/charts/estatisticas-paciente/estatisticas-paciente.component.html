@@ -1,7 +1,7 @@
 <!-- <app-apex-chart chartID="support-chart-1" [chartConfig]="this.chart1"></app-apex-chart> -->
 
-<div class="row">
-  <div class="col-md-6 col-sm-12 mt-sm-2 mt-md-0">
+<div class="row m-0">
+  <!-- <div class="col-sm-12 pt-3 pt-md-0">
     <app-card-content
       cardClass="padd-footer"
       isCardFooter="true"
@@ -12,7 +12,7 @@
       <div class="card-body">
         <div class="row">
           <div class="col-sm-12">
-            <h1 class="m-0 title">100</h1>
+            <h1 class="m-0 title">222</h1>
             <span class="subtitle d-block">Total de Consultas</span>
             <p class="desc m-0">Quantitativo das consultas médicas</p>
           </div>
@@ -25,7 +25,7 @@
         [colors]="chart1.colors"
       ></apx-chart>
       <div class="app-card-footer">
-        <div class="row text-center py-3 text-white m-0">
+        <div class="row text-center py-3 text-white">
           <div class="col">
             <h4 class="m-0 text-white">10</h4>
             <span>Abertas</span>
@@ -41,8 +41,39 @@
         </div>
       </div>
     </app-card-content>
+  </div> -->
+  <div class="col-md-6 col-12 pt-3 pt-md-0">
+    <app-card-content
+      cardClass="padd-footer"
+      isCardFooter="true"
+      footerClass="bg-card-thirt"
+      [loadingLine]="loading"
+      progressClass="progress-laranja"
+    >
+      <div class="card-body">
+        <div class="row m-0">
+          <div class="col-sm-8">
+            <h1 class="m-0 title1">{{ quantitativoDadosMedicos?.quantiativoMedicamentos }}</h1>
+            <span class="subtitle d-block">Total Cadastrado</span>
+          </div>
+          <div class="col-4 d-flex align-items-center justify-content-center">
+            <i class="feather icon-bar-chart-2"></i>
+          </div>
+        </div>
+      </div>
+      <div class="app-card-footer">
+        <div class="row text-left py-3 text-white m-0">
+          <div class="col-8">
+            <span>Medicamentos</span>
+          </div>
+          <div class="col d-flex align-items-center justify-content-center">
+            <i class="feather icon-activity"></i>
+          </div>
+        </div>
+      </div>
+    </app-card-content>
   </div>
-  <div class="col-md-6 col-sm-12 mt-3 mt-md-0">
+  <div class="col-md-6 col-12 pt-3 pt-md-0">
     <app-card-content
       cardClass="padd-footer"
       isCardFooter="true"
@@ -52,34 +83,84 @@
     >
       <div class="card-body">
         <div class="row m-0">
-          <div class="col-sm-12">
-            <h1 class="m-0 title">100</h1>
-            <span class="subtitle2 d-block">Total de Pacientes</span>
-            <p class="desc m-0">Quantitativo dos pacientes</p>
+          <div class="col-sm-8">
+            <h1 class="m-0 title2">{{ quantitativoDadosMedicos?.quantiativoAlergia }}</h1>
+            <span class="subtitle d-block">Total Cadastrado</span>
+          </div>
+          <div class="col-4 d-flex align-items-center justify-content-center">
+            <i class="feather icon-bar-chart-2"></i>
           </div>
         </div>
       </div>
-      <apx-chart
-        [series]="chart2.series"
-        [chart]="chart2.chart"
-        [title]="chart2.title"
-        [colors]="chart2.colors"
-      ></apx-chart>
       <div class="app-card-footer">
-        <div class="row py-3 m-0">
-          <div class="row text-center text-white">
-            <div class="col">
-              <h4 class="m-0 text-white">10</h4>
-              <span>Ativos</span>
-            </div>
-            <div class="col">
-              <h4 class="m-0 text-white">10</h4>
-              <span>Agendado</span>
-            </div>
-            <div class="col">
-              <h4 class="m-0 text-white">10</h4>
-              <span>Concluído</span>
-            </div>
+        <div class="row text-left py-3 text-white m-0">
+          <div class="col-8">
+            <span>Alergias</span>
+          </div>
+          <div class="col d-flex align-items-center justify-content-center">
+            <i class="feather icon-activity"></i>
+          </div>
+        </div>
+      </div>
+    </app-card-content>
+  </div>
+  <div class="col-md-6 col-12 pt-3">
+    <app-card-content
+      cardClass="padd-footer"
+      isCardFooter="true"
+      footerClass="bg-card-four"
+      [loadingLine]="loading"
+      progressClass="progress-vermelho"
+    >
+      <div class="card-body">
+        <div class="row m-0">
+          <div class="col-sm-8">
+            <h1 class="m-0 title3">{{ quantitativoDadosMedicos?.quantitativoProcedimento }}</h1>
+            <span class="subtitle d-block">Total de Cadastrado</span>
+          </div>
+          <div class="col-4 d-flex align-items-center justify-content-center">
+            <i class="feather icon-bar-chart-2"></i>
+          </div>
+        </div>
+      </div>
+      <div class="app-card-footer">
+        <div class="row text-left py-3 text-white m-0">
+          <div class="col-8">
+            <span>Procedimentos</span>
+          </div>
+          <div class="col d-flex align-items-center justify-content-center">
+            <i class="feather icon-activity"></i>
+          </div>
+        </div>
+      </div>
+    </app-card-content>
+  </div>
+  <div class="col-md-6 col-12 pt-3">
+    <app-card-content
+      cardClass="padd-footer"
+      isCardFooter="true"
+      footerClass="bg-card-primary"
+      [loadingLine]="loading"
+      progressClass="progress-azul"
+    >
+      <div class="card-body">
+        <div class="row m-0">
+          <div class="col-sm-8">
+            <h1 class="m-0 title4">{{ quantitativoDadosMedicos?.quantiativoDoencaCronica }}</h1>
+            <span class="subtitle d-block">Total Cadastrado</span>
+          </div>
+          <div class="col-4 d-flex align-items-center justify-content-center">
+            <i class="feather icon-bar-chart-2"></i>
+          </div>
+        </div>
+      </div>
+      <div class="app-card-footer">
+        <div class="row text-left py-3 text-white m-0">
+          <div class="col-8">
+            <span>Doenças Crônicas</span>
+          </div>
+          <div class="col d-flex align-items-center justify-content-center">
+            <i class="feather icon-activity"></i>
           </div>
         </div>
       </div>

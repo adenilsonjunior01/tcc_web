@@ -1,0 +1,20 @@
+h3 {
+  font-size: 20px;
+}
+
+table {
+  border-collapse: collapse;
+
+  thead > tr {
+    background-color: #f6f7fb;
+    th {
+      text-align: left !important;
+      border-top: 0px solid transparent;
+      border-radius: 0px !important;
+    }
+  }
+
+  td {
+    border-top: 1px solid #e2e5e8;
+  }
+}

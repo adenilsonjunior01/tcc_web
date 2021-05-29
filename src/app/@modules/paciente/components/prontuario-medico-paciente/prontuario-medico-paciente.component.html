@@ -10,9 +10,9 @@
         <div class="img-icon-height" *ngIf="dadosProntuario?.consulta?.paciente?.compartilhaDados">
           <img src="../../../../../assets/icon-drop.svg" alt="Icone Dropdown" [matMenuTriggerFor]="userMenu" />
           <mat-menu #userMenu="matMenu">
-            <button mat-menu-item type="button" type="button" (click)="navigateDadosCompartilhadosPaciente()">
+            <a mat-menu-item target="_blank" [href]="urlDadosMedicos" (click)="navigateDadosCompartilhadosPaciente()">
               <span>Dados Médicos</span>
-            </button>
+            </a>
           </mat-menu>
         </div>
       </div>
@@ -381,6 +381,13 @@
         <ng-container formArrayName="arquivos" *ngFor="let file of formArrayFile.controls; index as i">
           <ng-container [formGroupName]="i">
             <div class="col-4 mt-3">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Tipo do Anexo</mat-label>
+                <mat-select formControlName="idTipo">
+                  <mat-option [value]="tipo.id" *ngFor="let tipo of tiposFile">{{ tipo.descricao }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <!--
               <mat-label>Tipo</mat-label>
               <ng-select
                 [items]="tiposFile"
@@ -390,7 +397,7 @@
                 placeholder="Selecione"
                 formControlName="idTipo"
               >
-              </ng-select>
+              </ng-select> -->
             </div>
             <div class="col-4 ng-star-inserted d-flex align-items-center mt-4">
               <ng-container *ngIf="i === 0">
@@ -432,9 +439,6 @@
         <i class="feather icon-check"></i>
         salvar prontuário
       </button>
-    </div>
-    <div class="col-12">
-      <app-form-debug [form]="formProntuario"></app-form-debug>
     </div>
   </app-card-content>
 </div>

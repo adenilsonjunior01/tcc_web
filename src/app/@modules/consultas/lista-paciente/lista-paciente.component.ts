@@ -122,7 +122,7 @@ export class ListaPacienteComponent implements OnInit, OnDestroy {
       cancelButtonText: `Não`,
     }).then((result) => {
       if (result.isConfirmed) {
-        this.cancelConsulta(consulta);
+        this.cancelarConsulta(consulta);
       }
     });
   }
@@ -146,7 +146,7 @@ export class ListaPacienteComponent implements OnInit, OnDestroy {
       });
   }
 
-  private cancelConsulta(consulta: IConsultaModel): void {
+  private cancelarConsulta(consulta: IConsultaModel): void {
     this.loading2 = true;
     this._clinicaService
       .cancelConsulta(consulta?.id)

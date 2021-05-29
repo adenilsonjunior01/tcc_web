@@ -1,0 +1,35 @@
+<app-card-content>
+  <h3 class="my-2 ps-1">Dignósticos</h3>
+  <div class="table-responsive">
+    <table class="table" *ngIf="diagnosticosPorData?.length > 0; else semregistro">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Procedimento</th>
+          <th scope="col">Dignóstico</th>
+          <th scope="col">Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of diagnosticosPorData; index as i">
+          <td class="text-capitalize">{{ i + 1 }}</td>
+          <td class="text-capitalize">{{ item?.procedimento ? item?.procedimento : 'Sem registro' }}</td>
+          <td>
+            <span>{{ item?.diagnostico ? item?.diagnostico : 'Sem registro' }}</span>
+          </td>
+          <td>
+            <span>{{ item?.data | date: 'shortDate' }}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</app-card-content>
+
+<ng-template #semregistro>
+  <div class="row m-0">
+    <div class="col-12 ps-1 mt-2 not-found">
+      <p class="m-0">Nenhum registro encontrado.</p>
+    </div>
+  </div>
+</ng-template>

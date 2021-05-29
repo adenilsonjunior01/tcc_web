@@ -47,6 +47,7 @@ export class ProntuarioMedicoPacienteComponent implements OnInit, OnDestroy {
   public nomeMedico: string;
   public tiposFile: ITiposFileModel[];
   count: number;
+  public urlDadosMedicos: string;
 
   public files = new FileUploadControl(
     // control configuration
@@ -118,9 +119,21 @@ export class ProntuarioMedicoPacienteComponent implements OnInit, OnDestroy {
       cancelButtonText: `Não`,
     }).then((result) => {
       if (result.isConfirmed) {
-        this.salvarProntuario();
+        this.validaFormFile();
       }
     });
+  }
+
+  private validaFormFile(): void {
+    if (
+      (this.formFile.get('arquivos').value[0].file && this.formFile.get('arquivos').value[0].idTipo === null) ||
+      this.formFile.get('arquivos').value[0].idTipo === ''
+    ) {
+      this._sweetAlert.openToasty('Selecione o Tipo do anexo', 'info');
+    } else {
+      console.log('teste');
+      // this.salvarProntuario();
+    }
   }
 
   private salvarProntuario(): void {
@@ -303,6 +316,7 @@ export class ProntuarioMedicoPacienteComponent implements OnInit, OnDestroy {
   }
 
   public navigateDadosCompartilhadosPaciente(): void {
-    this._router.navigate(['/pacientes/dados-medicos'], { state: this.dadosProntuario });
+    localStorage.setItem('__dadosMedico', JSON.stringify(this.dadosProntuario));
+    this.urlDadosMedicos = '/pacientes/dados-medicos';
   }
 }

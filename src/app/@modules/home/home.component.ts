@@ -1,29 +1,47 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 
 import { ModalAnimationComponent } from '../../@shared/modal-animation/modal-animation.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { CredentialsService, Token } from '../../auth/credentials.service';
+import { PacienteService } from '@app/services/paciente/paciente.service';
+import { untilDestroyed } from '../../@core/until-destroyed';
+import { finalize } from 'rxjs/operators';
+import {
+  IDadosEstatisticosPacienteModel,
+  IQuantitativosPorTipoProcedimentoModel,
+  IDiagnosticosPorDataModel,
+  IQuantitativosPorTipoAlergiaModel,
+} from '../../models/dados-estatisticos-paciente-model';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   @ViewChild(ModalAnimationComponent) modal: any;
   quote: string | undefined;
   isLoading = false;
   jwt = new JwtHelperService();
 
+  public quantitativosPorTipoAlergia: IQuantitativosPorTipoAlergiaModel[];
+  public quantitativosPorTipoProcedimento: IQuantitativosPorTipoProcedimentoModel[];
+  public diagnosticosPorData: IDiagnosticosPorDataModel[];
+  public quantitativosPorTipoEspecializacao: IQuantitativosPorTipoProcedimentoModel[];
+  public quantitativoDadosMedicos: any;
+
   perfil: string;
   idPerfil: number;
 
-  constructor(private readonly _credentials: CredentialsService) {}
+  constructor(private readonly _credentials: CredentialsService, private readonly _pacienteService: PacienteService) {}
+
+  ngOnDestroy(): void {}
 
   ngOnInit() {
     this.isLoading = true;
     this.getPerfilUser();
     this.getIdPerfil();
+    this.verificaPerfilUsuarioLogado();
   }
 
   public openModal(id: string) {
@@ -37,5 +55,38 @@ export class HomeComponent implements OnInit {
   public getIdPerfil() {
     const tokenDecode: Token = this._credentials.decodeToken();
     this.idPerfil = tokenDecode.idPerfil;
+  }
+
+  private verificaPerfilUsuarioLogado(): void {
+    if (this.perfil === 'PACIENTE') {
+      this.getDadosEstatisticosPaciete();
+    } else if (this.perfil === 'MEDICO') {
+      // IMPLEMENTAR CHAMADA AOS DADOS ESTATISTICOS DO MÉDICO
+    } else {
+      // IMPLEMENTAR CHAMADA AOS DADOS ESTATISTICOS PARA PERFIL AUXILIAR E ADM
+    }
+  }
+
+  /**
+   * @description busca os dados estatisticos do Paciente e envia os dados para os
+   * componentes filhos na Home.
+   */
+  private getDadosEstatisticosPaciete(): void {
+    this.isLoading = true;
+    this._pacienteService
+      .getDadosEstatisticos()
+      .pipe(
+        untilDestroyed(this),
+        finalize(() => (this.isLoading = false))
+      )
+      .subscribe({
+        next: (body: IDadosEstatisticosPacienteModel) => {
+          this.quantitativosPorTipoAlergia = body.quantitativosPorTipoAlergia;
+          this.quantitativosPorTipoProcedimento = body.quantitativosPorTipoProcedimento;
+          this.diagnosticosPorData = body.diagnosticosPorData;
+          this.quantitativosPorTipoEspecializacao = body.quantitativosPorTipoEspecializacao;
+          this.quantitativoDadosMedicos = body;
+        },
+      });
   }
 }
