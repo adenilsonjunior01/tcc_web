@@ -1,32 +1,53 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EspecilidadeService } from '../../../../services/especilidade/especilidade.service';
+import { untilDestroyed } from '../../../../@core/until-destroyed';
+import { finalize } from 'rxjs/operators';
+import { SweetalertService } from '@app/@shared/sweetalert/sweetalert.service';
 
 @Component({
   selector: 'app-form-cadastro-especialidade',
   templateUrl: './form-cadastro-especialidade.component.html',
   styleUrls: ['./form-cadastro-especialidade.component.scss'],
 })
-export class FormCadastroEspecialidadeComponent implements OnInit {
+export class FormCadastroEspecialidadeComponent implements OnInit, OnDestroy {
+  @Output() closeModal = new EventEmitter();
+
   public form: FormGroup;
+  public loading = false;
 
-  constructor() {}
+  constructor(
+    private readonly _especialidadeService: EspecilidadeService,
+    private readonly _fb: FormBuilder,
+    private readonly _sweetAlert: SweetalertService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnDestroy(): void {}
 
-  public initForm() {}
+  ngOnInit(): void {
+    this.initForm();
+  }
+
+  public initForm() {
+    this.form = this._fb.group({
+      descEspecializacao: [null, Validators.required],
+    });
+  }
 
   public closeDialog() {}
 
-  /**
-   * @description: Verifica se é uma nova Especialidade ou atualização e se o
-   * form é válido
-   */
-  public verifyFormSubmit() {
-    if (this.form.get('id').value === null && this.form.valid) this.save();
-    this.update();
+  public save() {
+    this._especialidadeService
+      .salvarEspecializacao(this.form.value)
+      .pipe(
+        untilDestroyed(this),
+        finalize(() => (this.loading = false))
+      )
+      .subscribe({
+        next: () => {
+          this._sweetAlert.openToasty('Especilidade salva com sucesso!', 'success');
+          this.closeModal.emit(true);
+        },
+      });
   }
-
-  private save() {}
-
-  private update() {}
 }

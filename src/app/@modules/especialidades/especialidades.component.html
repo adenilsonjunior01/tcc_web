@@ -12,7 +12,6 @@
               </mat-form-field>
             </form>
           </div>
-          <!-- /col-md-4 -->
           <div class="col-md-8 d-flex align-items-center justify-content-end">
             <button class="btn btn-warning me-3" type="button">
               <i class="feather icon-search"></i>
@@ -28,7 +27,7 @@
       </app-card-content>
     </div>
     <div class="col-12">
-      <app-table-especialidades></app-table-especialidades>
+      <app-table-especialidades [recarregarLista]="recarregarLista"></app-table-especialidades>
     </div>
   </div>
 </div>
@@ -39,7 +38,7 @@
         <i class="feather icon-x" (click)="modal.close('especialidade')"></i>
       </div>
       <div class="col-12">
-        <app-form-cadastro-especialidade></app-form-cadastro-especialidade>
+        <app-form-cadastro-especialidade (closeModal)="closeModal($event)"></app-form-cadastro-especialidade>
       </div>
     </div>
   </div>

@@ -8,8 +8,14 @@ import { ModalAnimationComponent } from '../../@shared/modal-animation/modal-ani
 })
 export class EspecialidadesComponent implements OnInit {
   @ViewChild(ModalAnimationComponent) modal: any;
+  public recarregarLista: boolean;
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  public closeModal(event: boolean): void {
+    this.modal.close('especialidade');
+    this.recarregarLista = event;
+  }
 }
