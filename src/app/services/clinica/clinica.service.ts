@@ -28,7 +28,7 @@ const routes = {
   salvarProntuario: () => `/prontuario/finalizar`,
   dadosEstatisticosAdm: () => `/dashboard/administrador/3`,
   dadosEstatisticosAuxiliar: () => `/dashboard/auxiliar/3`,
-  dadosEstatisticosMedico: () => `/dashboard/medico/2`,
+  dadosEstatisticosMedico: () => `/dashboard/medico/3`,
 };
 
 @Injectable({

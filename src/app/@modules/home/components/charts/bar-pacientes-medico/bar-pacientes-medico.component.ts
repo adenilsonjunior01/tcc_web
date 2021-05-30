@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { IPacienteConsultaModel } from '@app/models/dados-estastisticos-administrador';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexXAxis } from 'ng-apexcharts';
-import { IConsultaMensalPorStatusModel } from '../../../../../models/dados-estatisticos-auxiliar-home';
 import { ChartBarConfig } from '../../../config/chart-bar-config';
 
 export type ChartOptions = {
@@ -17,7 +17,7 @@ export type ChartOptions = {
   styleUrls: ['./bar-pacientes-medico.component.scss'],
 })
 export class BarPacientesMedicoComponent implements OnInit, OnChanges {
-  @Input() consultaMensalPorStatus: IConsultaMensalPorStatusModel[];
+  @Input() pacienteConsulta: IPacienteConsultaModel[];
 
   public loading = true;
   public chartOptions: Partial<ChartOptions>;
@@ -26,7 +26,7 @@ export class BarPacientesMedicoComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.consultaMensalPorStatus) {
+    if (this.pacienteConsulta) {
       this.chartOptions = {
         chart: {
           id: 'chart',
@@ -61,7 +61,7 @@ export class BarPacientesMedicoComponent implements OnInit, OnChanges {
     this.chartOptions.series[0].data = [];
     this.chartOptions.xaxis.categories = [];
 
-    this.consultaMensalPorStatus.forEach((value: any) => {
+    this.pacienteConsulta.forEach((value: any) => {
       this.chartOptions.series[0].data.push(value.quantidade);
       this.chartOptions.xaxis.categories.push(value.descricao);
     });
