@@ -11,7 +11,6 @@ import { TableConsultasHomeComponent } from './components/table-consultas-home/t
 import { IdentificacaoProfissionalComponent } from './components/identificacao-profissional/identificacao-profissional.component';
 import { DadosGeraisMedicoComponent } from './components/dados-gerais-medico/dados-gerais-medico.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
-import { EstatisticasMedicoComponent } from './components/charts/estatisticas-medico/estatisticas-medico.component';
 import { DadosGeraisClinicaComponent } from './components/charts/dados-gerais-clinica/dados-gerais-clinica.component';
 import { QuantitativoDadosClinicaComponent } from './components/administrador/quantitativo-dados-clinica/quantitativo-dados-clinica.component';
 import { CardNovaConsultaComponent } from './components/card-nova-consulta/card-nova-consulta.component';
@@ -34,6 +33,7 @@ import { TabelaDiagnosticosDataComponent } from './components/paciente/tabela-di
 import { QuantitativoUsuariosComponent } from './components/administrador/quantitativo-usuarios/quantitativo-usuarios.component';
 import { PieEspecializacoesMesComponent } from './components/charts/pie-especializacoes-mes/pie-especializacoes-mes.component';
 import { CardNovoColaboradorComponent } from './components/administrador/card-novo-colaborador/card-novo-colaborador.component';
+import { BarPacientesMedicoComponent } from './components/charts/bar-pacientes-medico/bar-pacientes-medico.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -58,7 +58,6 @@ const maskConfig: Partial<IConfig> = {
     TableConsultasHomeComponent,
     IdentificacaoProfissionalComponent,
     DadosGeraisMedicoComponent,
-    EstatisticasMedicoComponent,
     DadosGeraisClinicaComponent,
     QuantitativoDadosClinicaComponent,
     CardNovaConsultaComponent,
@@ -77,6 +76,7 @@ const maskConfig: Partial<IConfig> = {
     QuantitativoUsuariosComponent,
     PieEspecializacoesMesComponent,
     CardNovoColaboradorComponent,
+    BarPacientesMedicoComponent,
   ],
   exports: [CardNovaConsultaComponent, AgendamentoConsultaComponent, FormPreCadastroPacienteComponent],
 })

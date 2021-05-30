@@ -8,6 +8,7 @@ import { IConsultasModel, IConsultaModel } from '../../models/consultas-model';
 import { IIniciarAtendimentoModel } from '../../models/iniciar-atendimento-model';
 import { IDadosEstatisticosModel } from '../../models/dados-estastisticos-administrador';
 import { IDadosEstatisticosAuxiliarModel } from '../../models/dados-estatisticos-auxiliar-home';
+import { IDadosEstatisticosMedicoModel } from '../../models/dados-estatisticos-medico-model';
 
 const routes = {
   clinica: () => `/clinica`,
@@ -27,6 +28,7 @@ const routes = {
   salvarProntuario: () => `/prontuario/finalizar`,
   dadosEstatisticosAdm: () => `/dashboard/administrador/3`,
   dadosEstatisticosAuxiliar: () => `/dashboard/auxiliar/3`,
+  dadosEstatisticosMedico: () => `/dashboard/medico/2`,
 };
 
 @Injectable({
@@ -158,6 +160,14 @@ export class ClinicaService {
 
   public getDadosEstatisticosHomeAuxiliar(): Observable<IDadosEstatisticosAuxiliarModel> {
     return this._httpClient.get(routes.dadosEstatisticosAuxiliar()).pipe(
+      catchError((error: HttpErrorResponse) => throwError(error)),
+      map((body: any) => body),
+      take(1)
+    );
+  }
+
+  public getDadosEstatisticosHomeMedico(): Observable<IDadosEstatisticosMedicoModel> {
+    return this._httpClient.get(routes.dadosEstatisticosMedico()).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),
       take(1)

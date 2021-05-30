@@ -64,7 +64,13 @@
           </div>
         </div>
         <div class="col-md-7 col-sm-12">
-          <app-estatisticas-medico></app-estatisticas-medico>
+          <app-quantitativo-dados-clinica
+            [consultaMensalPorStatus]="consultaMensalPorStatus"
+          ></app-quantitativo-dados-clinica>
+          <app-bar-pacientes-medico
+            class="mt-3"
+            [consultaMensalPorStatus]="consultaMensalPorStatus"
+          ></app-bar-pacientes-medico>
         </div>
       </div>
     </div>

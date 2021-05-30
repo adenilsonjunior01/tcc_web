@@ -80,7 +80,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (this.perfil === 'PACIENTE') {
       this.getDadosEstatisticosPaciete();
     } else if (this.perfil === 'MEDICO') {
-      // IMPLEMENTAR CHAMADA AOS DADOS ESTATISTICOS DO MÉDICO
+      this.getDadosEstatisticosMedico();
     } else if (this.perfil === 'ADMINISTRADOR') {
       this.getDadosEstatisticosAdministrador();
     } else {
@@ -134,6 +134,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
   }
 
+  /**
+   * @description busca os dados estatisticos do Auxiliar e envia os dados para os
+   * componentes filhos na Home.
+   */
   public getDadosEstatisticosAuxiliar(): void {
     this.isLoading = true;
     this._clinicaService
@@ -145,6 +149,26 @@ export class HomeComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (body: IDadosEstatisticosModel) => {
           this.quantitativoUsuarios = body.quantitativoUsuarios;
+          this.consultaMensalPorStatus = body.consultaMensalPorStatus;
+        },
+      });
+  }
+
+  /**
+   * @description busca os dados estatisticos do Auxiliar e envia os dados para os
+   * componentes filhos na Home.
+   */
+  public getDadosEstatisticosMedico(): void {
+    this.isLoading = true;
+    this._clinicaService
+      .getDadosEstatisticosHomeMedico()
+      .pipe(
+        untilDestroyed(this),
+        finalize(() => (this.isLoading = false))
+      )
+      .subscribe({
+        next: (body: IDadosEstatisticosModel) => {
+          this.pacienteConsulta = body.pacienteConsulta;
           this.consultaMensalPorStatus = body.consultaMensalPorStatus;
         },
       });

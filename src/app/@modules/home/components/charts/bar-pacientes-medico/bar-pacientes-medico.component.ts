@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { ApexAxisChartSeries, ApexChart, ApexXAxis, ApexDataLabels, ApexPlotOptions } from 'ng-apexcharts';
-import { IMedicoAtendimentoModel } from '@app/models/dados-estastisticos-administrador';
+import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexXAxis } from 'ng-apexcharts';
+import { IConsultaMensalPorStatusModel } from '../../../../../models/dados-estatisticos-auxiliar-home';
 import { ChartBarConfig } from '../../../config/chart-bar-config';
 
 export type ChartOptions = {
@@ -12,22 +12,21 @@ export type ChartOptions = {
 };
 
 @Component({
-  selector: 'app-dados-gerais-clinica',
-  templateUrl: './dados-gerais-clinica.component.html',
-  styleUrls: ['./dados-gerais-clinica.component.scss'],
+  selector: 'app-bar-pacientes-medico',
+  templateUrl: './bar-pacientes-medico.component.html',
+  styleUrls: ['./bar-pacientes-medico.component.scss'],
 })
-export class DadosGeraisClinicaComponent implements OnInit, OnChanges {
-  @Input() medicoAtendimento: IMedicoAtendimentoModel[];
+export class BarPacientesMedicoComponent implements OnInit, OnChanges {
+  @Input() consultaMensalPorStatus: IConsultaMensalPorStatusModel[];
 
-  public chartOptions: Partial<ChartOptions>;
   public loading = true;
-
+  public chartOptions: Partial<ChartOptions>;
   constructor() {
     this.chartOptions = ChartBarConfig.configChartData;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.medicoAtendimento) {
+    if (this.consultaMensalPorStatus) {
       this.chartOptions = {
         chart: {
           id: 'chart',
@@ -56,17 +55,16 @@ export class DadosGeraisClinicaComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnInit(): void {
-    setTimeout(() => (this.loading = false), 3000);
-  }
+  ngOnInit(): void {}
 
   private setDadosMedicosGrafico(): void {
     this.chartOptions.series[0].data = [];
     this.chartOptions.xaxis.categories = [];
 
-    this.medicoAtendimento.forEach((value: any) => {
+    this.consultaMensalPorStatus.forEach((value: any) => {
       this.chartOptions.series[0].data.push(value.quantidade);
       this.chartOptions.xaxis.categories.push(value.descricao);
     });
+    this.loading = false;
   }
 }
