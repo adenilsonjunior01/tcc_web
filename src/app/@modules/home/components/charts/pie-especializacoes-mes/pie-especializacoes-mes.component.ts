@@ -8,7 +8,6 @@ import {
   ApexPlotOptions,
   ApexXAxis,
 } from 'ng-apexcharts';
-import { IQuantitativosPorTipoProcedimentoModel } from '../../../../../models/dados-estatisticos-paciente-model';
 import { IEspecializacoesMedicosModel } from '../../../../../models/dados-estastisticos-administrador';
 
 export type ChartOptions = {

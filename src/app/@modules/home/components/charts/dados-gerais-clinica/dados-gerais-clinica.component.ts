@@ -17,6 +17,7 @@ export type ChartOptions = {
   styleUrls: ['./dados-gerais-clinica.component.scss'],
 })
 export class DadosGeraisClinicaComponent implements OnInit, OnChanges {
+  @Input() title: string;
   @Input() medicoAtendimento: IMedicoAtendimentoModel[];
 
   public chartOptions: Partial<ChartOptions>;
