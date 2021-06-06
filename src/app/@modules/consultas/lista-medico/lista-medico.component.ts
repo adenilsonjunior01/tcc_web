@@ -175,7 +175,6 @@ export class ListaMedicoComponent implements OnInit, OnDestroy {
     if (action === 'confirm') {
       this.confirmConsulta(consulta);
     } else if (action === 'cancel') {
-      console.log('Cancel consulta');
       this.cancelarConsulta(consulta);
     }
   }

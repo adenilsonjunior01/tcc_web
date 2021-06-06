@@ -61,7 +61,6 @@ export class NavRigthComponent implements OnInit {
 
   public getSubtitle() {
     this.subtitle = this._activetedRouter.snapshot.children[0].data.subtitle;
-    console.log(this._activetedRouter.snapshot.children[0].data);
   }
 
   public logout() {

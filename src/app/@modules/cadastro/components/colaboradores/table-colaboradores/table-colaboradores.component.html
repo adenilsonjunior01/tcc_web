@@ -8,7 +8,6 @@
           <th scope="col">Perfil</th>
           <th scope="col">Data Nascimento</th>
           <th scope="col">Telefone</th>
-          <th scope="col">Status</th>
         </tr>
       </thead>
       <tbody>
@@ -39,45 +38,6 @@
           </td>
           <td class="td-format">{{ colaborador?.dtNascimento }}</td>
           <td class="td-format">{{ colaborador?.telefone | mask: '(00) 0 0000 0000' }}</td>
-          <td class="td-format width-td">
-            <div class="overlay-text">
-              <span
-                class="badge bg-primary"
-                [ngClass]="{ 'bg-success': colaborador?.status === 'A', 'bg-danger': colaborador?.status === 'I' }"
-              >
-                {{ colaborador?.status === 'A' ? 'Ativo' : 'Inativo' }}
-              </span>
-            </div>
-            <div class="overlay-button">
-              <button
-                mat-raised-button
-                color="primary"
-                type="button"
-                class="btn-secondary me-2"
-                (click)="openDialog(colaborador)"
-              >
-                <i class="feather icon-edit-2"></i>
-              </button>
-              <button
-                mat-raised-button
-                color="primary"
-                type="button"
-                class="btn-success me-2"
-                *ngIf="colaborador?.status === 'I'"
-              >
-                <i class="feather icon-check-circle"></i>
-              </button>
-              <button
-                mat-raised-button
-                color="primary"
-                type="button"
-                class="btn-danger me-2"
-                *ngIf="colaborador?.status === 'A'"
-              >
-                <i class="feather icon-x"></i>
-              </button>
-            </div>
-          </td>
         </tr>
       </tbody>
     </table>

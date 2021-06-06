@@ -110,7 +110,6 @@ export class FormPreCadastroPacienteComponent implements OnInit, OnDestroy {
           },
           (error) => {
             this.messageError = error?.error?.message;
-            console.log(error);
             log.debug(`Error`);
           }
         );

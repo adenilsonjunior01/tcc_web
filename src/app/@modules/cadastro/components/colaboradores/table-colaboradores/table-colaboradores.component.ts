@@ -85,7 +85,6 @@ export class TableColaboradoresComponent implements OnInit, OnDestroy {
     const valuesSubmit = Object.assign(colaborador, {
       update: true,
     });
-    console.log(valuesSubmit);
     this.dialog.openDialog(valuesSubmit);
   }
 }
@@ -98,8 +97,6 @@ export class DialogContent {
       data: obj,
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
+    dialogRef.afterClosed().subscribe((result) => {});
   }
 }

@@ -64,6 +64,5 @@ export const INITIAL_EVENTS: EventInput[] = [
 ];
 
 export function createEventId() {
-  console.log('>>', TODAY_STR);
   return String(eventGuid++);
 }

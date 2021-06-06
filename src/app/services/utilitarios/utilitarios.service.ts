@@ -79,9 +79,7 @@ export class UtilitariosService {
         responseType: 'blob',
       }),
     });
-    request.subscribe((response: any) => {
-      console.log(response);
-    });
+    request.subscribe((response: any) => {});
   }
 
   public deleteFile(idFile: any): Observable<any> {

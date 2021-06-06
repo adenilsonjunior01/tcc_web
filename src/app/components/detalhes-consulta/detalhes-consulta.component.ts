@@ -11,9 +11,7 @@ export class DetalhesConsultaComponent implements OnInit, OnChanges {
 
   constructor() {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.consulta);
-  }
+  ngOnChanges(changes: SimpleChanges): void {}
 
   ngOnInit(): void {}
 

@@ -54,7 +54,6 @@ export class FormCadastroColaboradorComponent implements OnInit, OnChanges, OnDe
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes.type.firstChange) {
       this.type = changes?.type.currentValue;
-      console.log(this.type);
     }
   }
 

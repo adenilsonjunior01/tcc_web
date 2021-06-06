@@ -64,8 +64,6 @@ export class DialogContent {
   openDialog() {
     const dialogRef = this.dialog.open(ConsultaMedicaComponent);
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
+    dialogRef.afterClosed().subscribe((result) => {});
   }
 }

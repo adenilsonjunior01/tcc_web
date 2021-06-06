@@ -31,6 +31,5 @@ export class ConsultaMedicaComponent implements OnInit {
 
   public onSelectMedico(value: any): void {
     this.medicoSelecionado = value;
-    console.log(value);
   }
 }

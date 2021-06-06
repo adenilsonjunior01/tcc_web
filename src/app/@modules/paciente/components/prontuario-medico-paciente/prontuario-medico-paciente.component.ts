@@ -131,7 +131,6 @@ export class ProntuarioMedicoPacienteComponent implements OnInit, OnDestroy {
     ) {
       this._sweetAlert.openToasty('Selecione o Tipo do anexo', 'info');
     } else {
-      console.log('teste');
       this.salvarProntuario();
     }
   }
@@ -176,7 +175,6 @@ export class ProntuarioMedicoPacienteComponent implements OnInit, OnDestroy {
       .pipe(untilDestroyed(this))
       .subscribe({
         next: (body: any) => {
-          console.log(body);
           this.count++;
 
           this.submitFile();

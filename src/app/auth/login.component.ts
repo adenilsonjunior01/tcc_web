@@ -61,7 +61,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       )
       .subscribe({
         next: (credentials: ICredentialsModel) => {
-          console.log(credentials);
           this.tokenDecode = this._credentialsService.decodeToken();
           this.verifyProfilePaciente();
           this.verifyProfileAdm();

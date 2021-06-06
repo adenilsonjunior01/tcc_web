@@ -23,9 +23,7 @@ export class DetalhesPacienteComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    console.log(this.dadosPaciente);
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this._dadosPaciente.removeDadosPacienteLocalStorage();
