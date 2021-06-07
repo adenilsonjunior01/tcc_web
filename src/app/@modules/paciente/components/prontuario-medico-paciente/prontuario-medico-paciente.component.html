@@ -387,17 +387,6 @@
                   <mat-option [value]="tipo.id" *ngFor="let tipo of tiposFile">{{ tipo.descricao }}</mat-option>
                 </mat-select>
               </mat-form-field>
-              <!--
-              <mat-label>Tipo</mat-label>
-              <ng-select
-                [items]="tiposFile"
-                bindLabel="descricao"
-                bindValue="id"
-                appearance="outline"
-                placeholder="Selecione"
-                formControlName="idTipo"
-              >
-              </ng-select> -->
             </div>
             <div class="col-4 ng-star-inserted d-flex align-items-center mt-4">
               <ng-container *ngIf="i === 0">
@@ -408,7 +397,7 @@
               </ng-container>
             </div>
             <div class="col-12">
-              <file-upload [animation]="animationFile" formControlName="file" [fileslimit]="2">
+              <file-upload [animation]="animationFile" formControlName="file" [fileslimit]="1">
                 <ng-template let-isFileDragDropAvailable="isFileDragDropAvailable" #placeholder>
                   <span *ngIf="isFileDragDropAvailable">Arraste ou Clique aqui</span>
                 </ng-template>
@@ -416,9 +405,6 @@
                 <ng-template let-i="index" let-file="file" let-control="control" #item>
                   <div class="file-info">
                     <span class="file-name">{{ file.name }}</span>
-                    <button mat-button type="button" (click)="files.removeFile(file)">
-                      <i class="feather icon-x"></i>
-                    </button>
                   </div>
                 </ng-template>
               </file-upload>
@@ -432,6 +418,7 @@
             <hr />
           </div>
         </ng-container>
+        <app-form-debug [form]="formFile"></app-form-debug>
       </div>
     </form>
     <div class="col-12 mt-4 d-flex justify-content-end">

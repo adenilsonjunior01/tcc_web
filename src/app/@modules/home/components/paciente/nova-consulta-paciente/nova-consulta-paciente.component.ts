@@ -181,11 +181,11 @@ export class NovaConsultaPacienteComponent implements OnInit, OnDestroy {
   }
 
   public verificaPerfilCompleto(): void {
-    if (this._credentials.profilePending) {
-      this.modal.show('perfil-pendente');
-    } else {
-      this.modal.show('agendar-consulta-paciente');
-    }
+    this.modal.show('agendar-consulta-paciente');
+    // if (this._credentials.profilePending) {
+    //   this.modal.show('perfil-pendente');
+    // } else {
+    // }
   }
 
   public openModalCadastro(): void {

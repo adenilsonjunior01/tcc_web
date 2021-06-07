@@ -7,7 +7,7 @@ import { LoginComponent } from './login.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, data: { title: marker('Login') } },
-  { path: 'update/password', component: UpdatePasswordComponent, data: { title: marker('Atualizar Senha') } },
+  { path: 'update/password', component: UpdatePasswordComponent, data: { title: marker('Alterar Senha') } },
 ];
 
 @NgModule({
