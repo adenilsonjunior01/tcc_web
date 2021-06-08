@@ -61,10 +61,15 @@ export class BarPacientesMedicoComponent implements OnInit, OnChanges {
     this.chartOptions.series[0].data = [];
     this.chartOptions.xaxis.categories = [];
 
-    this.pacienteConsulta.forEach((value: any) => {
-      this.chartOptions.series[0].data.push(value.quantidade);
-      this.chartOptions.xaxis.categories.push(value.descricao);
-    });
+    if (this.pacienteConsulta.length > 0) {
+      this.pacienteConsulta.forEach((value: any) => {
+        this.chartOptions.series[0].data.push(value.quantidade);
+        this.chartOptions.xaxis.categories.push(value.descricao);
+      });
+    } else {
+      this.chartOptions.series[0].data = [0];
+      this.chartOptions.xaxis.categories = [0];
+    }
     this.loading = false;
   }
 }

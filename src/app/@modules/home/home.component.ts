@@ -13,6 +13,7 @@ import {
   IQuantitativosPorTipoAlergiaModel,
 } from '../../models/dados-estatisticos-paciente-model';
 import { ClinicaService } from '@app/services/clinica/clinica.service';
+import { ListaTemporalidade } from './mocks/lista-temporalidade';
 import {
   IConsultaMensalPorStatusModel,
   IDadosEstatisticosModel,
@@ -32,6 +33,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   quote: string | undefined;
   isLoading = false;
   jwt = new JwtHelperService();
+  public listaTemporalidade: any[] = [];
 
   public quantitativosPorTipoAlergia: IQuantitativosPorTipoAlergiaModel[];
   public quantitativosPorTipoProcedimento: IQuantitativosPorTipoProcedimentoModel[];
@@ -60,7 +62,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.getPerfilUser();
     this.getIdPerfil();
-    this.verificaPerfilUsuarioLogado();
+    this.verificaPerfilUsuarioLogado(3);
+    this.listaTemporalidade = ListaTemporalidade.getListaOpcoesTemporalidadeHome();
   }
 
   public openModal(id: string) {
@@ -76,15 +79,15 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.idPerfil = tokenDecode.idPerfil;
   }
 
-  private verificaPerfilUsuarioLogado(): void {
+  public verificaPerfilUsuarioLogado(idTemporalidade: any): void {
     if (this.perfil === 'PACIENTE') {
       this.getDadosEstatisticosPaciete();
     } else if (this.perfil === 'MEDICO') {
-      this.getDadosEstatisticosMedico();
+      this.getDadosEstatisticosMedico(idTemporalidade);
     } else if (this.perfil === 'ADMINISTRADOR') {
-      this.getDadosEstatisticosAdministrador();
+      this.getDadosEstatisticosAdministrador(idTemporalidade);
     } else {
-      this.getDadosEstatisticosAuxiliar();
+      this.getDadosEstatisticosAuxiliar(idTemporalidade);
     }
   }
 
@@ -115,10 +118,10 @@ export class HomeComponent implements OnInit, OnDestroy {
    * @description busca os dados estatisticos do Admnistrador e envia os dados para os
    * componentes filhos na Home.
    */
-  private getDadosEstatisticosAdministrador(): void {
+  private getDadosEstatisticosAdministrador(idTemporalidade: any): void {
     this.isLoading = true;
     this._clinicaService
-      .getDadosEstatisticosHomeAdm()
+      .getDadosEstatisticosHomeAdm(idTemporalidade)
       .pipe(
         untilDestroyed(this),
         finalize(() => (this.isLoading = false))
@@ -138,10 +141,10 @@ export class HomeComponent implements OnInit, OnDestroy {
    * @description busca os dados estatisticos do Auxiliar e envia os dados para os
    * componentes filhos na Home.
    */
-  public getDadosEstatisticosAuxiliar(): void {
+  public getDadosEstatisticosAuxiliar(idTemporalidade: any): void {
     this.isLoading = true;
     this._clinicaService
-      .getDadosEstatisticosHomeAuxiliar()
+      .getDadosEstatisticosHomeAuxiliar(idTemporalidade)
       .pipe(
         untilDestroyed(this),
         finalize(() => (this.isLoading = false))
@@ -158,10 +161,10 @@ export class HomeComponent implements OnInit, OnDestroy {
    * @description busca os dados estatisticos do Auxiliar e envia os dados para os
    * componentes filhos na Home.
    */
-  public getDadosEstatisticosMedico(): void {
+  public getDadosEstatisticosMedico(idTemporalidade: any): void {
     this.isLoading = true;
     this._clinicaService
-      .getDadosEstatisticosHomeMedico()
+      .getDadosEstatisticosHomeMedico(idTemporalidade)
       .pipe(
         untilDestroyed(this),
         finalize(() => (this.isLoading = false))

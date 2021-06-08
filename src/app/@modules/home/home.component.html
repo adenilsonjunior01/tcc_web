@@ -2,6 +2,16 @@
   <!-- Visão paciente -->
   <ng-container *ngIf="perfil === 'PACIENTE'">
     <div class="container-fluid cards">
+      <!-- <div class="col-12 mb-3">
+        <app-card-content>
+          <mat-form-field appearance="outline" class="w-25">
+            <mat-label>Filtro Temporalidade</mat-label>
+            <mat-select formControlName="temporalidade" (selectionChange)="verificaPerfilUsuarioLogado($event.valeu)">
+              <mat-option [value]="item.value" *ngFor="let item of listaTemporalidade">{{ item.text }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </app-card-content>
+      </div> -->
       <div class="row m-0 cards__row">
         <div class="col-md-5 col-sm-12 p-0">
           <div class="row m-0">
@@ -44,6 +54,16 @@
   <ng-container *ngIf="perfil === 'MEDICO'">
     <div class="container-fluid">
       <div class="row">
+        <div class="col-12 mb-3">
+          <app-card-content>
+            <mat-form-field appearance="outline" class="w-25">
+              <mat-label>Filtro Temporalidade</mat-label>
+              <mat-select formControlName="temporalidade" (selectionChange)="verificaPerfilUsuarioLogado($event.value)">
+                <mat-option [value]="item.value" *ngFor="let item of listaTemporalidade">{{ item.text }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </app-card-content>
+        </div>
         <div class="col-md-5 col-sm-12">
           <div class="row">
             <div class="col-12">
@@ -75,10 +95,21 @@
   <!-- Visão Clínica -->
   <ng-container *ngIf="perfil === 'ADMINISTRADOR'">
     <div class="container-fluid">
-      <div class="col-12">
-        <app-quantitativo-usuarios [quantitativoUsuarios]="quantitativoUsuarios"></app-quantitativo-usuarios>
+      <div class="row">
+        <div class="col-12 mb-3">
+          <app-card-content>
+            <mat-form-field appearance="outline" class="w-25">
+              <mat-label>Filtro Temporalidade</mat-label>
+              <mat-select (selectionChange)="verificaPerfilUsuarioLogado($event.value)">
+                <mat-option [value]="item.value" *ngFor="let item of listaTemporalidade">{{ item.text }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </app-card-content>
+        </div>
+        <div class="col-12">
+          <app-quantitativo-usuarios [quantitativoUsuarios]="quantitativoUsuarios"></app-quantitativo-usuarios>
+        </div>
       </div>
-
       <div class="row m-0">
         <div class="col-md-6 col-12">
           <app-dados-gerais-clinica
@@ -105,6 +136,8 @@
       </div>
     </div>
   </ng-container>
+
+  <!-- Visão Auxiliar -->
   <ng-container *ngIf="perfil === 'AUXILIAR'">
     <div class="col-12">
       <app-quantitativo-usuarios [quantitativoUsuarios]="quantitativoUsuarios"></app-quantitativo-usuarios>

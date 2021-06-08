@@ -26,9 +26,9 @@ const routes = {
     `/consulta/filtrar?paciente=${idPerfil}&size=${size}&page=${page}`,
   iniciarAtendimento: (idConsulta: number) => `/prontuario/${idConsulta}`,
   salvarProntuario: () => `/prontuario/finalizar`,
-  dadosEstatisticosAdm: () => `/dashboard/administrador/3`,
-  dadosEstatisticosAuxiliar: () => `/dashboard/auxiliar/3`,
-  dadosEstatisticosMedico: () => `/dashboard/medico/3`,
+  dadosEstatisticosAdm: (idTemporalidade: any) => `/dashboard/administrador/${idTemporalidade}`,
+  dadosEstatisticosAuxiliar: (idTemporalidade: any) => `/dashboard/auxiliar/${idTemporalidade}`,
+  dadosEstatisticosMedico: (idTemporalidade: any) => `/dashboard/medico/${idTemporalidade}`,
 };
 
 @Injectable({
@@ -150,24 +150,24 @@ export class ClinicaService {
     );
   }
 
-  public getDadosEstatisticosHomeAdm(): Observable<IDadosEstatisticosModel> {
-    return this._httpClient.get(routes.dadosEstatisticosAdm()).pipe(
+  public getDadosEstatisticosHomeAdm(idTemporalidade: any): Observable<IDadosEstatisticosModel> {
+    return this._httpClient.get(routes.dadosEstatisticosAdm(idTemporalidade)).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),
       take(1)
     );
   }
 
-  public getDadosEstatisticosHomeAuxiliar(): Observable<IDadosEstatisticosAuxiliarModel> {
-    return this._httpClient.get(routes.dadosEstatisticosAuxiliar()).pipe(
+  public getDadosEstatisticosHomeAuxiliar(idTemporalidade: any): Observable<IDadosEstatisticosAuxiliarModel> {
+    return this._httpClient.get(routes.dadosEstatisticosAuxiliar(idTemporalidade)).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),
       take(1)
     );
   }
 
-  public getDadosEstatisticosHomeMedico(): Observable<IDadosEstatisticosMedicoModel> {
-    return this._httpClient.get(routes.dadosEstatisticosMedico()).pipe(
+  public getDadosEstatisticosHomeMedico(idTemporalidade: any): Observable<IDadosEstatisticosMedicoModel> {
+    return this._httpClient.get(routes.dadosEstatisticosMedico(idTemporalidade)).pipe(
       catchError((error: HttpErrorResponse) => throwError(error)),
       map((body: any) => body),
       take(1)
