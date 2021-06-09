@@ -78,6 +78,7 @@ export class CardNovaConsultaComponent implements OnInit, OnDestroy {
   }
 
   public getPaciente(name: string): void {
+    this.pacientes = [];
     if (name) {
       this.loading = true;
       this._pacienteService
