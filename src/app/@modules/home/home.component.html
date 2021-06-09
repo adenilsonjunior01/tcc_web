@@ -2,16 +2,6 @@
   <!-- Visão paciente -->
   <ng-container *ngIf="perfil === 'PACIENTE'">
     <div class="container-fluid cards">
-      <!-- <div class="col-12 mb-3">
-        <app-card-content>
-          <mat-form-field appearance="outline" class="w-25">
-            <mat-label>Filtro Temporalidade</mat-label>
-            <mat-select formControlName="temporalidade" (selectionChange)="verificaPerfilUsuarioLogado($event.valeu)">
-              <mat-option [value]="item.value" *ngFor="let item of listaTemporalidade">{{ item.text }}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </app-card-content>
-      </div> -->
       <div class="row m-0 cards__row">
         <div class="col-md-5 col-sm-12 p-0">
           <div class="row m-0">
@@ -59,7 +49,7 @@
           <app-card-content>
             <mat-form-field appearance="outline" class="w-25">
               <mat-label>Filtro Temporalidade</mat-label>
-              <mat-select formControlName="temporalidade" (selectionChange)="verificaPerfilUsuarioLogado($event.value)">
+              <mat-select (selectionChange)="verificaPerfilUsuarioLogado($event.value)">
                 <mat-option [value]="item.value" *ngFor="let item of listaTemporalidade">{{ item.text }}</mat-option>
               </mat-select>
             </mat-form-field>
@@ -165,3 +155,4 @@
     </div>
   </ng-container>
 </div>
+<app-loader *ngIf="isLoading"></app-loader>
