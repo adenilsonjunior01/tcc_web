@@ -15,7 +15,6 @@
     </ng-container>
 
     <!-- >>> Perfil Adm e Aux <<< -->
-
     <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR'">
       <div class="col-12">
         <app-form-update-aux-adm [dadosUser]="dadosUser"></app-form-update-aux-adm>

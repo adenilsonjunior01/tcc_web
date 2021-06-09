@@ -11,20 +11,6 @@
       <mat-toolbar>
         <img src="../../assets/logo-svg.svg" alt="Logo Menu" />
         <span class="name-app">IHealth</span>
-        <!-- <div>
-          <button mat-icon-button [matMenuTriggerFor]="userMenu">
-            <mat-icon>person</mat-icon>
-          </button>
-          <mat-menu #userMenu="matMenu">
-            <mat-list>
-              <mat-list-item>
-                <span>Olá, </span>&nbsp;<b>{{ username }}</b>
-              </mat-list-item>
-              <mat-divider></mat-divider>
-            </mat-list>
-            <button mat-menu-item (click)="logout()">Sair</button>
-          </mat-menu>
-        </div> -->
       </mat-toolbar>
       <nav style="height: 85%">
         <mat-list>
@@ -73,9 +59,6 @@
             </a>
           </ng-container>
 
-          <!-- <a mat-list-item routerLink="/about" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-            <span>Temp</span>
-          </a> -->
           <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR'">
             <a
               mat-list-item
@@ -100,7 +83,7 @@
             </a>
           </ng-container>
 
-          <ng-container *ngIf="perfil === 'ADMINISTRADOR'">
+          <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil; aUXILIAR">
             <a
               mat-list-item
               routerLink="/configuracoes"
@@ -111,26 +94,6 @@
               <span>Configurações</span>
             </a>
           </ng-container>
-          <!-- <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-            <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding routerLinkActive="active">
-              <a mat-list-item [routerLink]="node.route" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-
-                <span>{{node.name}}</span>
-              </a>
-            </mat-tree-node>
-            <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding class="d-flex justify-content-between ps-3">
-              <div>
-                <i class="feather icon-file-plus pe-2"></i>
-                {{node.name}}
-              </div>
-              <button mat-icon-button matTreeNodeToggle
-                      [attr.aria-label]="'Toggle ' + node.name">
-                <mat-icon class="mat-icon-rtl-mirror">
-                  {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-                </mat-icon>
-              </button>
-            </mat-tree-node>
-          </mat-tree> -->
         </mat-list>
         <section class="position-fixed footer-clinica" *ngIf="!errorRequest">
           <div class="container">
@@ -176,7 +139,6 @@
         <div class="row">
           <div class="col-6">
             <h1 class="title-page">{{ title }}</h1>
-            <!-- <span class="subtitle">{{ subtitle }}</span> -->
           </div>
           <div class="col-6 d-flex justify-content-end">
             <app-nav-rigth></app-nav-rigth>
