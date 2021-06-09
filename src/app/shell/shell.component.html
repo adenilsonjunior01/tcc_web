@@ -71,7 +71,7 @@
             </a>
           </ng-container>
 
-          <ng-container *ngIf="perfil === 'ADMINISTRADOR'">
+          <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR'">
             <a
               mat-list-item
               routerLink="/especialidades"
@@ -83,7 +83,7 @@
             </a>
           </ng-container>
 
-          <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil; aUXILIAR">
+          <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR'">
             <a
               mat-list-item
               routerLink="/configuracoes"
