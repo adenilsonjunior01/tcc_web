@@ -6,7 +6,7 @@
           <h3 class="m-0">Dados da clínica</h3>
           <hr class="my-2" />
         </div>
-        <div class="col-5 text-center">
+        <!-- <div class="col-5 text-center">
           <h3>Upload Logo</h3>
           <i class="feather icon-image logo-default" *ngIf="file.value.length === 0"></i>
           <img [src]="base64" alt="Logo" class="img-thumbnail" *ngIf="file.value.length > 0" />
@@ -30,7 +30,7 @@
               </div>
             </ng-template>
           </file-upload>
-        </div>
+        </div> -->
       </div>
 
       <div class="row">
@@ -47,7 +47,14 @@
         <div class="col-12 col-md-4">
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Horário Abertura</mat-label>
-            <input type="text" matInput autocomplete="off" mask="Hh:m0:s0" formControlName="dtAbertura" />
+            <input
+              type="text"
+              matInput
+              autocomplete="off"
+              mask="Hh:m0:s0"
+              [dropSpecialCharacters]="false"
+              formControlName="dtAbertura"
+            />
           </mat-form-field>
           <mat-error class="pt-0">
             <app-error-control-message [control]="form.controls.dtAbertura" label="Data de nascimento">
@@ -57,7 +64,14 @@
         <div class="col-12 col-md-4">
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Horário Encerramento</mat-label>
-            <input type="text" matInput autocomplete="off" mask="Hh:m0:s0" formControlName="dtEncerramento" />
+            <input
+              type="text"
+              matInput
+              autocomplete="off"
+              mask="Hh:m0:s0"
+              [dropSpecialCharacters]="false"
+              formControlName="dtEncerramento"
+            />
           </mat-form-field>
           <mat-error class="pt-0">
             <app-error-control-message [control]="form.controls.dtAbertura" label="Data de nascimento">

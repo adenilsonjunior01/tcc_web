@@ -47,6 +47,8 @@ export class FormUpdateMedicoComponent implements OnInit, OnDestroy, OnChanges {
     if (this.dadosUser && count === 0) {
       this.setEspecializacoes(this.dadosUser?.medico?.especializacoes);
       this.formDadosProfissionais.get('crm').setValue(this.dadosUser?.medico?.crm);
+      this.formDadosProfissionais.get('hrEntrada').setValue(this.dadosUser?.medico?.hrEntrada);
+      this.formDadosProfissionais.get('hrSaida').setValue(this.dadosUser?.medico?.hrSaida);
     }
   }
 

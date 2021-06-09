@@ -29,14 +29,6 @@
                   {{ dadosClinica?.endereco?.noEstado }}</span
                 >
               </li>
-              <!-- <li>
-                <i class="feather icon-phone"></i>
-                <span>(00) 0 0000-0000 - (00) 000-0000</span>
-              </li>
-              <li class="email">
-                <i class="feather icon-mail email"></i>
-                <span class="m-0 d-inline">email@gmail.com</span>
-              </li> -->
               <li>
                 <i class="feather icon-clock"></i>
                 <span class="m-0 d-inline">{{ dadosClinica?.dtAbertura }} - {{ dadosClinica?.dtEncerramento }}</span>
@@ -94,7 +86,7 @@
           </mat-tab>
           <mat-tab label="Visão">
             <p>
-              {{ dadosClinica?.Visao ? dadosClinica?.Visao : 'Sem registro.' }}
+              {{ dadosClinica?.descVisao ? dadosClinica?.descVisao : 'Sem registro.' }}
             </p>
           </mat-tab>
         </mat-tab-group>
