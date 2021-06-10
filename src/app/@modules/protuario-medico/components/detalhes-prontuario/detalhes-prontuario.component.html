@@ -14,26 +14,30 @@
           <li>
             <h4 class="fw-bold m-0">Altura</h4>
             <span>{{
-              prontuario?.paciente?.dadosMedicos?.altura ? prontuario?.paciente?.dadosMedicos?.altura : 'Sem registro'
+              prontuarioSelecionado?.paciente?.dadosMedicos?.altura
+                ? prontuarioSelecionado?.paciente?.dadosMedicos?.altura
+                : 'Sem registro'
             }}</span>
           </li>
           <li>
             <h4 class="fw-bold m-0">Peso</h4>
             <span>{{
-              prontuario?.paciente?.dadosMedicos?.peso ? prontuario?.paciente?.dadosMedicos?.peso : 'Sem registro'
+              prontuarioSelecionado?.paciente?.dadosMedicos?.peso
+                ? prontuarioSelecionado?.paciente?.dadosMedicos?.peso
+                : 'Sem registro'
             }}</span>
           </li>
           <li>
             <h4 class="fw-bold m-0">Tipo Sanguíneo</h4>
             <span>{{
-              prontuario?.paciente?.dadosMedicos?.tipoSanguineo
-                ? prontuario?.paciente?.dadosMedicos?.tipoSanguineo?.descricaoTipoSanguineo
+              prontuarioSelecionado?.paciente?.dadosMedicos?.tipoSanguineo
+                ? prontuarioSelecionado?.paciente?.dadosMedicos?.tipoSanguineo?.descricaoTipoSanguineo
                 : 'Sem registro'
             }}</span>
           </li>
           <li>
             <h4 class="fw-bold m-0 last-update">Ultima Atualização:</h4>
-            <span>{{ prontuario?.paciente?.dadosMedicos?.dtAtualizacao }}</span>
+            <span>{{ prontuarioSelecionado?.paciente?.dadosMedicos?.dtAtualizacao }}</span>
           </li>
         </ul>
       </div>
@@ -42,15 +46,15 @@
         <ul class="dados-medicos">
           <li>
             <h4 class="fw-bold m-0">Nome</h4>
-            <span>{{ prontuario?.medico?.nome }}</span>
+            <span>{{ prontuarioSelecionado?.medico?.nome }}</span>
           </li>
           <li>
             <h4 class="fw-bold m-0">CRM:</h4>
-            <span>{{ prontuario?.medico?.crm }}</span>
+            <span>{{ prontuarioSelecionado?.medico?.crm }}</span>
           </li>
           <li>
             <h4 class="fw-bold m-0">Especialidade(s):</h4>
-            <ng-container *ngFor="let especializacao of prontuario?.medico?.especializacoes; index as i">
+            <ng-container *ngFor="let especializacao of prontuarioSelecionado?.medico?.especializacoes; index as i">
               <span *ngIf="i > 0">, </span>
               <span>{{ especializacao?.descEspecializacao }} </span>
             </ng-container>
@@ -62,19 +66,19 @@
         <ul class="dados-medicos">
           <li>
             <h4 class="fw-bold m-0">Status</h4>
-            <span class="id-atendimento fw-bold">{{ prontuario?.status }}</span>
+            <span class="id-atendimento fw-bold">{{ prontuarioSelecionado?.status }}</span>
           </li>
           <li>
             <h4 class="fw-bold m-0">Data do Atendimento</h4>
-            <span>{{ prontuario?.dtInicio | date: 'shortDate' }}</span>
+            <span>{{ prontuarioSelecionado?.dtInicio | date: 'shortDate' }}</span>
           </li>
           <li>
             <h4 class="fw-bold m-0">Tipo Procedimento</h4>
-            <span>{{ prontuario?.procedimento?.descTipoProcedimento }}</span>
+            <span>{{ prontuarioSelecionado?.procedimento?.descTipoProcedimento }}</span>
           </li>
           <li>
             <h4 class="fw-bold m-0">Duração</h4>
-            <span>{{ prontuario?.procedimento?.duracao }}</span>
+            <span>{{ prontuarioSelecionado?.procedimento?.duracao }}</span>
           </li>
         </ul>
       </div>
@@ -86,7 +90,11 @@
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Descrição geral da consulta</mat-label>
           <textarea
-            [value]="prontuario?.prontuario?.descProntuario ? prontuario?.prontuario?.descProntuario : 'Sem registro'"
+            [value]="
+              prontuarioSelecionado?.prontuario?.descProntuario
+                ? prontuarioSelecionado?.prontuario?.descProntuario
+                : 'Sem registro'
+            "
             matInput
             disabled
             placeholder="Descrição geral da consulta"
@@ -100,7 +108,11 @@
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Diagnostico</mat-label>
           <textarea
-            [value]="prontuario?.prontuario?.diagnostico ? prontuario?.prontuario?.diagnostico : 'Sem registro'"
+            [value]="
+              prontuarioSelecionado?.prontuario?.diagnostico
+                ? prontuarioSelecionado?.prontuario?.diagnostico
+                : 'Sem registro'
+            "
             matInput
             disabled
             placeholder="Diagnostico médico"
@@ -114,7 +126,11 @@
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Sumário médico</mat-label>
           <textarea
-            [value]="prontuario?.prontuario?.descSumario ? prontuario?.prontuario?.descSumario : 'Sem registro'"
+            [value]="
+              prontuarioSelecionado?.prontuario?.descSumario
+                ? prontuarioSelecionado?.prontuario?.descSumario
+                : 'Sem registro'
+            "
             matInput
             disabled
             autocomplete="off"
@@ -142,8 +158,8 @@
               </mat-panel-title>
               <mat-panel-description> </mat-panel-description>
             </mat-expansion-panel-header>
-            <ul *ngIf="prontuario?.paciente?.prontuario?.alergias.length > 0; else semregistro">
-              <li *ngFor="let alergia of prontuario?.paciente?.prontuario?.alergias">
+            <ul *ngIf="prontuarioSelecionado?.prontuario?.alergias.length > 0; else semregistro">
+              <li *ngFor="let alergia of prontuarioSelecionado?.prontuario?.alergias">
                 <span> - {{ alergia?.descAlergia }}</span>
               </li>
             </ul>
@@ -159,8 +175,8 @@
               </mat-panel-title>
               <mat-panel-description> </mat-panel-description>
             </mat-expansion-panel-header>
-            <ul *ngIf="prontuario?.paciente?.prontuario?.medicamentos.length > 0; else semregistro">
-              <li *ngFor="let medicamento of prontuario?.paciente?.prontuario?.medicamentos" class="medicamento py-2">
+            <ul *ngIf="prontuarioSelecionado?.prontuario?.medicamentos.length > 0; else semregistro">
+              <li *ngFor="let medicamento of prontuarioSelecionado?.prontuario?.medicamentos" class="medicamento py-2">
                 <span class="d-block"><strong>Descrição:</strong> {{ medicamento?.descMedicamento }}</span>
                 <span class="d-block"><strong>Duração:</strong> {{ medicamento?.duracaoTratamento }}</span>
                 <span class="d-block medicamento__registro"
@@ -181,8 +197,8 @@
               </mat-panel-title>
               <mat-panel-description> </mat-panel-description>
             </mat-expansion-panel-header>
-            <ul *ngIf="prontuario?.paciente?.prontuario?.doencasCronicas.length > 0; else semregistro">
-              <li *ngFor="let cronica of prontuario?.paciente?.prontuario?.doencasCronicas">
+            <ul *ngIf="prontuarioSelecionado?.prontuario?.doencasCronicas.length > 0; else semregistro">
+              <li *ngFor="let cronica of prontuarioSelecionado?.prontuario?.doencasCronicas">
                 <span> - {{ cronica?.descDoenca }}</span>
               </li>
             </ul>
@@ -201,7 +217,7 @@
       </div>
       <div class="col-12">
         <div class="table-responsive">
-          <table class="table" *ngIf="prontuario?.prontuario?.documentos?.length > 0; else semregistro">
+          <table class="table" *ngIf="prontuarioSelecionado?.prontuario?.documentos?.length > 0; else semregistro">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -212,7 +228,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let anexo of prontuario?.prontuario?.documentos; index as i">
+              <tr *ngFor="let anexo of prontuarioSelecionado?.prontuario?.documentos; index as i">
                 <td>
                   <span>{{ i + 1 }}</span>
                 </td>
