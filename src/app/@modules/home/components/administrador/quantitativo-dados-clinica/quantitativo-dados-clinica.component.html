@@ -24,7 +24,7 @@
       <div class="app-card-footer">
         <div class="row text-left py-3 text-white m-0">
           <div class="col-8">
-            <span>{{ pendente?.descricao }}</span>
+            <span>{{ pendente?.descricao ? pendente?.descricao : 'Pendente' }}</span>
           </div>
           <div class="col d-flex align-items-center justify-content-center">
             <i class="feather icon-activity"></i>
@@ -55,7 +55,7 @@
       <div class="app-card-footer">
         <div class="row text-left py-3 text-white m-0">
           <div class="col-8">
-            <span>{{ emAndamento?.descricao }}</span>
+            <span>{{ emAndamento?.descricao ? emAndamento?.descricao : 'Em andamento' }}</span>
           </div>
           <div class="col d-flex align-items-center justify-content-center">
             <i class="feather icon-activity"></i>
@@ -86,7 +86,7 @@
       <div class="app-card-footer">
         <div class="row text-left py-3 text-white m-0">
           <div class="col-8">
-            <span>{{ cancelada?.descricao }}</span>
+            <span>{{ cancelada?.descricao ? cancelada?.descricao : 'Cancelada' }}</span>
           </div>
           <div class="col d-flex align-items-center justify-content-center">
             <i class="feather icon-activity"></i>
@@ -117,7 +117,7 @@
       <div class="app-card-footer">
         <div class="row text-left py-3 text-white m-0">
           <div class="col-8">
-            <span>{{ finalizada?.descricao }}</span>
+            <span>{{ finalizada?.descricao ? finalizada?.descricao : 'Finalizada' }}</span>
           </div>
           <div class="col d-flex align-items-center justify-content-center">
             <i class="feather icon-activity"></i>
