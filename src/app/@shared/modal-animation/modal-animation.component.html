@@ -1,10 +1,10 @@
 <div class="md-modal" [ngClass]="modalClass" id="{{ modalID }}">
-  <ng-content select=".md-header"></ng-content>
-  <div class="md-content" [ngClass]="contentClass">
-    <ng-content select=".md-body"></ng-content>
-  </div>
+    <ng-content select=".md-header"></ng-content>
+    <div class="md-content" [ngClass]="contentClass">
+        <ng-content select=".md-body"></ng-content>
+    </div>
 </div>
 <div *ngIf="backDrop; else backDropOver" class="md-overlay"></div>
 <ng-template #backDropOver>
-  <div class="md-overlay" (click)="close(modalID)"></div>
+    <div class="md-overlay" (click)="close(modalID)"></div>
 </ng-template>

@@ -16,16 +16,16 @@ import { TabSenhaComponent } from './components/tab-senha/tab-senha.component';
 import { FormUpdateAuxAdmComponent } from './components/form-update-aux-adm/form-update-aux-adm.component';
 
 @NgModule({
-  declarations: [
-    PerfilComponent,
-    FormUpdateMedicoComponent,
-    FormUpdatePacienteComponent,
-    FormUserComponent,
-    UpdateDadosMedicosComponent,
-    TabPerfilComponent,
-    TabSenhaComponent,
-    FormUpdateAuxAdmComponent,
-  ],
-  imports: [CommonModule, PerfilRoutingModule, SharedModule, MaterialModule, NgxMaskModule, NgSelectModule],
+    declarations: [
+        PerfilComponent,
+        FormUpdateMedicoComponent,
+        FormUpdatePacienteComponent,
+        FormUserComponent,
+        UpdateDadosMedicosComponent,
+        TabPerfilComponent,
+        TabSenhaComponent,
+        FormUpdateAuxAdmComponent,
+    ],
+    imports: [CommonModule, PerfilRoutingModule, SharedModule, MaterialModule, NgxMaskModule, NgSelectModule],
 })
 export class PerfilModule {}

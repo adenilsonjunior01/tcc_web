@@ -1,22 +1,22 @@
 <div class="bg-box-info shadow">
-  <div class="container">
-    <div class="row">
-      <div class="col-12 name-medico mt-4">
-        <h3 class="m-0">{{ nomeClinica }}</h3>
-        <span>Médico</span>
-      </div>
-      <div class="col-12 py-2 dados-medico">
-        <img src="../../../../../assets/home/icon-med.png" alt="Icon Med" class="ps-4" />
-        <h2 class="m-0">{{ dadosUser?.medico?.nome }}</h2>
-      </div>
-      <div class="col-5 pb-3 description">
-        <span>Número CRM</span>
-        <h4 class="m-0">{{ dadosUser?.medico?.crm }}</h4>
-      </div>
-      <div class="col-6 pb-3 description">
-        <span>Telefone</span>
-        <h4 class="m-0">{{ dadosUser?.medico?.telefone | mask: '(00) 0 0000 0000' }}</h4>
-      </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 name-medico mt-4">
+                <h3 class="m-0">{{ nomeClinica }}</h3>
+                <span>Médico</span>
+            </div>
+            <div class="col-12 py-2 dados-medico">
+                <img src="../../../../../assets/home/icon-med.png" alt="Icon Med" class="ps-4" />
+                <h2 class="m-0">{{ dadosUser?.medico?.nome }}</h2>
+            </div>
+            <div class="col-5 pb-3 description">
+                <span>Número CRM</span>
+                <h4 class="m-0">{{ dadosUser?.medico?.crm }}</h4>
+            </div>
+            <div class="col-6 pb-3 description">
+                <span>Telefone</span>
+                <h4 class="m-0">{{ dadosUser?.medico?.telefone | mask: '(00) 0 0000 0000' }}</h4>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

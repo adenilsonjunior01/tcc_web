@@ -17,20 +17,20 @@ import { NgxMaskModule } from 'ngx-mask';
 import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    TranslateModule,
-    FlexLayoutModule,
-    MaterialModule,
-    AuthModule,
-    I18nModule,
-    RouterModule,
-    SharedModule,
-    NgSelectModule,
-    NgxMaskModule,
-    ComponentsModule,
-  ],
-  declarations: [ShellComponent, NavRigthComponent, NotificationComponent],
-  providers: [NavigationItem],
+    imports: [
+        CommonModule,
+        TranslateModule,
+        FlexLayoutModule,
+        MaterialModule,
+        AuthModule,
+        I18nModule,
+        RouterModule,
+        SharedModule,
+        NgSelectModule,
+        NgxMaskModule,
+        ComponentsModule,
+    ],
+    declarations: [ShellComponent, NavRigthComponent, NotificationComponent],
+    providers: [NavigationItem],
 })
 export class ShellModule {}

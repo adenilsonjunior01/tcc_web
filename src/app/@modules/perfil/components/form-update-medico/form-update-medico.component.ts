@@ -13,121 +13,121 @@ import { CredentialsService } from '../../../../auth/credentials.service';
 const log = new Logger('Update Médico');
 
 @Component({
-  selector: 'app-form-update-medico',
-  templateUrl: './form-update-medico.component.html',
-  styleUrls: ['./form-update-medico.component.scss'],
+    selector: 'app-form-update-medico',
+    templateUrl: './form-update-medico.component.html',
+    styleUrls: ['./form-update-medico.component.scss'],
 })
 export class FormUpdateMedicoComponent implements OnInit, OnDestroy, OnChanges {
-  @Input() dadosUser: any;
-  @Input() type: any;
-  @Output() closeModal = new EventEmitter();
+    @Input() dadosUser: any;
+    @Input() type: any;
+    @Output() closeModal = new EventEmitter();
 
-  public formDadosProfissionais: FormGroup;
-  public readonly _formConfig = new FormUpdateMedico();
-  private readonly utilitariosMock = new ListaUtilitarioMock();
-  public loading = false;
-  public errorMessage = '';
-  public listaSexo: any[];
-  public listaEstados: any[];
-  public especializacoes: any[];
-  public messageError = '';
+    public formDadosProfissionais: FormGroup;
+    public readonly _formConfig = new FormUpdateMedico();
+    private readonly utilitariosMock = new ListaUtilitarioMock();
+    public loading = false;
+    public errorMessage = '';
+    public listaSexo: any[];
+    public listaEstados: any[];
+    public especializacoes: any[];
+    public messageError = '';
 
-  constructor(
-    private readonly _medicoService: MedicoService,
-    private readonly _utilitariosService: UtilitariosService,
-    private readonly _sweetAlert: SweetalertService,
-    private readonly _credentials: CredentialsService
-  ) {}
+    constructor(
+        private readonly _medicoService: MedicoService,
+        private readonly _utilitariosService: UtilitariosService,
+        private readonly _sweetAlert: SweetalertService,
+        private readonly _credentials: CredentialsService
+    ) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    let count: any;
-    if (this.formDadosProfissionais) {
-      count = (this.formDadosProfissionais.controls['especializacoes'] as FormGroup).controls.length;
+    ngOnChanges(changes: SimpleChanges): void {
+        let count: any;
+        if (this.formDadosProfissionais) {
+            count = (this.formDadosProfissionais.controls['especializacoes'] as FormGroup).controls.length;
+        }
+        if (this.dadosUser && count === 0) {
+            this.setEspecializacoes(this.dadosUser?.medico?.especializacoes);
+            this.formDadosProfissionais.get('crm').setValue(this.dadosUser?.medico?.crm);
+            this.formDadosProfissionais.get('hrEntrada').setValue(this.dadosUser?.medico?.hrEntrada);
+            this.formDadosProfissionais.get('hrSaida').setValue(this.dadosUser?.medico?.hrSaida);
+        }
     }
-    if (this.dadosUser && count === 0) {
-      this.setEspecializacoes(this.dadosUser?.medico?.especializacoes);
-      this.formDadosProfissionais.get('crm').setValue(this.dadosUser?.medico?.crm);
-      this.formDadosProfissionais.get('hrEntrada').setValue(this.dadosUser?.medico?.hrEntrada);
-      this.formDadosProfissionais.get('hrSaida').setValue(this.dadosUser?.medico?.hrSaida);
+
+    ngOnDestroy(): void {}
+
+    ngOnInit(): void {
+        this.getEspecializacoes();
+        this.formDadosProfissionais = this._formConfig.initForm();
+        this.listaSexo = this.utilitariosMock.getListaSexos();
+        this.listaEstados = this.utilitariosMock.getEstados();
+        this.decodeToken();
     }
-  }
 
-  ngOnDestroy(): void {}
+    private decodeToken(): void {
+        const decode = this._credentials.decodeToken();
+        this.formDadosProfissionais.get('idUser').setValue(decode.id);
+    }
 
-  ngOnInit(): void {
-    this.getEspecializacoes();
-    this.formDadosProfissionais = this._formConfig.initForm();
-    this.listaSexo = this.utilitariosMock.getListaSexos();
-    this.listaEstados = this.utilitariosMock.getEstados();
-    this.decodeToken();
-  }
+    public get formArrayEspecializacoes(): FormArray {
+        return this.formDadosProfissionais.get('especializacoes') as FormArray;
+    }
 
-  private decodeToken(): void {
-    const decode = this._credentials.decodeToken();
-    this.formDadosProfissionais.get('idUser').setValue(decode.id);
-  }
+    /**
+     * @description seta as especializações cadastradas do médico no formulário atual
+     */
+    public setEspecializacoes(especializacoes: any[]): void {
+        especializacoes.forEach((value: any, index: number) => {
+            this.addNewEspecializacao();
+            ((this.formDadosProfissionais.controls['especializacoes'] as FormArray).controls[index] as FormGroup)
+                .get('id')
+                .setValue(value.id);
+        });
+    }
 
-  public get formArrayEspecializacoes(): FormArray {
-    return this.formDadosProfissionais.get('especializacoes') as FormArray;
-  }
+    public addNewEspecializacao() {
+        (this.formDadosProfissionais.get('especializacoes') as FormArray).push(this._formConfig.newEspecializacao());
+    }
 
-  /**
-   * @description seta as especializações cadastradas do médico no formulário atual
-   */
-  public setEspecializacoes(especializacoes: any[]): void {
-    especializacoes.forEach((value: any, index: number) => {
-      this.addNewEspecializacao();
-      ((this.formDadosProfissionais.controls['especializacoes'] as FormArray).controls[index] as FormGroup)
-        .get('id')
-        .setValue(value.id);
-    });
-  }
+    public removeObject(index: number): void {
+        (this.formDadosProfissionais.get('especializacoes') as FormArray).removeAt(index);
+    }
 
-  public addNewEspecializacao() {
-    (this.formDadosProfissionais.get('especializacoes') as FormArray).push(this._formConfig.newEspecializacao());
-  }
+    public clearFormDadosProfissionais() {
+        this.formDadosProfissionais.reset();
+    }
 
-  public removeObject(index: number): void {
-    (this.formDadosProfissionais.get('especializacoes') as FormArray).removeAt(index);
-  }
+    public updateDadosProfissionais() {
+        this.loading = true;
+        const values = this._formConfig.parserForm(this.formDadosProfissionais.value);
+        this._medicoService
+            .updateMedico(values)
+            .pipe(
+                finalize(() => (this.loading = false)),
+                untilDestroyed(this)
+            )
+            .subscribe({
+                next: () => {
+                    this._sweetAlert.openToasty('Dados atualizados com sucesso!', 'success');
+                    this.closeModal.emit('perfil');
+                },
+                error: (error) => {
+                    this.messageError = error.error.message;
+                    log.error(error);
+                },
+            });
+    }
 
-  public clearFormDadosProfissionais() {
-    this.formDadosProfissionais.reset();
-  }
+    public getEspecializacoes(): void {
+        this._utilitariosService
+            .getEspecializacoes()
+            .pipe(untilDestroyed(this))
+            .subscribe({
+                next: (especializacoes: any) => {
+                    this.especializacoes = especializacoes;
+                },
+            });
+    }
 
-  public updateDadosProfissionais() {
-    this.loading = true;
-    const values = this._formConfig.parserForm(this.formDadosProfissionais.value);
-    this._medicoService
-      .updateMedico(values)
-      .pipe(
-        finalize(() => (this.loading = false)),
-        untilDestroyed(this)
-      )
-      .subscribe({
-        next: () => {
-          this._sweetAlert.openToasty('Dados atualizados com sucesso!', 'success');
-          this.closeModal.emit('perfil');
-        },
-        error: (error) => {
-          this.messageError = error.error.message;
-          log.error(error);
-        },
-      });
-  }
-
-  public getEspecializacoes(): void {
-    this._utilitariosService
-      .getEspecializacoes()
-      .pipe(untilDestroyed(this))
-      .subscribe({
-        next: (especializacoes: any) => {
-          this.especializacoes = especializacoes;
-        },
-      });
-  }
-
-  public modalCloseEvent(idModal: string): void {
-    this.closeModal.emit(idModal);
-  }
+    public modalCloseEvent(idModal: string): void {
+        this.closeModal.emit(idModal);
+    }
 }

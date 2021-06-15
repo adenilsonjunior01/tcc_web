@@ -1,4 +1,4 @@
 export interface IDoencaCronicaModel {
-  id?: number;
-  descDoenca: string;
+    id?: number;
+    descDoenca: string;
 }

@@ -5,29 +5,29 @@ import { Observable, throwError } from 'rxjs';
 import { take, catchError, map } from 'rxjs/operators';
 
 const routes = {
-  dadosMedicos: () => `/dadosMedicos`,
+    dadosMedicos: () => `/dadosMedicos`,
 };
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class DadosMedicosService {
-  constructor(private readonly _httpClient: HttpClient) {}
+    constructor(private readonly _httpClient: HttpClient) {}
 
-  public updateDadosMedicos(dadosMedicos: IDadosMedicosModel): Observable<any> {
-    return this._httpClient.put(routes.dadosMedicos(), dadosMedicos).pipe(
-      catchError((error: HttpErrorResponse) => throwError(error)),
-      map((body: any) => body),
-      take(1)
-    );
-  }
+    public updateDadosMedicos(dadosMedicos: IDadosMedicosModel): Observable<any> {
+        return this._httpClient.put(routes.dadosMedicos(), dadosMedicos).pipe(
+            catchError((error: HttpErrorResponse) => throwError(error)),
+            map((body: any) => body),
+            take(1)
+        );
+    }
 
-  // MAPEAR MODEL COM O RETORNO DO END-POINT
-  public getDadosMedicos(): Observable<any> {
-    return this._httpClient.get(routes.dadosMedicos()).pipe(
-      catchError((error: HttpErrorResponse) => throwError(error)),
-      map((body: any) => body),
-      take(1)
-    );
-  }
+    // MAPEAR MODEL COM O RETORNO DO END-POINT
+    public getDadosMedicos(): Observable<any> {
+        return this._httpClient.get(routes.dadosMedicos()).pipe(
+            catchError((error: HttpErrorResponse) => throwError(error)),
+            map((body: any) => body),
+            take(1)
+        );
+    }
 }

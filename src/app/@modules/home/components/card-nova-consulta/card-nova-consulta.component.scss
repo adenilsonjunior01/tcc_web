@@ -4,91 +4,91 @@ $f_38: 38px;
 $f_22: 22px;
 
 .icon-add {
-  color: var(--tcc-bg-success-progress);
-  font-size: $f_38;
+    color: var(--tcc-bg-success-progress);
+    font-size: $f_38;
 }
 
 .description-add {
-  font-weight: 300;
-  font-size: var(--f_14);
+    font-weight: 300;
+    font-size: var(--f_14);
 }
 
 .title {
-  font-size: $f_22;
+    font-size: $f_22;
 }
 
 .icon-plus.icon-add {
-  font-size: $f_22;
-  font-weight: 800;
+    font-size: $f_22;
+    font-weight: 800;
 }
 
 .bg-search {
-  height: 100%;
-  background-color: #ecf0f5;
-  width: 100%;
+    height: 100%;
+    background-color: #ecf0f5;
+    width: 100%;
 }
 
 .height-row {
-  height: 100%;
+    height: 100%;
 }
 
 ::ng-deep .consulta-home {
-  .md-content {
-    width: 1090px !important;
-    height: 500px;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-    display: flex;
-  }
+    .md-content {
+        width: 1090px !important;
+        height: 500px;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        display: flex;
+    }
 }
 
 ::ng-deep .resumo-consulta {
-  .md-content {
-    width: 500px !important;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-    border: 1px solid #f5f5f5;
-  }
+    .md-content {
+        width: 500px !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        border: 1px solid #f5f5f5;
+    }
 }
 
 .bg-procedimento {
-  margin: 40px 10px;
-  background-color: var(--tcc-bg-container);
-  border-radius: 4px;
+    margin: 40px 10px;
+    background-color: var(--tcc-bg-container);
+    border-radius: 4px;
 }
 
 .md-header {
-  background: linear-gradient(45deg, #4099ff, #73b4ff);
-  width: 1090px;
+    background: linear-gradient(45deg, #4099ff, #73b4ff);
+    width: 1090px;
 
-  h2 {
-    color: var(--white);
-  }
+    h2 {
+        color: var(--white);
+    }
 }
 
 ::ng-deep .mat-option-text {
-  color: var(--black);
-  font-size: var(--f_14);
-
-  .busca-span {
-    color: var(--black) !important;
+    color: var(--black);
     font-size: var(--f_14);
-    font-weight: 500;
-  }
+
+    .busca-span {
+        color: var(--black) !important;
+        font-size: var(--f_14);
+        font-weight: 500;
+    }
 }
 
 table {
-  font-size: var(--f_14);
+    font-size: var(--f_14);
 }
 
 .link-select {
-  cursor: pointer;
-  text-transform: underline;
-  color: var(--dark);
-  font-weight: 500;
+    cursor: pointer;
+    text-transform: underline;
+    color: var(--dark);
+    font-weight: 500;
 
-  &:hover {
-    transition: 300ms;
-    color: var(--tcc-active-menu);
-  }
+    &:hover {
+        transition: 300ms;
+        color: var(--tcc-active-menu);
+    }
 }

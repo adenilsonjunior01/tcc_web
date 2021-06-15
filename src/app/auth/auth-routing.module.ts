@@ -6,13 +6,13 @@ import { UpdatePasswordComponent } from './components/update-password/update-pas
 import { LoginComponent } from './login.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent, data: { title: marker('Login') } },
-  { path: 'update/password', component: UpdatePasswordComponent, data: { title: marker('Alterar Senha') } },
+    { path: 'login', component: LoginComponent, data: { title: marker('Login') } },
+    { path: 'update/password', component: UpdatePasswordComponent, data: { title: marker('Alterar Senha') } },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-  providers: [],
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
+    providers: [],
 })
 export class AuthRoutingModule {}

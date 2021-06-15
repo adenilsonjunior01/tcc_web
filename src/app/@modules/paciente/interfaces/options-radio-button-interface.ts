@@ -1,5 +1,5 @@
 export interface IOptionsRadioButton {
-  id: number;
-  description: string;
-  value: boolean;
+    id: number;
+    description: string;
+    value: boolean;
 }

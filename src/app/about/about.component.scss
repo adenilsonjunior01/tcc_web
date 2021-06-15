@@ -1,28 +1,28 @@
 .container {
-  text-align: center;
+    text-align: center;
 }
 
 .mat-icon {
-  vertical-align: middle;
+    vertical-align: middle;
 }
 
 ::ng-deep .full-calendar {
-  .md-content {
-    width: 550px !important;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-    display: flex;
-  }
+    .md-content {
+        width: 550px !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        display: flex;
+    }
 }
 
 .consulta-details {
-  p {
-    font-size: 16px;
-    color: var(--dark);
+    p {
+        font-size: 16px;
+        color: var(--dark);
 
-    span {
-      color: var(--tcc-secondary);
-      font-weight: 500;
+        span {
+            color: var(--tcc-secondary);
+            font-weight: 500;
+        }
     }
-  }
 }

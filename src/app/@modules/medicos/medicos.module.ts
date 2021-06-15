@@ -8,7 +8,7 @@ import { MaterialModule } from '../../material.module';
 import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
-  declarations: [MedicosComponent],
-  imports: [CommonModule, MedicosRoutingModule, SharedModule, MaterialModule, NgxMaskModule],
+    declarations: [MedicosComponent],
+    imports: [CommonModule, MedicosRoutingModule, SharedModule, MaterialModule, NgxMaskModule],
 })
 export class MedicosModule {}

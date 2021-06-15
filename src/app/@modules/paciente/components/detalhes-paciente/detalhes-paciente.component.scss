@@ -1,19 +1,19 @@
 .label {
-  color: var(--tcc-text-color-cinza);
-  font-weight: 400 !important;
-  font-size: var(--f_14);
+    color: var(--tcc-text-color-cinza);
+    font-weight: 400 !important;
+    font-size: var(--f_14);
 }
 
 span {
-  color: var(--tcc-text-color-title);
-  font-weight: 500;
-  font-size: var(--f_14);
+    color: var(--tcc-text-color-title);
+    font-weight: 500;
+    font-size: var(--f_14);
 }
 
 .voltar {
-  cursor: pointer;
-  &:hover {
-    color: var(--tcc-text-color-cinza);
-    opacity: 0.8;
-  }
+    cursor: pointer;
+    &:hover {
+        color: var(--tcc-text-color-cinza);
+        opacity: 0.8;
+    }
 }

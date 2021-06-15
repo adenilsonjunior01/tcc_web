@@ -4,15 +4,15 @@ import { ConfiguracoesComponent } from './configuracoes.component';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: ConfiguracoesComponent,
-    data: { title: marker('Configurações'), subtitle: marker('Configurações') },
-  },
+    {
+        path: '',
+        component: ConfiguracoesComponent,
+        data: { title: marker('Configurações'), subtitle: marker('Configurações') },
+    },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
 export class ConfiguracoesRoutingModule {}

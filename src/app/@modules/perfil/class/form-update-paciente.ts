@@ -1,19 +1,19 @@
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 export class FormUpdatePaciente {
-  private readonly _fb = new FormBuilder();
+    private readonly _fb = new FormBuilder();
 
-  constructor() {}
+    constructor() {}
 
-  public initForm(): FormGroup {
-    const form = this._fb.group({
-      idUser: [null],
-      idPaciente: [null],
-      descConvenio: [null],
-      nuInscricaoConvenio: [null],
-      compartilhaDados: [null],
-    });
+    public initForm(): FormGroup {
+        const form = this._fb.group({
+            idUser: [null],
+            idPaciente: [null],
+            descConvenio: [null],
+            nuInscricaoConvenio: [null],
+            compartilhaDados: [null],
+        });
 
-    return form;
-  }
+        return form;
+    }
 }

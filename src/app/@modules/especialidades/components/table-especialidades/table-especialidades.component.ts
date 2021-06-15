@@ -11,122 +11,122 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { EspecilidadeService } from '../../../../services/especilidade/especilidade.service';
 
 @Component({
-  selector: 'app-table-especialidades',
-  templateUrl: './table-especialidades.component.html',
-  styleUrls: ['./table-especialidades.component.scss'],
+    selector: 'app-table-especialidades',
+    templateUrl: './table-especialidades.component.html',
+    styleUrls: ['./table-especialidades.component.scss'],
 })
 export class TableEspecialidadesComponent implements OnInit, OnDestroy, OnChanges {
-  @ViewChild(ModalAnimationComponent) modal: any;
-  @Input() recarregarLista: any;
+    @ViewChild(ModalAnimationComponent) modal: any;
+    @Input() recarregarLista: any;
 
-  private readonly listaPacientesMock = new ListaPacientesMock();
-  especialidades: IEspecializacaoModel[] = [];
-  public loading = false;
-  public form: FormGroup;
+    private readonly listaPacientesMock = new ListaPacientesMock();
+    especialidades: IEspecializacaoModel[] = [];
+    public loading = false;
+    public form: FormGroup;
 
-  constructor(
-    private readonly _especialidades: UtilitariosService,
-    private readonly _fb: FormBuilder,
-    private readonly _sweetAlert: SweetalertService,
-    private readonly _especialidadeService: EspecilidadeService
-  ) {}
+    constructor(
+        private readonly _especialidades: UtilitariosService,
+        private readonly _fb: FormBuilder,
+        private readonly _sweetAlert: SweetalertService,
+        private readonly _especialidadeService: EspecilidadeService
+    ) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (this.recarregarLista) {
-      this.getEspecialidades();
+    ngOnChanges(changes: SimpleChanges): void {
+        if (this.recarregarLista) {
+            this.getEspecialidades();
+        }
     }
-  }
 
-  ngOnDestroy(): void {}
+    ngOnDestroy(): void {}
 
-  ngOnInit(): void {
-    this.getEspecialidades();
-    this.initForm();
-  }
+    ngOnInit(): void {
+        this.getEspecialidades();
+        this.initForm();
+    }
 
-  public getEspecialidades(): void {
-    this.loading = true;
-    this._especialidades
-      .getEspecializacoes()
-      .pipe(
-        untilDestroyed(this),
-        finalize(() => (this.loading = false))
-      )
-      .subscribe({
-        next: (body: IEspecializacaoModel[]) => {
-          this.especialidades = body;
-        },
-      });
-  }
+    public getEspecialidades(): void {
+        this.loading = true;
+        this._especialidades
+            .getEspecializacoes()
+            .pipe(
+                untilDestroyed(this),
+                finalize(() => (this.loading = false))
+            )
+            .subscribe({
+                next: (body: IEspecializacaoModel[]) => {
+                    this.especialidades = body;
+                },
+            });
+    }
 
-  // SE FOR DESATIVAR, O TEXTO MUDARÁ INFORMANDO O USUÁRIO QUE ELE PODE REATIVAR
-  public confirmModal(id: number) {
-    Swal.fire({
-      icon: 'info',
-      title: 'Deseja continuar?',
-      text: 'Esta ação não poderá ser revertida.',
-      showCancelButton: true,
-      confirmButtonText: `Sim`,
-      cancelButtonText: `Não`,
-    }).then((result) => {
-      // CHAMAR END-POINT DE EXCLUSÃO
-      if (result.isConfirmed) {
-        this.delete(id);
-      }
-    });
-  }
+    // SE FOR DESATIVAR, O TEXTO MUDARÁ INFORMANDO O USUÁRIO QUE ELE PODE REATIVAR
+    public confirmModal(id: number) {
+        Swal.fire({
+            icon: 'info',
+            title: 'Deseja continuar?',
+            text: 'Esta ação não poderá ser revertida.',
+            showCancelButton: true,
+            confirmButtonText: `Sim`,
+            cancelButtonText: `Não`,
+        }).then((result) => {
+            // CHAMAR END-POINT DE EXCLUSÃO
+            if (result.isConfirmed) {
+                this.delete(id);
+            }
+        });
+    }
 
-  private sweetAlertConfirm(): void {
-    Swal.fire('Item deletado com sucesso!', '', 'success');
-  }
+    private sweetAlertConfirm(): void {
+        Swal.fire('Item deletado com sucesso!', '', 'success');
+    }
 
-  public initForm() {
-    this.form = this._fb.group({
-      id: [null],
-      descEspecializacao: [null, Validators.required],
-    });
-  }
+    public initForm() {
+        this.form = this._fb.group({
+            id: [null],
+            descEspecializacao: [null, Validators.required],
+        });
+    }
 
-  public clearForm(): void {
-    this.form.get('descEspecializacao').reset();
-  }
+    public clearForm(): void {
+        this.form.get('descEspecializacao').reset();
+    }
 
-  public openModal(especializacao: any): void {
-    this.form.get('id').setValue(especializacao.id);
-    this.form.get('descEspecializacao').setValue(especializacao.descEspecializacao);
-    this.modal.show('editar-especialidade');
-  }
+    public openModal(especializacao: any): void {
+        this.form.get('id').setValue(especializacao.id);
+        this.form.get('descEspecializacao').setValue(especializacao.descEspecializacao);
+        this.modal.show('editar-especialidade');
+    }
 
-  public update(): void {
-    this.loading = true;
-    this._especialidadeService
-      .editarEspecializacao(this.form.value, this.form.get('id').value)
-      .pipe(
-        untilDestroyed(this),
-        finalize(() => (this.loading = false))
-      )
-      .subscribe({
-        next: () => {
-          this._sweetAlert.openToasty('Especialização atualizada com sucesso!', 'success');
-          this.getEspecialidades();
-          this.modal.close('editar-especialidade');
-        },
-      });
-  }
+    public update(): void {
+        this.loading = true;
+        this._especialidadeService
+            .editarEspecializacao(this.form.value, this.form.get('id').value)
+            .pipe(
+                untilDestroyed(this),
+                finalize(() => (this.loading = false))
+            )
+            .subscribe({
+                next: () => {
+                    this._sweetAlert.openToasty('Especialização atualizada com sucesso!', 'success');
+                    this.getEspecialidades();
+                    this.modal.close('editar-especialidade');
+                },
+            });
+    }
 
-  public delete(id: number): void {
-    this.loading = true;
-    this._especialidadeService
-      .deletarEspecializacao(id)
-      .pipe(
-        untilDestroyed(this),
-        finalize(() => (this.loading = false))
-      )
-      .subscribe({
-        next: () => {
-          this._sweetAlert.openToasty('Especialização excluída com sucesso!', 'success');
-          this.getEspecialidades();
-        },
-      });
-  }
+    public delete(id: number): void {
+        this.loading = true;
+        this._especialidadeService
+            .deletarEspecializacao(id)
+            .pipe(
+                untilDestroyed(this),
+                finalize(() => (this.loading = false))
+            )
+            .subscribe({
+                next: () => {
+                    this._sweetAlert.openToasty('Especialização excluída com sucesso!', 'success');
+                    this.getEspecialidades();
+                },
+            });
+    }
 }

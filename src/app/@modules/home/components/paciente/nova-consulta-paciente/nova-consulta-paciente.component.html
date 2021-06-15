@@ -1,201 +1,221 @@
 <app-card-content class="w-100">
-  <div class="row m-0">
-    <div class="col-12 text-center">
-      <i class="feather icon-calendar icon-add"></i>
+    <div class="row m-0">
+        <div class="col-12 text-center">
+            <i class="feather icon-calendar icon-add"></i>
+        </div>
+        <div class="col-12">
+            <h2 class="m-0 text-center title"><i class="feather icon-plus icon-add"></i>Consulta</h2>
+        </div>
+        <div class="col-12 text-center pt-1 pb-2">
+            <span class="description-add">Agendar nova consulta</span>
+        </div>
+        <div class="col-12 text-center">
+            <button
+                type="button"
+                mat-raised-button
+                color="primary"
+                class="btn-success"
+                (click)="verificaPerfilCompleto()"
+            >
+                Agendar
+            </button>
+        </div>
     </div>
-    <div class="col-12">
-      <h2 class="m-0 text-center title"><i class="feather icon-plus icon-add"></i>Consulta</h2>
-    </div>
-    <div class="col-12 text-center pt-1 pb-2">
-      <span class="description-add">Agendar nova consulta</span>
-    </div>
-    <div class="col-12 text-center">
-      <button type="button" mat-raised-button color="primary" class="btn-success" (click)="verificaPerfilCompleto()">
-        Agendar
-      </button>
-    </div>
-  </div>
 </app-card-content>
 <app-modal-animation
-  modalID="agendar-consulta-paciente"
-  modalClass="md-effect-7 consulta-home-paciente"
-  backDrop="true"
+    modalID="agendar-consulta-paciente"
+    modalClass="md-effect-7 consulta-home-paciente"
+    backDrop="true"
 >
-  <div class="md-body container p-3">
-    <div class="row m-0">
-      <div class="col-12 d-flex justify-content-end">
-        <i class="feather icon-x cursor" (click)="closeAndResetFormConsulta()"></i>
-      </div>
-      <div class="col-12">
-        <h3 class="my-1">Dados da consulta</h3>
-        <hr class="my-2" />
-      </div>
-      <div class="col-12">
-        <form [formGroup]="form">
-          <div class="row">
-            <div class="col-4">
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Tipo de consulta</mat-label>
-                <mat-select formControlName="idTipoProcedimento" required>
-                  <mat-option [value]="tipo.id" *ngFor="let tipo of tiposConsulta">{{
-                    tipo.descTipoProcedimento
-                  }}</mat-option>
-                </mat-select>
-                <mat-error>
-                  <app-error-control-message [control]="form.controls.idTipoProcedimento" label="Tipo de consulta">
-                  </app-error-control-message>
-                </mat-error>
-              </mat-form-field>
-            </div>
-            <div class="col-4">
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Data</mat-label>
-                <input
-                  type="text"
-                  matInput
-                  autocomplete="off"
-                  formControlName="dtInicio"
-                  mask="00-00-0000"
-                  [dropSpecialCharacters]="false"
-                />
-                <mat-error>
-                  <app-error-control-message
-                    [control]="form.controls.dtInicio"
-                    label="Data"
-                  ></app-error-control-message>
-                </mat-error>
-              </mat-form-field>
-            </div>
-            <div class="col-4 d-flex align-items-center">
-              <button
-                class="btn btn-primary"
-                type="button"
-                [disabled]="!form.get('dtInicio').valid && !form.get('idTipoProcedimento').valid"
-                (click)="getHorariosDiponiveisConsulta()"
-              >
-                <ng-container *ngIf="loading2">
-                  <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-                  <span class="sr-only">Aguarde...</span>
-                </ng-container>
-                <ng-container *ngIf="!loading2">
-                  <i class="feather icon-search me-1"></i>
-                  <span>buscar horários</span>
-                </ng-container>
-              </button>
-            </div>
-            <ng-container *ngIf="horariosDisponiveis.length > 0">
-              <div class="col-md-8">
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>Horários disponíveis</mat-label>
-                  <mat-select formControlName="horario" required>
-                    <mat-option [value]="horario" *ngFor="let horario of horariosDisponiveis">{{ horario }}</mat-option>
-                  </mat-select>
-                  <mat-error>
-                    <app-error-control-message [control]="form.controls.horario" label="Horário">
-                    </app-error-control-message>
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </ng-container>
-          </div>
-          <div class="row mt-3">
-            <div class="col-12">
-              <h3 class="my-1">Dados do Médico</h3>
-              <hr class="my-2" />
-            </div>
-            <div class="col-6">
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Selecione a especialização</mat-label>
-                <mat-select
-                  formControlName="especializacao"
-                  required
-                  (selectionChange)="getMedicoPorEspecilizacao($event.value)"
-                >
-                  <mat-option [value]="especializacao.id" *ngFor="let especializacao of especializacoes">{{
-                    especializacao.descEspecializacao
-                  }}</mat-option>
-                </mat-select>
-                <mat-error>
-                  <app-error-control-message
-                    [control]="form.controls.especializacao"
-                    label="Especialização"
-                  ></app-error-control-message>
-                </mat-error>
-              </mat-form-field>
-              <div class="col-12" *ngIf="messageError !== ''">
-                <p class="m-0 is-invalid">{{ messageError }}</p>
-              </div>
-            </div>
-            <div class="col-6">
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Selecione o médico</mat-label>
-                <mat-select formControlName="idMedico" required>
-                  <mat-option [value]="medico.id" *ngFor="let medico of medicos">{{ medico.nome }}</mat-option>
-                </mat-select>
-                <mat-error>
-                  <app-error-control-message
-                    [control]="form.controls.idMedico"
-                    label="Médico"
-                  ></app-error-control-message>
-                </mat-error>
-              </mat-form-field>
+    <div class="md-body container p-3">
+        <div class="row m-0">
+            <div class="col-12 d-flex justify-content-end">
+                <i class="feather icon-x cursor" (click)="closeAndResetFormConsulta()"></i>
             </div>
             <div class="col-12">
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Observação <span class="optional">(Opcional)</span></mat-label>
-                <textarea matInput autocomplete="off" formControlName="observacao"></textarea>
-              </mat-form-field>
+                <h3 class="my-1">Dados da consulta</h3>
+                <hr class="my-2" />
             </div>
-          </div>
-          <div class="row">
-            <div class="col-12 d-flex align-items-end justify-content-end pt-3">
-              <button mat-stroked-button class="btn btn-secondary ms-3" (click)="clearForm()">
-                <i class="feather icon-x"></i>
-                limpar
-              </button>
-              <button
-                mat-stroked-button
-                class="btn btn-success ms-3"
-                (click)="confirmAgendamento()"
-                [disabled]="loading"
-              >
-                <i class="feather icon-check"></i>
-                confirmar agendamento
-              </button>
+            <div class="col-12">
+                <form [formGroup]="form">
+                    <div class="row">
+                        <div class="col-4">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>Tipo de consulta</mat-label>
+                                <mat-select formControlName="idTipoProcedimento" required>
+                                    <mat-option [value]="tipo.id" *ngFor="let tipo of tiposConsulta">{{
+                                        tipo.descTipoProcedimento
+                                    }}</mat-option>
+                                </mat-select>
+                                <mat-error>
+                                    <app-error-control-message
+                                        [control]="form.controls.idTipoProcedimento"
+                                        label="Tipo de consulta"
+                                    >
+                                    </app-error-control-message>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-4">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>Data</mat-label>
+                                <input
+                                    type="text"
+                                    matInput
+                                    autocomplete="off"
+                                    formControlName="dtInicio"
+                                    mask="00-00-0000"
+                                    [dropSpecialCharacters]="false"
+                                />
+                                <mat-error>
+                                    <app-error-control-message
+                                        [control]="form.controls.dtInicio"
+                                        label="Data"
+                                    ></app-error-control-message>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-4 d-flex align-items-center">
+                            <button
+                                class="btn btn-primary"
+                                type="button"
+                                [disabled]="!form.get('dtInicio').valid && !form.get('idTipoProcedimento').valid"
+                                (click)="getHorariosDiponiveisConsulta()"
+                            >
+                                <ng-container *ngIf="loading2">
+                                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                    <span class="sr-only">Aguarde...</span>
+                                </ng-container>
+                                <ng-container *ngIf="!loading2">
+                                    <i class="feather icon-search me-1"></i>
+                                    <span>buscar horários</span>
+                                </ng-container>
+                            </button>
+                        </div>
+                        <ng-container *ngIf="horariosDisponiveis.length > 0">
+                            <div class="col-md-8">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Horários disponíveis</mat-label>
+                                    <mat-select formControlName="horario" required>
+                                        <mat-option [value]="horario" *ngFor="let horario of horariosDisponiveis">{{
+                                            horario
+                                        }}</mat-option>
+                                    </mat-select>
+                                    <mat-error>
+                                        <app-error-control-message [control]="form.controls.horario" label="Horário">
+                                        </app-error-control-message>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </ng-container>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <h3 class="my-1">Dados do Médico</h3>
+                            <hr class="my-2" />
+                        </div>
+                        <div class="col-6">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>Selecione a especialização</mat-label>
+                                <mat-select
+                                    formControlName="especializacao"
+                                    required
+                                    (selectionChange)="getMedicoPorEspecilizacao($event.value)"
+                                >
+                                    <mat-option
+                                        [value]="especializacao.id"
+                                        *ngFor="let especializacao of especializacoes"
+                                        >{{ especializacao.descEspecializacao }}</mat-option
+                                    >
+                                </mat-select>
+                                <mat-error>
+                                    <app-error-control-message
+                                        [control]="form.controls.especializacao"
+                                        label="Especialização"
+                                    ></app-error-control-message>
+                                </mat-error>
+                            </mat-form-field>
+                            <div class="col-12" *ngIf="messageError !== ''">
+                                <p class="m-0 is-invalid">{{ messageError }}</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>Selecione o médico</mat-label>
+                                <mat-select formControlName="idMedico" required>
+                                    <mat-option [value]="medico.id" *ngFor="let medico of medicos">{{
+                                        medico.nome
+                                    }}</mat-option>
+                                </mat-select>
+                                <mat-error>
+                                    <app-error-control-message
+                                        [control]="form.controls.idMedico"
+                                        label="Médico"
+                                    ></app-error-control-message>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-12">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>Observação <span class="optional">(Opcional)</span></mat-label>
+                                <textarea matInput autocomplete="off" formControlName="observacao"></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 d-flex align-items-end justify-content-end pt-3">
+                            <button mat-stroked-button class="btn btn-secondary ms-3" (click)="clearForm()">
+                                <i class="feather icon-x"></i>
+                                limpar
+                            </button>
+                            <button
+                                mat-stroked-button
+                                class="btn btn-success ms-3"
+                                (click)="confirmAgendamento()"
+                                [disabled]="loading"
+                            >
+                                <i class="feather icon-check"></i>
+                                confirmar agendamento
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
-          </div>
-        </form>
-      </div>
+        </div>
     </div>
-  </div>
 </app-modal-animation>
 <app-modal-animation modalID="perfil-pendente" modalClass="md-effect-11 perfil-pending" backDrop="true">
-  <div class="md-body container p-3">
-    <div class="row m-0">
-      <div class="col-12 d-flex justify-content-end">
-        <i class="feather icon-x cursor" (click)="modal.close('perfil-pendente')"></i>
-      </div>
+    <div class="md-body container p-3">
+        <div class="row m-0">
+            <div class="col-12 d-flex justify-content-end">
+                <i class="feather icon-x cursor" (click)="modal.close('perfil-pendente')"></i>
+            </div>
+        </div>
+        <div class="row usario-pendente">
+            <div class="col-12">
+                <p class="usario-pendente--alert">Atenção!</p>
+            </div>
+            <div class="col-12">
+                <p class="usario-pendente--text">
+                    Seu perfil está incompleto, clique no botão abaixo para completar o cadastro.
+                </p>
+            </div>
+            <div class="col-12 text-center">
+                <button
+                    mat-stroked-button
+                    class="btn btn-primary ms-3"
+                    (click)="openModalCadastro()"
+                    [disabled]="loading"
+                >
+                    <i class="feather icon-external-link"></i>
+                    completar cadastro
+                </button>
+            </div>
+        </div>
     </div>
-    <div class="row usario-pendente">
-      <div class="col-12">
-        <p class="usario-pendente--alert">Atenção!</p>
-      </div>
-      <div class="col-12">
-        <p class="usario-pendente--text">
-          Seu perfil está incompleto, clique no botão abaixo para completar o cadastro.
-        </p>
-      </div>
-      <div class="col-12 text-center">
-        <button mat-stroked-button class="btn btn-primary ms-3" (click)="openModalCadastro()" [disabled]="loading">
-          <i class="feather icon-external-link"></i>
-          completar cadastro
-        </button>
-      </div>
-    </div>
-  </div>
 </app-modal-animation>
 <app-modal-animation modalID="complete-cadastro" modalClass="md-effect-15 complete-cadastro" backDrop="true">
-  <div class="container md-body">
-    <app-form-dados-basicos-usuario (closeModal)="closeModal($event)"></app-form-dados-basicos-usuario>
-  </div>
+    <div class="container md-body">
+        <app-form-dados-basicos-usuario (closeModal)="closeModal($event)"></app-form-dados-basicos-usuario>
+    </div>
 </app-modal-animation>

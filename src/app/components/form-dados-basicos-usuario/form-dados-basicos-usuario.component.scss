@@ -1,46 +1,46 @@
 @import "../../../theme/form";
 
 .dados-medicos {
-  &__icon {
-    i {
-      font-size: 22px;
-      color: var(--dark);
-      cursor: pointer;
+    &__icon {
+        i {
+            font-size: 22px;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        &--x {
+            &:hover {
+                opacity: 0.6;
+                cursor: pointer;
+            }
+        }
     }
 
-    &--x {
-      &:hover {
-        opacity: 0.6;
-        cursor: pointer;
-      }
-    }
-  }
+    &__header {
+        span {
+            font-size: var(--f_16);
+            color: var(--tcc-gray);
+            font-weight: 400;
+        }
 
-  &__header {
-    span {
-      font-size: var(--f_16);
-      color: var(--tcc-gray);
-      font-weight: 400;
+        h3 {
+            color: var(--dark);
+            font-size: 22px;
+        }
     }
-
-    h3 {
-      color: var(--dark);
-      font-size: 22px;
-    }
-  }
 }
 
 ::ng-deep .compartilhar-dados {
-  .md-content {
-    width: 200px;
-  }
+    .md-content {
+        width: 200px;
+    }
 }
 
 ::ng-deep .dados-pendentes {
-  .md-content {
-    width: 500px !important;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-    display: flex;
-  }
+    .md-content {
+        width: 500px !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        display: flex;
+    }
 }

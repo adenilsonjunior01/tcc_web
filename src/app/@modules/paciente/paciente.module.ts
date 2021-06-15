@@ -19,28 +19,28 @@ import { FileUploadModule } from '@iplab/ngx-file-upload';
 import { DadosMedicosPacienteComponent } from './components/dados-medicos-paciente/dados-medicos-paciente.component';
 
 @NgModule({
-  declarations: [
-    PacienteComponent,
-    TablePacientesComponent,
-    TableMedicoComponent,
-    ConsultaMedicaComponent,
-    DetalhesPacienteComponent,
-    ProntuarioMedicoPacienteComponent,
-    FormNovoPacienteComponent,
-    DadosMedicosPacienteComponent,
-  ],
-  imports: [
-    CommonModule,
-    PacienteRoutingModule,
-    SharedModule,
-    FlexLayoutModule,
-    MaterialModule,
-    NgSelectModule,
-    NgxMaskModule,
-    NgxPaginationModule,
-    NgxMaskModule,
-    FileUploadModule,
-  ],
-  exports: [ConsultaMedicaComponent],
+    declarations: [
+        PacienteComponent,
+        TablePacientesComponent,
+        TableMedicoComponent,
+        ConsultaMedicaComponent,
+        DetalhesPacienteComponent,
+        ProntuarioMedicoPacienteComponent,
+        FormNovoPacienteComponent,
+        DadosMedicosPacienteComponent,
+    ],
+    imports: [
+        CommonModule,
+        PacienteRoutingModule,
+        SharedModule,
+        FlexLayoutModule,
+        MaterialModule,
+        NgSelectModule,
+        NgxMaskModule,
+        NgxPaginationModule,
+        NgxMaskModule,
+        FileUploadModule,
+    ],
+    exports: [ConsultaMedicaComponent],
 })
 export class PacienteModule {}

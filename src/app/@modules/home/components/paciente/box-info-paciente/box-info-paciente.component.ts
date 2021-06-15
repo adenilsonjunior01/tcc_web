@@ -10,60 +10,60 @@ import { IDadosMedicosPacienteModel } from '../../../../../models/dados-medicos-
 const log = new Logger('Dados Home Paciente');
 
 @Component({
-  selector: 'app-box-info-paciente',
-  templateUrl: './box-info-paciente.component.html',
-  styleUrls: ['./box-info-paciente.component.scss'],
+    selector: 'app-box-info-paciente',
+    templateUrl: './box-info-paciente.component.html',
+    styleUrls: ['./box-info-paciente.component.scss'],
 })
 export class BoxInfoPacienteComponent implements OnInit, OnDestroy {
-  public dadosUser: IDadosUserModel;
-  public dadosMedicos: any;
-  public loading = false;
-  public messageError = '';
+    public dadosUser: IDadosUserModel;
+    public dadosMedicos: any;
+    public loading = false;
+    public messageError = '';
 
-  constructor(
-    private readonly _userService: UsuarioService,
-    private readonly _dadosMedicosService: DadosMedicosService
-  ) {}
+    constructor(
+        private readonly _userService: UsuarioService,
+        private readonly _dadosMedicosService: DadosMedicosService
+    ) {}
 
-  ngOnDestroy(): void {}
+    ngOnDestroy(): void {}
 
-  ngOnInit(): void {
-    this.getDadosUser();
-    this.getDadosMedicos();
-  }
+    ngOnInit(): void {
+        this.getDadosUser();
+        this.getDadosMedicos();
+    }
 
-  public getDadosUser(): void {
-    this.loading = true;
-    this._userService
-      .getDadosUser()
-      .pipe(
-        untilDestroyed(this),
-        finalize(() => {
-          this.loading = false;
-        })
-      )
-      .subscribe({
-        next: (body: IDadosUserModel) => {
-          this.dadosUser = body;
-        },
-        error: (error) => {
-          log.error(error);
-        },
-      });
-  }
+    public getDadosUser(): void {
+        this.loading = true;
+        this._userService
+            .getDadosUser()
+            .pipe(
+                untilDestroyed(this),
+                finalize(() => {
+                    this.loading = false;
+                })
+            )
+            .subscribe({
+                next: (body: IDadosUserModel) => {
+                    this.dadosUser = body;
+                },
+                error: (error) => {
+                    log.error(error);
+                },
+            });
+    }
 
-  public getDadosMedicos(): any {
-    this._dadosMedicosService
-      .getDadosMedicos()
-      .pipe(untilDestroyed(this))
-      .subscribe({
-        next: (body: IDadosMedicosPacienteModel) => {
-          this.dadosMedicos = body;
-        },
-        error: (error) => {
-          log.error(error);
-          this.messageError = error?.error?.message;
-        },
-      });
-  }
+    public getDadosMedicos(): any {
+        this._dadosMedicosService
+            .getDadosMedicos()
+            .pipe(untilDestroyed(this))
+            .subscribe({
+                next: (body: IDadosMedicosPacienteModel) => {
+                    this.dadosMedicos = body;
+                },
+                error: (error) => {
+                    log.error(error);
+                    this.messageError = error?.error?.message;
+                },
+            });
+    }
 }

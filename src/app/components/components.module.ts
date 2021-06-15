@@ -8,8 +8,8 @@ import { MaterialModule } from '../material.module';
 import { DetalhesConsultaComponent } from './detalhes-consulta/detalhes-consulta.component';
 
 @NgModule({
-  declarations: [FormDadosBasicosMedicoComponent, FormDadosBasicosUsuarioComponent, DetalhesConsultaComponent],
-  exports: [FormDadosBasicosMedicoComponent, FormDadosBasicosUsuarioComponent, DetalhesConsultaComponent],
-  imports: [CommonModule, SharedModule, NgxMaskModule, MaterialModule],
+    declarations: [FormDadosBasicosMedicoComponent, FormDadosBasicosUsuarioComponent, DetalhesConsultaComponent],
+    exports: [FormDadosBasicosMedicoComponent, FormDadosBasicosUsuarioComponent, DetalhesConsultaComponent],
+    imports: [CommonModule, SharedModule, NgxMaskModule, MaterialModule],
 })
 export class ComponentsModule {}

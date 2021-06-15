@@ -9,7 +9,7 @@ import { MaterialModule } from '../../material.module';
 import { SharedModule } from '../../@shared/shared.module';
 
 @NgModule({
-  declarations: [EspecialidadesComponent, TableEspecialidadesComponent, FormCadastroEspecialidadeComponent],
-  imports: [CommonModule, EspecialidadesRoutingModule, SharedModule, MaterialModule],
+    declarations: [EspecialidadesComponent, TableEspecialidadesComponent, FormCadastroEspecialidadeComponent],
+    imports: [CommonModule, EspecialidadesRoutingModule, SharedModule, MaterialModule],
 })
 export class EspecialidadesModule {}

@@ -1,16 +1,16 @@
 <mat-card [ngClass]="cardClass">
-  <mat-progress-bar mode="indeterminate" *ngIf="loadingLine" [ngClass]="progressClass"></mat-progress-bar>
-  <div *ngIf="isHeader">
-    <ng-content select=".card-header"></ng-content>
+    <mat-progress-bar mode="indeterminate" *ngIf="loadingLine" [ngClass]="progressClass"></mat-progress-bar>
+    <div *ngIf="isHeader">
+        <ng-content select=".card-header"></ng-content>
 
-    <hr class="mb-2 mt-1" />
-  </div>
-  <mat-card-content>
-    <div class="card-content">
-      <ng-content></ng-content>
+        <hr class="mb-2 mt-1" />
     </div>
-  </mat-card-content>
-  <div *ngIf="isCardFooter" [ngClass]="footerClass">
-    <ng-content select=".app-card-footer"></ng-content>
-  </div>
+    <mat-card-content>
+        <div class="card-content">
+            <ng-content></ng-content>
+        </div>
+    </mat-card-content>
+    <div *ngIf="isCardFooter" [ngClass]="footerClass">
+        <ng-content select=".app-card-footer"></ng-content>
+    </div>
 </mat-card>

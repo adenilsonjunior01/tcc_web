@@ -2,72 +2,72 @@
 @import "../../theme/mixin";
 
 :host {
-  display: flex;
-  flex: 1;
-  background-color: #ffffff;
+    display: flex;
+    flex: 1;
+    background-color: #ffffff;
 }
 
 .inline-loader {
-  display: inline-block;
+    display: inline-block;
 }
 
 .version {
-  margin: 0;
+    margin: 0;
 }
 
 .login-container,
 .mat-form-field {
-  width: 100%;
+    width: 100%;
 }
 
 .login-fields > :not(:last-child) {
-  margin-bottom: 8px;
+    margin-bottom: 8px;
 }
 
 .login-error {
-  color: mat-color($app-warn);
+    color: mat-color($app-warn);
 }
 
 .bg-form {
-  background: url(../../assets/login/bg-form-login.svg);
-  background-size: cover;
-  background-repeat: no-repeat;
+    background: url(../../assets/login/bg-form-login.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .box-form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 500px;
-  height: 470px;
-  border-radius: 28px;
-  top: 80px;
-  position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    height: 470px;
+    border-radius: 28px;
+    top: 80px;
+    position: relative;
 }
 
 .title {
-  color: #404040;
-  font-size: 40px;
+    color: #404040;
+    font-size: 40px;
 }
 
 .remeber {
-  color: #7c7c7c;
-  font-size: var(--f_14);
-  font-weight: 600;
+    color: #7c7c7c;
+    font-size: var(--f_14);
+    font-weight: 600;
 }
 
 .reset-password {
-  color: #197bbd;
-  font-size: var(--f_14);
-  font-weight: 600;
+    color: #197bbd;
+    font-size: var(--f_14);
+    font-weight: 600;
 }
 
 @include query(mobile) {
-  img {
-    display: none;
-  }
+    img {
+        display: none;
+    }
 
-  .box-form {
-    width: 325px;
-  }
+    .box-form {
+        width: 325px;
+    }
 }

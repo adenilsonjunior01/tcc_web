@@ -1,129 +1,129 @@
 <div class="row">
-  <div class="col-12">
-    <h3 class="my-2">Quantitativo Consultas</h3>
-  </div>
-  <div class="col-md-6 col-12 pt-3 pt-md-0">
-    <app-card-content
-      cardClass="padd-footer"
-      isCardFooter="true"
-      footerClass="bg-card-thirt"
-      [loadingLine]="loading"
-      progressClass="progress-laranja"
-    >
-      <div class="card-body">
-        <div class="row m-0">
-          <div class="col-sm-8">
-            <h1 class="m-0 title1">{{ pendente?.quantidade ? pendente?.quantidade : 0 }}</h1>
-            <span class="subtitle d-block">Total Geral</span>
-          </div>
-          <div class="col-4 d-flex align-items-center justify-content-center">
-            <i class="feather icon-bar-chart-2"></i>
-          </div>
-        </div>
-      </div>
-      <div class="app-card-footer">
-        <div class="row text-left py-3 text-white m-0">
-          <div class="col-8">
-            <span>{{ pendente?.descricao ? pendente?.descricao : 'Pendente' }}</span>
-          </div>
-          <div class="col d-flex align-items-center justify-content-center">
-            <i class="feather icon-activity"></i>
-          </div>
-        </div>
-      </div>
-    </app-card-content>
-  </div>
-  <div class="col-md-6 col-12 pt-3 pt-md-0">
-    <app-card-content
-      cardClass="padd-footer"
-      isCardFooter="true"
-      footerClass="bg-card-secondary"
-      [loadingLine]="loading"
-      progressClass="progress-verde"
-    >
-      <div class="card-body">
-        <div class="row m-0">
-          <div class="col-sm-8">
-            <h1 class="m-0 title2">{{ emAndamento?.quantidade ? emAndamento?.quantidade : 0 }}</h1>
-            <span class="subtitle d-block">Total Geral</span>
-          </div>
-          <div class="col-4 d-flex align-items-center justify-content-center">
-            <i class="feather icon-bar-chart-2"></i>
-          </div>
-        </div>
-      </div>
-      <div class="app-card-footer">
-        <div class="row text-left py-3 text-white m-0">
-          <div class="col-8">
-            <span>{{ emAndamento?.descricao ? emAndamento?.descricao : 'Em andamento' }}</span>
-          </div>
-          <div class="col d-flex align-items-center justify-content-center">
-            <i class="feather icon-activity"></i>
-          </div>
-        </div>
-      </div>
-    </app-card-content>
-  </div>
-  <div class="col-md-6 col-12 pt-3">
-    <app-card-content
-      cardClass="padd-footer"
-      isCardFooter="true"
-      footerClass="bg-card-four"
-      [loadingLine]="loading"
-      progressClass="progress-vermelho"
-    >
-      <div class="card-body">
-        <div class="row m-0">
-          <div class="col-sm-8">
-            <h1 class="m-0 title3">{{ cancelada?.quantidade ? cancelada?.quantidade : 0 }}</h1>
-            <span class="subtitle d-block">Total Geral</span>
-          </div>
-          <div class="col-4 d-flex align-items-center justify-content-center">
-            <i class="feather icon-bar-chart-2"></i>
-          </div>
-        </div>
-      </div>
-      <div class="app-card-footer">
-        <div class="row text-left py-3 text-white m-0">
-          <div class="col-8">
-            <span>{{ cancelada?.descricao ? cancelada?.descricao : 'Cancelada' }}</span>
-          </div>
-          <div class="col d-flex align-items-center justify-content-center">
-            <i class="feather icon-activity"></i>
-          </div>
-        </div>
-      </div>
-    </app-card-content>
-  </div>
-  <div class="col-md-6 col-12 pt-3">
-    <app-card-content
-      cardClass="padd-footer"
-      isCardFooter="true"
-      footerClass="bg-card-primary"
-      [loadingLine]="loading"
-      progressClass="progress-azul"
-    >
-      <div class="card-body">
-        <div class="row m-0">
-          <div class="col-sm-8">
-            <h1 class="m-0 title4">{{ finalizada?.quantidade ? finalizada?.quantidade : 0 }}</h1>
-            <span class="subtitle d-block">Total Geral</span>
-          </div>
-          <div class="col-4 d-flex align-items-center justify-content-center">
-            <i class="feather icon-bar-chart-2"></i>
-          </div>
-        </div>
-      </div>
-      <div class="app-card-footer">
-        <div class="row text-left py-3 text-white m-0">
-          <div class="col-8">
-            <span>{{ finalizada?.descricao ? finalizada?.descricao : 'Finalizada' }}</span>
-          </div>
-          <div class="col d-flex align-items-center justify-content-center">
-            <i class="feather icon-activity"></i>
-          </div>
-        </div>
-      </div>
-    </app-card-content>
-  </div>
+    <div class="col-12">
+        <h3 class="my-2">Quantitativo Consultas</h3>
+    </div>
+    <div class="col-md-6 col-12 pt-3 pt-md-0">
+        <app-card-content
+            cardClass="padd-footer"
+            isCardFooter="true"
+            footerClass="bg-card-thirt"
+            [loadingLine]="loading"
+            progressClass="progress-laranja"
+        >
+            <div class="card-body">
+                <div class="row m-0">
+                    <div class="col-sm-8">
+                        <h1 class="m-0 title1">{{ pendente?.quantidade ? pendente?.quantidade : 0 }}</h1>
+                        <span class="subtitle d-block">Total Geral</span>
+                    </div>
+                    <div class="col-4 d-flex align-items-center justify-content-center">
+                        <i class="feather icon-bar-chart-2"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="app-card-footer">
+                <div class="row text-left py-3 text-white m-0">
+                    <div class="col-8">
+                        <span>{{ pendente?.descricao ? pendente?.descricao : 'Pendente' }}</span>
+                    </div>
+                    <div class="col d-flex align-items-center justify-content-center">
+                        <i class="feather icon-activity"></i>
+                    </div>
+                </div>
+            </div>
+        </app-card-content>
+    </div>
+    <div class="col-md-6 col-12 pt-3 pt-md-0">
+        <app-card-content
+            cardClass="padd-footer"
+            isCardFooter="true"
+            footerClass="bg-card-secondary"
+            [loadingLine]="loading"
+            progressClass="progress-verde"
+        >
+            <div class="card-body">
+                <div class="row m-0">
+                    <div class="col-sm-8">
+                        <h1 class="m-0 title2">{{ emAndamento?.quantidade ? emAndamento?.quantidade : 0 }}</h1>
+                        <span class="subtitle d-block">Total Geral</span>
+                    </div>
+                    <div class="col-4 d-flex align-items-center justify-content-center">
+                        <i class="feather icon-bar-chart-2"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="app-card-footer">
+                <div class="row text-left py-3 text-white m-0">
+                    <div class="col-8">
+                        <span>{{ emAndamento?.descricao ? emAndamento?.descricao : 'Em andamento' }}</span>
+                    </div>
+                    <div class="col d-flex align-items-center justify-content-center">
+                        <i class="feather icon-activity"></i>
+                    </div>
+                </div>
+            </div>
+        </app-card-content>
+    </div>
+    <div class="col-md-6 col-12 pt-3">
+        <app-card-content
+            cardClass="padd-footer"
+            isCardFooter="true"
+            footerClass="bg-card-four"
+            [loadingLine]="loading"
+            progressClass="progress-vermelho"
+        >
+            <div class="card-body">
+                <div class="row m-0">
+                    <div class="col-sm-8">
+                        <h1 class="m-0 title3">{{ cancelada?.quantidade ? cancelada?.quantidade : 0 }}</h1>
+                        <span class="subtitle d-block">Total Geral</span>
+                    </div>
+                    <div class="col-4 d-flex align-items-center justify-content-center">
+                        <i class="feather icon-bar-chart-2"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="app-card-footer">
+                <div class="row text-left py-3 text-white m-0">
+                    <div class="col-8">
+                        <span>{{ cancelada?.descricao ? cancelada?.descricao : 'Cancelada' }}</span>
+                    </div>
+                    <div class="col d-flex align-items-center justify-content-center">
+                        <i class="feather icon-activity"></i>
+                    </div>
+                </div>
+            </div>
+        </app-card-content>
+    </div>
+    <div class="col-md-6 col-12 pt-3">
+        <app-card-content
+            cardClass="padd-footer"
+            isCardFooter="true"
+            footerClass="bg-card-primary"
+            [loadingLine]="loading"
+            progressClass="progress-azul"
+        >
+            <div class="card-body">
+                <div class="row m-0">
+                    <div class="col-sm-8">
+                        <h1 class="m-0 title4">{{ finalizada?.quantidade ? finalizada?.quantidade : 0 }}</h1>
+                        <span class="subtitle d-block">Total Geral</span>
+                    </div>
+                    <div class="col-4 d-flex align-items-center justify-content-center">
+                        <i class="feather icon-bar-chart-2"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="app-card-footer">
+                <div class="row text-left py-3 text-white m-0">
+                    <div class="col-8">
+                        <span>{{ finalizada?.descricao ? finalizada?.descricao : 'Finalizada' }}</span>
+                    </div>
+                    <div class="col d-flex align-items-center justify-content-center">
+                        <i class="feather icon-activity"></i>
+                    </div>
+                </div>
+            </div>
+        </app-card-content>
+    </div>
 </div>

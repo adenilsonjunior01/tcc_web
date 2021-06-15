@@ -1,146 +1,164 @@
 <form [formGroup]="form" class="animate__fadeInRight">
-  <div class="row m-0">
-    <div class="col-12 d-flex justify-content-between">
-      <div>
-        <h3 class="m-0">Novo Paciente</h3>
-        <span>Pré-cadastro do paciente</span>
-      </div>
-      <div class="close-modal">
-        <i class="feather icon-x" (click)="closeModalAndResetForm(true, 'pre-cadastro')"></i>
-      </div>
-    </div>
-    <div class="col-12">
-      <hr class="my-2" />
-    </div>
-    <div class="col-12">
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Nome Completo</mat-label>
-        <input type="text" matInput placeholder="Digite o nome completo" autocomplete="off" formControlName="nome" />
-        <mat-error>
-          <app-error-control-message [control]="form.controls.nome" label="Nome"></app-error-control-message>
-        </mat-error>
-      </mat-form-field>
-    </div>
-    <div class="col-12 col-md-4">
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>CPF</mat-label>
-        <input
-          type="text"
-          matInput
-          placeholder="Digite o CPF"
-          autocomplete="off"
-          mask="000.000.000-00"
-          formControlName="cpf"
-        />
-        <mat-error>
-          <app-error-control-message [control]="form.controls.cpf" label="CPF"></app-error-control-message>
-        </mat-error>
-      </mat-form-field>
-    </div>
-    <div class="col-12 col-md-3">
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Telefone</mat-label>
-        <input
-          type="text"
-          matInput
-          placeholder="Digite o Telefone"
-          autocomplete="off"
-          mask="(00) 0 0000 0000"
-          formControlName="telefone"
-        />
-        <mat-error>
-          <app-error-control-message [control]="form.controls.cpf" label="Telefone"></app-error-control-message>
-        </mat-error>
-      </mat-form-field>
-    </div>
-    <div class="col-12 col-md-5">
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>E-mail</mat-label>
-        <input type="text" matInput placeholder="Digite o e-mail" autocomplete="off" formControlName="email" />
-        <mat-error>
-          <app-error-control-message [control]="form.controls.email" label="E-mail"></app-error-control-message>
-        </mat-error>
-      </mat-form-field>
-    </div>
-    <div class="col-md-4 col-12">
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Sexo</mat-label>
-        <mat-select formControlName="sexo" required>
-          <mat-option [value]="sexo.value" *ngFor="let sexo of listaSexo">{{ sexo.name }}</mat-option>
-        </mat-select>
-        <mat-error>
-          <app-error-control-message [control]="form.controls.sexo" label="Sexo"> </app-error-control-message>
-        </mat-error>
-      </mat-form-field>
-    </div>
-    <div class="col-12 col-md-8">
-      <mat-form-field appearance="outline">
-        <mat-label>Data de nascimento</mat-label>
-        <input matInput type="text" formControlName="dtNascimento" mask="00/00/0000" [dropSpecialCharacters]="false" />
-        <mat-error>
-          <app-error-control-message [control]="form.controls.dtNascimento" label="Data de nascimento">
-          </app-error-control-message>
-        </mat-error>
-      </mat-form-field>
-    </div>
+    <div class="row m-0">
+        <div class="col-12 d-flex justify-content-between">
+            <div>
+                <h3 class="m-0">Novo Paciente</h3>
+                <span>Pré-cadastro do paciente</span>
+            </div>
+            <div class="close-modal">
+                <i class="feather icon-x" (click)="closeModalAndResetForm(true, 'pre-cadastro')"></i>
+            </div>
+        </div>
+        <div class="col-12">
+            <hr class="my-2" />
+        </div>
+        <div class="col-12">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Nome Completo</mat-label>
+                <input
+                    type="text"
+                    matInput
+                    placeholder="Digite o nome completo"
+                    autocomplete="off"
+                    formControlName="nome"
+                />
+                <mat-error>
+                    <app-error-control-message [control]="form.controls.nome" label="Nome"></app-error-control-message>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-12 col-md-4">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>CPF</mat-label>
+                <input
+                    type="text"
+                    matInput
+                    placeholder="Digite o CPF"
+                    autocomplete="off"
+                    mask="000.000.000-00"
+                    formControlName="cpf"
+                />
+                <mat-error>
+                    <app-error-control-message [control]="form.controls.cpf" label="CPF"></app-error-control-message>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-12 col-md-3">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Telefone</mat-label>
+                <input
+                    type="text"
+                    matInput
+                    placeholder="Digite o Telefone"
+                    autocomplete="off"
+                    mask="(00) 0 0000 0000"
+                    formControlName="telefone"
+                />
+                <mat-error>
+                    <app-error-control-message
+                        [control]="form.controls.cpf"
+                        label="Telefone"
+                    ></app-error-control-message>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-12 col-md-5">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>E-mail</mat-label>
+                <input type="text" matInput placeholder="Digite o e-mail" autocomplete="off" formControlName="email" />
+                <mat-error>
+                    <app-error-control-message
+                        [control]="form.controls.email"
+                        label="E-mail"
+                    ></app-error-control-message>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-md-4 col-12">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Sexo</mat-label>
+                <mat-select formControlName="sexo" required>
+                    <mat-option [value]="sexo.value" *ngFor="let sexo of listaSexo">{{ sexo.name }}</mat-option>
+                </mat-select>
+                <mat-error>
+                    <app-error-control-message [control]="form.controls.sexo" label="Sexo"> </app-error-control-message>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-12 col-md-8">
+            <mat-form-field appearance="outline">
+                <mat-label>Data de nascimento</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    formControlName="dtNascimento"
+                    mask="00/00/0000"
+                    [dropSpecialCharacters]="false"
+                />
+                <mat-error>
+                    <app-error-control-message [control]="form.controls.dtNascimento" label="Data de nascimento">
+                    </app-error-control-message>
+                </mat-error>
+            </mat-form-field>
+        </div>
 
-    <div class="col-12" *ngIf="messageError !== ''">
-      <p class="m-0 is-invalid">[Error] {{ messageError }}</p>
+        <div class="col-12" *ngIf="messageError !== ''">
+            <p class="m-0 is-invalid">[Error] {{ messageError }}</p>
+        </div>
     </div>
-  </div>
-  <ng-container [formGroup]="formPaciente" novalidate>
-    <div class="row m-0 py-2">
-      <div class="col-12">
-        <h3 class="m-0">Dados Convênio <i>(Opcional)</i></h3>
-      </div>
-      <div class="col-6">
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Nome</mat-label>
-          <input type="text" matInput autocomplete="off" formControlName="descConvenio" />
-        </mat-form-field>
-      </div>
-      <div class="col-6 col-md-4">
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Nº Inscrição</mat-label>
-          <input type="text" matInput autocomplete="off" formControlName="nuInscricaoConvenio" />
-        </mat-form-field>
-      </div>
-      <div class="col-12 col-md-4">
-        <p class="m-0 perfil">
-          Perfil: <span>{{ controlPerfil.value }}</span>
-        </p>
-      </div>
-      <div class="col-12 d-flex align-items-end justify-content-end pt-4">
-        <button
-          mat-stroked-button
-          class="btn btn-outline-secondary"
-          (click)="back()"
-          *ngIf="!novoPaciente"
-          type="button"
-        >
-          <i class="feather icon-arrow-left"></i>
-          voltar
-        </button>
-        <button mat-stroked-button class="btn btn-outline-secondary" (click)="resetForm()" *ngIf="novoPaciente">
-          <i class="feather icon-x"></i>
-          limpar
-        </button>
-        <button
-          type="button"
-          mat-stroked-button
-          class="btn btn-success ms-3"
-          (click)="submitPreCadastroPaciente(2)"
-          [disabled]="!form.valid || loading"
-        >
-          <i *ngIf="!loading" class="feather icon-check"></i>
-          <ng-container *ngIf="loading">
-            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-            <span class="sr-only">Aguarde...</span>
-          </ng-container>
-          <span *ngIf="!novoPaciente! && !loading">confirmar e continuar</span>
-          <span *ngIf="novoPaciente && !loading">salvar</span>
-        </button>
-      </div>
-    </div>
-  </ng-container>
+    <ng-container [formGroup]="formPaciente" novalidate>
+        <div class="row m-0 py-2">
+            <div class="col-12">
+                <h3 class="m-0">Dados Convênio <i>(Opcional)</i></h3>
+            </div>
+            <div class="col-6">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Nome</mat-label>
+                    <input type="text" matInput autocomplete="off" formControlName="descConvenio" />
+                </mat-form-field>
+            </div>
+            <div class="col-6 col-md-4">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Nº Inscrição</mat-label>
+                    <input type="text" matInput autocomplete="off" formControlName="nuInscricaoConvenio" />
+                </mat-form-field>
+            </div>
+            <div class="col-12 col-md-4">
+                <p class="m-0 perfil">
+                    Perfil: <span>{{ controlPerfil.value }}</span>
+                </p>
+            </div>
+            <div class="col-12 d-flex align-items-end justify-content-end pt-4">
+                <button
+                    mat-stroked-button
+                    class="btn btn-outline-secondary"
+                    (click)="back()"
+                    *ngIf="!novoPaciente"
+                    type="button"
+                >
+                    <i class="feather icon-arrow-left"></i>
+                    voltar
+                </button>
+                <button mat-stroked-button class="btn btn-outline-secondary" (click)="resetForm()" *ngIf="novoPaciente">
+                    <i class="feather icon-x"></i>
+                    limpar
+                </button>
+                <button
+                    type="button"
+                    mat-stroked-button
+                    class="btn btn-success ms-3"
+                    (click)="submitPreCadastroPaciente(2)"
+                    [disabled]="!form.valid || loading"
+                >
+                    <i *ngIf="!loading" class="feather icon-check"></i>
+                    <ng-container *ngIf="loading">
+                        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                        <span class="sr-only">Aguarde...</span>
+                    </ng-container>
+                    <span *ngIf="!novoPaciente! && !loading">confirmar e continuar</span>
+                    <span *ngIf="novoPaciente && !loading">salvar</span>
+                </button>
+            </div>
+        </div>
+    </ng-container>
 </form>

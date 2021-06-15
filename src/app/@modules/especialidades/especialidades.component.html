@@ -1,45 +1,45 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-12 mb-3">
-      <app-card-content>
-        <div class="row">
-          <div class="col-md-4">
-            <form action="">
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Pesquise pelo nome</mat-label>
-                <mat-icon matSuffix>search</mat-icon>
-                <input matInput cdkFocusInitial />
-              </mat-form-field>
-            </form>
-          </div>
-          <div class="col-md-8 d-flex align-items-center justify-content-end">
-            <button class="btn btn-warning me-3" type="button">
-              <i class="feather icon-search"></i>
-              <span>buscar</span>
-            </button>
-            <button type="button" class="btn btn-primary" (click)="modal.show('especialidade')">
-              <i class="feather icon-plus"></i>
-              nova especialidade
-            </button>
-            <div></div>
-          </div>
+    <div class="row">
+        <div class="col-12 mb-3">
+            <app-card-content>
+                <div class="row">
+                    <div class="col-md-4">
+                        <form action="">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>Pesquise pelo nome</mat-label>
+                                <mat-icon matSuffix>search</mat-icon>
+                                <input matInput cdkFocusInitial />
+                            </mat-form-field>
+                        </form>
+                    </div>
+                    <div class="col-md-8 d-flex align-items-center justify-content-end">
+                        <button class="btn btn-warning me-3" type="button">
+                            <i class="feather icon-search"></i>
+                            <span>buscar</span>
+                        </button>
+                        <button type="button" class="btn btn-primary" (click)="modal.show('especialidade')">
+                            <i class="feather icon-plus"></i>
+                            nova especialidade
+                        </button>
+                        <div></div>
+                    </div>
+                </div>
+            </app-card-content>
         </div>
-      </app-card-content>
+        <div class="col-12">
+            <app-table-especialidades [recarregarLista]="recarregarLista"></app-table-especialidades>
+        </div>
     </div>
-    <div class="col-12">
-      <app-table-especialidades [recarregarLista]="recarregarLista"></app-table-especialidades>
-    </div>
-  </div>
 </div>
 <app-modal-animation modalID="especialidade" modalClass="md-effect-10 modal-especialidade" backDrop="true">
-  <div class="container md-body">
-    <div class="row mb-3">
-      <div class="col-12 d-flex justify-content-end mt-3">
-        <i class="feather icon-x" (click)="modal.close('especialidade')"></i>
-      </div>
-      <div class="col-12">
-        <app-form-cadastro-especialidade (closeModal)="closeModal($event)"></app-form-cadastro-especialidade>
-      </div>
+    <div class="container md-body">
+        <div class="row mb-3">
+            <div class="col-12 d-flex justify-content-end mt-3">
+                <i class="feather icon-x" (click)="modal.close('especialidade')"></i>
+            </div>
+            <div class="col-12">
+                <app-form-cadastro-especialidade (closeModal)="closeModal($event)"></app-form-cadastro-especialidade>
+            </div>
+        </div>
     </div>
-  </div>
 </app-modal-animation>

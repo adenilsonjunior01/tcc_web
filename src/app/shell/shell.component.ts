@@ -12,89 +12,89 @@ import { IClinicaModel } from '../models/clinica-model';
 import { finalize } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-shell',
-  templateUrl: './shell.component.html',
-  styleUrls: ['./shell.component.scss'],
+    selector: 'app-shell',
+    templateUrl: './shell.component.html',
+    styleUrls: ['./shell.component.scss'],
 })
 export class ShellComponent implements OnInit, OnDestroy {
-  constructor(
-    private readonly titleService: Title,
-    private readonly credentialsService: CredentialsService,
-    private readonly media: MediaObserver,
-    private readonly _nav: NavigationItem,
-    private readonly _clinica: ClinicaService
-  ) {
-    this.dataSource.data = this._nav.get();
-  }
-  public perfil: string;
-  public loading = false;
+    constructor(
+        private readonly titleService: Title,
+        private readonly credentialsService: CredentialsService,
+        private readonly media: MediaObserver,
+        private readonly _nav: NavigationItem,
+        private readonly _clinica: ClinicaService
+    ) {
+        this.dataSource.data = this._nav.get();
+    }
+    public perfil: string;
+    public loading = false;
 
-  ngOnDestroy(): void {}
+    ngOnDestroy(): void {}
 
-  subtitle: string;
-  dadosClinica: IClinicaModel;
-  errorRequest = false;
+    subtitle: string;
+    dadosClinica: IClinicaModel;
+    errorRequest = false;
 
-  ngOnInit() {
-    this.getDadosClinica();
-    this.getPerfilUser();
-  }
+    ngOnInit() {
+        this.getDadosClinica();
+        this.getPerfilUser();
+    }
 
-  get username(): string | null {
-    const credentials = this.credentialsService.credentials;
-    return credentials ? credentials.email : null;
-  }
+    get username(): string | null {
+        const credentials = this.credentialsService.credentials;
+        return credentials ? credentials.email : null;
+    }
 
-  get isMobile(): boolean {
-    return this.media.isActive('xs') || this.media.isActive('sm');
-  }
+    get isMobile(): boolean {
+        return this.media.isActive('xs') || this.media.isActive('sm');
+    }
 
-  get title(): string {
-    return this.titleService.getTitle();
-  }
+    get title(): string {
+        return this.titleService.getTitle();
+    }
 
-  public getDadosClinica() {
-    this.loading = true;
-    this._clinica
-      .getDadosClinica()
-      .pipe(
-        finalize(() => (this.loading = false)),
-        untilDestroyed(this)
-      )
-      .subscribe({
-        next: (body: IClinicaModel) => {
-          this.dadosClinica = body;
-        },
-        error: () => (this.errorRequest = true),
-      });
-  }
+    public getDadosClinica() {
+        this.loading = true;
+        this._clinica
+            .getDadosClinica()
+            .pipe(
+                finalize(() => (this.loading = false)),
+                untilDestroyed(this)
+            )
+            .subscribe({
+                next: (body: IClinicaModel) => {
+                    this.dadosClinica = body;
+                },
+                error: () => (this.errorRequest = true),
+            });
+    }
 
-  public getPerfilUser() {
-    this.perfil = this.credentialsService.profile;
-  }
+    public getPerfilUser() {
+        this.perfil = this.credentialsService.profile;
+    }
 
-  private _transformer = (node: IMenuNavigation, level: number) => {
-    return {
-      expandable: !!node.children && node.children.length > 0,
-      name: node.name,
-      route: node.route,
-      level: level,
+    private _transformer = (node: IMenuNavigation, level: number) => {
+        return {
+            expandable: !!node.children && node.children.length > 0,
+            name: node.name,
+            route: node.route,
+            level: level,
+        };
     };
-  };
 
-  treeControl = new FlatTreeControl<IFlatNode>(
-    (node) => node.level,
-    (node) => node.expandable
-  );
+    treeControl = new FlatTreeControl<IFlatNode>(
+        (node) => node.level,
+        (node) => node.expandable
+    );
 
-  treeFlattener = new MatTreeFlattener(
-    this._transformer,
-    (node) => node.level,
-    (node) => node.expandable,
-    (node) => node.children
-  );
+    treeFlattener = new MatTreeFlattener(
+        this._transformer,
+        (node) => node.level,
+        (node) => node.expandable,
+        (node) => node.children
+    );
 
-  dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+    dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-  hasChild = (_: number, node: IFlatNode) => node.expandable;
+    hasChild = (_: number, node: IFlatNode) => node.expandable;
 }

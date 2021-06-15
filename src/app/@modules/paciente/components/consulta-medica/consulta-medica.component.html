@@ -1,147 +1,155 @@
 <mat-dialog-content class="mat-typography">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h1>Agendar Consulta</h1>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <h2 class="my-1">Especialidade</h2>
-        <hr class="my-2" />
-      </div>
-      <div class="col-md-6 col-sm-12">
-        <ng-select
-          [items]="listaMedicos"
-          bindLabel="nomeCompleto"
-          bindValue="id"
-          appearance="outline"
-          (change)="onSelectMedico($event)"
-          placeholder="Selecione"
-        >
-          <!--formControlName="idMedico"-->
-        </ng-select>
-      </div>
-      <ng-container *ngIf="medicoSelecionado !== undefined">
-        <div class="col-12 mt-2 mb-4 animate__fadeInUp">
-          <mat-accordion>
-            <mat-expansion-panel hideToggle>
-              <mat-expansion-panel-header>
-                <mat-panel-title> Dr. {{ medicoSelecionado?.nomeCompleto }} </mat-panel-title>
-                <mat-panel-description> Escialidade: {{ medicoSelecionado?.especialidade }} </mat-panel-description>
-              </mat-expansion-panel-header>
-              <!-- <p>This is the primary content of the panel.</p> -->
-            </mat-expansion-panel>
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-              <mat-expansion-panel-header>
-                <mat-panel-title> Visualizar Detalhes </mat-panel-title>
-              </mat-expansion-panel-header>
-              <p>I'm visible because I am open</p>
-            </mat-expansion-panel>
-          </mat-accordion>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Agendar Consulta</h1>
+            </div>
         </div>
-      </ng-container>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <h2 class="my-1">Dados do paciente</h2>
-        <hr class="my-2" />
-      </div>
-      <div class="col-md-6 col-sm-12">
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Nome</mat-label>
-          <input type="text" matInput placeholder="Digite seu nome" autocomplete="off" />
-          <!-- formControlName="username"-->
-          <!-- <mat-error>
+        <div class="row">
+            <div class="col-12">
+                <h2 class="my-1">Especialidade</h2>
+                <hr class="my-2" />
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <ng-select
+                    [items]="listaMedicos"
+                    bindLabel="nomeCompleto"
+                    bindValue="id"
+                    appearance="outline"
+                    (change)="onSelectMedico($event)"
+                    placeholder="Selecione"
+                >
+                    <!--formControlName="idMedico"-->
+                </ng-select>
+            </div>
+            <ng-container *ngIf="medicoSelecionado !== undefined">
+                <div class="col-12 mt-2 mb-4 animate__fadeInUp">
+                    <mat-accordion>
+                        <mat-expansion-panel hideToggle>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title> Dr. {{ medicoSelecionado?.nomeCompleto }} </mat-panel-title>
+                                <mat-panel-description>
+                                    Escialidade: {{ medicoSelecionado?.especialidade }}
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <!-- <p>This is the primary content of the panel.</p> -->
+                        </mat-expansion-panel>
+                        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title> Visualizar Detalhes </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <p>I'm visible because I am open</p>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+            </ng-container>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h2 class="my-1">Dados do paciente</h2>
+                <hr class="my-2" />
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Nome</mat-label>
+                    <input type="text" matInput placeholder="Digite seu nome" autocomplete="off" />
+                    <!-- formControlName="username"-->
+                    <!-- <mat-error>
               <app-error-control-message [control]="loginForm.controls.username" label="E-mail"></app-error-control-message>
             </mat-error> -->
-        </mat-form-field>
-      </div>
-      <div class="col-md-6 col-sm-12">
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Sobrenome</mat-label>
-          <input type="text" matInput placeholder="Digite seu nome" autocomplete="off" />
-          <!-- formControlName="username"-->
-          <!-- <mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Sobrenome</mat-label>
+                    <input type="text" matInput placeholder="Digite seu nome" autocomplete="off" />
+                    <!-- formControlName="username"-->
+                    <!-- <mat-error>
             <app-error-control-message [control]="loginForm.controls.username" label="E-mail"></app-error-control-message>
           </mat-error> -->
-        </mat-form-field>
-      </div>
-      <div class="col-md-6 col-sm-12">
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Sexo</mat-label>
-          <mat-select>
-            <!-- formControlName="username"-->
-            <mat-option [value]="sexo.id" *ngFor="let sexo of listaSexo">{{ sexo.name }}</mat-option>
-          </mat-select>
-          <!-- <mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Sexo</mat-label>
+                    <mat-select>
+                        <!-- formControlName="username"-->
+                        <mat-option [value]="sexo.id" *ngFor="let sexo of listaSexo">{{ sexo.name }}</mat-option>
+                    </mat-select>
+                    <!-- <mat-error>
               <app-error-control-message [control]="loginForm.controls.username" label="E-mail"></app-error-control-message>
             </mat-error> -->
-        </mat-form-field>
-      </div>
-      <div class="col-md-6 col-sm-12">
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>CPF</mat-label>
-          <input type="text" matInput placeholder="Digite seu nome" autocomplete="off" mask="000.000.000-00" />
-          <!-- formControlName="username"-->
-          <!-- <mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>CPF</mat-label>
+                    <input
+                        type="text"
+                        matInput
+                        placeholder="Digite seu nome"
+                        autocomplete="off"
+                        mask="000.000.000-00"
+                    />
+                    <!-- formControlName="username"-->
+                    <!-- <mat-error>
             <app-error-control-message [control]="loginForm.controls.username" label="E-mail"></app-error-control-message>
           </mat-error> -->
-        </mat-form-field>
-      </div>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h2 class="my-1">Dados da consulta</h2>
+                <hr class="my-2" />
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Tipo de consulta</mat-label>
+                    <mat-select>
+                        <!-- formControlName="username"-->
+                        <mat-option [value]="sexo.id" *ngFor="let sexo of listaSexo">{{ sexo.name }}</mat-option>
+                    </mat-select>
+                    <!-- <mat-error>
+              <app-error-control-message [control]="loginForm.controls.username" label="E-mail"></app-error-control-message>
+            </mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Datas disponíveis</mat-label>
+                    <mat-select>
+                        <!-- formControlName="username"-->
+                        <mat-option [value]="sexo.id" *ngFor="let sexo of listaSexo">{{ sexo.name }}</mat-option>
+                    </mat-select>
+                    <!-- <mat-error>
+              <app-error-control-message [control]="loginForm.controls.username" label="E-mail"></app-error-control-message>
+            </mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Horários disponíveis</mat-label>
+                    <mat-select>
+                        <!-- formControlName="username"-->
+                        <mat-option [value]="sexo.id" *ngFor="let sexo of listaSexo">{{ sexo.name }}</mat-option>
+                    </mat-select>
+                    <!-- <mat-error>
+              <app-error-control-message [control]="loginForm.controls.username" label="E-mail"></app-error-control-message>
+            </mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="col-12">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>Sintomas</mat-label>
+                    <textarea matInput placeholder="Digite os sintomas do paciente aqui..."></textarea>
+                </mat-form-field>
+            </div>
+        </div>
     </div>
-    <div class="row">
-      <div class="col-12">
-        <h2 class="my-1">Dados da consulta</h2>
-        <hr class="my-2" />
-      </div>
-      <div class="col-md-6 col-sm-12">
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Tipo de consulta</mat-label>
-          <mat-select>
-            <!-- formControlName="username"-->
-            <mat-option [value]="sexo.id" *ngFor="let sexo of listaSexo">{{ sexo.name }}</mat-option>
-          </mat-select>
-          <!-- <mat-error>
-              <app-error-control-message [control]="loginForm.controls.username" label="E-mail"></app-error-control-message>
-            </mat-error> -->
-        </mat-form-field>
-      </div>
-      <div class="col-md-6 col-sm-12">
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Datas disponíveis</mat-label>
-          <mat-select>
-            <!-- formControlName="username"-->
-            <mat-option [value]="sexo.id" *ngFor="let sexo of listaSexo">{{ sexo.name }}</mat-option>
-          </mat-select>
-          <!-- <mat-error>
-              <app-error-control-message [control]="loginForm.controls.username" label="E-mail"></app-error-control-message>
-            </mat-error> -->
-        </mat-form-field>
-      </div>
-      <div class="col-md-6 col-sm-12">
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Horários disponíveis</mat-label>
-          <mat-select>
-            <!-- formControlName="username"-->
-            <mat-option [value]="sexo.id" *ngFor="let sexo of listaSexo">{{ sexo.name }}</mat-option>
-          </mat-select>
-          <!-- <mat-error>
-              <app-error-control-message [control]="loginForm.controls.username" label="E-mail"></app-error-control-message>
-            </mat-error> -->
-        </mat-form-field>
-      </div>
-      <div class="col-12">
-        <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Sintomas</mat-label>
-          <textarea matInput placeholder="Digite os sintomas do paciente aqui..."></textarea>
-        </mat-form-field>
-      </div>
-    </div>
-  </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>cancelar</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>salvar</button>
+    <button mat-button mat-dialog-close>cancelar</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>salvar</button>
 </mat-dialog-actions>
 <!-- <app-sweetalert></app-sweetalert> -->

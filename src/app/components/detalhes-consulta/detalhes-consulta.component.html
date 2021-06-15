@@ -1,62 +1,62 @@
 <div class="container bg-prontuario py-4">
-  <div class="row ms-0">
-    <div class="col-12 close-icon d-flex justify-content-end">
-      <i class="feather icon-x" (click)="emitEventCloseModal()"></i>
-    </div>
-    <div class="col-4">
-      <h3 class="m-0 text-uppercase">Dados do Paciente:</h3>
-      <ul class="dados-medicos ps-0">
-        <li>
-          <h4 class="fw-bold m-0">Nome</h4>
-          <span>{{ consulta?.paciente?.nome }}</span>
-        </li>
-        <!-- <li>
+    <div class="row ms-0">
+        <div class="col-12 close-icon d-flex justify-content-end">
+            <i class="feather icon-x" (click)="emitEventCloseModal()"></i>
+        </div>
+        <div class="col-4">
+            <h3 class="m-0 text-uppercase">Dados do Paciente:</h3>
+            <ul class="dados-medicos ps-0">
+                <li>
+                    <h4 class="fw-bold m-0">Nome</h4>
+                    <span>{{ consulta?.paciente?.nome }}</span>
+                </li>
+                <!-- <li>
           <h4 class="fw-bold m-0">Convênio:</h4>
           <span>{{ consulta?.paciente?.descConvenio }}</span>
         </li> -->
-        <!-- <li>
+                <!-- <li>
           <h4 class="fw-bold m-0">Nº Incrição Convênio:</h4>
           <span>{{ consulta?.paciente?.nuInscricaoConvenio }}</span>
         </li> -->
-        <li>
-          <h4 class="fw-bold m-0">Contato</h4>
-          <span>{{ consulta?.paciente?.telefone | mask: '(00) 0 0000 0000' }}</span>
-        </li>
-      </ul>
+                <li>
+                    <h4 class="fw-bold m-0">Contato</h4>
+                    <span>{{ consulta?.paciente?.telefone | mask: '(00) 0 0000 0000' }}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="col-4">
+            <h3 class="m-0 text-uppercase">Dados do Médico:</h3>
+            <ul class="dados-medicos ps-0">
+                <li>
+                    <h4 class="fw-bold m-0">Nome</h4>
+                    <span>{{ consulta?.medico?.nome }}</span>
+                </li>
+                <li>
+                    <h4 class="fw-bold m-0">CRM:</h4>
+                    <span>{{ consulta?.medico?.crm }}</span>
+                </li>
+                <li>
+                    <h4 class="fw-bold m-0">Especialidade(s):</h4>
+                    <ng-container *ngFor="let especializacao of consulta?.medico?.especializacoes; index as i">
+                        <span *ngIf="i > 0">, </span>
+                        <span>{{ especializacao?.descEspecializacao }}</span>
+                    </ng-container>
+                </li>
+            </ul>
+        </div>
+        <div class="col-4">
+            <h3 class="m-0 text-uppercase">Procedimento:</h3>
+            <ul class="dados-medicos ps-0">
+                <li>
+                    <h4 class="fw-bold m-0">Descrição</h4>
+                    <!-- <span class="id-atendimento fw-bold"></span> -->
+                    <span>{{ consulta?.procedimento?.descTipoProcedimento }}</span>
+                </li>
+                <li>
+                    <h4 class="fw-bold m-0">Duração</h4>
+                    <span>{{ consulta?.procedimento?.duracao }}</span>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="col-4">
-      <h3 class="m-0 text-uppercase">Dados do Médico:</h3>
-      <ul class="dados-medicos ps-0">
-        <li>
-          <h4 class="fw-bold m-0">Nome</h4>
-          <span>{{ consulta?.medico?.nome }}</span>
-        </li>
-        <li>
-          <h4 class="fw-bold m-0">CRM:</h4>
-          <span>{{ consulta?.medico?.crm }}</span>
-        </li>
-        <li>
-          <h4 class="fw-bold m-0">Especialidade(s):</h4>
-          <ng-container *ngFor="let especializacao of consulta?.medico?.especializacoes; index as i">
-            <span *ngIf="i > 0">, </span>
-            <span>{{ especializacao?.descEspecializacao }}</span>
-          </ng-container>
-        </li>
-      </ul>
-    </div>
-    <div class="col-4">
-      <h3 class="m-0 text-uppercase">Procedimento:</h3>
-      <ul class="dados-medicos ps-0">
-        <li>
-          <h4 class="fw-bold m-0">Descrição</h4>
-          <!-- <span class="id-atendimento fw-bold"></span> -->
-          <span>{{ consulta?.procedimento?.descTipoProcedimento }}</span>
-        </li>
-        <li>
-          <h4 class="fw-bold m-0">Duração</h4>
-          <span>{{ consulta?.procedimento?.duracao }}</span>
-        </li>
-      </ul>
-    </div>
-  </div>
 </div>

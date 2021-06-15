@@ -1,16 +1,16 @@
 .tab {
-  &__dados-pessoais {
-    height: 255px;
+    &__dados-pessoais {
+        height: 255px;
 
-    &--name {
-      display: flex;
-      justify-content: center;
+        &--name {
+            display: flex;
+            justify-content: center;
 
-      span {
-        font-size: 18px !important;
-        font-size: var(--dark);
-        font-weight: 500;
-      }
+            span {
+                font-size: 18px !important;
+                font-size: var(--dark);
+                font-weight: 500;
+            }
+        }
     }
-  }
 }

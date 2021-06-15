@@ -1,39 +1,39 @@
 @import "../../../theme/card";
 
 ::ng-deep {
-  .progress-azul {
-    .mat-progress-bar-buffer {
-      background-color: var(--tcc-bg-info-progress);
+    .progress-azul {
+        .mat-progress-bar-buffer {
+            background-color: var(--tcc-bg-info-progress);
+        }
+        .mat-progress-bar-fill::after {
+            background-color: #e4f0ff;
+        }
     }
-    .mat-progress-bar-fill::after {
-      background-color: #e4f0ff;
-    }
-  }
 
-  .progress-verde {
-    .mat-progress-bar-buffer {
-      background-color: var(--tcc-bg-success-progress);
+    .progress-verde {
+        .mat-progress-bar-buffer {
+            background-color: var(--tcc-bg-success-progress);
+        }
+        .mat-progress-bar-fill::after {
+            background-color: #ddf9e4;
+        }
     }
-    .mat-progress-bar-fill::after {
-      background-color: #ddf9e4;
-    }
-  }
 
-  .progress-laranja {
-    .mat-progress-bar-buffer {
-      background-color: var(--tcc-bg-warning-progress);
+    .progress-laranja {
+        .mat-progress-bar-buffer {
+            background-color: var(--tcc-bg-warning-progress);
+        }
+        .mat-progress-bar-fill::after {
+            background-color: #ffeada;
+        }
     }
-    .mat-progress-bar-fill::after {
-      background-color: #ffeada;
-    }
-  }
 
-  .progress-vermelho {
-    .mat-progress-bar-buffer {
-      background-color: var(--tcc-danger);
+    .progress-vermelho {
+        .mat-progress-bar-buffer {
+            background-color: var(--tcc-danger);
+        }
+        .mat-progress-bar-fill::after {
+            background-color: #ff869a;
+        }
     }
-    .mat-progress-bar-fill::after {
-      background-color: #ff869a;
-    }
-  }
 }

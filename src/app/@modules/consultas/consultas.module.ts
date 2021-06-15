@@ -12,15 +12,15 @@ import { ListaMedicoComponent } from './lista-medico/lista-medico.component';
 import { ListaPacienteComponent } from './lista-paciente/lista-paciente.component';
 
 @NgModule({
-  declarations: [ConsultasComponent, ListaMedicoComponent, ListaPacienteComponent],
-  imports: [
-    CommonModule,
-    ConsultasRoutingModule,
-    SharedModule,
-    NgxMaskModule,
-    NgxPaginationModule,
-    MaterialModule,
-    ComponentsModule,
-  ],
+    declarations: [ConsultasComponent, ListaMedicoComponent, ListaPacienteComponent],
+    imports: [
+        CommonModule,
+        ConsultasRoutingModule,
+        SharedModule,
+        NgxMaskModule,
+        NgxPaginationModule,
+        MaterialModule,
+        ComponentsModule,
+    ],
 })
 export class ConsultasModule {}

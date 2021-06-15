@@ -1,66 +1,70 @@
 <div class="row pt-2 m-0">
-  <div class="col-12 table-responsive">
-    <table class="w-100 table-tcc" *ngIf="colaboradores.length > 0; else semregistro">
-      <thead class="text-uppercase">
-        <tr class="text-left">
-          <th scope="col">Nome</th>
-          <th scope="col">Documento</th>
-          <th scope="col">Perfil</th>
-          <th scope="col">Data Nascimento</th>
-          <th scope="col">Telefone</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          *ngFor="
-            let colaborador of colaboradores
-              | paginate
-                : {
-                    itemsPerPage: itemsPerPage,
-                    currentPage: page,
-                    totalItems: totalItems
-                  }
-          "
-          class="shadow-sm"
-        >
-          <td class="d-flex align-items-center">
-            <img [src]="verificaSexoUsuario(colaborador?.sexo)" alt="Icon" class="bg-profile d-inline-block" />
-            <div class="d-inline-block name-profile">
-              <span class="d-block name text-capitalize">{{ colaborador?.nome }}</span>
-              <span class="profile">{{ colaborador.email }}</span>
-            </div>
-          </td>
-          <td class="td-format">{{ colaborador?.cpf | mask: '000.000.000-00' }}</td>
-          <td class="td-format">
-            <ng-container *ngFor="let perfil of colaborador?.perfisCadastrados; index as i">
-              <span *ngIf="i > 0">,</span> <span>{{ perfil }}</span>
-            </ng-container>
-          </td>
-          <td class="td-format">{{ colaborador?.dtNascimento }}</td>
-          <td class="td-format">{{ colaborador?.telefone | mask: '(00) 0 0000 0000' }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="col-12 d-flex justify-content-center mb-4">
-    <pagination-controls
-      (pageChange)="pageChanged($event)"
-      maxSize="5"
-      autoHide="true"
-      directionLinks="true"
-      responsive="true"
-      previousLabel=""
-      nextLabel=""
-    ></pagination-controls>
-  </div>
+    <div class="col-12 table-responsive">
+        <table class="w-100 table-tcc" *ngIf="colaboradores.length > 0; else semregistro">
+            <thead class="text-uppercase">
+                <tr class="text-left">
+                    <th scope="col">Nome</th>
+                    <th scope="col">Documento</th>
+                    <th scope="col">Perfil</th>
+                    <th scope="col">Data Nascimento</th>
+                    <th scope="col">Telefone</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="
+                        let colaborador of colaboradores
+                            | paginate
+                                : {
+                                      itemsPerPage: itemsPerPage,
+                                      currentPage: page,
+                                      totalItems: totalItems
+                                  }
+                    "
+                    class="shadow-sm"
+                >
+                    <td class="d-flex align-items-center">
+                        <img
+                            [src]="verificaSexoUsuario(colaborador?.sexo)"
+                            alt="Icon"
+                            class="bg-profile d-inline-block"
+                        />
+                        <div class="d-inline-block name-profile">
+                            <span class="d-block name text-capitalize">{{ colaborador?.nome }}</span>
+                            <span class="profile">{{ colaborador.email }}</span>
+                        </div>
+                    </td>
+                    <td class="td-format">{{ colaborador?.cpf | mask: '000.000.000-00' }}</td>
+                    <td class="td-format">
+                        <ng-container *ngFor="let perfil of colaborador?.perfisCadastrados; index as i">
+                            <span *ngIf="i > 0">,</span> <span>{{ perfil }}</span>
+                        </ng-container>
+                    </td>
+                    <td class="td-format">{{ colaborador?.dtNascimento }}</td>
+                    <td class="td-format">{{ colaborador?.telefone | mask: '(00) 0 0000 0000' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-12 d-flex justify-content-center mb-4">
+        <pagination-controls
+            (pageChange)="pageChanged($event)"
+            maxSize="5"
+            autoHide="true"
+            directionLinks="true"
+            responsive="true"
+            previousLabel=""
+            nextLabel=""
+        ></pagination-controls>
+    </div>
 </div>
 <ng-template #semregistro>
-  <div class="row mt-3">
-    <div class="col-12">
-      <app-card-content>
-        <p class="error-msg">Nenhum registro encontrado.</p>
-      </app-card-content>
+    <div class="row mt-3">
+        <div class="col-12">
+            <app-card-content>
+                <p class="error-msg">Nenhum registro encontrado.</p>
+            </app-card-content>
+        </div>
     </div>
-  </div>
 </ng-template>
 <app-loader *ngIf="loading"></app-loader>

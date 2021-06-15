@@ -1,4 +1,4 @@
 export interface ITiposFileModel {
-  id: number;
-  descricao: string;
+    id: number;
+    descricao: string;
 }

@@ -10,11 +10,11 @@
 // bundle, and you should not use it for any sensitive information like passwords or keys.
 
 export const environment = {
-  production: false,
-  hmr: true,
-  serverUrl: 'https://tcc-back-end.herokuapp.com',
-  defaultLanguage: 'en-US',
-  supportedLanguages: ['en-US'],
+    production: false,
+    hmr: true,
+    serverUrl: 'https://tcc-back-end.herokuapp.com',
+    defaultLanguage: 'en-US',
+    supportedLanguages: ['en-US'],
 };
 
 /*

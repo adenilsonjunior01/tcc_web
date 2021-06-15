@@ -1,151 +1,172 @@
 <div fxFlex>
-  <mat-sidenav-container fxFill>
-    <mat-sidenav
-      class="shadow-sm"
-      #sidenav
-      [mode]="isMobile ? 'over' : 'side'"
-      [opened]="!isMobile"
-      [disableClose]="!isMobile"
-      ngClass.gt-sm="has-border"
-    >
-      <mat-toolbar>
-        <img src="../../assets/logo-svg.svg" alt="Logo Menu" />
-        <span class="name-app">IHealth</span>
-      </mat-toolbar>
-      <nav style="height: 85%">
-        <mat-list>
-          <a mat-list-item routerLink="/home" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-            <i class="feather icon-home pe-3"></i>
-            <span>Visão geral</span>
-          </a>
-          <ng-container>
-            <a mat-list-item routerLink="/perfil" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-              <i class="feather icon-user pe-2"></i>
-              <span>Meu Perfil</span>
-            </a>
-          </ng-container>
-          <ng-container>
-            <a
-              mat-list-item
-              routerLink="/prontuario"
-              routerLinkActive="active"
-              (click)="isMobile && sidenav.close()"
-              *ngIf="perfil === 'PACIENTE'"
-            >
-              <i class="feather icon-list pe-2"></i>
-              <span>Prontuários</span>
-            </a>
-          </ng-container>
+    <mat-sidenav-container fxFill>
+        <mat-sidenav
+            class="shadow-sm"
+            #sidenav
+            [mode]="isMobile ? 'over' : 'side'"
+            [opened]="!isMobile"
+            [disableClose]="!isMobile"
+            ngClass.gt-sm="has-border"
+        >
+            <mat-toolbar>
+                <img src="../../assets/logo-svg.svg" alt="Logo Menu" />
+                <span class="name-app">IHealth</span>
+            </mat-toolbar>
+            <nav style="height: 85%">
+                <mat-list>
+                    <a mat-list-item routerLink="/home" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+                        <i class="feather icon-home pe-3"></i>
+                        <span>Visão geral</span>
+                    </a>
+                    <ng-container>
+                        <a
+                            mat-list-item
+                            routerLink="/perfil"
+                            routerLinkActive="active"
+                            (click)="isMobile && sidenav.close()"
+                        >
+                            <i class="feather icon-user pe-2"></i>
+                            <span>Meu Perfil</span>
+                        </a>
+                    </ng-container>
+                    <ng-container>
+                        <a
+                            mat-list-item
+                            routerLink="/prontuario"
+                            routerLinkActive="active"
+                            (click)="isMobile && sidenav.close()"
+                            *ngIf="perfil === 'PACIENTE'"
+                        >
+                            <i class="feather icon-list pe-2"></i>
+                            <span>Prontuários</span>
+                        </a>
+                    </ng-container>
 
-          <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR' || perfil === 'PACIENTE'">
-            <a mat-list-item routerLink="/consultas" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-              <i class="feather icon-file-text pe-3"></i>
-              <span *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR'">Consultas</span>
-              <span *ngIf="perfil === 'PACIENTE'">Consultas</span>
-            </a>
-          </ng-container>
+                    <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR' || perfil === 'PACIENTE'">
+                        <a
+                            mat-list-item
+                            routerLink="/consultas"
+                            routerLinkActive="active"
+                            (click)="isMobile && sidenav.close()"
+                        >
+                            <i class="feather icon-file-text pe-3"></i>
+                            <span *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR'">Consultas</span>
+                            <span *ngIf="perfil === 'PACIENTE'">Consultas</span>
+                        </a>
+                    </ng-container>
 
-          <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR' || perfil === 'MEDICO'">
-            <a mat-list-item routerLink="/pacientes" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-              <i class="feather icon-users pe-3"></i>
-              <span>Pacientes</span>
-            </a>
-          </ng-container>
+                    <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR' || perfil === 'MEDICO'">
+                        <a
+                            mat-list-item
+                            routerLink="/pacientes"
+                            routerLinkActive="active"
+                            (click)="isMobile && sidenav.close()"
+                        >
+                            <i class="feather icon-users pe-3"></i>
+                            <span>Pacientes</span>
+                        </a>
+                    </ng-container>
 
-          <ng-container *ngIf="perfil === 'ADMINISTRADOR'">
-            <a mat-list-item routerLink="/medicos" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-              <i class="feather icon-user-plus pe-3"></i>
-              <span>Médicos</span>
-            </a>
-          </ng-container>
+                    <ng-container *ngIf="perfil === 'ADMINISTRADOR'">
+                        <a
+                            mat-list-item
+                            routerLink="/medicos"
+                            routerLinkActive="active"
+                            (click)="isMobile && sidenav.close()"
+                        >
+                            <i class="feather icon-user-plus pe-3"></i>
+                            <span>Médicos</span>
+                        </a>
+                    </ng-container>
 
-          <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR'">
-            <a
-              mat-list-item
-              routerLink="/cadastro/colaboradores"
-              routerLinkActive="active"
-              (click)="isMobile && sidenav.close()"
-            >
-              <i class="feather icon-users pe-2"></i>
-              <span>Colaboradores</span>
-            </a>
-          </ng-container>
+                    <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR'">
+                        <a
+                            mat-list-item
+                            routerLink="/cadastro/colaboradores"
+                            routerLinkActive="active"
+                            (click)="isMobile && sidenav.close()"
+                        >
+                            <i class="feather icon-users pe-2"></i>
+                            <span>Colaboradores</span>
+                        </a>
+                    </ng-container>
 
-          <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR'">
-            <a
-              mat-list-item
-              routerLink="/especialidades"
-              routerLinkActive="active"
-              (click)="isMobile && sidenav.close()"
-            >
-              <i class="feather icon-bookmark pe-2"></i>
-              <span>Especialidades</span>
-            </a>
-          </ng-container>
+                    <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR'">
+                        <a
+                            mat-list-item
+                            routerLink="/especialidades"
+                            routerLinkActive="active"
+                            (click)="isMobile && sidenav.close()"
+                        >
+                            <i class="feather icon-bookmark pe-2"></i>
+                            <span>Especialidades</span>
+                        </a>
+                    </ng-container>
 
-          <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR'">
-            <a
-              mat-list-item
-              routerLink="/configuracoes"
-              routerLinkActive="active"
-              (click)="isMobile && sidenav.close()"
-            >
-              <i class="feather icon-settings pe-2"></i>
-              <span>Configurações</span>
-            </a>
-          </ng-container>
-        </mat-list>
-        <section class="position-fixed footer-clinica" *ngIf="!errorRequest">
-          <div class="container">
-            <ng-container *ngIf="loading">
-              <div class="row m-0 p-4">
-                <div class="col-12 text-center">
-                  <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-                  <span class="sr-only d-block">Aguarde...</span>
+                    <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR'">
+                        <a
+                            mat-list-item
+                            routerLink="/configuracoes"
+                            routerLinkActive="active"
+                            (click)="isMobile && sidenav.close()"
+                        >
+                            <i class="feather icon-settings pe-2"></i>
+                            <span>Configurações</span>
+                        </a>
+                    </ng-container>
+                </mat-list>
+                <section class="position-fixed footer-clinica" *ngIf="!errorRequest">
+                    <div class="container">
+                        <ng-container *ngIf="loading">
+                            <div class="row m-0 p-4">
+                                <div class="col-12 text-center">
+                                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                    <span class="sr-only d-block">Aguarde...</span>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="!loading">
+                            <div class="row text-center m-0">
+                                <div class="col-12 footer-clinica__nome">
+                                    <h3 class="m-0">{{ dadosClinica?.nome }}</h3>
+                                </div>
+                                <div class="col-12 footer-clinica__endereco">
+                                    <p class="m-0">
+                                        {{ dadosClinica?.endereco?.noCidade }}, {{ dadosClinica?.endereco?.descRua }},
+                                        {{ dadosClinica?.endereco?.descBairro }},
+                                        {{ dadosClinica?.endereco?.noCidade }},
+                                        {{ dadosClinica?.endereco?.noEstado }}
+                                    </p>
+                                    <p class="m-0">
+                                        CEP: <strong>{{ dadosClinica?.endereco?.nuCep }}</strong>
+                                    </p>
+                                    <p class="m-0">Horário de Funcionamento</p>
+                                    <p class="m-0">
+                                        <strong>{{ dadosClinica?.dtAbertura }}</strong> -
+                                        <strong>{{ dadosClinica?.dtEncerramento }}</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </section>
+            </nav>
+        </mat-sidenav>
+        <mat-sidenav-content class="mat-sidenav">
+            <mat-toolbar class="bg-header">
+                <button class="menu-button" mat-icon-button (click)="sidenav.toggle()" fxHide.gt-sm>
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <div class="row">
+                    <div class="col-6">
+                        <h1 class="title-page">{{ title }}</h1>
+                    </div>
+                    <div class="col-6 d-flex justify-content-end">
+                        <app-nav-rigth></app-nav-rigth>
+                    </div>
                 </div>
-              </div>
-            </ng-container>
-            <ng-container *ngIf="!loading">
-              <div class="row text-center m-0">
-                <div class="col-12 footer-clinica__nome">
-                  <h3 class="m-0">{{ dadosClinica?.nome }}</h3>
-                </div>
-                <div class="col-12 footer-clinica__endereco">
-                  <p class="m-0">
-                    {{ dadosClinica?.endereco?.noCidade }}, {{ dadosClinica?.endereco?.descRua }},
-                    {{ dadosClinica?.endereco?.descBairro }}, {{ dadosClinica?.endereco?.noCidade }},
-                    {{ dadosClinica?.endereco?.noEstado }}
-                  </p>
-                  <p class="m-0">
-                    CEP: <strong>{{ dadosClinica?.endereco?.nuCep }}</strong>
-                  </p>
-                  <p class="m-0">Horário de Funcionamento</p>
-                  <p class="m-0">
-                    <strong>{{ dadosClinica?.dtAbertura }}</strong> -
-                    <strong>{{ dadosClinica?.dtEncerramento }}</strong>
-                  </p>
-                </div>
-              </div>
-            </ng-container>
-          </div>
-        </section>
-      </nav>
-    </mat-sidenav>
-    <mat-sidenav-content class="mat-sidenav">
-      <mat-toolbar class="bg-header">
-        <button class="menu-button" mat-icon-button (click)="sidenav.toggle()" fxHide.gt-sm>
-          <mat-icon>menu</mat-icon>
-        </button>
-        <div class="row">
-          <div class="col-6">
-            <h1 class="title-page">{{ title }}</h1>
-          </div>
-          <div class="col-6 d-flex justify-content-end">
-            <app-nav-rigth></app-nav-rigth>
-          </div>
-        </div>
-      </mat-toolbar>
-      <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+            </mat-toolbar>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
 </div>

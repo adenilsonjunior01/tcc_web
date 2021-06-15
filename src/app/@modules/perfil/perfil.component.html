@@ -1,43 +1,43 @@
 <div class="container-fluid">
-  <div class="row m-0">
-    <!-- >>> Perfil Paciente <<< -->
-    <ng-container *ngIf="perfil === 'PACIENTE'">
-      <div class="col-12">
-        <app-form-update-paciente [dadosUser]="dadosUser"></app-form-update-paciente>
-      </div>
-    </ng-container>
+    <div class="row m-0">
+        <!-- >>> Perfil Paciente <<< -->
+        <ng-container *ngIf="perfil === 'PACIENTE'">
+            <div class="col-12">
+                <app-form-update-paciente [dadosUser]="dadosUser"></app-form-update-paciente>
+            </div>
+        </ng-container>
 
-    <!-- >>> Perfil Médico <<< -->
-    <ng-container *ngIf="perfil === 'MEDICO'">
-      <div class="col-12">
-        <app-form-update-medico [dadosUser]="dadosUser"></app-form-update-medico>
-      </div>
-    </ng-container>
+        <!-- >>> Perfil Médico <<< -->
+        <ng-container *ngIf="perfil === 'MEDICO'">
+            <div class="col-12">
+                <app-form-update-medico [dadosUser]="dadosUser"></app-form-update-medico>
+            </div>
+        </ng-container>
 
-    <!-- >>> Perfil Adm e Aux <<< -->
-    <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR'">
-      <div class="col-12">
-        <app-form-update-aux-adm [dadosUser]="dadosUser"></app-form-update-aux-adm>
-      </div>
-    </ng-container>
-  </div>
+        <!-- >>> Perfil Adm e Aux <<< -->
+        <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR'">
+            <div class="col-12">
+                <app-form-update-aux-adm [dadosUser]="dadosUser"></app-form-update-aux-adm>
+            </div>
+        </ng-container>
+    </div>
 </div>
 <app-modal-animation modalID="perfil" modalClass="md-effect-10 perfil-user">
-  <div class="container md-body py-4 px-0">
-    <div class="row m-0 perfil__card">
-      <div class="col-12 d-flex justify-content-end">
-        <i class="feather icon-x perfil__card--icon" (click)="modal.close('perfil')"></i>
-      </div>
-      <div class="col-12">
-        <ng-container *ngIf="perfil === 'MEDICO'">
-          <app-form-update-medico
-            [dadosUser]="dadosUser"
-            [type]="type"
-            (closeModal)="closeModal($event)"
-          ></app-form-update-medico>
-        </ng-container>
-      </div>
+    <div class="container md-body py-4 px-0">
+        <div class="row m-0 perfil__card">
+            <div class="col-12 d-flex justify-content-end">
+                <i class="feather icon-x perfil__card--icon" (click)="modal.close('perfil')"></i>
+            </div>
+            <div class="col-12">
+                <ng-container *ngIf="perfil === 'MEDICO'">
+                    <app-form-update-medico
+                        [dadosUser]="dadosUser"
+                        [type]="type"
+                        (closeModal)="closeModal($event)"
+                    ></app-form-update-medico>
+                </ng-container>
+            </div>
+        </div>
     </div>
-  </div>
 </app-modal-animation>
 <app-loader *ngIf="loading"></app-loader>

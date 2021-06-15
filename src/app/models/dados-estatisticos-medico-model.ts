@@ -2,6 +2,6 @@ import { IConsultaMensalPorStatusModel } from './dados-estatisticos-auxiliar-hom
 import { IPacienteConsultaModel } from './dados-estastisticos-administrador';
 
 export interface IDadosEstatisticosMedicoModel {
-  pacienteConsulta: IPacienteConsultaModel[];
-  consultaMensalPorStatus: IConsultaMensalPorStatusModel[];
+    pacienteConsulta: IPacienteConsultaModel[];
+    consultaMensalPorStatus: IConsultaMensalPorStatusModel[];
 }

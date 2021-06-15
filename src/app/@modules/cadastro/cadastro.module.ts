@@ -14,26 +14,26 @@ import { DetalheColaboradorComponent } from './pages/detalhe-colaborador/detalhe
 import { NgxPaginationModule } from 'ngx-pagination';
 
 const maskConfig: Partial<IConfig> = {
-  validation: false,
+    validation: false,
 };
 
 @NgModule({
-  declarations: [
-    CadastroComponent,
-    TableColaboradoresComponent,
-    CadastroColaboradorComponent,
-    FormCadastroColaboradorComponent,
-    DetalheColaboradorComponent,
-  ],
-  imports: [
-    CommonModule,
-    CadastroRoutingModule,
-    SharedModule,
-    MaterialModule,
-    FlexLayoutModule,
-    NgxMaskModule.forRoot(),
-    NgxPaginationModule,
-    NgxMaskModule,
-  ],
+    declarations: [
+        CadastroComponent,
+        TableColaboradoresComponent,
+        CadastroColaboradorComponent,
+        FormCadastroColaboradorComponent,
+        DetalheColaboradorComponent,
+    ],
+    imports: [
+        CommonModule,
+        CadastroRoutingModule,
+        SharedModule,
+        MaterialModule,
+        FlexLayoutModule,
+        NgxMaskModule.forRoot(),
+        NgxPaginationModule,
+        NgxMaskModule,
+    ],
 })
 export class CadastroModule {}

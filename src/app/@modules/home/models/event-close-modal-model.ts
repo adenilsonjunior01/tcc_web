@@ -1,4 +1,4 @@
 export interface IEventCloseModalModel {
-  close: boolean;
-  modalId: string;
+    close: boolean;
+    modalId: string;
 }

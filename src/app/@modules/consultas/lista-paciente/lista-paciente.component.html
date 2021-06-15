@@ -1,114 +1,114 @@
 <div class="row pt-4">
-  <div class="col-12 table-responsive">
-    <ng-lottie [options]="options" height="220px" *ngIf="loading"></ng-lottie>
-    <table class="w-100 table-tcc" *ngIf="consultas.length > 0; else semregistro">
-      <thead class="text-uppercase">
-        <tr>
-          <th scope="col">Médico</th>
-          <th scope="col">Procedimento</th>
-          <th scope="col">Data</th>
-          <th scope="col">Status</th>
-          <th scope="col">Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          *ngFor="
-            let consulta of consultas
-              | paginate
-                : {
-                    itemsPerPage: itemsPerPage,
-                    currentPage: page,
-                    totalItems: totalItems
-                  };
-            index as i
-          "
-        >
-          <td class="td-format">{{ consulta?.medico?.nome }}</td>
-          <td class="td-format">{{ consulta?.procedimento?.descTipoProcedimento }}</td>
-          <td class="td-format">{{ consulta?.dtInicio | date: 'shortDate' }}</td>
-          <td class="td-format">
-            <span
-              class="badge bg-secondary2"
-              [ngClass]="{
-                'bg-primary': consulta?.status === 'Pendente',
-                'bg-success': consulta?.status === 'Confirmada',
-                'bg-danger': consulta?.status === 'Cancelada',
-                'bg-secondary': consulta?.status === 'Finalizada'
-              }"
-              >{{ consulta?.status }}</span
-            >
-          </td>
-          <td class="text-center">
-            <button
-              mat-raised-button
-              color="primary"
-              type="button"
-              class="btn-secondary"
-              (click)="openModalDetalhes('detalhe-consulta', consulta)"
-            >
-              <i class="feather icon-eye"></i> ver detalhes
-            </button>
-            <button
-              mat-raised-button
-              color="primary"
-              type="button"
-              class="btn-success"
-              (click)="submit('confirm', consulta)"
-              [disabled]="
-                consulta?.status === 'Confirmada' ||
-                consulta?.status === 'Finalizada' ||
-                consulta?.status === 'Em Andamento' ||
-                consulta?.status === 'Cancelada'
-              "
-            >
-              <i class="feather icon-check"></i> confirmar
-            </button>
+    <div class="col-12 table-responsive">
+        <ng-lottie [options]="options" height="220px" *ngIf="loading"></ng-lottie>
+        <table class="w-100 table-tcc" *ngIf="consultas.length > 0; else semregistro">
+            <thead class="text-uppercase">
+                <tr>
+                    <th scope="col">Médico</th>
+                    <th scope="col">Procedimento</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="
+                        let consulta of consultas
+                            | paginate
+                                : {
+                                      itemsPerPage: itemsPerPage,
+                                      currentPage: page,
+                                      totalItems: totalItems
+                                  };
+                        index as i
+                    "
+                >
+                    <td class="td-format">{{ consulta?.medico?.nome }}</td>
+                    <td class="td-format">{{ consulta?.procedimento?.descTipoProcedimento }}</td>
+                    <td class="td-format">{{ consulta?.dtInicio | date: 'shortDate' }}</td>
+                    <td class="td-format">
+                        <span
+                            class="badge bg-secondary2"
+                            [ngClass]="{
+                                'bg-primary': consulta?.status === 'Pendente',
+                                'bg-success': consulta?.status === 'Confirmada',
+                                'bg-danger': consulta?.status === 'Cancelada',
+                                'bg-secondary': consulta?.status === 'Finalizada'
+                            }"
+                            >{{ consulta?.status }}</span
+                        >
+                    </td>
+                    <td class="text-center">
+                        <button
+                            mat-raised-button
+                            color="primary"
+                            type="button"
+                            class="btn-secondary"
+                            (click)="openModalDetalhes('detalhe-consulta', consulta)"
+                        >
+                            <i class="feather icon-eye"></i> ver detalhes
+                        </button>
+                        <button
+                            mat-raised-button
+                            color="primary"
+                            type="button"
+                            class="btn-success"
+                            (click)="submit('confirm', consulta)"
+                            [disabled]="
+                                consulta?.status === 'Confirmada' ||
+                                consulta?.status === 'Finalizada' ||
+                                consulta?.status === 'Em Andamento' ||
+                                consulta?.status === 'Cancelada'
+                            "
+                        >
+                            <i class="feather icon-check"></i> confirmar
+                        </button>
 
-            <button
-              mat-raised-button
-              color="primary"
-              type="button"
-              class="btn-danger"
-              (click)="confirmCancel(consulta)"
-              [disabled]="
-                consulta?.status === 'Cancelada' ||
-                consulta?.status === 'Em Andamento' ||
-                consulta?.status === 'Finalizada'
-              "
-            >
-              <i class="feather icon-x"></i> cancelar
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="col-12 d-flex justify-content-center">
-    <pagination-controls
-      (pageChange)="pageChanged($event)"
-      maxSize="5"
-      autoHide="true"
-      directionLinks="true"
-      responsive="true"
-      previousLabel=""
-      nextLabel=""
-    ></pagination-controls>
-  </div>
+                        <button
+                            mat-raised-button
+                            color="primary"
+                            type="button"
+                            class="btn-danger"
+                            (click)="confirmCancel(consulta)"
+                            [disabled]="
+                                consulta?.status === 'Cancelada' ||
+                                consulta?.status === 'Em Andamento' ||
+                                consulta?.status === 'Finalizada'
+                            "
+                        >
+                            <i class="feather icon-x"></i> cancelar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-12 d-flex justify-content-center">
+        <pagination-controls
+            (pageChange)="pageChanged($event)"
+            maxSize="5"
+            autoHide="true"
+            directionLinks="true"
+            responsive="true"
+            previousLabel=""
+            nextLabel=""
+        ></pagination-controls>
+    </div>
 </div>
 
 <ng-template #semregistro>
-  <app-card-content *ngIf="!loading">
-    <div class="row m-0">
-      <div class="col-12 ps-1 mt-2 not-found">
-        <p class="m-0">Nenhum registro encontrado.</p>
-      </div>
-    </div>
-  </app-card-content>
+    <app-card-content *ngIf="!loading">
+        <div class="row m-0">
+            <div class="col-12 ps-1 mt-2 not-found">
+                <p class="m-0">Nenhum registro encontrado.</p>
+            </div>
+        </div>
+    </app-card-content>
 </ng-template>
 
 <app-modal-animation modalID="detalhe-consulta" modalClass="md-effect-10">
-  <div class="md-body container p-0">
-    <app-detalhes-consulta [consulta]="consulta" (closeModal)="closeModal($event)"></app-detalhes-consulta>
-  </div>
+    <div class="md-body container p-0">
+        <app-detalhes-consulta [consulta]="consulta" (closeModal)="closeModal($event)"></app-detalhes-consulta>
+    </div>
 </app-modal-animation>

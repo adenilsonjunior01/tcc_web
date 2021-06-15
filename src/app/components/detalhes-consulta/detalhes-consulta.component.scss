@@ -1,27 +1,27 @@
 .dados-medicos {
-  ul {
-    padding-left: none;
-  }
-
-  li {
-    list-style: none;
-    padding: 2px 0;
-    span {
-      color: var(--black);
+    ul {
+        padding-left: none;
     }
 
-    .id-atendimento {
-      color: var(--tcc-primary);
+    li {
+        list-style: none;
+        padding: 2px 0;
+        span {
+            color: var(--black);
+        }
+
+        .id-atendimento {
+            color: var(--tcc-primary);
+        }
     }
-  }
 }
 
 .close-icon {
-  color: var(--tcc-secondary);
-  cursor: pointer;
+    color: var(--tcc-secondary);
+    cursor: pointer;
 
-  &:hover {
-    transition: 300ms;
-    opacity: 0.7;
-  }
+    &:hover {
+        transition: 300ms;
+        opacity: 0.7;
+    }
 }

@@ -13,34 +13,34 @@ import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
 
 export function playerFactory() {
-  return player;
+    return player;
 }
 
 @NgModule({
-  imports: [
-    FlexLayoutModule,
-    MaterialModule,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    LottieModule.forRoot({ player: playerFactory }),
-  ],
-  declarations: [
-    LoaderComponent,
-    ErrorControlMessageComponent,
-    CardContentComponent,
-    FormDebugComponent,
-    ModalAnimationComponent,
-  ],
-  exports: [
-    LoaderComponent,
-    ErrorControlMessageComponent,
-    CardContentComponent,
-    FormsModule,
-    ReactiveFormsModule,
-    FormDebugComponent,
-    ModalAnimationComponent,
-    LottieModule,
-  ],
+    imports: [
+        FlexLayoutModule,
+        MaterialModule,
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        LottieModule.forRoot({ player: playerFactory }),
+    ],
+    declarations: [
+        LoaderComponent,
+        ErrorControlMessageComponent,
+        CardContentComponent,
+        FormDebugComponent,
+        ModalAnimationComponent,
+    ],
+    exports: [
+        LoaderComponent,
+        ErrorControlMessageComponent,
+        CardContentComponent,
+        FormsModule,
+        ReactiveFormsModule,
+        FormDebugComponent,
+        ModalAnimationComponent,
+        LottieModule,
+    ],
 })
 export class SharedModule {}

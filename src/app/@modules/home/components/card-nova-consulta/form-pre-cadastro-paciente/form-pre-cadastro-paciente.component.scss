@@ -1,21 +1,21 @@
 ::ng-deep td.mat-calendar-body-label {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
 }
 
 .perfil {
-  color: var(--tcc-dark);
-  span {
-    color: var(--tcc-gray);
-  }
+    color: var(--tcc-dark);
+    span {
+        color: var(--tcc-gray);
+    }
 }
 
 .close-modal {
-  color: #6c757d;
-  cursor: pointer;
+    color: #6c757d;
+    cursor: pointer;
 
-  &:hover {
-    opacity: 0.7;
-    transition: 300ms;
-  }
+    &:hover {
+        opacity: 0.7;
+        transition: 300ms;
+    }
 }

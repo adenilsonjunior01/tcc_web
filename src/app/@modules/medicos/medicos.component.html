@@ -1,72 +1,74 @@
 <div class="container-fluid">
-  <div class="row m-0">
-    <div class="col-12">
-      <app-card-content>
-        <form [formGroup]="formBusca">
-          <div class="row m-0">
-            <div class="col-12 col-md-4">
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Especializações</mat-label>
-                <mat-select formControlName="idEspecializacao">
-                  <mat-option [value]="especializacao.id" *ngFor="let especializacao of especializacoes">{{
-                    especializacao.descEspecializacao
-                  }}</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-            <div class="col-md-auto mt-2">
-              <button
-                class="btn btn-warning me-3"
-                type="button"
-                (click)="verificaIdBusca(formBusca.get('idEspecializacao').value)"
-              >
-                <i class="feather icon-search"></i> buscar
-              </button>
-              <button class="btn btn-secondary me-3" type="button" (click)="clearForm()">
-                <i class="feather icon-x"></i> limpar
-              </button>
-            </div>
-            <div class="col-12 col-md-4"></div>
-          </div>
-        </form>
-      </app-card-content>
+    <div class="row m-0">
+        <div class="col-12">
+            <app-card-content>
+                <form [formGroup]="formBusca">
+                    <div class="row m-0">
+                        <div class="col-12 col-md-4">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>Especializações</mat-label>
+                                <mat-select formControlName="idEspecializacao">
+                                    <mat-option
+                                        [value]="especializacao.id"
+                                        *ngFor="let especializacao of especializacoes"
+                                        >{{ especializacao.descEspecializacao }}</mat-option
+                                    >
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-auto mt-2">
+                            <button
+                                class="btn btn-warning me-3"
+                                type="button"
+                                (click)="verificaIdBusca(formBusca.get('idEspecializacao').value)"
+                            >
+                                <i class="feather icon-search"></i> buscar
+                            </button>
+                            <button class="btn btn-secondary me-3" type="button" (click)="clearForm()">
+                                <i class="feather icon-x"></i> limpar
+                            </button>
+                        </div>
+                        <div class="col-12 col-md-4"></div>
+                    </div>
+                </form>
+            </app-card-content>
+        </div>
+        <div class="col-12">
+            <table class="w-100 table-tcc" *ngIf="medicos.length > 0; else semregistro">
+                <thead class="table-light text-uppercase">
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">CRM</th>
+                        <th scope="col">Telefone</th>
+                        <th scope="col">Especializações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let medico of medicos">
+                        <td class="name text-center name-profile">
+                            <span class="name">{{ medico?.nome }}</span>
+                        </td>
+                        <td class="td-format">{{ medico?.crm }}</td>
+                        <td class="td-format">{{ medico?.telefone | mask: '(00) 0 0000 0000' }}</td>
+                        <td class="text-center td-format">
+                            <ng-container *ngFor="let especializacao of medico?.especializacoes; index as i">
+                                <span *ngIf="i > 0">, </span>
+                                <span>{{ especializacao?.descEspecializacao }}</span>
+                            </ng-container>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div class="col-12">
-      <table class="w-100 table-tcc" *ngIf="medicos.length > 0; else semregistro">
-        <thead class="table-light text-uppercase">
-          <tr>
-            <th scope="col">Nome</th>
-            <th scope="col">CRM</th>
-            <th scope="col">Telefone</th>
-            <th scope="col">Especializações</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let medico of medicos">
-            <td class="name text-center name-profile">
-              <span class="name">{{ medico?.nome }}</span>
-            </td>
-            <td class="td-format">{{ medico?.crm }}</td>
-            <td class="td-format">{{ medico?.telefone | mask: '(00) 0 0000 0000' }}</td>
-            <td class="text-center td-format">
-              <ng-container *ngFor="let especializacao of medico?.especializacoes; index as i">
-                <span *ngIf="i > 0">, </span>
-                <span>{{ especializacao?.descEspecializacao }}</span>
-              </ng-container>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
 </div>
 <app-loader *ngIf="loading"></app-loader>
 <ng-template #semregistro>
-  <div class="row mt-3">
-    <div class="col-12">
-      <app-card-content>
-        <p class="error-msg">Nenhum registro encontrado.</p>
-      </app-card-content>
+    <div class="row mt-3">
+        <div class="col-12">
+            <app-card-content>
+                <p class="error-msg">Nenhum registro encontrado.</p>
+            </app-card-content>
+        </div>
     </div>
-  </div>
 </ng-template>

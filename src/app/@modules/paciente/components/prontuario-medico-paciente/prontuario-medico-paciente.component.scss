@@ -1,84 +1,84 @@
 :host {
-  font-family: var(--tcc-font-poppins) !important;
+    font-family: var(--tcc-font-poppins) !important;
 }
 
 ::ng-deep .bg-prontuario .mat-card {
-  font-family: var(--tcc-font-poppins) !important;
+    font-family: var(--tcc-font-poppins) !important;
 }
 
 h1,
 h2 {
-  font-weight: 500;
+    font-weight: 500;
 }
 
 img {
-  height: 50px;
+    height: 50px;
 }
 
 ul {
-  list-style: none;
-  padding: 0;
+    list-style: none;
+    padding: 0;
 }
 
 .dados-medicos {
-  li {
-    padding: 2px 0;
-    span {
-      color: var(--black);
-    }
+    li {
+        padding: 2px 0;
+        span {
+            color: var(--black);
+        }
 
-    .id-atendimento {
-      color: var(--tcc-primary);
+        .id-atendimento {
+            color: var(--tcc-primary);
+        }
     }
-  }
 }
 
 .email {
-  color: var(--tcc-light);
+    color: var(--tcc-light);
 }
 
 .icon-alert-triangle {
-  color: red;
+    color: red;
 }
 
 .remove {
-  &:hover {
-    color: var(--danger);
-    transition: 300ms;
-  }
+    &:hover {
+        color: var(--danger);
+        transition: 300ms;
+    }
 }
 
 .new {
-  &:hover {
-    color: var(--tcc-primary);
-    transition: 300ms;
-  }
+    &:hover {
+        color: var(--tcc-primary);
+        transition: 300ms;
+    }
 }
 
 /* NG FILE - FORMART */
 .files-row {
-  .file-list {
-    h6 {
-      font-size: 16px;
+    .file-list {
+        h6 {
+            font-size: 16px;
+        }
     }
-  }
 }
 
 .img-icon-height {
-  img {
-    height: auto !important;
-    cursor: pointer;
+    img {
+        height: auto !important;
+        cursor: pointer;
 
-    &:hover {
-      transition: 300ms;
-      opacity: 0.7;
+        &:hover {
+            transition: 300ms;
+            opacity: 0.7;
+        }
     }
-  }
 }
 
 ::ng-deep {
-  .mat-menu-panel {
-    width: auto !important;
-    min-height: 40px !important;
-  }
+    .mat-menu-panel {
+        width: auto !important;
+        min-height: 40px !important;
+    }
 }

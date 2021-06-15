@@ -10,33 +10,33 @@ import { HomeComponent } from './home.component';
 import { QuoteService } from './quote.service';
 
 describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+    let component: HomeComponent;
+    let fixture: ComponentFixture<HomeComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          BrowserAnimationsModule,
-          FlexLayoutModule,
-          MaterialModule,
-          CoreModule,
-          SharedModule,
-          HttpClientTestingModule,
-        ],
-        declarations: [HomeComponent],
-        providers: [QuoteService],
-      }).compileComponents();
-    })
-  );
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [
+                    BrowserAnimationsModule,
+                    FlexLayoutModule,
+                    MaterialModule,
+                    CoreModule,
+                    SharedModule,
+                    HttpClientTestingModule,
+                ],
+                declarations: [HomeComponent],
+                providers: [QuoteService],
+            }).compileComponents();
+        })
+    );
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(HomeComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

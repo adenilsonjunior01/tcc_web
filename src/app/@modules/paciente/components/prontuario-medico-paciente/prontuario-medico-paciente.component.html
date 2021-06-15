@@ -1,413 +1,472 @@
 <div class="container bg-prontuario mb-4">
-  <app-card-content>
-    <!-- Cabeçalho -->
-    <div class="row m-0">
-      <div class="col-12 d-flex align-items-center mb-2 d-flex justify-content-between">
-        <div>
-          <img src="../../../../../assets/logo-svg.svg" alt="Logo" />
-          <h1 class="m-0 d-inline ps-2">IHealth</h1>
-        </div>
-        <div class="img-icon-height" *ngIf="dadosProntuario?.consulta?.paciente?.compartilhaDados">
-          <img src="../../../../../assets/icon-drop.svg" alt="Icone Dropdown" [matMenuTriggerFor]="userMenu" />
-          <mat-menu #userMenu="matMenu">
-            <a mat-menu-item target="_blank" [href]="urlDadosMedicos" (click)="navigateDadosCompartilhadosPaciente()">
-              <span>Dados Médicos</span>
-            </a>
-          </mat-menu>
-        </div>
-      </div>
-      <div class="col-12 my-1">
-        <p class="m-0">{{ dadosClinica?.nome }}</p>
-      </div>
-      <div class="col-12 my-1">
-        <p class="m-0">
-          {{ dadosClinica?.endereco?.noCidade }}, {{ dadosClinica?.endereco?.descRua }},
-          {{ dadosClinica?.endereco?.descBairro }}, {{ dadosClinica?.endereco?.noCidade }},
-          {{ dadosClinica?.endereco?.noEstado }}.
-        </p>
-      </div>
-      <!-- <div class="col-12 my-1">
+    <app-card-content>
+        <!-- Cabeçalho -->
+        <div class="row m-0">
+            <div class="col-12 d-flex align-items-center mb-2 d-flex justify-content-between">
+                <div>
+                    <img src="../../../../../assets/logo-svg.svg" alt="Logo" />
+                    <h1 class="m-0 d-inline ps-2">IHealth</h1>
+                </div>
+                <div class="img-icon-height" *ngIf="dadosProntuario?.consulta?.paciente?.compartilhaDados">
+                    <img
+                        src="../../../../../assets/icon-drop.svg"
+                        alt="Icone Dropdown"
+                        [matMenuTriggerFor]="userMenu"
+                    />
+                    <mat-menu #userMenu="matMenu">
+                        <a
+                            mat-menu-item
+                            target="_blank"
+                            [href]="urlDadosMedicos"
+                            (click)="navigateDadosCompartilhadosPaciente()"
+                        >
+                            <span>Dados Médicos</span>
+                        </a>
+                    </mat-menu>
+                </div>
+            </div>
+            <div class="col-12 my-1">
+                <p class="m-0">{{ dadosClinica?.nome }}</p>
+            </div>
+            <div class="col-12 my-1">
+                <p class="m-0">
+                    {{ dadosClinica?.endereco?.noCidade }}, {{ dadosClinica?.endereco?.descRua }},
+                    {{ dadosClinica?.endereco?.descBairro }}, {{ dadosClinica?.endereco?.noCidade }},
+                    {{ dadosClinica?.endereco?.noEstado }}.
+                </p>
+            </div>
+            <!-- <div class="col-12 my-1">
         <p class="m-0 email">email@gmail.com</p>
       </div> -->
-      <div class="col-12 my-1">
-        <p class="m-0">
-          <i class="feather icon-clock"></i> {{ dadosClinica?.dtAbertura }} - {{ dadosClinica?.dtEncerramento }}
-        </p>
-      </div>
-    </div>
-    <!-- Informações do Paciente-->
-    <div class="row ms-0 mt-5">
-      <div class="col-4">
-        <h3 class="m-0 text-uppercase">Dados do Atendimento:</h3>
-        <ul class="dados-medicos">
-          <li>
-            <h4 class="fw-bold m-0">Status</h4>
-            <span class="id-atendimento fw-bold">{{ dadosProntuario?.consulta?.statusConsulta }}</span>
-          </li>
-          <li>
-            <h4 class="fw-bold m-0">Data do Atendimento</h4>
-            <span>{{ dadosProntuario?.consulta?.dtIncio | date: 'shortDate' }}</span>
-          </li>
-          <li>
-            <h4 class="fw-bold m-0">Tipo Procedimento</h4>
-            <span>{{ dadosProntuario?.consulta?.tipoProcedimento?.descTipoProcedimento }}</span>
-          </li>
-          <li>
-            <h4 class="fw-bold m-0">Duração</h4>
-            <span>{{ dadosProntuario?.consulta?.tipoProcedimento?.duracao }}</span>
-          </li>
-          <li>
-            <h4 class="fw-bold m-0">Observação</h4>
-            <span>{{ dadosProntuario?.consulta?.observacao }}</span>
-          </li>
-        </ul>
-      </div>
-      <div class="col-4">
-        <h3 class="m-0 text-uppercase">Dados do Médico:</h3>
-        <ul class="dados-medicos">
-          <li>
-            <h4 class="fw-bold m-0">Nome</h4>
-            <span>{{ nomeMedico }}</span>
-          </li>
-          <li>
-            <h4 class="fw-bold m-0">CRM:</h4>
-            <span>{{ dadosProntuario?.consulta?.medico?.crm }}</span>
-          </li>
-          <li>
-            <h4 class="fw-bold m-0">Especialidade(s):</h4>
-            <ng-container *ngFor="let especializacao of dadosProntuario?.consulta?.medico?.especializacoes; index as i">
-              <span *ngIf="i > 0">, </span>
-              <span>{{ especializacao?.descEspecializacao }} </span>
-            </ng-container>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <!-- Cadastro da Consulta -->
-    <form [formGroup]="formProntuario">
-      <div class="row mt-4">
-        <div class="col-12">
-          <h3 class="mb-0">Dados da Consulta</h3>
-          <hr class="mt-1 mb-2" />
+            <div class="col-12 my-1">
+                <p class="m-0">
+                    <i class="feather icon-clock"></i> {{ dadosClinica?.dtAbertura }} -
+                    {{ dadosClinica?.dtEncerramento }}
+                </p>
+            </div>
         </div>
-        <div class="col-md-12">
-          <mat-form-field appearance="outline" class="w-100">
-            <mat-label>Descrição geral da consulta</mat-label>
-            <textarea
-              formControlName="descConsulta"
-              matInput
-              placeholder="Descrição geral da consulta"
-              autocomplete="off"
-              rows="5"
-            ></textarea>
-            <mat-error>
-              <app-error-control-message [control]="formProntuario.controls.descConsulta" label="Descrição">
-              </app-error-control-message>
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-md-12">
-          <mat-form-field appearance="outline" class="w-100">
-            <mat-label>Diagnóstico</mat-label>
-            <textarea
-              formControlName="diagnostico"
-              matInput
-              placeholder="Digite o diagnostico do paciente aqui..."
-              autocomplete="off"
-              rows="5"
-            ></textarea>
-            <mat-error>
-              <app-error-control-message [control]="formProntuario.controls.descSumario" label="Sumário">
-              </app-error-control-message>
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-md-12 mb-3">
-          <mat-form-field appearance="outline" class="w-100">
-            <mat-label>Sumário médico</mat-label>
-            <textarea
-              formControlName="descSumario"
-              matInput
-              placeholder="Digite os sintomas do paciente aqui..."
-              autocomplete="off"
-              rows="5"
-            ></textarea>
-            <mat-error>
-              <app-error-control-message [control]="formProntuario.controls.descSumario" label="Sumário">
-              </app-error-control-message>
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-12">
-          <mat-accordion class="detail-consulta">
-            <!-- Alergias -->
-            <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
-              <mat-expansion-panel-header>
-                <h3>Alergias <i class="feather icon-alert-triangle" *ngIf="visibleAlertAccordionAlergia"></i></h3>
-              </mat-expansion-panel-header>
-              <label class="d-block mb-2">Possui alguma alergia?</label>
-              <mat-radio-group
-                aria-label="Select an option"
-                class="d-block"
-                color="primary"
-                [formControl]="controlAlergia"
-              >
-                <mat-radio-button
-                  [value]="option?.value"
-                  class="me-3"
-                  *ngFor="let option of optionsRadio"
-                  (change)="validatorsDynamic(option.value, 'alergias')"
-                  >{{ option?.description }}</mat-radio-button
-                >
-              </mat-radio-group>
-
-              <ng-container *ngIf="controlAlergia.value === true">
-                <ng-container formArrayName="alergias" *ngFor="let alergia of formArrayAlergia.controls; index as i">
-                  <div class="d-block animate__fadeInUp mt-2" [formGroupName]="i">
-                    <mat-form-field>
-                      <mat-label>Descrição</mat-label>
-                      <input matInput formControlName="descAlergia" />
-                      <mat-error class="p-0">
-                        <app-error-control-message [control]="alergia.controls.descAlergia" label="Descrição">
-                        </app-error-control-message>
-                      </mat-error>
-                    </mat-form-field>
-                    <mat-form-field>
-                      <mat-label>Tipo</mat-label>
-                      <mat-select formControlName="idTipoAlergia">
-                        <mat-option [value]="alergia.id" *ngFor="let alergia of tiposAlergias">{{
-                          alergia.descTipo
-                        }}</mat-option>
-                      </mat-select>
-                      <mat-error class="p-0">
-                        <app-error-control-message [control]="alergia.controls.idTipoAlergia" label="Tipo">
-                        </app-error-control-message>
-                      </mat-error>
-                    </mat-form-field>
-
-                    <mat-dialog-actions align="end">
-                      <button mat-button (click)="removeObject(i, 'alergias')" class="remove">
-                        <i class="feather icon-x"></i>
-                        <span>remover</span>
-                      </button>
-                      <button
-                        class="new"
-                        mat-button
-                        (click)="addNewObjectControlAlergia(controlAlergia.value, 'alergias')"
-                        *ngIf="i === 0"
-                      >
-                        <i class="feather icon-plus"></i>
-                        <span>novo</span>
-                      </button>
-                    </mat-dialog-actions>
-                  </div>
-                  <!-- formGroupName-->
-                </ng-container>
-                <!-- formArray -->
-              </ng-container>
-              <mat-action-row>
-                <button mat-button color="primary" (click)="nextStep()">continuar</button>
-              </mat-action-row>
-            </mat-expansion-panel>
-
-            <!-- Medicamento-->
-            <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
-              <mat-expansion-panel-header>
-                <h3>
-                  Medicamento <i class="feather icon-alert-triangle" *ngIf="visibleAlertAccordionMedicamento"></i>
-                </h3>
-              </mat-expansion-panel-header>
-
-              <label class="d-block mb-2">Medicamento</label>
-
-              <mat-radio-group
-                aria-label="Select an option"
-                class="d-block"
-                color="primary"
-                [formControl]="controlMedicamento"
-              >
-                <mat-radio-button
-                  [value]="option?.value"
-                  class="me-3"
-                  *ngFor="let option of optionsRadio"
-                  (change)="validatorsDynamic(option.value, 'medicamentos')"
-                  >{{ option?.description }}
-                </mat-radio-button>
-              </mat-radio-group>
-
-              <ng-container *ngIf="controlMedicamento.value === true">
-                <ng-container
-                  formArrayName="medicamentos"
-                  *ngFor="let medicamento of formArrayMedicamento.controls; index as i"
-                >
-                  <div class="d-block animate__fadeInUp mt-2" [formGroupName]="i">
-                    <mat-form-field>
-                      <mat-label>Descrição</mat-label>
-                      <input matInput formControlName="desc" />
-                      <mat-error class="p-0">
-                        <app-error-control-message [control]="medicamento.controls.desc" label="Descrição">
-                        </app-error-control-message>
-                      </mat-error>
-                    </mat-form-field>
-                    <mat-form-field>
-                      <mat-label>Dosagem</mat-label>
-                      <input matInput formControlName="dosagem" />
-                    </mat-form-field>
-                    <mat-form-field>
-                      <mat-label>Duração tratamento</mat-label>
-                      <input matInput formControlName="duracaoTratamento" />
-                      <mat-error class="p-0">
-                        <app-error-control-message
-                          [control]="medicamento.controls.duracaoTratamento"
-                          label="Duração tratamento"
+        <!-- Informações do Paciente-->
+        <div class="row ms-0 mt-5">
+            <div class="col-4">
+                <h3 class="m-0 text-uppercase">Dados do Atendimento:</h3>
+                <ul class="dados-medicos">
+                    <li>
+                        <h4 class="fw-bold m-0">Status</h4>
+                        <span class="id-atendimento fw-bold">{{ dadosProntuario?.consulta?.statusConsulta }}</span>
+                    </li>
+                    <li>
+                        <h4 class="fw-bold m-0">Data do Atendimento</h4>
+                        <span>{{ dadosProntuario?.consulta?.dtIncio | date: 'shortDate' }}</span>
+                    </li>
+                    <li>
+                        <h4 class="fw-bold m-0">Tipo Procedimento</h4>
+                        <span>{{ dadosProntuario?.consulta?.tipoProcedimento?.descTipoProcedimento }}</span>
+                    </li>
+                    <li>
+                        <h4 class="fw-bold m-0">Duração</h4>
+                        <span>{{ dadosProntuario?.consulta?.tipoProcedimento?.duracao }}</span>
+                    </li>
+                    <li>
+                        <h4 class="fw-bold m-0">Observação</h4>
+                        <span>{{ dadosProntuario?.consulta?.observacao }}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-4">
+                <h3 class="m-0 text-uppercase">Dados do Médico:</h3>
+                <ul class="dados-medicos">
+                    <li>
+                        <h4 class="fw-bold m-0">Nome</h4>
+                        <span>{{ nomeMedico }}</span>
+                    </li>
+                    <li>
+                        <h4 class="fw-bold m-0">CRM:</h4>
+                        <span>{{ dadosProntuario?.consulta?.medico?.crm }}</span>
+                    </li>
+                    <li>
+                        <h4 class="fw-bold m-0">Especialidade(s):</h4>
+                        <ng-container
+                            *ngFor="
+                                let especializacao of dadosProntuario?.consulta?.medico?.especializacoes;
+                                index as i
+                            "
                         >
-                        </app-error-control-message>
-                      </mat-error>
-                    </mat-form-field>
-
-                    <mat-dialog-actions align="end">
-                      <button mat-button (click)="removeObject(i, 'medicamentos')" class="remove">
-                        <i class="feather icon-x"></i>
-                        <span>remover</span>
-                      </button>
-                      <button
-                        mat-button
-                        class="new"
-                        (click)="addNewObjectControlMedicamento(controlMedicamento.value, 'medicamentos')"
-                        *ngIf="i === 0"
-                      >
-                        <i class="feather icon-plus"></i>
-                        <span>novo</span>
-                      </button>
-                    </mat-dialog-actions>
-                  </div>
-                  <!-- formGroupName-->
-                </ng-container>
-                <!-- formArray -->
-              </ng-container>
-              <mat-action-row>
-                <button mat-button color="warn" (click)="prevStep()">voltar</button>
-                <button mat-button color="primary" (click)="nextStep()">continuar</button>
-              </mat-action-row>
-            </mat-expansion-panel>
-
-            <!-- Doença Crônica-->
-            <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
-              <mat-expansion-panel-header>
-                <h3>Doença Crônica <i class="feather icon-alert-triangle" *ngIf="visibleAlertAccordionDoenca"></i></h3>
-              </mat-expansion-panel-header>
-
-              <label class="d-block mb-2">Possui alguma doença crônica?</label>
-
-              <mat-radio-group
-                aria-label="Select an option"
-                class="d-block"
-                color="primary"
-                [formControl]="controlDoencaCronica"
-              >
-                <mat-radio-button
-                  [value]="option?.value"
-                  class="me-3"
-                  *ngFor="let option of optionsRadio"
-                  (change)="validatorsDynamic(option.value, 'doencas')"
-                  >{{ option?.description }}
-                </mat-radio-button>
-              </mat-radio-group>
-
-              <ng-container *ngIf="controlDoencaCronica.value === true">
-                <ng-container
-                  formArrayName="doencas"
-                  *ngFor="let doencaCronica of formArrayDoencaCronica.controls; index as i"
-                >
-                  <div class="d-block animate__fadeInUp mt-1" [formGroupName]="i">
-                    <mat-form-field>
-                      <mat-label>Descrição</mat-label>
-                      <input matInput formControlName="descDoenca" />
-                      <mat-error class="p-0">
-                        <app-error-control-message [control]="doencaCronica.controls.descDoenca" label="Descrição">
-                        </app-error-control-message>
-                      </mat-error>
-                    </mat-form-field>
-
-                    <mat-dialog-actions align="end">
-                      <button mat-button (click)="removeObject(i, 'doencas')" class="remove">
-                        <i class="feather icon-x"></i>
-                        <span>remover</span>
-                      </button>
-                      <button
-                        mat-button
-                        class="new"
-                        (click)="addNewObjectControlDoencaCronica(controlDoencaCronica.value, 'doencas')"
-                        *ngIf="i === 0"
-                      >
-                        <i class="feather icon-plus"></i>
-                        <span>novo</span>
-                      </button>
-                    </mat-dialog-actions>
-                  </div>
-                  <!-- formGroupName-->
-                </ng-container>
-                <!-- formArray -->
-              </ng-container>
-              <mat-action-row>
-                <button mat-button color="warn" (click)="prevStep()">Voltar</button>
-                <button mat-button color="primary" (click)="nextStep()">continuar</button>
-              </mat-action-row>
-            </mat-expansion-panel>
-          </mat-accordion>
+                            <span *ngIf="i > 0">, </span>
+                            <span>{{ especializacao?.descEspecializacao }} </span>
+                        </ng-container>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
-      <!-- /row -->
-    </form>
-    <form [formGroup]="formFile">
-      <div class="row">
-        <ng-container formArrayName="arquivos" *ngFor="let file of formArrayFile.controls; index as i">
-          <ng-container [formGroupName]="i">
-            <div class="col-4 mt-3">
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Tipo do Anexo</mat-label>
-                <mat-select formControlName="idTipo">
-                  <mat-option [value]="tipo.id" *ngFor="let tipo of tiposFile">{{ tipo.descricao }}</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-            <div class="col-4 ng-star-inserted d-flex align-items-center mt-4">
-              <ng-container *ngIf="i === 0">
-                <button mat-button class="new" (click)="addNewObjectFile()" [disabled]="file.value.file === null">
-                  <i class="feather icon-plus"></i>
-                  novo arquivo
-                </button>
-              </ng-container>
-            </div>
-            <div class="col-12">
-              <file-upload [animation]="animationFile" formControlName="file" [fileslimit]="1">
-                <ng-template let-isFileDragDropAvailable="isFileDragDropAvailable" #placeholder>
-                  <span *ngIf="isFileDragDropAvailable">Arraste ou Clique aqui</span>
-                </ng-template>
+        <!-- Cadastro da Consulta -->
+        <form [formGroup]="formProntuario">
+            <div class="row mt-4">
+                <div class="col-12">
+                    <h3 class="mb-0">Dados da Consulta</h3>
+                    <hr class="mt-1 mb-2" />
+                </div>
+                <div class="col-md-12">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Descrição geral da consulta</mat-label>
+                        <textarea
+                            formControlName="descConsulta"
+                            matInput
+                            placeholder="Descrição geral da consulta"
+                            autocomplete="off"
+                            rows="5"
+                        ></textarea>
+                        <mat-error>
+                            <app-error-control-message
+                                [control]="formProntuario.controls.descConsulta"
+                                label="Descrição"
+                            >
+                            </app-error-control-message>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-12">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Diagnóstico</mat-label>
+                        <textarea
+                            formControlName="diagnostico"
+                            matInput
+                            placeholder="Digite o diagnostico do paciente aqui..."
+                            autocomplete="off"
+                            rows="5"
+                        ></textarea>
+                        <mat-error>
+                            <app-error-control-message [control]="formProntuario.controls.descSumario" label="Sumário">
+                            </app-error-control-message>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Sumário médico</mat-label>
+                        <textarea
+                            formControlName="descSumario"
+                            matInput
+                            placeholder="Digite os sintomas do paciente aqui..."
+                            autocomplete="off"
+                            rows="5"
+                        ></textarea>
+                        <mat-error>
+                            <app-error-control-message [control]="formProntuario.controls.descSumario" label="Sumário">
+                            </app-error-control-message>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-12">
+                    <mat-accordion class="detail-consulta">
+                        <!-- Alergias -->
+                        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+                            <mat-expansion-panel-header>
+                                <h3>
+                                    Alergias
+                                    <i class="feather icon-alert-triangle" *ngIf="visibleAlertAccordionAlergia"></i>
+                                </h3>
+                            </mat-expansion-panel-header>
+                            <label class="d-block mb-2">Possui alguma alergia?</label>
+                            <mat-radio-group
+                                aria-label="Select an option"
+                                class="d-block"
+                                color="primary"
+                                [formControl]="controlAlergia"
+                            >
+                                <mat-radio-button
+                                    [value]="option?.value"
+                                    class="me-3"
+                                    *ngFor="let option of optionsRadio"
+                                    (change)="validatorsDynamic(option.value, 'alergias')"
+                                    >{{ option?.description }}</mat-radio-button
+                                >
+                            </mat-radio-group>
 
-                <ng-template let-i="index" let-file="file" let-control="control" #item>
-                  <div class="file-info">
-                    <span class="file-name">{{ file.name }}</span>
-                  </div>
-                </ng-template>
-              </file-upload>
+                            <ng-container *ngIf="controlAlergia.value === true">
+                                <ng-container
+                                    formArrayName="alergias"
+                                    *ngFor="let alergia of formArrayAlergia.controls; index as i"
+                                >
+                                    <div class="d-block animate__fadeInUp mt-2" [formGroupName]="i">
+                                        <mat-form-field>
+                                            <mat-label>Descrição</mat-label>
+                                            <input matInput formControlName="descAlergia" />
+                                            <mat-error class="p-0">
+                                                <app-error-control-message
+                                                    [control]="alergia.controls.descAlergia"
+                                                    label="Descrição"
+                                                >
+                                                </app-error-control-message>
+                                            </mat-error>
+                                        </mat-form-field>
+                                        <mat-form-field>
+                                            <mat-label>Tipo</mat-label>
+                                            <mat-select formControlName="idTipoAlergia">
+                                                <mat-option
+                                                    [value]="alergia.id"
+                                                    *ngFor="let alergia of tiposAlergias"
+                                                    >{{ alergia.descTipo }}</mat-option
+                                                >
+                                            </mat-select>
+                                            <mat-error class="p-0">
+                                                <app-error-control-message
+                                                    [control]="alergia.controls.idTipoAlergia"
+                                                    label="Tipo"
+                                                >
+                                                </app-error-control-message>
+                                            </mat-error>
+                                        </mat-form-field>
+
+                                        <mat-dialog-actions align="end">
+                                            <button mat-button (click)="removeObject(i, 'alergias')" class="remove">
+                                                <i class="feather icon-x"></i>
+                                                <span>remover</span>
+                                            </button>
+                                            <button
+                                                class="new"
+                                                mat-button
+                                                (click)="addNewObjectControlAlergia(controlAlergia.value, 'alergias')"
+                                                *ngIf="i === 0"
+                                            >
+                                                <i class="feather icon-plus"></i>
+                                                <span>novo</span>
+                                            </button>
+                                        </mat-dialog-actions>
+                                    </div>
+                                    <!-- formGroupName-->
+                                </ng-container>
+                                <!-- formArray -->
+                            </ng-container>
+                            <mat-action-row>
+                                <button mat-button color="primary" (click)="nextStep()">continuar</button>
+                            </mat-action-row>
+                        </mat-expansion-panel>
+
+                        <!-- Medicamento-->
+                        <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+                            <mat-expansion-panel-header>
+                                <h3>
+                                    Medicamento
+                                    <i class="feather icon-alert-triangle" *ngIf="visibleAlertAccordionMedicamento"></i>
+                                </h3>
+                            </mat-expansion-panel-header>
+
+                            <label class="d-block mb-2">Medicamento</label>
+
+                            <mat-radio-group
+                                aria-label="Select an option"
+                                class="d-block"
+                                color="primary"
+                                [formControl]="controlMedicamento"
+                            >
+                                <mat-radio-button
+                                    [value]="option?.value"
+                                    class="me-3"
+                                    *ngFor="let option of optionsRadio"
+                                    (change)="validatorsDynamic(option.value, 'medicamentos')"
+                                    >{{ option?.description }}
+                                </mat-radio-button>
+                            </mat-radio-group>
+
+                            <ng-container *ngIf="controlMedicamento.value === true">
+                                <ng-container
+                                    formArrayName="medicamentos"
+                                    *ngFor="let medicamento of formArrayMedicamento.controls; index as i"
+                                >
+                                    <div class="d-block animate__fadeInUp mt-2" [formGroupName]="i">
+                                        <mat-form-field>
+                                            <mat-label>Descrição</mat-label>
+                                            <input matInput formControlName="desc" />
+                                            <mat-error class="p-0">
+                                                <app-error-control-message
+                                                    [control]="medicamento.controls.desc"
+                                                    label="Descrição"
+                                                >
+                                                </app-error-control-message>
+                                            </mat-error>
+                                        </mat-form-field>
+                                        <mat-form-field>
+                                            <mat-label>Dosagem</mat-label>
+                                            <input matInput formControlName="dosagem" />
+                                        </mat-form-field>
+                                        <mat-form-field>
+                                            <mat-label>Duração tratamento</mat-label>
+                                            <input matInput formControlName="duracaoTratamento" />
+                                            <mat-error class="p-0">
+                                                <app-error-control-message
+                                                    [control]="medicamento.controls.duracaoTratamento"
+                                                    label="Duração tratamento"
+                                                >
+                                                </app-error-control-message>
+                                            </mat-error>
+                                        </mat-form-field>
+
+                                        <mat-dialog-actions align="end">
+                                            <button mat-button (click)="removeObject(i, 'medicamentos')" class="remove">
+                                                <i class="feather icon-x"></i>
+                                                <span>remover</span>
+                                            </button>
+                                            <button
+                                                mat-button
+                                                class="new"
+                                                (click)="
+                                                    addNewObjectControlMedicamento(
+                                                        controlMedicamento.value,
+                                                        'medicamentos'
+                                                    )
+                                                "
+                                                *ngIf="i === 0"
+                                            >
+                                                <i class="feather icon-plus"></i>
+                                                <span>novo</span>
+                                            </button>
+                                        </mat-dialog-actions>
+                                    </div>
+                                    <!-- formGroupName-->
+                                </ng-container>
+                                <!-- formArray -->
+                            </ng-container>
+                            <mat-action-row>
+                                <button mat-button color="warn" (click)="prevStep()">voltar</button>
+                                <button mat-button color="primary" (click)="nextStep()">continuar</button>
+                            </mat-action-row>
+                        </mat-expansion-panel>
+
+                        <!-- Doença Crônica-->
+                        <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+                            <mat-expansion-panel-header>
+                                <h3>
+                                    Doença Crônica
+                                    <i class="feather icon-alert-triangle" *ngIf="visibleAlertAccordionDoenca"></i>
+                                </h3>
+                            </mat-expansion-panel-header>
+
+                            <label class="d-block mb-2">Possui alguma doença crônica?</label>
+
+                            <mat-radio-group
+                                aria-label="Select an option"
+                                class="d-block"
+                                color="primary"
+                                [formControl]="controlDoencaCronica"
+                            >
+                                <mat-radio-button
+                                    [value]="option?.value"
+                                    class="me-3"
+                                    *ngFor="let option of optionsRadio"
+                                    (change)="validatorsDynamic(option.value, 'doencas')"
+                                    >{{ option?.description }}
+                                </mat-radio-button>
+                            </mat-radio-group>
+
+                            <ng-container *ngIf="controlDoencaCronica.value === true">
+                                <ng-container
+                                    formArrayName="doencas"
+                                    *ngFor="let doencaCronica of formArrayDoencaCronica.controls; index as i"
+                                >
+                                    <div class="d-block animate__fadeInUp mt-1" [formGroupName]="i">
+                                        <mat-form-field>
+                                            <mat-label>Descrição</mat-label>
+                                            <input matInput formControlName="descDoenca" />
+                                            <mat-error class="p-0">
+                                                <app-error-control-message
+                                                    [control]="doencaCronica.controls.descDoenca"
+                                                    label="Descrição"
+                                                >
+                                                </app-error-control-message>
+                                            </mat-error>
+                                        </mat-form-field>
+
+                                        <mat-dialog-actions align="end">
+                                            <button mat-button (click)="removeObject(i, 'doencas')" class="remove">
+                                                <i class="feather icon-x"></i>
+                                                <span>remover</span>
+                                            </button>
+                                            <button
+                                                mat-button
+                                                class="new"
+                                                (click)="
+                                                    addNewObjectControlDoencaCronica(
+                                                        controlDoencaCronica.value,
+                                                        'doencas'
+                                                    )
+                                                "
+                                                *ngIf="i === 0"
+                                            >
+                                                <i class="feather icon-plus"></i>
+                                                <span>novo</span>
+                                            </button>
+                                        </mat-dialog-actions>
+                                    </div>
+                                    <!-- formGroupName-->
+                                </ng-container>
+                                <!-- formArray -->
+                            </ng-container>
+                            <mat-action-row>
+                                <button mat-button color="warn" (click)="prevStep()">Voltar</button>
+                                <button mat-button color="primary" (click)="nextStep()">continuar</button>
+                            </mat-action-row>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
             </div>
-          </ng-container>
-          <div class="col-12 mt-2">
-            <button mat-button (click)="removeObjectFile(i)" class="remove">
-              <i class="feather icon-x"></i>
-              remover arquivo
+            <!-- /row -->
+        </form>
+        <form [formGroup]="formFile">
+            <div class="row">
+                <ng-container formArrayName="arquivos" *ngFor="let file of formArrayFile.controls; index as i">
+                    <ng-container [formGroupName]="i">
+                        <div class="col-4 mt-3">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>Tipo do Anexo</mat-label>
+                                <mat-select formControlName="idTipo">
+                                    <mat-option [value]="tipo.id" *ngFor="let tipo of tiposFile">{{
+                                        tipo.descricao
+                                    }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-4 ng-star-inserted d-flex align-items-center mt-4">
+                            <ng-container *ngIf="i === 0">
+                                <button
+                                    mat-button
+                                    class="new"
+                                    (click)="addNewObjectFile()"
+                                    [disabled]="file.value.file === null"
+                                >
+                                    <i class="feather icon-plus"></i>
+                                    novo arquivo
+                                </button>
+                            </ng-container>
+                        </div>
+                        <div class="col-12">
+                            <file-upload [animation]="animationFile" formControlName="file" [fileslimit]="1">
+                                <ng-template let-isFileDragDropAvailable="isFileDragDropAvailable" #placeholder>
+                                    <span *ngIf="isFileDragDropAvailable">Arraste ou Clique aqui</span>
+                                </ng-template>
+
+                                <ng-template let-i="index" let-file="file" let-control="control" #item>
+                                    <div class="file-info">
+                                        <span class="file-name">{{ file.name }}</span>
+                                    </div>
+                                </ng-template>
+                            </file-upload>
+                        </div>
+                    </ng-container>
+                    <div class="col-12 mt-2">
+                        <button mat-button (click)="removeObjectFile(i)" class="remove">
+                            <i class="feather icon-x"></i>
+                            remover arquivo
+                        </button>
+                        <hr />
+                    </div>
+                </ng-container>
+            </div>
+        </form>
+        <div class="col-12 mt-4 d-flex justify-content-end">
+            <button class="btn btn-success" [disabled]="!formProntuario.valid" type="button" (click)="confirmEnvio()">
+                <i class="feather icon-check"></i>
+                salvar prontuário
             </button>
-            <hr />
-          </div>
-        </ng-container>
-      </div>
-    </form>
-    <div class="col-12 mt-4 d-flex justify-content-end">
-      <button class="btn btn-success" [disabled]="!formProntuario.valid" type="button" (click)="confirmEnvio()">
-        <i class="feather icon-check"></i>
-        salvar prontuário
-      </button>
-    </div>
-  </app-card-content>
+        </div>
+    </app-card-content>
 </div>

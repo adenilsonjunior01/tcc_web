@@ -1,70 +1,70 @@
 .notificacoes {
-  &__text {
-    span {
-      font-size: var(--f_14);
-      font-weight: 400;
-      color: var(--dark);
+    &__text {
+        span {
+            font-size: var(--f_14);
+            font-weight: 400;
+            color: var(--dark);
 
-      i {
-        font-size: 18px;
-        color: var(--tcc-primary);
-        margin-right: 3px;
-      }
+            i {
+                font-size: 18px;
+                color: var(--tcc-primary);
+                margin-right: 3px;
+            }
+        }
     }
-  }
 
-  &__icon {
-    span {
-      color: var(--tcc-light);
-      font-size: var(--f_12);
+    &__icon {
+        span {
+            color: var(--tcc-light);
+            font-size: var(--f_12);
 
-      i {
-        font-size: var(--f_12);
-        margin-right: 3px;
-        color: var(--dark);
-      }
+            i {
+                font-size: var(--f_12);
+                margin-right: 3px;
+                color: var(--dark);
+            }
+        }
     }
-  }
 
-  &__title {
-    span {
-      font-weight: 300;
-      font-size: var(--f_16);
+    &__title {
+        span {
+            font-weight: 300;
+            font-size: var(--f_16);
+        }
     }
-  }
 }
 
 ::ng-deep {
-  .mat-list-base {
-    cursor: pointer;
+    .mat-list-base {
+        cursor: pointer;
 
-    // &:hover {
-    //   background-color: #f0f7ff;
-    //   transition: 300ms;
-    // }
-  }
+        // &:hover {
+        //   background-color: #f0f7ff;
+        //   transition: 300ms;
+        // }
+    }
 
-  .mat-menu-panel {
-    width: 370px !important;
-    max-width: 350px !important;
-  }
+    .mat-menu-panel {
+        width: 370px !important;
+        max-width: 350px !important;
+    }
 }
 
 .spinner-grow {
-  animation-duration: 1s;
-  width: 10px;
-  height: 10px;
-  margin-bottom: 23px;
-  color: var(--tcc-inactive);
+    animation-duration: 1s;
+    width: 10px;
+    height: 10px;
+    margin-bottom: 23px;
+    color: var(--tcc-inactive);
 }
 
 ::ng-deep .dados-basicos {
-  .md-content {
-    width: 600px;
-    padding: 15px !important;
-  }
+    .md-content {
+        width: 600px;
+        padding: 15px !important;
+    }
 }
 
 .icon-bell {
-  color: #bcbcbc;
+    color: #bcbcbc;
 }

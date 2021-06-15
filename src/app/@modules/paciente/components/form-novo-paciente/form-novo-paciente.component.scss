@@ -1,26 +1,26 @@
 ::ng-deep .aviso-senha-paciente {
-  h3 {
-    color: var(--dark);
-  }
+    h3 {
+        color: var(--dark);
+    }
 
-  h4 {
-    color: var(--danger);
-    font-size: 18px;
-  }
+    h4 {
+        color: var(--danger);
+        font-size: 18px;
+    }
 
-  p {
-    color: var(--dark);
-  }
+    p {
+        color: var(--dark);
+    }
 
-  .md-content {
-    width: 500px;
-  }
+    .md-content {
+        width: 500px;
+    }
 }
 
 .novo-paciente {
-  &--icon {
-    opacity: 0.6;
-    transition: 300ms;
-    cursor: pointer;
-  }
+    &--icon {
+        opacity: 0.6;
+        transition: 300ms;
+        cursor: pointer;
+    }
 }

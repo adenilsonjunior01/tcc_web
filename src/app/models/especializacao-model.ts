@@ -1,4 +1,4 @@
 export interface IEspecializacaoModel {
-  id: number;
-  descEspecializacao: string;
+    id: number;
+    descEspecializacao: string;
 }

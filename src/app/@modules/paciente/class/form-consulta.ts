@@ -1,14 +1,14 @@
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 export class FormConsulta {
-  form: FormGroup;
-  private readonly _fb = new FormBuilder();
+    form: FormGroup;
+    private readonly _fb = new FormBuilder();
 
-  constructor() {}
+    constructor() {}
 
-  public initFormConsulta(): FormGroup {
-    return this._fb.group({});
-  }
+    public initFormConsulta(): FormGroup {
+        return this._fb.group({});
+    }
 
-  public parserDatas(): any {}
+    public parserDatas(): any {}
 }

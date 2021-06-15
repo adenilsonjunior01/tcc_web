@@ -1,246 +1,263 @@
 <ng-container *ngIf="visibleCard == true">
-  <app-card-content class="w-100">
-    <div class="row m-0">
-      <div class="col-12 text-center">
-        <i class="feather icon-calendar icon-add"></i>
-      </div>
-      <div class="col-12">
-        <h2 class="m-0 text-center title"><i class="feather icon-plus icon-add"></i>Consulta</h2>
-      </div>
-      <div class="col-12 text-center pt-1 pb-2">
-        <span class="description-add">Agendar nova consulta</span>
-      </div>
-      <div class="col-12 text-center">
-        <button
-          type="button"
-          mat-raised-button
-          color="primary"
-          class="btn-success"
-          (click)="modal.show('agendar-consulta')"
-        >
-          Agendar
-        </button>
-      </div>
-    </div>
-  </app-card-content>
+    <app-card-content class="w-100">
+        <div class="row m-0">
+            <div class="col-12 text-center">
+                <i class="feather icon-calendar icon-add"></i>
+            </div>
+            <div class="col-12">
+                <h2 class="m-0 text-center title"><i class="feather icon-plus icon-add"></i>Consulta</h2>
+            </div>
+            <div class="col-12 text-center pt-1 pb-2">
+                <span class="description-add">Agendar nova consulta</span>
+            </div>
+            <div class="col-12 text-center">
+                <button
+                    type="button"
+                    mat-raised-button
+                    color="primary"
+                    class="btn-success"
+                    (click)="modal.show('agendar-consulta')"
+                >
+                    Agendar
+                </button>
+            </div>
+        </div>
+    </app-card-content>
 </ng-container>
 
 <app-modal-animation modalID="agendar-consulta" modalClass="md-effect-7 consulta-home" backDrop="true">
-  <div class="md-header container">
-    <div class="row">
-      <div class="col-12 text-center">
-        <h2 class="my-3 text-uppercase">Nova Consulta</h2>
-      </div>
-    </div>
-  </div>
-  <div class="md-body container p-0">
-    <div class="row m-0 h-100">
-      <div class="col-4 shadow-sm px-0">
-        <div class="bg-search pt-4">
-          <form [formGroup]="form">
-            <div class="row m-0">
-              <div class="col-12">
-                <h3 class="my-1 text-uppercase">Dados da consulta</h3>
-                <hr class="my-2" />
-              </div>
-              <div class="col-md-12">
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>Tipo de consulta</mat-label>
-                  <mat-select formControlName="idTipoProcedimento" required>
-                    <mat-option [value]="tipo.id" *ngFor="let tipo of tiposConsulta">{{
-                      tipo.descTipoProcedimento
-                    }}</mat-option>
-                  </mat-select>
-                  <mat-error>
-                    <app-error-control-message [control]="form.controls.idTipoProcedimento" label="Tipo de consulta">
-                    </app-error-control-message>
-                  </mat-error>
-                </mat-form-field>
-              </div>
-              <div class="col-md-12">
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>Data</mat-label>
-                  <input
-                    type="text"
-                    matInput
-                    autocomplete="off"
-                    formControlName="dtInicio"
-                    mask="00-00-0000"
-                    [dropSpecialCharacters]="false"
-                  />
-                  <mat-error>
-                    <app-error-control-message
-                      [control]="form.controls.dtInicio"
-                      label="Data"
-                    ></app-error-control-message>
-                  </mat-error>
-                </mat-form-field>
-              </div>
-              <div class="col-md-12 mt-2">
-                <button
-                  class="btn btn-primary"
-                  type="button"
-                  [disabled]="!form.get('dtInicio').valid && !form.get('idTipoProcedimento').valid"
-                  (click)="getHorariosDiponiveisConsulta()"
-                >
-                  <ng-container *ngIf="loading2">
-                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-                    <span class="sr-only">Aguarde...</span>
-                  </ng-container>
-                  <i class="feather icon-search me-1"></i>
-                  <span *ngIf="!loading2">buscar horários</span>
-                </button>
-              </div>
-              <ng-container *ngIf="horariosDisponiveis">
-                <div class="col-12">
-                  <h3 class="my-2">Selecione o horário</h3>
-                </div>
-                <div class="col-md-12">
-                  <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Horários disponíveis</mat-label>
-                    <mat-select formControlName="horario" required>
-                      <mat-option [value]="horario" *ngFor="let horario of horariosDisponiveis">{{
-                        horario
-                      }}</mat-option>
-                    </mat-select>
-                    <mat-error>
-                      <app-error-control-message [control]="form.controls.horario" label="Horário">
-                      </app-error-control-message>
-                    </mat-error>
-                  </mat-form-field>
-                </div>
-              </ng-container>
+    <div class="md-header container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="my-3 text-uppercase">Nova Consulta</h2>
             </div>
-          </form>
         </div>
-      </div>
-      <div class="col-8 pt-4">
-        <div class="container">
-          <ng-container *ngIf="steps === 0">
-            <form [formGroup]="form">
-              <div class="row m-0 height-row animate__fadeInRight">
-                <div class="col-12">
-                  <h3 class="text-uppercase mb-1">Selecione um Paciente já Cadastrado</h3>
-                  <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Pesquise paciente pelo nome ou CPF</mat-label>
-                    <input
-                      type="text"
-                      placeholder="Busque pelo nome do paciente"
-                      aria-label="Number"
-                      matInput
-                      [formControl]="search"
-                      [matAutocomplete]="auto"
-                    />
-
-                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                      <mat-option *ngFor="let option of filteredOptions | async" [value]="option.nome">
-                        <span class="ms-2 busca-span">Nome:</span> {{ option.nome }}
-                        <span class="ms-2 busca-span">CPF:</span> {{ option.cpf }}
-                      </mat-option>
-                    </mat-autocomplete>
-                  </mat-form-field>
-                  <ng-lottie [options]="options" height="220px" *ngIf="loading"></ng-lottie>
-                </div>
-                <div class="col-12" *ngIf="pacientes.length > 0">
-                  <table class="table table-striped">
-                    <thead class="text-uppercase">
-                      <tr class="text-center">
-                        <th scope="col">Nome</th>
-                        <th scope="col">Documento</th>
-                        <th scope="col">Convênio</th>
-                        <th scope="col">Inscrição</th>
-                        <th scope="col">Telefone</th>
-                        <th scope="col">Ações</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let paciente of pacientes">
-                        <td>{{ paciente?.nome }}</td>
-                        <td>{{ paciente?.cpf }}</td>
-                        <td>{{ paciente?.descConvenio }}</td>
-                        <td>{{ paciente?.nuInscricaoConvenio }}</td>
-                        <td>{{ paciente?.telefone | mask: '(00) 0 0000 0000' }}</td>
-                        <td>
-                          <a (click)="setValuesPaciente(paciente)" class="link-select">selecionar</a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="col-12 pt-2 text-center mb-4">
-                  <h3 class="text-uppercase mb-1">Ou Cadastre um Novo Paciente</h3>
-                  <button mat-stroked-button class="btn btn-outline-primary" (click)="setStep(1)">
-                    <i class="feather icon-plus"></i>
-                    novo paciente
-                  </button>
-                </div>
-                <div class="col-12 d-flex align-items-end justify-content-end mb-3">
-                  <button
-                    mat-stroked-button
-                    class="btn btn-danger"
-                    (click)="closeModalAndResetForm({ close: true, modalId: 'agendar-consulta' })"
-                  >
-                    <i class="feather icon-x"></i>
-                    cancelar
-                  </button>
-
-                  <button mat-stroked-button class="btn btn-secondary ms-3" (click)="resetForm()">
-                    <i class="feather icon-x-circle"></i>
-                    limpar
-                  </button>
-                </div>
-              </div>
-              <!-- /row-->
-            </form>
-          </ng-container>
-          <!-- Formulário pré-cadastro Paciente -->
-          <ng-container *ngIf="steps === 1">
-            <!-- (stepId)="setStep($event)" -->
-            <app-form-pre-cadastro-paciente
-              (closeModal)="closeModalAndResetForm($event)"
-              (dadosUsuario)="setValuesPaciente($event)"
-              (stepId)="setStep($event)"
-            ></app-form-pre-cadastro-paciente>
-          </ng-container>
-          <ng-container *ngIf="steps === 2">
-            <app-agendamento-consulta
-              (closeModal)="closeModalAndResetForm($event)"
-              (stepId)="setStep($event)"
-              (consultaAgendada)="resumoConsulta($event)"
-              [formConsulta]="form"
-            ></app-agendamento-consulta>
-          </ng-container>
-          <!-- <app-consulta-medica></app-consulta-medica> -->
-        </div>
-      </div>
     </div>
-  </div>
+    <div class="md-body container p-0">
+        <div class="row m-0 h-100">
+            <div class="col-4 shadow-sm px-0">
+                <div class="bg-search pt-4">
+                    <form [formGroup]="form">
+                        <div class="row m-0">
+                            <div class="col-12">
+                                <h3 class="my-1 text-uppercase">Dados da consulta</h3>
+                                <hr class="my-2" />
+                            </div>
+                            <div class="col-md-12">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Tipo de consulta</mat-label>
+                                    <mat-select formControlName="idTipoProcedimento" required>
+                                        <mat-option [value]="tipo.id" *ngFor="let tipo of tiposConsulta">{{
+                                            tipo.descTipoProcedimento
+                                        }}</mat-option>
+                                    </mat-select>
+                                    <mat-error>
+                                        <app-error-control-message
+                                            [control]="form.controls.idTipoProcedimento"
+                                            label="Tipo de consulta"
+                                        >
+                                        </app-error-control-message>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-12">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Data</mat-label>
+                                    <input
+                                        type="text"
+                                        matInput
+                                        autocomplete="off"
+                                        formControlName="dtInicio"
+                                        mask="00-00-0000"
+                                        [dropSpecialCharacters]="false"
+                                    />
+                                    <mat-error>
+                                        <app-error-control-message
+                                            [control]="form.controls.dtInicio"
+                                            label="Data"
+                                        ></app-error-control-message>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-12 mt-2">
+                                <button
+                                    class="btn btn-primary"
+                                    type="button"
+                                    [disabled]="!form.get('dtInicio').valid && !form.get('idTipoProcedimento').valid"
+                                    (click)="getHorariosDiponiveisConsulta()"
+                                >
+                                    <ng-container *ngIf="loading2">
+                                        <span
+                                            class="spinner-grow spinner-grow-sm"
+                                            role="status"
+                                            aria-hidden="true"
+                                        ></span>
+                                        <span class="sr-only">Aguarde...</span>
+                                    </ng-container>
+                                    <i class="feather icon-search me-1"></i>
+                                    <span *ngIf="!loading2">buscar horários</span>
+                                </button>
+                            </div>
+                            <ng-container *ngIf="horariosDisponiveis">
+                                <div class="col-12">
+                                    <h3 class="my-2">Selecione o horário</h3>
+                                </div>
+                                <div class="col-md-12">
+                                    <mat-form-field appearance="outline" class="w-100">
+                                        <mat-label>Horários disponíveis</mat-label>
+                                        <mat-select formControlName="horario" required>
+                                            <mat-option [value]="horario" *ngFor="let horario of horariosDisponiveis">{{
+                                                horario
+                                            }}</mat-option>
+                                        </mat-select>
+                                        <mat-error>
+                                            <app-error-control-message
+                                                [control]="form.controls.horario"
+                                                label="Horário"
+                                            >
+                                            </app-error-control-message>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-8 pt-4">
+                <div class="container">
+                    <ng-container *ngIf="steps === 0">
+                        <form [formGroup]="form">
+                            <div class="row m-0 height-row animate__fadeInRight">
+                                <div class="col-12">
+                                    <h3 class="text-uppercase mb-1">Selecione um Paciente já Cadastrado</h3>
+                                    <mat-form-field appearance="outline" class="w-100">
+                                        <mat-label>Pesquise paciente pelo nome ou CPF</mat-label>
+                                        <input
+                                            type="text"
+                                            placeholder="Busque pelo nome do paciente"
+                                            aria-label="Number"
+                                            matInput
+                                            [formControl]="search"
+                                            [matAutocomplete]="auto"
+                                        />
+
+                                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                                            <mat-option
+                                                *ngFor="let option of filteredOptions | async"
+                                                [value]="option.nome"
+                                            >
+                                                <span class="ms-2 busca-span">Nome:</span> {{ option.nome }}
+                                                <span class="ms-2 busca-span">CPF:</span> {{ option.cpf }}
+                                            </mat-option>
+                                        </mat-autocomplete>
+                                    </mat-form-field>
+                                    <ng-lottie [options]="options" height="220px" *ngIf="loading"></ng-lottie>
+                                </div>
+                                <div class="col-12" *ngIf="pacientes.length > 0">
+                                    <table class="table table-striped">
+                                        <thead class="text-uppercase">
+                                            <tr class="text-center">
+                                                <th scope="col">Nome</th>
+                                                <th scope="col">Documento</th>
+                                                <th scope="col">Convênio</th>
+                                                <th scope="col">Inscrição</th>
+                                                <th scope="col">Telefone</th>
+                                                <th scope="col">Ações</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let paciente of pacientes">
+                                                <td>{{ paciente?.nome }}</td>
+                                                <td>{{ paciente?.cpf }}</td>
+                                                <td>{{ paciente?.descConvenio }}</td>
+                                                <td>{{ paciente?.nuInscricaoConvenio }}</td>
+                                                <td>{{ paciente?.telefone | mask: '(00) 0 0000 0000' }}</td>
+                                                <td>
+                                                    <a (click)="setValuesPaciente(paciente)" class="link-select"
+                                                        >selecionar</a
+                                                    >
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-12 pt-2 text-center mb-4">
+                                    <h3 class="text-uppercase mb-1">Ou Cadastre um Novo Paciente</h3>
+                                    <button mat-stroked-button class="btn btn-outline-primary" (click)="setStep(1)">
+                                        <i class="feather icon-plus"></i>
+                                        novo paciente
+                                    </button>
+                                </div>
+                                <div class="col-12 d-flex align-items-end justify-content-end mb-3">
+                                    <button
+                                        mat-stroked-button
+                                        class="btn btn-danger"
+                                        (click)="closeModalAndResetForm({ close: true, modalId: 'agendar-consulta' })"
+                                    >
+                                        <i class="feather icon-x"></i>
+                                        cancelar
+                                    </button>
+
+                                    <button mat-stroked-button class="btn btn-secondary ms-3" (click)="resetForm()">
+                                        <i class="feather icon-x-circle"></i>
+                                        limpar
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- /row-->
+                        </form>
+                    </ng-container>
+                    <!-- Formulário pré-cadastro Paciente -->
+                    <ng-container *ngIf="steps === 1">
+                        <!-- (stepId)="setStep($event)" -->
+                        <app-form-pre-cadastro-paciente
+                            (closeModal)="closeModalAndResetForm($event)"
+                            (dadosUsuario)="setValuesPaciente($event)"
+                            (stepId)="setStep($event)"
+                        ></app-form-pre-cadastro-paciente>
+                    </ng-container>
+                    <ng-container *ngIf="steps === 2">
+                        <app-agendamento-consulta
+                            (closeModal)="closeModalAndResetForm($event)"
+                            (stepId)="setStep($event)"
+                            (consultaAgendada)="resumoConsulta($event)"
+                            [formConsulta]="form"
+                        ></app-agendamento-consulta>
+                    </ng-container>
+                    <!-- <app-consulta-medica></app-consulta-medica> -->
+                </div>
+            </div>
+        </div>
+    </div>
 </app-modal-animation>
 <app-modal-animation modalID="resumo-consulta" modalClass="md-effect-11 resumo-consulta" backDrop="true">
-  <div class="md-body container p-0">
-    <div class="container py-4">
-      <div class="row">
-        <div class="col-12 text-center mb-3">
-          <h3 class="m-0">Resumo da Consulta</h3>
-          <p class="m-0">
-            Aqui está o resumo da consulta do paciente
-            <strong class="text-capitalize">{{ resumo?.paciente?.nome }}</strong>
-          </p>
+    <div class="md-body container p-0">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-12 text-center mb-3">
+                    <h3 class="m-0">Resumo da Consulta</h3>
+                    <p class="m-0">
+                        Aqui está o resumo da consulta do paciente
+                        <strong class="text-capitalize">{{ resumo?.paciente?.nome }}</strong>
+                    </p>
+                </div>
+                <div class="col-12 text-center mb-2">
+                    <p class="m-0"><strong>Início: </strong>{{ resumo?.dtInicio | date: 'medium' }}</p>
+                    <p class="m-0"><strong>Termino: </strong>{{ resumo?.dtFim | date: 'medium' }}</p>
+                    <p class="m-0 text-capitalize"><strong>Médico: </strong>{{ resumo?.medico?.nome }}</p>
+                    <p class="m-0"><strong>CRM: </strong>{{ resumo?.medico?.crm }}</p>
+                    <p class="m-0 text-capitalize">
+                        <strong>Procedimento: </strong>{{ resumo?.procedimento?.descTipoProcedimento }}
+                    </p>
+                    <p class="m-0"><strong>Observação: </strong>{{ resumo?.observacao }}</p>
+                </div>
+                <div class="col-12 mt-2 text-center">
+                    <button class="btn btn-primary" type="button" (click)="modal.close('resumo-consulta')">
+                        Ok, entendi.
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="col-12 text-center mb-2">
-          <p class="m-0"><strong>Início: </strong>{{ resumo?.dtInicio | date: 'medium' }}</p>
-          <p class="m-0"><strong>Termino: </strong>{{ resumo?.dtFim | date: 'medium' }}</p>
-          <p class="m-0 text-capitalize"><strong>Médico: </strong>{{ resumo?.medico?.nome }}</p>
-          <p class="m-0"><strong>CRM: </strong>{{ resumo?.medico?.crm }}</p>
-          <p class="m-0 text-capitalize">
-            <strong>Procedimento: </strong>{{ resumo?.procedimento?.descTipoProcedimento }}
-          </p>
-          <p class="m-0"><strong>Observação: </strong>{{ resumo?.observacao }}</p>
-        </div>
-        <div class="col-12 mt-2 text-center">
-          <button class="btn btn-primary" type="button" (click)="modal.close('resumo-consulta')">Ok, entendi.</button>
-        </div>
-      </div>
     </div>
-  </div>
 </app-modal-animation>

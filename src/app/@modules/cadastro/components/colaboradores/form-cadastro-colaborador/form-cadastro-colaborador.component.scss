@@ -1,23 +1,23 @@
 ::ng-deep {
-  .form-cadastro-colaborador.md-effect-12.md-show ~ .md-overlay {
-    background-color: #fff;
-  }
+    .form-cadastro-colaborador.md-effect-12.md-show ~ .md-overlay {
+        background-color: #fff;
+    }
 }
 
 ::ng-deep .form-cadastro-colaborador {
-  .md-content {
-    width: 900px !important;
-    // height: 500px;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-  }
+    .md-content {
+        width: 900px !important;
+        // height: 500px;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
 }
 
 .cursor {
-  cursor: pointer;
+    cursor: pointer;
 
-  &:hover {
-    opacity: 0.6;
-    transition: 300ms;
-  }
+    &:hover {
+        opacity: 0.6;
+        transition: 300ms;
+    }
 }

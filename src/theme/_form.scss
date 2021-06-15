@@ -1,51 +1,51 @@
 ::ng-deep {
-  .mat-form-field-appearance-outline .mat-form-field-outline {
-    // background-color: transparent;
-    // background-color: #fafafa;
-    border-radius: 6px !important;
-    // color: #aaa;
-    cursor: pointer;
-  }
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+        // background-color: transparent;
+        // background-color: #fafafa;
+        border-radius: 6px !important;
+        // color: #aaa;
+        cursor: pointer;
+    }
 
-  .mat-icon {
-    color: var(--tcc-light);
-  }
+    .mat-icon {
+        color: var(--tcc-light);
+    }
 
-  .mat-form-field-wrapper {
-    padding-bottom: 0;
-  }
+    .mat-form-field-wrapper {
+        padding-bottom: 0;
+    }
 
-  .mat-form-field-appearance-outline .mat-form-field-wrapper {
-    margin: 0.6em 0 !important;
-  }
+    .mat-form-field-appearance-outline .mat-form-field-wrapper {
+        margin: 0.6em 0 !important;
+    }
 
-  .mat-form-field-appearance-outline .mat-form-field-infix {
-    padding: 0.8em 0 0.8em 0 !important;
-  }
+    .mat-form-field-appearance-outline .mat-form-field-infix {
+        padding: 0.8em 0 0.8em 0 !important;
+    }
 
-  .mat-form-field-infix {
-    border-top: 0.5em solid transparent;
-  }
+    .mat-form-field-infix {
+        border-top: 0.5em solid transparent;
+    }
 
-  .mat-form-field-label {
-    // color: #afb5bd;
-  }
+    .mat-form-field-label {
+        // color: #afb5bd;
+    }
 
-  .mat-form-field-appearance-legacy .mat-form-field-underline {
-    // background-color: #ced4da;
-  }
+    .mat-form-field-appearance-legacy .mat-form-field-underline {
+        // background-color: #ced4da;
+    }
 
-  .ng-select .ng-select-container.ng-appearance-outline {
-    min-height: 50px !important;
-  }
+    .ng-select .ng-select-container.ng-appearance-outline {
+        min-height: 50px !important;
+    }
 
-  .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
-    padding-left: 1rem !important;
-  }
+    .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
+        padding-left: 1rem !important;
+    }
 }
 
 .optional {
-  font-size: var(--f_14);
-  font-weight: 300;
-  font-style: italic;
+    font-size: var(--f_14);
+    font-weight: 300;
+    font-style: italic;
 }

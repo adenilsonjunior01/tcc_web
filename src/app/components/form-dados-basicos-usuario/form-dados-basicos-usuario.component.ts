@@ -12,66 +12,66 @@ import { ModalAnimationComponent } from '../../@shared/modal-animation/modal-ani
 const log = new Logger('Dados Básicos Paciente');
 
 @Component({
-  selector: 'app-form-dados-basicos-usuario',
-  templateUrl: './form-dados-basicos-usuario.component.html',
-  styleUrls: ['./form-dados-basicos-usuario.component.scss'],
+    selector: 'app-form-dados-basicos-usuario',
+    templateUrl: './form-dados-basicos-usuario.component.html',
+    styleUrls: ['./form-dados-basicos-usuario.component.scss'],
 })
 export class FormDadosBasicosUsuarioComponent implements OnInit, OnDestroy {
-  @ViewChild(ModalAnimationComponent) modal: any;
-  @Output() closeModal = new EventEmitter();
-  public form: FormGroup;
-  public loading = false;
-  public errorRequest = false;
-  public messageError = '';
-  public user: Token;
+    @ViewChild(ModalAnimationComponent) modal: any;
+    @Output() closeModal = new EventEmitter();
+    public form: FormGroup;
+    public loading = false;
+    public errorRequest = false;
+    public messageError = '';
+    public user: Token;
 
-  private readonly _formPaciente = new FormCadastroPaciente();
+    private readonly _formPaciente = new FormCadastroPaciente();
 
-  constructor(
-    private readonly _service: UsuarioService,
-    private readonly _credentials: CredentialsService,
-    private readonly _sweetAlert: SweetalertService
-  ) {}
+    constructor(
+        private readonly _service: UsuarioService,
+        private readonly _credentials: CredentialsService,
+        private readonly _sweetAlert: SweetalertService
+    ) {}
 
-  ngOnDestroy(): void {}
+    ngOnDestroy(): void {}
 
-  ngOnInit(): void {
-    this.form = this._formPaciente.initForm();
-    this.user = this._credentials.decodeToken();
-    this.setIdUserForm();
-  }
-
-  private setIdUserForm() {
-    this.form.get('idUser').setValue(this.user.id);
-  }
-
-  public clearForm(): void {
-    this.form.get('nuInscricaoConvenio').reset();
-    this.form.get('descConvenio').reset();
-  }
-
-  public submitForm(): void {
-    if (this.form.valid) {
-      this.loading = true;
-      this._service
-        .saveNewPaciente(this.form.value)
-        .pipe(
-          finalize(() => {
-            this.loading = false;
-          }),
-          untilDestroyed(this)
-        )
-        .subscribe({
-          next: () => {
-            this._sweetAlert.openToasty('Dados atualizados com sucesso!', 'success');
-            this.closeModal.emit(true);
-          },
-          error: (error: any) => {
-            this.errorRequest = true;
-            this.messageError = error?.error?.message;
-            log.debug(`Error`);
-          },
-        });
+    ngOnInit(): void {
+        this.form = this._formPaciente.initForm();
+        this.user = this._credentials.decodeToken();
+        this.setIdUserForm();
     }
-  }
+
+    private setIdUserForm() {
+        this.form.get('idUser').setValue(this.user.id);
+    }
+
+    public clearForm(): void {
+        this.form.get('nuInscricaoConvenio').reset();
+        this.form.get('descConvenio').reset();
+    }
+
+    public submitForm(): void {
+        if (this.form.valid) {
+            this.loading = true;
+            this._service
+                .saveNewPaciente(this.form.value)
+                .pipe(
+                    finalize(() => {
+                        this.loading = false;
+                    }),
+                    untilDestroyed(this)
+                )
+                .subscribe({
+                    next: () => {
+                        this._sweetAlert.openToasty('Dados atualizados com sucesso!', 'success');
+                        this.closeModal.emit(true);
+                    },
+                    error: (error: any) => {
+                        this.errorRequest = true;
+                        this.messageError = error?.error?.message;
+                        log.debug(`Error`);
+                    },
+                });
+        }
+    }
 }

@@ -1,3 +1,3 @@
 export interface IEventStepModel {
-  stepId: number;
+    stepId: number;
 }

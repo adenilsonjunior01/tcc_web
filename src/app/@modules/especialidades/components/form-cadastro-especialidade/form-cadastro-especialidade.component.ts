@@ -6,48 +6,48 @@ import { finalize } from 'rxjs/operators';
 import { SweetalertService } from '@app/@shared/sweetalert/sweetalert.service';
 
 @Component({
-  selector: 'app-form-cadastro-especialidade',
-  templateUrl: './form-cadastro-especialidade.component.html',
-  styleUrls: ['./form-cadastro-especialidade.component.scss'],
+    selector: 'app-form-cadastro-especialidade',
+    templateUrl: './form-cadastro-especialidade.component.html',
+    styleUrls: ['./form-cadastro-especialidade.component.scss'],
 })
 export class FormCadastroEspecialidadeComponent implements OnInit, OnDestroy {
-  @Output() closeModal = new EventEmitter();
+    @Output() closeModal = new EventEmitter();
 
-  public form: FormGroup;
-  public loading = false;
+    public form: FormGroup;
+    public loading = false;
 
-  constructor(
-    private readonly _especialidadeService: EspecilidadeService,
-    private readonly _fb: FormBuilder,
-    private readonly _sweetAlert: SweetalertService
-  ) {}
+    constructor(
+        private readonly _especialidadeService: EspecilidadeService,
+        private readonly _fb: FormBuilder,
+        private readonly _sweetAlert: SweetalertService
+    ) {}
 
-  ngOnDestroy(): void {}
+    ngOnDestroy(): void {}
 
-  ngOnInit(): void {
-    this.initForm();
-  }
+    ngOnInit(): void {
+        this.initForm();
+    }
 
-  public initForm() {
-    this.form = this._fb.group({
-      descEspecializacao: [null, Validators.required],
-    });
-  }
+    public initForm() {
+        this.form = this._fb.group({
+            descEspecializacao: [null, Validators.required],
+        });
+    }
 
-  public closeDialog() {}
+    public closeDialog() {}
 
-  public save() {
-    this._especialidadeService
-      .salvarEspecializacao(this.form.value)
-      .pipe(
-        untilDestroyed(this),
-        finalize(() => (this.loading = false))
-      )
-      .subscribe({
-        next: () => {
-          this._sweetAlert.openToasty('Especilidade salva com sucesso!', 'success');
-          this.closeModal.emit(true);
-        },
-      });
-  }
+    public save() {
+        this._especialidadeService
+            .salvarEspecializacao(this.form.value)
+            .pipe(
+                untilDestroyed(this),
+                finalize(() => (this.loading = false))
+            )
+            .subscribe({
+                next: () => {
+                    this._sweetAlert.openToasty('Especilidade salva com sucesso!', 'success');
+                    this.closeModal.emit(true);
+                },
+            });
+    }
 }

@@ -1,4 +1,4 @@
 export interface ITipoAlergiaModel {
-  id: number;
-  descTipo: string;
+    id: number;
+    descTipo: string;
 }

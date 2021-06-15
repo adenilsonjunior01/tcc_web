@@ -1,54 +1,54 @@
 import { Component, OnInit, OnChanges, SimpleChanges, ViewChild, Input } from '@angular/core';
 import { ChartPieConfig } from '../../../config/chart-paciente/chart-pie-config';
 import {
-  ChartComponent,
-  ApexAxisChartSeries,
-  ApexChart,
-  ApexDataLabels,
-  ApexPlotOptions,
-  ApexXAxis,
+    ChartComponent,
+    ApexAxisChartSeries,
+    ApexChart,
+    ApexDataLabels,
+    ApexPlotOptions,
+    ApexXAxis,
 } from 'ng-apexcharts';
 import { IEspecializacoesMedicosModel } from '../../../../../models/dados-estastisticos-administrador';
 
 export type ChartOptions = {
-  series: ApexAxisChartSeries;
-  chart: ApexChart;
-  dataLabels: ApexDataLabels;
-  plotOptions: ApexPlotOptions;
-  xaxis: ApexXAxis;
+    series: ApexAxisChartSeries;
+    chart: ApexChart;
+    dataLabels: ApexDataLabels;
+    plotOptions: ApexPlotOptions;
+    xaxis: ApexXAxis;
 };
 
 @Component({
-  selector: 'app-pie-especializacoes-mes',
-  templateUrl: './pie-especializacoes-mes.component.html',
-  styleUrls: ['./pie-especializacoes-mes.component.scss'],
+    selector: 'app-pie-especializacoes-mes',
+    templateUrl: './pie-especializacoes-mes.component.html',
+    styleUrls: ['./pie-especializacoes-mes.component.scss'],
 })
 export class PieEspecializacoesMesComponent implements OnInit, OnChanges {
-  @ViewChild('chart') chart: ChartComponent;
-  @Input() especializacoesMes: IEspecializacoesMedicosModel[];
-  public chartOptions: Partial<ChartOptions>;
+    @ViewChild('chart') chart: ChartComponent;
+    @Input() especializacoesMes: IEspecializacoesMedicosModel[];
+    public chartOptions: Partial<ChartOptions>;
 
-  public chartPieConfig: any;
+    public chartPieConfig: any;
 
-  constructor() {
-    this.chartPieConfig = ChartPieConfig.configChartData;
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (this.especializacoesMes) {
-      this.setDadosGraficoDeEspecialidades();
+    constructor() {
+        this.chartPieConfig = ChartPieConfig.configChartData;
     }
-  }
 
-  ngOnInit(): void {}
+    ngOnChanges(changes: SimpleChanges): void {
+        if (this.especializacoesMes) {
+            this.setDadosGraficoDeEspecialidades();
+        }
+    }
 
-  private setDadosGraficoDeEspecialidades(): void {
-    this.chartPieConfig.labels = [];
-    this.chartPieConfig.series = [];
+    ngOnInit(): void {}
 
-    this.especializacoesMes.forEach((value: any) => {
-      this.chartPieConfig.labels.push(value.descricao);
-      this.chartPieConfig.series.push(value.quantidade);
-    });
-  }
+    private setDadosGraficoDeEspecialidades(): void {
+        this.chartPieConfig.labels = [];
+        this.chartPieConfig.series = [];
+
+        this.especializacoesMes.forEach((value: any) => {
+            this.chartPieConfig.labels.push(value.descricao);
+            this.chartPieConfig.series.push(value.quantidade);
+        });
+    }
 }

@@ -1,5 +1,5 @@
 export interface IDadosMedicosModel {
-  tipoSanguineo: number;
-  altura: number;
-  peso: number;
+    tipoSanguineo: number;
+    altura: number;
+    peso: number;
 }

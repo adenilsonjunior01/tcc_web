@@ -12,16 +12,16 @@ import { LoginComponent } from './login.component';
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    TranslateModule,
-    SharedModule,
-    FlexLayoutModule,
-    MaterialModule,
-    I18nModule,
-    AuthRoutingModule,
-  ],
-  declarations: [LoginComponent, UpdatePasswordComponent],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        TranslateModule,
+        SharedModule,
+        FlexLayoutModule,
+        MaterialModule,
+        I18nModule,
+        AuthRoutingModule,
+    ],
+    declarations: [LoginComponent, UpdatePasswordComponent],
 })
 export class AuthModule {}

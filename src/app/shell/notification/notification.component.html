@@ -1,60 +1,60 @@
 <button mat-icon-button [matMenuTriggerFor]="notification">
-  <i class="feather icon-bell"></i>
-  <span class="spinner-grow spinner-grow-sm" *ngIf="verifyProfilePending()"></span
-  ><!-- *ngIf="perfil === 'MEDICO' || perfil === 'PACIENTE'"-->
+    <i class="feather icon-bell"></i>
+    <span class="spinner-grow spinner-grow-sm" *ngIf="verifyProfilePending()"></span
+    ><!-- *ngIf="perfil === 'MEDICO' || perfil === 'PACIENTE'"-->
 </button>
 
 <mat-menu #notification="matMenu">
-  <div class="container">
-    <div class="row m-0">
-      <div class="col-12 py-2 ps-0">
-        <h3 class="m-0">Notificações</h3>
-      </div>
-    </div>
-  </div>
-  <!-- <mat-divider></mat-divider> -->
-  <hr class="m-0" />
-  <!-- Notificação de cadastro médico -->
-  <mat-list (click)="modal.show('dados-basicos')" *ngIf="verifyProfilePending()"
-    ><!--*ngIf="perfil === 'MEDICO' || perfil === 'PACIENTE'"-->
-    <mat-list-item>
-      <div class="container notificacoes p-0">
+    <div class="container">
         <div class="row m-0">
-          <!-- <div class="col-12 notificacoes__title p-0">
+            <div class="col-12 py-2 ps-0">
+                <h3 class="m-0">Notificações</h3>
+            </div>
+        </div>
+    </div>
+    <!-- <mat-divider></mat-divider> -->
+    <hr class="m-0" />
+    <!-- Notificação de cadastro médico -->
+    <mat-list (click)="modal.show('dados-basicos')" *ngIf="verifyProfilePending()"
+        ><!--*ngIf="perfil === 'MEDICO' || perfil === 'PACIENTE'"-->
+        <mat-list-item>
+            <div class="container notificacoes p-0">
+                <div class="row m-0">
+                    <!-- <div class="col-12 notificacoes__title p-0">
             <span>Dados médicos</span>
           </div> -->
-          <div class="col-9 p-0 notificacoes__text">
-            <span><i class="feather icon-file-minus"></i>Existe dados Pendentes.</span>
-          </div>
-          <div class="col-3 p-0 notificacoes__icon">
-            <span><i class="feather icon-clock"></i> Nova</span>
-          </div>
-        </div>
-      </div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-  </mat-list>
-  <mat-list *ngIf="!verifyProfilePending()">
-    <mat-list-item>
-      <div class="container notificacoes p-0">
-        <div class="row m-0">
-          <div class="col-9 p-0 notificacoes__text">
-            <span>Sem notificações.</span>
-          </div>
-        </div>
-      </div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-  </mat-list>
+                    <div class="col-9 p-0 notificacoes__text">
+                        <span><i class="feather icon-file-minus"></i>Existe dados Pendentes.</span>
+                    </div>
+                    <div class="col-3 p-0 notificacoes__icon">
+                        <span><i class="feather icon-clock"></i> Nova</span>
+                    </div>
+                </div>
+            </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+    </mat-list>
+    <mat-list *ngIf="!verifyProfilePending()">
+        <mat-list-item>
+            <div class="container notificacoes p-0">
+                <div class="row m-0">
+                    <div class="col-9 p-0 notificacoes__text">
+                        <span>Sem notificações.</span>
+                    </div>
+                </div>
+            </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+    </mat-list>
 </mat-menu>
 
 <app-modal-animation modalID="dados-basicos" modalClass="md-effect-11 dados-pendentes" backDrop="true">
-  <div class="container md-body">
-    <ng-container *ngIf="perfil === 'MEDICO'">
-      <app-form-dados-basicos-medico (closeModal)="closeModal($event)"></app-form-dados-basicos-medico>
-    </ng-container>
-    <ng-container *ngIf="perfil === 'PACIENTE'">
-      <app-form-dados-basicos-usuario (closeModal)="closeModal($event)"></app-form-dados-basicos-usuario>
-    </ng-container>
-  </div>
+    <div class="container md-body">
+        <ng-container *ngIf="perfil === 'MEDICO'">
+            <app-form-dados-basicos-medico (closeModal)="closeModal($event)"></app-form-dados-basicos-medico>
+        </ng-container>
+        <ng-container *ngIf="perfil === 'PACIENTE'">
+            <app-form-dados-basicos-usuario (closeModal)="closeModal($event)"></app-form-dados-basicos-usuario>
+        </ng-container>
+    </div>
 </app-modal-animation>

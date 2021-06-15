@@ -2,34 +2,34 @@
 @import "../../../theme/mixin";
 
 .container {
-  text-align: center;
-  padding: 1em;
+    text-align: center;
+    padding: 1em;
 }
 
 .logo {
-  width: 150px;
-  margin: 0 auto;
+    width: 150px;
+    margin: 0 auto;
 }
 
 q {
-  font-style: italic;
-  quotes: "« " " »";
+    font-style: italic;
+    quotes: "« " " »";
 }
 
 .line {
-  border-right: 1px solid #e8e8e8;
+    border-right: 1px solid #e8e8e8;
 }
 
 h3 {
-  font-size: 22px;
+    font-size: 22px;
 }
 
 .cards {
-  &__row {
-    display: flex;
+    &__row {
+        display: flex;
 
-    @include query(mobile) {
-      display: block;
+        @include query(mobile) {
+            display: block;
+        }
     }
-  }
 }

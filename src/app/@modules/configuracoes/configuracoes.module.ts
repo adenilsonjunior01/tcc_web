@@ -11,15 +11,15 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
-  declarations: [ConfiguracoesComponent, FormDadosClinicaComponent],
-  imports: [
-    CommonModule,
-    ConfiguracoesRoutingModule,
-    SharedModule,
-    MaterialModule,
-    FileUploadModule,
-    NgSelectModule,
-    NgxMaskModule,
-  ],
+    declarations: [ConfiguracoesComponent, FormDadosClinicaComponent],
+    imports: [
+        CommonModule,
+        ConfiguracoesRoutingModule,
+        SharedModule,
+        MaterialModule,
+        FileUploadModule,
+        NgSelectModule,
+        NgxMaskModule,
+    ],
 })
 export class ConfiguracoesModule {}

@@ -1,130 +1,130 @@
 :host {
-  display: flex;
-  flex: 1;
-  --font-title-color: #535763;
-  --font-subtitle-color: #b5b5c3;
-  --font-size-title: 43px;
+    display: flex;
+    flex: 1;
+    --font-title-color: #535763;
+    --font-subtitle-color: #b5b5c3;
+    --font-size-title: 43px;
 }
 
 .mat-drawer,
 .mat-toolbar,
 .mat-tree {
-  background-color: var(--tcc-bg-menu);
+    background-color: var(--tcc-bg-menu);
 }
 
 .mat-sidenav {
-  min-width: 280px;
-  max-width: 100%;
+    min-width: 280px;
+    max-width: 100%;
 }
 
 .has-border {
-  border-right: 1px solid rgba(0, 0, 0, 0.12);
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .mat-list {
-  padding-top: 0;
+    padding-top: 0;
 }
 
 .mat-list-item,
 .mat-tree-node {
-  text-decoration: none;
-  color: var(--tcc-gray);
-  font-weight: 500;
-  font-size: var(--f_16);
-  cursor: pointer;
+    text-decoration: none;
+    color: var(--tcc-gray);
+    font-weight: 500;
+    font-size: var(--f_16);
+    cursor: pointer;
 
-  &:hover {
-    transition: 200ms;
-    color: var(--tcc-active-menu);
-    background: rgba(240, 247, 255, 1);
-  }
+    &:hover {
+        transition: 200ms;
+        color: var(--tcc-active-menu);
+        background: rgba(240, 247, 255, 1);
+    }
 }
 
 .menu-button {
-  margin-right: 1rem;
+    margin-right: 1rem;
 }
 
 .active {
-  color: var(--tcc-active-menu);
-  font-size: var(--f_16);
-  font-weight: 600;
-  background-color: #ffffff;
-  border: 1px solid #e1e4e7;
-  border-left: none !important;
-  border-right: none !important;
-  .icon-visao {
-    background: url(../../assets/menu-nav/icon-visao-blue.svg);
-  }
-  &:hover {
-    background-color: #f0f7ff;
-    transition: 200ms;
-  }
+    color: var(--tcc-active-menu);
+    font-size: var(--f_16);
+    font-weight: 600;
+    background-color: #ffffff;
+    border: 1px solid #e1e4e7;
+    border-left: none !important;
+    border-right: none !important;
+    .icon-visao {
+        background: url(../../assets/menu-nav/icon-visao-blue.svg);
+    }
+    &:hover {
+        background-color: #f0f7ff;
+        transition: 200ms;
+    }
 }
 
 a.active {
-  border-right: 4px solid;
+    border-right: 4px solid;
 }
 
 .icon-visao {
-  background: url(../../assets/menu-nav/icon-visao.svg);
-  background-size: cover;
+    background: url(../../assets/menu-nav/icon-visao.svg);
+    background-size: cover;
 }
 
 .icon-wh {
-  width: 20px;
-  height: 20px;
-  margin-right: 1.5rem;
+    width: 20px;
+    height: 20px;
+    margin-right: 1.5rem;
 }
 
 .mat-toolbar-row,
 .mat-toolbar-single-row {
-  height: 130px;
-  padding: 0 10px;
+    height: 130px;
+    padding: 0 10px;
 }
 
 .name-app {
-  color: #3b4349;
-  font-weight: 600;
-  font-size: 28px;
-  padding-left: 13px;
+    color: #3b4349;
+    font-weight: 600;
+    font-size: 28px;
+    padding-left: 13px;
 }
 
 .mat-list-base .mat-list-item,
 .mat-tree-node {
-  height: 53px;
+    height: 53px;
 }
 
 .bg-header {
-  background: var(--tcc-bg-container);
+    background: var(--tcc-bg-container);
 }
 
 .title-page {
-  color: var(--font-title-color);
-  font-size: var(--font-size-title);
+    color: var(--font-title-color);
+    font-size: var(--font-size-title);
 }
 
 .subtitle {
-  color: var(--font-subtitle-color);
-  font-size: var(--f_16);
+    color: var(--font-subtitle-color);
+    font-size: var(--f_16);
 }
 
 ::ng-deep {
-  .mat-drawer.mat-drawer-side {
-    z-index: 1 !important;
-  }
+    .mat-drawer.mat-drawer-side {
+        z-index: 1 !important;
+    }
 }
 
 .footer-clinica {
-  max-width: 220px;
-  top: 80%;
-  margin-right: 0;
-  background-color: var(--tcc-bg-container);
-  margin: 0px 20px;
-  border-radius: 8px;
-  padding: 12px 0;
+    max-width: 220px;
+    top: 80%;
+    margin-right: 0;
+    background-color: var(--tcc-bg-container);
+    margin: 0px 20px;
+    border-radius: 8px;
+    padding: 12px 0;
 
-  &__endereco {
-    color: var(--tcc-text-color-title);
-    font-size: var(--f_14);
-  }
+    &__endereco {
+        color: var(--tcc-text-color-title);
+        font-size: var(--f_14);
+    }
 }

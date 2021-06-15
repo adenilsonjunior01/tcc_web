@@ -1,54 +1,54 @@
 @import "../../../../../../theme/paginate";
 
 h3 {
-  font-size: 18px;
+    font-size: 18px;
 }
 
 tr {
-  border: 1px solid #ececec;
-  th {
-    color: #aeaeae;
-    font-weight: 400;
-    text-align: start;
-    padding: 0.3rem 0.15rem !important;
-  }
-
-  td {
-    padding: 0.3rem 0.15rem !important;
-    font-size: var(--f_14);
-    font-weight: 300;
-
-    span {
-      color: #c7c7c7;
+    border: 1px solid #ececec;
+    th {
+        color: #aeaeae;
+        font-weight: 400;
+        text-align: start;
+        padding: 0.3rem 0.15rem !important;
     }
 
-    span.bold {
-      color: var(--tcc-dark);
-      font-weight: bold;
-    }
+    td {
+        padding: 0.3rem 0.15rem !important;
+        font-size: var(--f_14);
+        font-weight: 300;
 
-    a {
-      font-size: var(--f_14);
-      font-weight: 400;
-      text-decoration: underline;
-      cursor: pointer;
+        span {
+            color: #c7c7c7;
+        }
 
-      &:hover {
-        transition: 300ms;
-        opacity: 0.7;
-      }
+        span.bold {
+            color: var(--tcc-dark);
+            font-weight: bold;
+        }
+
+        a {
+            font-size: var(--f_14);
+            font-weight: 400;
+            text-decoration: underline;
+            cursor: pointer;
+
+            &:hover {
+                transition: 300ms;
+                opacity: 0.7;
+            }
+        }
     }
-  }
 }
 
 .table-responsive {
-  height: auto !important;
+    height: auto !important;
 }
 
 .not-found {
-  p {
-    color: var(--dark);
-    font-size: var(--f_14);
-    font-weight: 500;
-  }
+    p {
+        color: var(--dark);
+        font-size: var(--f_14);
+        font-weight: 500;
+    }
 }

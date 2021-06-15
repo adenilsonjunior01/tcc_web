@@ -1,56 +1,56 @@
 <div class="container p-4">
-  <div class="row justify-content-center">
-    <div class="col-12">
-      <full-calendar *ngIf="calendarVisible" [options]="calendarOptions"></full-calendar>
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <full-calendar *ngIf="calendarVisible" [options]="calendarOptions"></full-calendar>
+        </div>
     </div>
-  </div>
 </div>
 
 <app-card-nova-consulta visibleCard="false"></app-card-nova-consulta>
 
 <app-modal-animation modalID="full-calendar" modalClass="md-effect-11 full-calendar">
-  <div class="container md-body py-3 consulta-details">
-    <div class="row">
-      <div class="col-12">
-        <h3 class="m-0">Detalhes da Consulta</h3>
-        <hr class="mb-2 mt-1" />
-      </div>
-      <div class="col-6 d-flex justify-content-start">
-        <p class="m-0"><span>Data: </span>{{ detailsConsulta?.consulta?.data | date: 'shortDate' }}</p>
-      </div>
-      <div class="col-6 d-flex justify-content-start">
-        <p class="m-0">
-          <span>Tipo Consulta: </span
-          >{{
-            detailsConsulta?.consulta?.tipoConsulta !== undefined
-              ? detailsConsulta?.consulta?.tipoConsulta
-              : 'Não informado'
-          }}
-        </p>
-      </div>
-      <div class="col-6 d-flex justify-content-start">
-        <p class="m-0">
-          <span>Horário: </span> {{ detailsConsulta?.consulta?.inicio | date: 'shortTime' }} -
-          {{ detailsConsulta?.consulta?.termino | date: 'shortTime' }}
-        </p>
-      </div>
-      <div class="col-6 d-flex justify-content-start">
-        <p class="m-0"><span>Médico: </span>{{ detailsConsulta?.medico?.nome }}</p>
-      </div>
-      <div class="col-12 d-flex justify-content-end mt-3">
-        <button class="btn btn-outline-secondary me-3" type="button" (click)="modal.close('full-calendar')">
-          <i class="feather icon-arrow-left"></i>
-          Voltar
-        </button>
-        <button class="btn btn-danger me-3" type="button" (click)="cancelarConsulta()">
-          <i class="feather icon-x"></i>
-          Cancelar
-        </button>
-        <button class="btn btn-success" type="button">
-          <i class="feather icon-check"></i>
-          Confirmar
-        </button>
-      </div>
+    <div class="container md-body py-3 consulta-details">
+        <div class="row">
+            <div class="col-12">
+                <h3 class="m-0">Detalhes da Consulta</h3>
+                <hr class="mb-2 mt-1" />
+            </div>
+            <div class="col-6 d-flex justify-content-start">
+                <p class="m-0"><span>Data: </span>{{ detailsConsulta?.consulta?.data | date: 'shortDate' }}</p>
+            </div>
+            <div class="col-6 d-flex justify-content-start">
+                <p class="m-0">
+                    <span>Tipo Consulta: </span
+                    >{{
+                        detailsConsulta?.consulta?.tipoConsulta !== undefined
+                            ? detailsConsulta?.consulta?.tipoConsulta
+                            : 'Não informado'
+                    }}
+                </p>
+            </div>
+            <div class="col-6 d-flex justify-content-start">
+                <p class="m-0">
+                    <span>Horário: </span> {{ detailsConsulta?.consulta?.inicio | date: 'shortTime' }} -
+                    {{ detailsConsulta?.consulta?.termino | date: 'shortTime' }}
+                </p>
+            </div>
+            <div class="col-6 d-flex justify-content-start">
+                <p class="m-0"><span>Médico: </span>{{ detailsConsulta?.medico?.nome }}</p>
+            </div>
+            <div class="col-12 d-flex justify-content-end mt-3">
+                <button class="btn btn-outline-secondary me-3" type="button" (click)="modal.close('full-calendar')">
+                    <i class="feather icon-arrow-left"></i>
+                    Voltar
+                </button>
+                <button class="btn btn-danger me-3" type="button" (click)="cancelarConsulta()">
+                    <i class="feather icon-x"></i>
+                    Cancelar
+                </button>
+                <button class="btn btn-success" type="button">
+                    <i class="feather icon-check"></i>
+                    Confirmar
+                </button>
+            </div>
+        </div>
     </div>
-  </div>
 </app-modal-animation>

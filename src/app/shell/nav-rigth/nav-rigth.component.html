@@ -1,49 +1,51 @@
 <div>
-  <app-notification></app-notification>
+    <app-notification></app-notification>
 
-  <button mat-icon-button [matMenuTriggerFor]="userMenu">
-    <!-- <mat-icon>person</mat-icon> -->
-    <img src="../../../assets/icon-profile.svg" alt="Profile" />
-    <!-- <div>
+    <button mat-icon-button [matMenuTriggerFor]="userMenu">
+        <!-- <mat-icon>person</mat-icon> -->
+        <img src="../../../assets/icon-profile.svg" alt="Profile" />
+        <!-- <div>
       <span class="text-capitalize">{{ splitNameUser() }}</span>
       <span>{{ perfil }}</span>
     </div> -->
-  </button>
-  <mat-menu #userMenu="matMenu">
-    <div class="container profile">
-      <div class="row m-0">
-        <div class="col-12 d-flex justify-content-center mt-3">
-          <img src="../../../assets/icon-profile.svg" alt="Profile Image" />
-        </div>
-        <div class="col-12 text-center mt-2 profile__username">
-          <p class="m-0 text-capitalize profile__username--name">{{ userName }}</p>
-          <p class="m-0 text-capitalize profile__username--perfil">{{ perfil }}</p>
-        </div>
-        <div class="col-12 d-flex justify-content-center mt-4 profile__username--perfil-button">
-          <button mat-stroked-button type="button" class="w-50" (click)="navigateProfile()">Ver perfil</button>
-        </div>
-      </div>
-      <mat-divider class="mt-3"></mat-divider>
-      <div class="row m-0 details">
-        <div class="col-12 details__email mt-2">
-          <span><i class="feather icon-mail"></i>{{ email }}</span>
-        </div>
-      </div>
-      <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR'">
-        <mat-divider class="mt-2"></mat-divider>
-        <div class="row m-0 details">
-          <div class="col-12 details__new-user mt-2" (click)="navigateRegisterColaborador()">
-            <span><i class="feather icon-user-plus"></i>Cadastrar nova conta.</span>
-          </div>
-        </div>
-      </ng-container>
+    </button>
+    <mat-menu #userMenu="matMenu">
+        <div class="container profile">
+            <div class="row m-0">
+                <div class="col-12 d-flex justify-content-center mt-3">
+                    <img src="../../../assets/icon-profile.svg" alt="Profile Image" />
+                </div>
+                <div class="col-12 text-center mt-2 profile__username">
+                    <p class="m-0 text-capitalize profile__username--name">{{ userName }}</p>
+                    <p class="m-0 text-capitalize profile__username--perfil">{{ perfil }}</p>
+                </div>
+                <div class="col-12 d-flex justify-content-center mt-4 profile__username--perfil-button">
+                    <button mat-stroked-button type="button" class="w-50" (click)="navigateProfile()">
+                        Ver perfil
+                    </button>
+                </div>
+            </div>
+            <mat-divider class="mt-3"></mat-divider>
+            <div class="row m-0 details">
+                <div class="col-12 details__email mt-2">
+                    <span><i class="feather icon-mail"></i>{{ email }}</span>
+                </div>
+            </div>
+            <ng-container *ngIf="perfil === 'ADMINISTRADOR' || perfil === 'AUXILIAR'">
+                <mat-divider class="mt-2"></mat-divider>
+                <div class="row m-0 details">
+                    <div class="col-12 details__new-user mt-2" (click)="navigateRegisterColaborador()">
+                        <span><i class="feather icon-user-plus"></i>Cadastrar nova conta.</span>
+                    </div>
+                </div>
+            </ng-container>
 
-      <mat-divider class="mt-2"></mat-divider>
-      <div class="row m-0">
-        <div class="col-12 my-3 text-center">
-          <button mat-stroked-button type="button" class="w-50" (click)="logout()">Sair</button>
+            <mat-divider class="mt-2"></mat-divider>
+            <div class="row m-0">
+                <div class="col-12 my-3 text-center">
+                    <button mat-stroked-button type="button" class="w-50" (click)="logout()">Sair</button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </mat-menu>
+    </mat-menu>
 </div>

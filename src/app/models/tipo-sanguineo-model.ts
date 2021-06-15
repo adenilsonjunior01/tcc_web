@@ -1,4 +1,4 @@
 export interface ITipoSanguineoModel {
-  id: number;
-  descricaoTipoSanguineo: string;
+    id: number;
+    descricaoTipoSanguineo: string;
 }

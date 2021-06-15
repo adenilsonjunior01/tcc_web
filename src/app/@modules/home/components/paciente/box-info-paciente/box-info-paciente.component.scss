@@ -1,47 +1,47 @@
 @import "../../../../../../theme/mixin";
 
 .bg-box-info {
-  min-height: 215px;
-  // max-width: 320px;
-  // background-color: rgb(25, 123, 189);
-  background: linear-gradient(#197bbd, #3391d0);
-  border-radius: 26px;
+    min-height: 215px;
+    // max-width: 320px;
+    // background-color: rgb(25, 123, 189);
+    background: linear-gradient(#197bbd, #3391d0);
+    border-radius: 26px;
 
-  @include query(mobile) {
-  }
+    @include query(mobile) {
+    }
 }
 
 .name-medico {
-  h3 {
-    color: var(--tcc-white);
-    font-weight: 500;
-    font-size: var(--f_18);
-  }
+    h3 {
+        color: var(--tcc-white);
+        font-weight: 500;
+        font-size: var(--f_18);
+    }
 
-  span {
-    color: var(--tcc-light);
-    font-size: var(--f_12);
-  }
+    span {
+        color: var(--tcc-light);
+        font-size: var(--f_12);
+    }
 }
 
 .dados-medico {
-  h2 {
-    color: var(--tcc-white);
-    font-family: var(--tcc-font-lato);
-    font-weight: 500;
-  }
+    h2 {
+        color: var(--tcc-white);
+        font-family: var(--tcc-font-lato);
+        font-weight: 500;
+    }
 }
 
 .description {
-  span {
-    font-weight: 300;
-    font-size: 14px;
-    color: var(--tcc-white);
-  }
+    span {
+        font-weight: 300;
+        font-size: 14px;
+        color: var(--tcc-white);
+    }
 
-  h4 {
-    font-weight: 500;
-    color: var(--tcc-white);
-    font-size: var(--f_16);
-  }
+    h4 {
+        font-weight: 500;
+        color: var(--tcc-white);
+        font-size: var(--f_16);
+    }
 }

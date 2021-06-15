@@ -1,77 +1,83 @@
 <div class="row pt-2 m-0">
-  <div class="col-12 table-responsive">
-    <table class="w-100 table-tcc">
-      <thead class="text-uppercase">
-        <tr>
-          <th scope="col">Descrição</th>
-          <th scope="col">Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let especialidade of especialidades">
-          <td class="td-format">{{ especialidade?.descEspecializacao }}</td>
-          <td class="td-format width-td">
-            <button
-              mat-raised-button
-              color="primary"
-              type="button"
-              class="btn-secondary me-2"
-              matTooltip="Editar"
-              (click)="openModal(especialidade)"
-            >
-              <i class="feather icon-edit-2"></i>
-            </button>
-            <button
-              mat-raised-button
-              color="primary"
-              type="button"
-              class="btn-danger me-2"
-              matTooltip="Excluir"
-              (click)="confirmModal(especialidade.id)"
-            >
-              <i class="feather icon-x"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <div class="col-12 table-responsive">
+        <table class="w-100 table-tcc">
+            <thead class="text-uppercase">
+                <tr>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let especialidade of especialidades">
+                    <td class="td-format">{{ especialidade?.descEspecializacao }}</td>
+                    <td class="td-format width-td">
+                        <button
+                            mat-raised-button
+                            color="primary"
+                            type="button"
+                            class="btn-secondary me-2"
+                            matTooltip="Editar"
+                            (click)="openModal(especialidade)"
+                        >
+                            <i class="feather icon-edit-2"></i>
+                        </button>
+                        <button
+                            mat-raised-button
+                            color="primary"
+                            type="button"
+                            class="btn-danger me-2"
+                            matTooltip="Excluir"
+                            (click)="confirmModal(especialidade.id)"
+                        >
+                            <i class="feather icon-x"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 <app-modal-animation modalID="editar-especialidade" modalClass="md-effect-10 editar-especialidade">
-  <div class="container md-body">
-    <div class="row">
-      <div class="col-12 d-flex justify-content-end mt-3">
-        <i class="feather icon-x" (click)="modal.close('editar-especialidade')"></i>
-      </div>
+    <div class="container md-body">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-end mt-3">
+                <i class="feather icon-x" (click)="modal.close('editar-especialidade')"></i>
+            </div>
+        </div>
+        <form [formGroup]="form">
+            <div class="row m-0 py-3">
+                <div class="col-12">
+                    <h3 class="mt-3 mb-0">Editar especialidade</h3>
+                    <hr class="my-1" />
+                </div>
+                <div class="col-md-12">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Nome</mat-label>
+                        <input
+                            type="text"
+                            matInput
+                            placeholder=""
+                            autocomplete="off"
+                            formControlName="descEspecializacao"
+                        />
+                    </mat-form-field>
+                </div>
+                <div class="row d-flex justify-content-end ms-1 mt-4">
+                    <div class="col-2 p-0">
+                        <button type="button" class="btn btn-secondary-tcc p-2" (click)="clearForm()">
+                            <i class="feather icon-x"></i>
+                            limpar
+                        </button>
+                    </div>
+                    <div class="col-2 p-0">
+                        <button type="button" class="btn btn-primary-tcc p-2" (click)="update()">
+                            <i class="feather icon-check"></i>
+                            salvar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
-    <form [formGroup]="form">
-      <div class="row m-0 py-3">
-        <div class="col-12">
-          <h3 class="mt-3 mb-0">Editar especialidade</h3>
-          <hr class="my-1" />
-        </div>
-        <div class="col-md-12">
-          <mat-form-field appearance="outline" class="w-100">
-            <mat-label>Nome</mat-label>
-            <input type="text" matInput placeholder="" autocomplete="off" formControlName="descEspecializacao" />
-          </mat-form-field>
-        </div>
-        <div class="row d-flex justify-content-end ms-1 mt-4">
-          <div class="col-2 p-0">
-            <button type="button" class="btn btn-secondary-tcc p-2" (click)="clearForm()">
-              <i class="feather icon-x"></i>
-              limpar
-            </button>
-          </div>
-          <div class="col-2 p-0">
-            <button type="button" class="btn btn-primary-tcc p-2" (click)="update()">
-              <i class="feather icon-check"></i>
-              salvar
-            </button>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
 </app-modal-animation>
 <app-loader *ngIf="loading"></app-loader>

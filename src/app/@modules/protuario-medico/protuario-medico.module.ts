@@ -10,7 +10,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { DetalhesProntuarioComponent } from './components/detalhes-prontuario/detalhes-prontuario.component';
 
 @NgModule({
-  declarations: [ProtuarioMedicoComponent, TableProntuariosComponent, DetalhesProntuarioComponent],
-  imports: [CommonModule, ProtuarioMedicoRoutingModule, SharedModule, MaterialModule, NgxPaginationModule],
+    declarations: [ProtuarioMedicoComponent, TableProntuariosComponent, DetalhesProntuarioComponent],
+    imports: [CommonModule, ProtuarioMedicoRoutingModule, SharedModule, MaterialModule, NgxPaginationModule],
 })
 export class ProtuarioMedicoModule {}

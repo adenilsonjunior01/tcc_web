@@ -1,23 +1,23 @@
 <div class="row">
-  <div class="col-12">
-    <h2 class="mt-0 mb-2" *ngIf="!dadosColaborador?.update">Novo Colaborador</h2>
-    <h2 class="mt-0 mb-2" *ngIf="dadosColaborador?.update">Atualizar Colaborador</h2>
-    <hr class="my-1" />
-  </div>
-  <ng-container *ngIf="!dadosColaborador?.update">
-    <div class="col-12 mt-2">
-      <h3 class="mt-0 mb-2">Perfil de Cadastro</h3>
+    <div class="col-12">
+        <h2 class="mt-0 mb-2" *ngIf="!dadosColaborador?.update">Novo Colaborador</h2>
+        <h2 class="mt-0 mb-2" *ngIf="dadosColaborador?.update">Atualizar Colaborador</h2>
+        <hr class="my-1" />
     </div>
-    <div class="col-12 pb-3">
-      <form action="">
-        <mat-radio-group aria-label="Select an option" [formControl]="radioForm">
-          <mat-radio-button value="1">Auxiliar Adm</mat-radio-button>
-          <mat-radio-button value="2">Médico</mat-radio-button>
-        </mat-radio-group>
-      </form>
+    <ng-container *ngIf="!dadosColaborador?.update">
+        <div class="col-12 mt-2">
+            <h3 class="mt-0 mb-2">Perfil de Cadastro</h3>
+        </div>
+        <div class="col-12 pb-3">
+            <form action="">
+                <mat-radio-group aria-label="Select an option" [formControl]="radioForm">
+                    <mat-radio-button value="1">Auxiliar Adm</mat-radio-button>
+                    <mat-radio-button value="2">Médico</mat-radio-button>
+                </mat-radio-group>
+            </form>
+        </div>
+    </ng-container>
+    <div class="col-12">
+        <app-form-cadastro-colaborador [type]="radioForm.value"></app-form-cadastro-colaborador>
     </div>
-  </ng-container>
-  <div class="col-12">
-    <app-form-cadastro-colaborador [type]="radioForm.value"></app-form-cadastro-colaborador>
-  </div>
 </div>

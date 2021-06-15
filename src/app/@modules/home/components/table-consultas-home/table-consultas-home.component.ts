@@ -14,112 +14,112 @@ import { ModalAnimationComponent } from '../../../../@shared/modal-animation/mod
 const log = new Logger('Consultas');
 
 @Component({
-  selector: 'app-table-consultas-home',
-  templateUrl: './table-consultas-home.component.html',
-  styleUrls: ['./table-consultas-home.component.scss'],
+    selector: 'app-table-consultas-home',
+    templateUrl: './table-consultas-home.component.html',
+    styleUrls: ['./table-consultas-home.component.scss'],
 })
 export class TableConsultasHomeComponent implements OnInit, OnDestroy {
-  @ViewChild(ModalAnimationComponent) modal: any;
-  @Input() perfil: string;
-  @Input() idMedico: number;
+    @ViewChild(ModalAnimationComponent) modal: any;
+    @Input() perfil: string;
+    @Input() idMedico: number;
 
-  constructor(private readonly _clinicaService: ClinicaService) {}
+    constructor(private readonly _clinicaService: ClinicaService) {}
 
-  public consultas: IConsultaModel[] = [];
-  public loading = false;
+    public consultas: IConsultaModel[] = [];
+    public loading = false;
 
-  public itemsPerPage = 4;
-  public currentPage: number;
-  public totalItems: number;
-  public page = 0;
-  public temporalidadeControl = new FormControl();
+    public itemsPerPage = 4;
+    public currentPage: number;
+    public totalItems: number;
+    public page = 0;
+    public temporalidadeControl = new FormControl();
 
-  public opcoesTemporalidade: any[] = [];
-  public consulta: any;
+    public opcoesTemporalidade: any[] = [];
+    public consulta: any;
 
-  ngOnDestroy(): void {}
+    ngOnDestroy(): void {}
 
-  date: any;
+    date: any;
 
-  ngOnInit(): void {
-    this.date = new Date().toString();
-    // this.getAllConsultas();
-    this.opcoesTemporalidade = ListaTemporalidade.getListaOpcoesTemporalidade();
-    this.temporalidadeControl.setValue(this.opcoesTemporalidade[0].value);
+    ngOnInit(): void {
+        this.date = new Date().toString();
+        // this.getAllConsultas();
+        this.opcoesTemporalidade = ListaTemporalidade.getListaOpcoesTemporalidade();
+        this.temporalidadeControl.setValue(this.opcoesTemporalidade[0].value);
 
-    this.verifyProfile();
-  }
-
-  public options: AnimationOptions = {
-    path: '/assets/lottie/lottie-search.json',
-  };
-
-  public verifyProfile(): void {
-    if (this.perfil.toUpperCase() === 'MEDICO') {
-      this.getAllConsultasMedico();
-    } else {
-      this.getAllConsultas();
+        this.verifyProfile();
     }
-  }
 
-  public getAllConsultas(page = 0): void {
-    this.loading = true;
-    this.consultas = [];
-    this._clinicaService
-      .getAllConsultas(this.itemsPerPage, page)
-      .pipe(
-        untilDestroyed(this),
-        finalize(() => (this.loading = false))
-      )
-      .subscribe({
-        next: (body: IConsultasModel) => {
-          this.consultas = body.content;
-          this.page = page + 1;
-          this.totalItems = body.totalElements;
-        },
-        error: (error: HttpErrorResponse) => {
-          log.error(error);
-        },
-      });
-  }
+    public options: AnimationOptions = {
+        path: '/assets/lottie/lottie-search.json',
+    };
 
-  public getAllConsultasMedico(page = 0): void {
-    this.loading = true;
-    this.consultas = [];
-    const valuesParse = this.temporalidadeControl.value;
-    this._clinicaService
-      .getAllConsultasMedico(this.itemsPerPage, page, this.idMedico, valuesParse)
-      .pipe(
-        untilDestroyed(this),
-        finalize(() => (this.loading = false))
-      )
-      .subscribe({
-        next: (body: IConsultasModel) => {
-          this.consultas = body.content;
-          this.page = page + 1;
-          this.totalItems = body.totalElements;
-        },
-        error: (error: HttpErrorResponse) => {
-          log.error(error);
-        },
-      });
-  }
-
-  public pageChanged(event: number): void {
-    if (this.perfil.toUpperCase() === 'MEDICO') {
-      this.getAllConsultasMedico(event - 1);
-    } else {
-      this.getAllConsultas(event - 1);
+    public verifyProfile(): void {
+        if (this.perfil.toUpperCase() === 'MEDICO') {
+            this.getAllConsultasMedico();
+        } else {
+            this.getAllConsultas();
+        }
     }
-    this.page = event;
-  }
 
-  public openModalDetalhes(idModal: string, consulta: any): void {
-    this.consulta = consulta;
-    this.modal.show(idModal);
-  }
+    public getAllConsultas(page = 0): void {
+        this.loading = true;
+        this.consultas = [];
+        this._clinicaService
+            .getAllConsultas(this.itemsPerPage, page)
+            .pipe(
+                untilDestroyed(this),
+                finalize(() => (this.loading = false))
+            )
+            .subscribe({
+                next: (body: IConsultasModel) => {
+                    this.consultas = body.content;
+                    this.page = page + 1;
+                    this.totalItems = body.totalElements;
+                },
+                error: (error: HttpErrorResponse) => {
+                    log.error(error);
+                },
+            });
+    }
 
-  public closeModal(event: any): void {
-    this.modal.close(event.modalId);
-  }
+    public getAllConsultasMedico(page = 0): void {
+        this.loading = true;
+        this.consultas = [];
+        const valuesParse = this.temporalidadeControl.value;
+        this._clinicaService
+            .getAllConsultasMedico(this.itemsPerPage, page, this.idMedico, valuesParse)
+            .pipe(
+                untilDestroyed(this),
+                finalize(() => (this.loading = false))
+            )
+            .subscribe({
+                next: (body: IConsultasModel) => {
+                    this.consultas = body.content;
+                    this.page = page + 1;
+                    this.totalItems = body.totalElements;
+                },
+                error: (error: HttpErrorResponse) => {
+                    log.error(error);
+                },
+            });
+    }
+
+    public pageChanged(event: number): void {
+        if (this.perfil.toUpperCase() === 'MEDICO') {
+            this.getAllConsultasMedico(event - 1);
+        } else {
+            this.getAllConsultas(event - 1);
+        }
+        this.page = event;
+    }
+
+    public openModalDetalhes(idModal: string, consulta: any): void {
+        this.consulta = consulta;
+        this.modal.show(idModal);
+    }
+
+    public closeModal(event: any): void {
+        this.modal.close(event.modalId);
+    }
 }

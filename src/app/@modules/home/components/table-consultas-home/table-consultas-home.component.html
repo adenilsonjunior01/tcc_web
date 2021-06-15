@@ -1,95 +1,95 @@
 <app-card-content>
-  <div class="row" *ngIf="perfil === 'MEDICO'">
-    <div class="col-3">
-      <mat-form-field appearance="outline">
-        <mat-label>Filtro Temporalidade</mat-label>
-        <mat-select [formControl]="temporalidadeControl" (selectionChange)="getAllConsultasMedico()">
-          <mat-option
-            [value]="item.value"
-            *ngFor="let item of opcoesTemporalidade"
-            (change)="getAllConsultasMedico()"
-            >{{ item.text }}</mat-option
-          >
-        </mat-select>
-      </mat-form-field>
+    <div class="row" *ngIf="perfil === 'MEDICO'">
+        <div class="col-3">
+            <mat-form-field appearance="outline">
+                <mat-label>Filtro Temporalidade</mat-label>
+                <mat-select [formControl]="temporalidadeControl" (selectionChange)="getAllConsultasMedico()">
+                    <mat-option
+                        [value]="item.value"
+                        *ngFor="let item of opcoesTemporalidade"
+                        (change)="getAllConsultasMedico()"
+                        >{{ item.text }}</mat-option
+                    >
+                </mat-select>
+            </mat-form-field>
+        </div>
     </div>
-  </div>
-  <h3 class="mb-0 mt-2 ps-1">Consultas recentes</h3>
-  <div class="table-responsive">
-    <ng-lottie [options]="options" height="220px" *ngIf="loading"></ng-lottie>
-    <table class="table" *ngIf="consultas.length > 0; else semregistro">
-      <thead>
-        <tr>
-          <th scope="col">Paciente</th>
-          <th scope="col">Procedimento</th>
-          <th scope="col">Início</th>
-          <th scope="col">Término</th>
-          <th scope="col">Médico</th>
-          <th scope="col">Status</th>
-          <th scope="col">Ações</th>
-          <!-- visão funcionário o tipo corresponde a Paciente ou Médico-->
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          *ngFor="
-            let consulta of consultas
-              | paginate
-                : {
-                    itemsPerPage: itemsPerPage,
-                    currentPage: page,
-                    totalItems: totalItems
-                  };
-            index as i
-          "
-        >
-          <td class="text-capitalize">{{ consulta?.paciente?.nome }}</td>
-          <td>
-            <span>{{ consulta?.procedimento?.descTipoProcedimento }}</span>
-          </td>
-          <td>
-            <span>{{ consulta?.dtInicio | date: 'shortDate' }}</span>
-          </td>
-          <td>
-            <span>{{ consulta?.dtFim | date: 'shortDate' }}</span>
-          </td>
-          <td>
-            <span>{{ consulta?.medico?.nome }}</span>
-          </td>
-          <td>
-            <span class="bold">{{ consulta?.status }}</span>
-          </td>
-          <td>
-            <a (click)="openModalDetalhes('detalhe-consulta', consulta)"> visualizar</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="row" *ngIf="!loading">
-    <div class="col-12 d-flex justify-content-center">
-      <pagination-controls
-        (pageChange)="pageChanged($event)"
-        maxSize="5"
-        autoHide="true"
-        directionLinks="true"
-        responsive="true"
-        previousLabel=""
-        nextLabel=""
-      ></pagination-controls>
+    <h3 class="mb-0 mt-2 ps-1">Consultas recentes</h3>
+    <div class="table-responsive">
+        <ng-lottie [options]="options" height="220px" *ngIf="loading"></ng-lottie>
+        <table class="table" *ngIf="consultas.length > 0; else semregistro">
+            <thead>
+                <tr>
+                    <th scope="col">Paciente</th>
+                    <th scope="col">Procedimento</th>
+                    <th scope="col">Início</th>
+                    <th scope="col">Término</th>
+                    <th scope="col">Médico</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Ações</th>
+                    <!-- visão funcionário o tipo corresponde a Paciente ou Médico-->
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="
+                        let consulta of consultas
+                            | paginate
+                                : {
+                                      itemsPerPage: itemsPerPage,
+                                      currentPage: page,
+                                      totalItems: totalItems
+                                  };
+                        index as i
+                    "
+                >
+                    <td class="text-capitalize">{{ consulta?.paciente?.nome }}</td>
+                    <td>
+                        <span>{{ consulta?.procedimento?.descTipoProcedimento }}</span>
+                    </td>
+                    <td>
+                        <span>{{ consulta?.dtInicio | date: 'shortDate' }}</span>
+                    </td>
+                    <td>
+                        <span>{{ consulta?.dtFim | date: 'shortDate' }}</span>
+                    </td>
+                    <td>
+                        <span>{{ consulta?.medico?.nome }}</span>
+                    </td>
+                    <td>
+                        <span class="bold">{{ consulta?.status }}</span>
+                    </td>
+                    <td>
+                        <a (click)="openModalDetalhes('detalhe-consulta', consulta)"> visualizar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-  </div>
+    <div class="row" *ngIf="!loading">
+        <div class="col-12 d-flex justify-content-center">
+            <pagination-controls
+                (pageChange)="pageChanged($event)"
+                maxSize="5"
+                autoHide="true"
+                directionLinks="true"
+                responsive="true"
+                previousLabel=""
+                nextLabel=""
+            ></pagination-controls>
+        </div>
+    </div>
 </app-card-content>
 
 <ng-template #semregistro>
-  <div class="row m-0" *ngIf="!loading">
-    <div class="col-12 ps-1 mt-2 not-found">
-      <p class="m-0">Nenhum registro encontrado.</p>
+    <div class="row m-0" *ngIf="!loading">
+        <div class="col-12 ps-1 mt-2 not-found">
+            <p class="m-0">Nenhum registro encontrado.</p>
+        </div>
     </div>
-  </div>
 </ng-template>
 <app-modal-animation modalID="detalhe-consulta" modalClass="md-effect-10">
-  <div class="md-body container p-0">
-    <app-detalhes-consulta [consulta]="consulta" (closeModal)="closeModal($event)"></app-detalhes-consulta>
-  </div>
+    <div class="md-body container p-0">
+        <app-detalhes-consulta [consulta]="consulta" (closeModal)="closeModal($event)"></app-detalhes-consulta>
+    </div>
 </app-modal-animation>

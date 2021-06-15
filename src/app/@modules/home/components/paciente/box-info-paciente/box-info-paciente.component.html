@@ -1,56 +1,56 @@
 <div class="row m-0">
-  <div class="col-12 p-0">
-    <h3 class="my-2">Dados Gerais</h3>
-  </div>
+    <div class="col-12 p-0">
+        <h3 class="my-2">Dados Gerais</h3>
+    </div>
 </div>
 <app-card-content>
-  <h3 class="m-0 mb-3"></h3>
-  <div class="bg-box-info shadow">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 name-medico mt-4">
-          <h3 class="m-0">{{ dadosUser?.paciente?.nome }}</h3>
-          <span>Paciente</span>
-        </div>
-        <div class="col-auto pb-3 description">
-          <span>Altura</span>
-          <h4 class="m-0">{{ dadosMedicos?.altura ? dadosMedicos?.altura : '--' }}</h4>
-        </div>
-        <div class="col-auto pb-3 description">
-          <span>Peso</span>
-          <h4 class="m-0">{{ dadosMedicos?.peso ? dadosMedicos?.peso : '--' }} kg</h4>
-        </div>
-        <div class="col-auto pb-3 description">
-          <span>Tipo sanguíneo</span>
-          <h4 class="m-0">
-            {{
-              dadosMedicos?.tipoSanguineo?.descricaoTipoSanguineo
-                ? dadosMedicos?.tipoSanguineo?.descricaoTipoSanguineo
-                : '--'
-            }}
-          </h4>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-auto pb-3 description">
-          <span>IMC</span>
-          <h4 class="m-0">{{ dadosMedicos?.vlImc ? dadosMedicos?.vlImc : '--' }}</h4>
-        </div>
-        <div class="col-auto pb-3 description">
-          <span>Descrição IMC</span>
-          <h4 class="m-0">{{ dadosMedicos?.descImc ? dadosMedicos?.descImc : '--' }}</h4>
-        </div>
-      </div>
-      <div class="row">
-        <!-- <div class="col-auto pb-3 description">
+    <h3 class="m-0 mb-3"></h3>
+    <div class="bg-box-info shadow">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 name-medico mt-4">
+                    <h3 class="m-0">{{ dadosUser?.paciente?.nome }}</h3>
+                    <span>Paciente</span>
+                </div>
+                <div class="col-auto pb-3 description">
+                    <span>Altura</span>
+                    <h4 class="m-0">{{ dadosMedicos?.altura ? dadosMedicos?.altura : '--' }}</h4>
+                </div>
+                <div class="col-auto pb-3 description">
+                    <span>Peso</span>
+                    <h4 class="m-0">{{ dadosMedicos?.peso ? dadosMedicos?.peso : '--' }} kg</h4>
+                </div>
+                <div class="col-auto pb-3 description">
+                    <span>Tipo sanguíneo</span>
+                    <h4 class="m-0">
+                        {{
+                            dadosMedicos?.tipoSanguineo?.descricaoTipoSanguineo
+                                ? dadosMedicos?.tipoSanguineo?.descricaoTipoSanguineo
+                                : '--'
+                        }}
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-auto pb-3 description">
+                    <span>IMC</span>
+                    <h4 class="m-0">{{ dadosMedicos?.vlImc ? dadosMedicos?.vlImc : '--' }}</h4>
+                </div>
+                <div class="col-auto pb-3 description">
+                    <span>Descrição IMC</span>
+                    <h4 class="m-0">{{ dadosMedicos?.descImc ? dadosMedicos?.descImc : '--' }}</h4>
+                </div>
+            </div>
+            <div class="row">
+                <!-- <div class="col-auto pb-3 description">
           <span>Última consulta</span>
           <h4 class="m-0">{{ dadosMedicos?.dtAtualizacao }}</h4>
         </div> -->
-        <div class="col-auto pb-3 description">
-          <span>Última atualização</span>
-          <h4 class="m-0">{{ dadosMedicos?.dtAtualizacao }}</h4>
+                <div class="col-auto pb-3 description">
+                    <span>Última atualização</span>
+                    <h4 class="m-0">{{ dadosMedicos?.dtAtualizacao }}</h4>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </app-card-content>

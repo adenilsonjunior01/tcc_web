@@ -17,16 +17,16 @@ import { HomeModule } from '../@modules/home/home.module';
 FullCalendarModule.registerPlugins([dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin]);
 
 @NgModule({
-  imports: [
-    CommonModule,
-    TranslateModule,
-    FlexLayoutModule,
-    MaterialModule,
-    AboutRoutingModule,
-    FullCalendarModule,
-    SharedModule,
-    HomeModule,
-  ],
-  declarations: [AboutComponent],
+    imports: [
+        CommonModule,
+        TranslateModule,
+        FlexLayoutModule,
+        MaterialModule,
+        AboutRoutingModule,
+        FullCalendarModule,
+        SharedModule,
+        HomeModule,
+    ],
+    declarations: [AboutComponent],
 })
 export class AboutModule {}

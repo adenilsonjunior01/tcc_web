@@ -6,43 +6,43 @@ import { Logger } from '../../@core/logger.service';
 const log = new Logger('Configurações Clínica');
 
 @Component({
-  selector: 'app-configuracoes',
-  templateUrl: './configuracoes.component.html',
-  styleUrls: ['./configuracoes.component.scss'],
+    selector: 'app-configuracoes',
+    templateUrl: './configuracoes.component.html',
+    styleUrls: ['./configuracoes.component.scss'],
 })
 export class ConfiguracoesComponent implements OnInit {
-  @ViewChild(ModalAnimationComponent) modal: any;
-  public detailsProfile = { teste: 'Teste' };
-  public dadosClinica: any;
+    @ViewChild(ModalAnimationComponent) modal: any;
+    public detailsProfile = { teste: 'Teste' };
+    public dadosClinica: any;
 
-  /**
-   * @description: Type 1: Edição de Logo, Type 2: edição História, Type 3: edição missão, valores, visão
-   */
-  public type: number;
+    /**
+     * @description: Type 1: Edição de Logo, Type 2: edição História, Type 3: edição missão, valores, visão
+     */
+    public type: number;
 
-  constructor(private readonly _clinicaService: ClinicaService) {}
+    constructor(private readonly _clinicaService: ClinicaService) {}
 
-  ngOnInit(): void {
-    this.getDadosClinica();
-  }
+    ngOnInit(): void {
+        this.getDadosClinica();
+    }
 
-  public openModal(type: number, idModal: string): void {
-    this.type = type;
-    this.modal.show(idModal);
-  }
+    public openModal(type: number, idModal: string): void {
+        this.type = type;
+        this.modal.show(idModal);
+    }
 
-  public closeModal(idModal?: string): void {
-    this.modal.close(idModal);
-  }
+    public closeModal(idModal?: string): void {
+        this.modal.close(idModal);
+    }
 
-  public getDadosClinica(event?: boolean): void {
-    this._clinicaService.getDadosClinica().subscribe({
-      next: (body: any) => {
-        this.dadosClinica = body;
-      },
-      error: (error: any) => {
-        log.error(error);
-      },
-    });
-  }
+    public getDadosClinica(event?: boolean): void {
+        this._clinicaService.getDadosClinica().subscribe({
+            next: (body: any) => {
+                this.dadosClinica = body;
+            },
+            error: (error: any) => {
+                log.error(error);
+            },
+        });
+    }
 }
